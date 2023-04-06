@@ -1,0 +1,9 @@
+{
+    "remote": {
+        "noInternetException": "",
+        "unknownException": "",
+        "cancellationException": "",
+        "tokenExpired": "",
+        "badCertificate": "Fail https requests for older devices."
+    }
+}

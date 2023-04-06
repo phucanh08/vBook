@@ -1,0 +1,9 @@
+namespaces: true
+base_locale: vi
+fallback_strategy: base_locale
+input_directory: lib/src/i18n
+output_directory: lib/src/i18n
+output_format: multiple_files
+string_interpolation: dart
+key_case: snake
+key_map_case: camel

@@ -1,0 +1,91 @@
+name: vbook
+description: A new Flutter project.
+publish_to: 'none' # Remove this line if you wish to publish to pub.dev
+version: 1.0.0+1
+
+environment:
+  sdk: '>=2.19.4 <3.0.0'
+
+# Dependencies specify other packages that your package needs in order to work.
+# To automatically upgrade your package dependencies to the latest versions
+# consider running `flutter pub upgrade --major-versions`. Alternatively,
+# dependencies can be manually updated by changing the version numbers below to
+# the latest version available on pub.dev. To see which dependencies have newer
+# versions available, run `flutter pub outdated`.
+dependencies:
+  flutter:
+    sdk: flutter
+  flutter_localizations:
+    sdk: flutter
+  async: 2.10.0
+  auto_route: ^6.0.5
+  cached_network_image: 3.2.3
+  flutter_bloc: 8.1.2
+  flutter_local_notifications: 13.0.0
+  flutter_svg: 2.0.4
+  get_it: 7.2.0
+  injectable: 2.1.1
+  infinite_scroll_pagination: 3.2.0
+  rxdart: 0.27.7
+  cupertino_icons: 1.0.2
+
+  data:
+    path: packages/data
+  domain:
+    path: packages/domain
+  initializer:
+    path: packages/initializer
+  resource:
+    path: packages/resource
+  shared:
+    path: packages/shared
+
+  tuple: 2.0.1
+
+
+
+dev_dependencies:
+  flutter_test:
+    sdk: flutter
+  flutter_lints: 2.0.1
+  dart_code_metrics: 5.7.0
+  build_runner: 2.3.3
+  flutter_gen_runner: 5.2.0
+  auto_route_generator: 6.0.0
+  injectable_generator: 2.1.5
+  freezed: 2.3.2
+  freezed_annotation: 2.2.0
+  retrofit_generator: 6.0.0+1
+  json_serializable: 6.6.1
+
+flutter_gen:
+  output: lib/resource/generated
+  line_lenght: 160
+  null_safety: true
+
+  integrations:
+    flutter_svg: true
+    # flare_flutter: true
+
+  assets:
+    enabled: true
+
+  fonts:
+    enabled: true
+
+  # colors:
+  #   enabled: true
+  #   inputs:
+  #     - assets/color/colors.xml
+flutter:
+  uses-material-design: true
+  generate: false
+#  fonts:
+#    - family: Muli
+#      fonts:
+#        - asset: assets/fonts/Muli-Bold.ttf
+#          weight: 900
+#        - asset: assets/fonts/Muli-SemiBold.ttf
+#          weight: 700
+#        - asset: assets/fonts/Muli-Regular.ttf
+#          weight: 400

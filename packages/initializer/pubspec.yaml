@@ -1,0 +1,27 @@
+name: initializer
+description: Library initializer for all library.
+version: 0.0.1
+publish_to: none
+
+environment:
+  sdk: '>=2.19.4 <3.0.0'
+  flutter: ">=1.17.0"
+
+dependencies:
+  flutter:
+    sdk: flutter
+  data:
+    path: ../data
+  domain:
+    path: ../domain
+  resource:
+    path: ../resource
+  shared:
+    path: ../shared
+
+dev_dependencies:
+  flutter_test:
+    sdk: flutter
+  flutter_lints: ^2.0.0
+
+flutter:
