@@ -59,16 +59,16 @@ dev_dependencies:
   json_serializable: 6.6.1
 
 flutter_gen:
-  output: lib/resource/generated
+  output: lib/generated
   line_lenght: 160
   null_safety: true
 
   integrations:
-    flutter_svg: true
+    flutter_svg: false
     # flare_flutter: true
 
   assets:
-    enabled: true
+    enabled: false
 
   fonts:
     enabled: true
@@ -80,12 +80,3 @@ flutter_gen:
 flutter:
   uses-material-design: true
   generate: false
-#  fonts:
-#    - family: Muli
-#      fonts:
-#        - asset: assets/fonts/Muli-Bold.ttf
-#          weight: 900
-#        - asset: assets/fonts/Muli-SemiBold.ttf
-#          weight: 700
-#        - asset: assets/fonts/Muli-Regular.ttf
-#          weight: 400
