@@ -30,7 +30,7 @@ dart_code_metrics:
     # source-lines-of-code: 50
   rules:
     - member-ordering:
-        #        alphabetize: true
+        alphabetize: false
         order:
           - constructors
           - fields

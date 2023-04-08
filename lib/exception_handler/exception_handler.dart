@@ -1,3 +1,4 @@
+import 'package:resources/resources.dart';
 import 'package:shared/shared.dart';
 
 import '../app.dart';

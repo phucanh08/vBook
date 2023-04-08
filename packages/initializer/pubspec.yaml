@@ -14,8 +14,8 @@ dependencies:
     path: ../data
   domain:
     path: ../domain
-  resource:
-    path: ../resource
+  resources:
+    path: ../resources
   shared:
     path: ../shared
 

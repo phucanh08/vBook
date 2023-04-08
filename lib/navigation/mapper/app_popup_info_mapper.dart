@@ -1,5 +1,6 @@
 import 'package:flutter/cupertino.dart';
 import 'package:injectable/injectable.dart';
+import 'package:resources/resources.dart';
 import 'package:shared/shared.dart';
 
 import '../../app.dart';
@@ -17,7 +18,7 @@ class AppPopupInfoMapper extends BasePopupInfoMapper {
         return CommonDialog(
           actions: [
             PopupButton(
-              text: 'S.current.ok',
+              text: t.common.ok,
               onPressed: onPressed ?? Func0(() => navigator.pop()),
             ),
           ],

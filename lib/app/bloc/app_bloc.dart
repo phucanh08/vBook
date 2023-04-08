@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
 import 'package:injectable/injectable.dart';
-import 'package:resource/resource.dart';
+import 'package:resources/resources.dart';
 
 import '../../app.dart';
 

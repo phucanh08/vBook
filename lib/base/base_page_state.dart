@@ -1,20 +1,20 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:get_it/get_it.dart';
+import 'package:resources/resources.dart';
 import 'package:shared/shared.dart';
 
 import '../app.dart';
 
-
-
 abstract class BasePageState<T extends StatefulWidget, B extends BaseBloc>
     extends BasePageStateDelegate<T, B> with LogMixin {}
 
-abstract class BasePageStateDelegate<T extends StatefulWidget, B extends BaseBloc> extends State<T>
-    implements ExceptionHandlerListener {
+abstract class BasePageStateDelegate<T extends StatefulWidget,
+    B extends BaseBloc> extends State<T> implements ExceptionHandlerListener {
   late final AppNavigator navigator = GetIt.instance.get<AppNavigator>();
   late final AppBloc appBloc = GetIt.instance.get<AppBloc>();
-  late final ExceptionMessageMapper exceptionMessageMapper = const ExceptionMessageMapper();
+  late final ExceptionMessageMapper exceptionMessageMapper =
+      const ExceptionMessageMapper();
   late final ExceptionHandler exceptionHandler = ExceptionHandler(
     navigator: navigator,
     listener: this,
@@ -37,14 +37,13 @@ abstract class BasePageStateDelegate<T extends StatefulWidget, B extends BaseBlo
 
   late final DisposeBag disposeBag = DisposeBag();
 
-  bool get isAppWidget => false;
+  late final TextTheme textTheme = Theme.of(context).textTheme;
+
+  late final ColorScheme colorScheme = Theme.of(context).colorScheme;
 
   @override
   Widget build(BuildContext context) {
-    // if (!isAppWidget) {
-    //   AppDimen.of(context);
-    //   AppColors.of(context);
-    // }
+    AppDimen.of(context);
 
     return MultiBlocProvider(
       providers: [
@@ -59,20 +58,19 @@ abstract class BasePageStateDelegate<T extends StatefulWidget, B extends BaseBlo
           handleException(state.appExceptionWrapper!);
         },
         child: buildPageListeners(
-          child: isAppWidget
-              ? buildPage(context)
-              : Stack(
-                  children: [
-                    buildPage(context),
-                    BlocBuilder<CommonBloc, CommonState>(
-                      buildWhen: (previous, current) => previous.isLoading != current.isLoading,
-                      builder: (context, state) => Visibility(
-                        visible: state.isLoading,
-                        child: buildPageLoading(),
-                      ),
-                    ),
-                  ],
+          child: Stack(
+            children: [
+              buildPage(context),
+              BlocBuilder<CommonBloc, CommonState>(
+                buildWhen: (previous, current) =>
+                    previous.isLoading != current.isLoading,
+                builder: (context, state) => Visibility(
+                  visible: state.isLoading,
+                  child: buildPageLoading(),
                 ),
+              ),
+            ],
+          ),
         ),
       ),
     );

@@ -9,28 +9,28 @@ class ExceptionMessageMapper {
         final exception = appException as RemoteException;
         switch (exception.kind) {
           case RemoteExceptionKind.noInternet:
-            return 'S.current.noInternetException';
+            return t.sys.remote.no_internet_exception;
           case RemoteExceptionKind.network:
-            return 'S.current.noInternetException';
+            return t.sys.remote.no_internet_exception;
           case RemoteExceptionKind.serverDefined:
-            return exception.generalServerMessage ?? 'S.current.unknownException';
+            return exception.generalServerMessage ?? t.sys.remote.unknown_exception;
           case RemoteExceptionKind.serverUndefined:
-            return exception.generalServerMessage ?? 'S.current.unknownException';
+            return exception.generalServerMessage ?? t.sys.remote.unknown_exception;
           case RemoteExceptionKind.timeout:
-            return 'S.current.noInternetException';
+            return t.sys.remote.no_internet_exception;
           case RemoteExceptionKind.cancellation:
-            return 'S.current.cancellationException';
+            return t.sys.remote.cancellation_exception;
           case RemoteExceptionKind.unknown:
-            return '${'S.current.unknownException'}: ${exception.rootException}';
+            return '${t.sys.remote.unknown_exception}: ${exception.rootException}';
           case RemoteExceptionKind.refreshTokenFailed:
-            return 'S.current.tokenExpired';
+            return t.sys.remote.token_expired;
         }
       case AppExceptionType.parse:
         return 'S.current.parseException';
       case AppExceptionType.remoteConfig:
-        return 'S.current.unknownException';
+        return t.sys.remote.unknown_exception;
       case AppExceptionType.uncaught:
-        return 'S.current.unknownException';
+        return t.sys.remote.unknown_exception;
       case AppExceptionType.validation:
         final exception = appException as ValidationException;
         switch (exception.kind) {
