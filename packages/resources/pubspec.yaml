@@ -1,4 +1,4 @@
-name: resource
+name: resources
 description: A new Flutter project.
 version: 0.0.1
 publish_to: none
@@ -54,3 +54,26 @@ flutter:
   generate: false
   assets:
     - assets/images/
+
+  fonts:
+    - family: FontAwesomeSolid
+      fonts:
+        - asset: assets/fonts/fa_icon/fa-solid-900.ttf
+    - family: FontAwesomeSharpSolid
+      fonts:
+        - asset: assets/fonts/fa_icon/fa-sharp-solid-900.ttf
+    - family: FontAwesomeDuoTone
+      fonts:
+        - asset: assets/fonts/fa_icon/fa-duotone-900.ttf
+    - family: FontAwesomeBrand
+      fonts:
+        - asset: assets/fonts/fa_icon/fa-brands-400.ttf
+    - family: FontAwesomeRegular
+      fonts:
+        - asset: assets/fonts/fa_icon/fa-regular-400.ttf
+    - family: FontAwesomeLight
+      fonts:
+        - asset: assets/fonts/fa_icon/fa-light-300.ttf
+    - family: FontAwesomeThin
+      fonts:
+        - asset: assets/fonts/fa_icon/fa-thin-100.ttf

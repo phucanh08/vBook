@@ -3,6 +3,15 @@ part of 'app_themes.dart';
 extension AppTextStyles on TextStyle {
   TextStyle get nonHeight => copyWith(height: 1);
 
+  TextStyle responsive({
+    double? tablet,
+    double? ultraTablet,
+  }) {
+    return copyWith(
+      fontSize: fontSize?.responsive(tablet: tablet, ultraTablet: ultraTablet),
+    );
+  }
+
   TextStyle withColor({
     Color? color,
     double? tablet,
