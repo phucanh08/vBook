@@ -1,8 +1,6 @@
 part of 'app_themes.dart';
 
 class AppColors {
-  AppColors._(this.lightColorScheme, this.darkColorScheme);
-
   AppColors(AppPalette appPalette, CustomPalette customPalette)
       : lightColorScheme = ColorScheme.light(
           /// primary
