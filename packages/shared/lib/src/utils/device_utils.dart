@@ -9,6 +9,9 @@ class DeviceUtils {
   const DeviceUtils._();
   static DeviceType deviceType = _getDeviceType();
 
+  static bool get isAndroid => Platform.isAndroid;
+  static bool get isIOS => Platform.isIOS;
+
   static Future<String> getDeviceId() async {
     final deviceInfo = DeviceInfoPlugin();
     if (Platform.isIOS) {

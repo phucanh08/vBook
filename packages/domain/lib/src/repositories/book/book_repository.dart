@@ -1,6 +1,9 @@
 import '../../../domain.dart';
 
 abstract class BookRepository {
-  Future<Pagination<Book>> getPagination();
-  Future<Book> getDetail();
+  Future<Book> getBookById(String id);
+
+  Future<Pagination<BookExtension>> getPagination(Page page);
+  Future<Pagination<BookExtension>> getLibraryBook(Page page);
+  Future<Pagination<BookExtension>> getHistoryBook(Page page);
 }

@@ -2,30 +2,168 @@ import 'package:domain/domain.dart';
 import 'package:injectable/injectable.dart';
 
 @LazySingleton(as: BookRepository)
-class BookRepositoryImpl implements BookRepository{
+class BookRepositoryImpl implements BookRepository {
   @override
-  Future<Book> getDetail() async {
+  Future<Book> getBookById(String id) async {
     return const Book(
-      id: 'https://metruyencv.com/truyen/nha-ta-chuong-quy-dung-la-ma-dao-khoi-thu',
-      imageUrl:
-      'https://static.cdnno.com/poster/nha-ta-chuong-quy-dung-la-ma-dao-khoi-thu/300.jpg?1680777795',
-      name: 'Nhà Ta Chưởng Quỹ Đúng Là Ma Đạo Khôi Thủ',
-      description:
-      '"Cần biết ít ngày nã Vân Chí, từng khen người ở giữa hạng nhất." '
-          'Mọi người đều biết, ta Diệp Thời An chưa từng đi đường thường. '
-          'Vừa tròn mười tám tuổi ngày đầu tiên, bắt đầu bị thẹn quá thành giận nữ Kiếm Tiên truy sát... '
-          'Nghĩ xông xáo giang hồ làm kia chính đạo Kiếm Tiên, lại bị ma đạo khôi thủ hố thành tiểu đệ. . . '
-          'Muốn làm cái thẳng thắn cương nghị kẻ kiên cường, lại bị vị hôn thê cường thế đẩy ngược, chạy trối chết. . . Ta liền muốn phổ phổ thông thông luyện cái võ, nhưng lại mẹ nó tu thành trường sinh cửu thị thứ nhất tiên. . .',
-      author: 'Vãn Phong Như Cố',
-      numOfChapters: 68,
+      id: 'xich-tam-tuan-thien',
+      url: 'xich-tam-tuan-thien',
+      host: 'https://metruyencv.com',
+      imgUrl:
+          'https://static.cdnno.com/poster/xich-tam-tuan-thien/300.jpg?1612524612',
+      title: 'Xích Tâm Tuần Thiên',
+      description: '''Thời đại thượng cổ, Yêu tộc tuyệt tích. Thời đại cận cổ, 
+                  Long tộc biến mất. Thần đạo đang thịnh thời đại đã như khói, 
+                  phi kiếm đỉnh cao nhất thời đại cuối cùng trầm luân. . .\n\n
+                  Thế giới này xảy ra chuyện gì?\n\n
+                  Cái kia mai táng tại bên trong dòng sông thời gian chân tướng lịch sử, ai đến lắng nghe?\n\n
+                  Núi sông ngàn dặm viết thây nằm, càn khôn trăm năm tô lại hổ đói.\n\n
+                  Thiên địa chí công như vô tình,\n\n
+                  Ta có xích tâm một viên, lấy tuần thiên!\n\n
+                  -----------------------
+                  Cảnh giới tu luyện chia làm cửu cấp, cửu thấp nhất:
+                  Du Mạch cảnh -> Chu Thiên cảnh -> Thông Thiên cảnh -> Đằng Long cảnh 
+                  -> Nội Phủ cảnh -> Ngoại Lâu Cảnh -> Thần Lâm cảnh-> Động Chân cảnh--> 
+                  Diễn Đạo cảnh---> Siêu Thoát.....''',
+      author: 'Tình Hà Dĩ Thậm',
       status: BookStatus.coming,
     );
   }
 
   @override
-  Future<Pagination<Book>> getPagination() {
-    // TODO: implement getPagination
-    throw UnimplementedError();
+  Future<Pagination<BookExtension>> getHistoryBook(Page page) async {
+    return Pagination(
+        items: List.generate(
+          page.size,
+          (index) => BookExtension(
+            id: 'id_$index',
+            book: Book(
+              id: '$index',
+              url: 'xich-tam-tuan-thien',
+              host: 'https://metruyencv.com',
+              imgUrl:
+                  'https://static.cdnno.com/poster/xich-tam-tuan-thien/300.jpg?1612524612',
+              title: 'Xích Tâm Tuần Thiên',
+              description:
+                  '''Thời đại thượng cổ, Yêu tộc tuyệt tích. Thời đại cận cổ, 
+                  Long tộc biến mất. Thần đạo đang thịnh thời đại đã như khói, 
+                  phi kiếm đỉnh cao nhất thời đại cuối cùng trầm luân. . .\n\n
+                  Thế giới này xảy ra chuyện gì?\n\n
+                  Cái kia mai táng tại bên trong dòng sông thời gian chân tướng lịch sử, ai đến lắng nghe?\n\n
+                  Núi sông ngàn dặm viết thây nằm, càn khôn trăm năm tô lại hổ đói.\n\n
+                  Thiên địa chí công như vô tình,\n\n
+                  Ta có xích tâm một viên, lấy tuần thiên!\n\n
+                  -----------------------
+                  Cảnh giới tu luyện chia làm cửu cấp, cửu thấp nhất:
+                  Du Mạch cảnh -> Chu Thiên cảnh -> Thông Thiên cảnh -> Đằng Long cảnh 
+                  -> Nội Phủ cảnh -> Ngoại Lâu Cảnh -> Thần Lâm cảnh-> Động Chân cảnh--> 
+                  Diễn Đạo cảnh---> Siêu Thoát.....''',
+              author: 'Tình Hà Dĩ Thậm',
+              status: BookStatus.coming,
+            ),
+            chapId: '1',
+            favorite: true,
+            isFirstTime: index == 0,
+            viewFlags: [],
+            duration: 0,
+            createAt: DateTime.now(),
+            updateAt: DateTime.now(),
+            readAt: DateTime.now(),
+            isRemote: false,
+          ),
+        ),
+        page: page);
   }
 
+  @override
+  Future<Pagination<BookExtension>> getLibraryBook(Page page) async {
+    return Pagination(
+      items: List.generate(
+        page.size,
+        (index) => BookExtension(
+          id: 'id2_$index',
+          book: Book(
+            id: '2$index',
+            url: 'xich-tam-tuan-thien',
+            host: 'https://metruyencv.com',
+            imgUrl:
+                'https://static.cdnno.com/poster/xich-tam-tuan-thien/300.jpg?1612524612',
+            title: 'Xích Tâm Tuần Thiên',
+            description:
+                '''Thời đại thượng cổ, Yêu tộc tuyệt tích. Thời đại cận cổ, 
+                  Long tộc biến mất. Thần đạo đang thịnh thời đại đã như khói, 
+                  phi kiếm đỉnh cao nhất thời đại cuối cùng trầm luân. . .\n\n
+                  Thế giới này xảy ra chuyện gì?\n\n
+                  Cái kia mai táng tại bên trong dòng sông thời gian chân tướng lịch sử, ai đến lắng nghe?\n\n
+                  Núi sông ngàn dặm viết thây nằm, càn khôn trăm năm tô lại hổ đói.\n\n
+                  Thiên địa chí công như vô tình,\n\n
+                  Ta có xích tâm một viên, lấy tuần thiên!\n\n
+                  -----------------------
+                  Cảnh giới tu luyện chia làm cửu cấp, cửu thấp nhất:
+                  Du Mạch cảnh -> Chu Thiên cảnh -> Thông Thiên cảnh -> Đằng Long cảnh 
+                  -> Nội Phủ cảnh -> Ngoại Lâu Cảnh -> Thần Lâm cảnh-> Động Chân cảnh--> 
+                  Diễn Đạo cảnh---> Siêu Thoát.....''',
+            author: 'Tình Hà Dĩ Thậm',
+            status: BookStatus.coming,
+          ),
+          chapId: '1',
+          favorite: true,
+          isFirstTime: index == 0,
+          viewFlags: [],
+          duration: 0,
+          createAt: DateTime.now(),
+          updateAt: DateTime.now(),
+          readAt: DateTime.now(),
+          isRemote: false,
+        ),
+      ),
+      page: page,
+    );
+  }
+
+  @override
+  Future<Pagination<BookExtension>> getPagination(Page page) async {
+    return Pagination(
+      items: List.generate(
+        page.size,
+            (index) => BookExtension(
+          id: 'id2_$index',
+          book: Book(
+            id: '2$index',
+            url: 'xich-tam-tuan-thien',
+            host: 'https://metruyencv.com',
+            imgUrl:
+            'https://static.cdnno.com/poster/xich-tam-tuan-thien/300.jpg?1612524612',
+            title: 'Xích Tâm Tuần Thiên',
+            description:
+            '''Thời đại thượng cổ, Yêu tộc tuyệt tích. Thời đại cận cổ, 
+                  Long tộc biến mất. Thần đạo đang thịnh thời đại đã như khói, 
+                  phi kiếm đỉnh cao nhất thời đại cuối cùng trầm luân. . .\n\n
+                  Thế giới này xảy ra chuyện gì?\n\n
+                  Cái kia mai táng tại bên trong dòng sông thời gian chân tướng lịch sử, ai đến lắng nghe?\n\n
+                  Núi sông ngàn dặm viết thây nằm, càn khôn trăm năm tô lại hổ đói.\n\n
+                  Thiên địa chí công như vô tình,\n\n
+                  Ta có xích tâm một viên, lấy tuần thiên!\n\n
+                  -----------------------
+                  Cảnh giới tu luyện chia làm cửu cấp, cửu thấp nhất:
+                  Du Mạch cảnh -> Chu Thiên cảnh -> Thông Thiên cảnh -> Đằng Long cảnh 
+                  -> Nội Phủ cảnh -> Ngoại Lâu Cảnh -> Thần Lâm cảnh-> Động Chân cảnh--> 
+                  Diễn Đạo cảnh---> Siêu Thoát.....''',
+            author: 'Tình Hà Dĩ Thậm',
+            status: BookStatus.coming,
+          ),
+          chapId: '1',
+          favorite: true,
+          isFirstTime: index == 0,
+          viewFlags: [],
+          duration: 0,
+          createAt: DateTime.now(),
+          updateAt: DateTime.now(),
+          readAt: DateTime.now(),
+          isRemote: false,
+        ),
+      ),
+      page: page,
+    );
+  }
 }
