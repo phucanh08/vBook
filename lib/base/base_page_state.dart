@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:get_it/get_it.dart';
+import 'package:provider/provider.dart';
 import 'package:resources/resources.dart';
 import 'package:shared/shared.dart';
 
@@ -41,35 +42,44 @@ abstract class BasePageStateDelegate<T extends StatefulWidget,
 
   late final ColorScheme colorScheme = Theme.of(context).colorScheme;
 
+  bool get isAppWidget => false;
+
   @override
   Widget build(BuildContext context) {
-    AppDimen.of(context);
+    if (!isAppWidget) {
+      AppDimen.of(context);
+    }
 
-    return MultiBlocProvider(
-      providers: [
-        BlocProvider(create: (_) => bloc),
-        BlocProvider(create: (_) => commonBloc),
-      ],
-      child: BlocListener<CommonBloc, CommonState>(
-        listenWhen: (previous, current) =>
-            previous.appExceptionWrapper != current.appExceptionWrapper &&
-            current.appExceptionWrapper != null,
-        listener: (context, state) {
-          handleException(state.appExceptionWrapper!);
-        },
-        child: buildPageListeners(
-          child: Stack(
-            children: [
-              buildPage(context),
-              BlocBuilder<CommonBloc, CommonState>(
-                buildWhen: (previous, current) =>
-                    previous.isLoading != current.isLoading,
-                builder: (context, state) => Visibility(
-                  visible: state.isLoading,
-                  child: buildPageLoading(),
-                ),
-              ),
-            ],
+    return Provider(
+      create: (context) => navigator,
+      child: MultiBlocProvider(
+        providers: [
+          BlocProvider(create: (_) => bloc),
+          BlocProvider(create: (_) => commonBloc),
+        ],
+        child: BlocListener<CommonBloc, CommonState>(
+          listenWhen: (previous, current) =>
+              previous.appExceptionWrapper != current.appExceptionWrapper &&
+              current.appExceptionWrapper != null,
+          listener: (context, state) {
+            handleException(state.appExceptionWrapper!);
+          },
+          child: buildPageListeners(
+            child: isAppWidget
+                ? buildPage(context)
+                : Stack(
+                    children: [
+                      buildPage(context),
+                      BlocBuilder<CommonBloc, CommonState>(
+                        buildWhen: (previous, current) =>
+                            previous.isLoading != current.isLoading,
+                        builder: (context, state) => Visibility(
+                          visible: state.isLoading,
+                          child: buildPageLoading(),
+                        ),
+                      ),
+                    ],
+                  ),
           ),
         ),
       ),

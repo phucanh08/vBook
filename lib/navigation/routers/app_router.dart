@@ -5,14 +5,14 @@ import 'package:injectable/injectable.dart';
 
 import '../../app.dart';
 
-
-
 part 'app_router.freezed.dart';
+
 part 'app_router.gr.dart';
 
 @freezed
 class AppRouteInfo with _$AppRouteInfo {
   const factory AppRouteInfo.main() = _Main;
+
   const factory AppRouteInfo.home() = _Home;
 }
 
@@ -21,14 +21,18 @@ class AppRouteInfo with _$AppRouteInfo {
 class AppRouter extends _$AppRouter {
   @override
   final List<AutoRoute> routes = [
-    AutoRoute(page: StartRoute.page),
-    AutoRoute(page: HomeRoute.page),
-    AutoRoute(page: MainRoute.page, children: [
-      AutoRoute(page: BookShelfTabRouter.page),
-      AutoRoute(page: DiscoverTabRouter.page),
-      AutoRoute(page: CommunityTabRouter.page),
-      AutoRoute(page: IndividualTabRouter.page),
-    ]),
+    AutoRoute(page: HomeRoute.page, path: '/home'),
+    AutoRoute(
+      path: '/main',
+      page: MainRoute.page,
+      children: [
+        AutoRoute(page: BookShelfTabRouter.page),
+        AutoRoute(page: DiscoverTabRouter.page),
+        AutoRoute(page: CommunityTabRouter.page),
+        AutoRoute(page: IndividualTabRouter.page),
+      ],
+    ),
+    RedirectRoute(path: '*', redirectTo: '/main'),
   ];
 
   @override

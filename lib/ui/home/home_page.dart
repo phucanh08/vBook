@@ -1,6 +1,9 @@
 import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
+import 'package:get_it/get_it.dart';
 import 'package:resources/resources.dart';
+
+import '../../app.dart';
 
 @RoutePage()
 class HomePage extends StatelessWidget {
@@ -142,6 +145,11 @@ class HomePage extends StatelessWidget {
           ],
         ),
         bottomNavigationBar: NavigationBar(
+          onDestinationSelected: (index) {
+            if(index > 0) {
+              GetIt.instance.get<AppNavigator>().replaceAll([AppRouteInfo.main()]);
+            }
+          },
           destinations: [
             NavigationDestination(
               icon:

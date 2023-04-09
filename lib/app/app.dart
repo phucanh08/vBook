@@ -57,7 +57,7 @@ class _AppState extends BasePageState<App, AppBloc> {
             ),
             routeInformationParser: _appRouter.defaultRouteParser(),
             title: UiConstants.materialAppTitle,
-            color: UiConstants.taskMenuMaterialAppColor,
+            // color: UiConstants.taskMenuMaterialAppColor,
             themeMode: state.themeMode,
             theme: state.appTheme.lightTheme,
             darkTheme: state.appTheme.darkTheme,
