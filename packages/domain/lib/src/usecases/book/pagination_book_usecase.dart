@@ -4,19 +4,23 @@ import 'package:injectable/injectable.dart';
 
 @injectable
 class PaginationBookUseCase
-    extends BasePaginationUseCase<PaginationBookInput, BookExtension> {
+    extends BasePaginationUseCase<PaginationBookInput, PaginationBookOutput> {
   const PaginationBookUseCase(this.bookRepository);
 
   final BookRepository bookRepository;
 
   @protected
   @override
-  Future<Pagination<BookExtension>> buildUseCase(PaginationBookInput input) async {
-    final result = await bookRepository.getPagination(input.page);
+  Future<PaginationBookOutput> buildUseCase(PaginationBookInput input) async {
+    final result = await bookRepository.pagination(input.page);
     return result;
   }
 }
 
-class PaginationBookInput extends PaginationInput {
+class PaginationBookInput extends BasePaginationInput {
   const PaginationBookInput({required super.page});
+}
+
+class PaginationBookOutput extends BasePaginationOutput<Output2<BookExtension, Book>> {
+  const PaginationBookOutput({required super.page, required super.items, required super.total});
 }

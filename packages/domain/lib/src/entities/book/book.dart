@@ -6,7 +6,7 @@ part 'book.freezed.dart';
 class BookExtension with _$BookExtension {
   const factory BookExtension({
     required String id,
-    required Book book,
+    required String bookId,
     required String chapId,
     required bool favorite,
     required bool isFirstTime,

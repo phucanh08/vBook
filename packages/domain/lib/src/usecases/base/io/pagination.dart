@@ -1,21 +1,6 @@
 import 'package:freezed_annotation/freezed_annotation.dart';
 
-import '../../../../domain.dart';
-
 part 'pagination.freezed.dart';
-
-@freezed
-class Pagination<T> extends BaseOutput with _$Pagination<T> {
-  const Pagination._();
-
-  const factory Pagination({
-    required List<T> items,
-    required Page page,
-    @Default(0) int total,
-  }) = _Pagination;
-}
-
-
 
 @freezed
 class Page with _$Page {

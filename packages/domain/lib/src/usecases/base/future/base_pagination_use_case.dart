@@ -1,24 +1,24 @@
 import 'package:domain/domain.dart';
 import 'package:shared/shared.dart';
 
-abstract class BasePaginationUseCase<Input extends PaginationInput, Output>
-    extends BaseUseCase<Input, Future<Pagination<Output>>> {
+abstract class BasePaginationUseCase<Input extends BasePaginationInput, Output extends BasePaginationOutput >
+    extends BaseUseCase<Input, Future<Output>> {
   const BasePaginationUseCase();
 
-  Future<Pagination<Output>> call(Input input) async {
+  Future<Output> call(Input input) async {
     int pageNumber = input.page.number;
     int offset = input.page.offset;
     try {
       if (LogConfig.enableLogUseCaseInput) {
         logD(
-          'LoadMoreUseCase Input: $input, pageNumber: $pageNumber, offset: $offset',
+          'BasePaginationUseCase Input: $input, pageNumber: $pageNumber, offset: $offset',
         );
       }
       final output = await buildUseCase(input);
 
       if (LogConfig.enableLogUseCaseOutput) {
         logD(
-          'LoadMoreUseCase Output: output: $output, inputPageNumber: $pageNumber, inputOffset: $offset, outputTotal: ${output.total}',
+          'BasePaginationUseCase Output: output: $output, inputPageNumber: $pageNumber, inputOffset: $offset, outputTotal: ${output.total}',
         );
       }
 
