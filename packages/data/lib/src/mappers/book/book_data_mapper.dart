@@ -1,6 +1,8 @@
 import 'package:data/data.dart';
 import 'package:domain/domain.dart';
+import 'package:injectable/injectable.dart';
 
+@injectable
 class BookDataMapper extends BaseDataMapper<BookDto, Book> {
   @override
   Book mapToEntity(BookDto? data) {

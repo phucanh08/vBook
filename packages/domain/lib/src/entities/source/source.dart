@@ -8,7 +8,6 @@ class Source with _$Source {
     required String id,
     required DateTime createAt,
     required DateTime updateAt,
-
     required String host,
     required String name,
     required String imgUrl,

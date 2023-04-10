@@ -15,6 +15,9 @@ class Chapter with _$Chapter {
     required String name,
     required num chapterNumber,
   }) = _Chapter;
+}
 
-  const factory Chapter.detail({required String content}) = _ChapterDetail;
+@freezed
+class ChapterDetail with _$ChapterDetail {
+  const factory ChapterDetail({required List<String> content}) = _ChapterDetail;
 }

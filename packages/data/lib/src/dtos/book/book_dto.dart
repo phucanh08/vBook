@@ -5,7 +5,7 @@ part 'book_dto.freezed.dart';
 @freezed
 class BookExtensionDto with _$BookExtensionDto {
   const factory BookExtensionDto({
-    required String id,
+    String? id,
     String? bookId,
     String? chapId,
     bool? favorite,
@@ -22,7 +22,7 @@ class BookExtensionDto with _$BookExtensionDto {
 @freezed
 class BookDto with _$BookDto {
   const factory BookDto({
-    required String id,
+    String? id,
     String? url, // link truyện
     String? host,
     String? imgUrl, // Link ảnh

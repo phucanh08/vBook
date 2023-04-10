@@ -1,6 +1,8 @@
 import 'package:data/data.dart';
 import 'package:domain/domain.dart';
+import 'package:injectable/injectable.dart';
 
+@injectable
 class BookExtensionDataMapper
     extends BaseDataMapper<BookExtensionDto, BookExtension> {
   @override
