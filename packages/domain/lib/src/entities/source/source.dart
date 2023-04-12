@@ -11,7 +11,7 @@ class Source with _$Source {
     required String host,
     required String name,
     required String imgUrl,
-    required Filter filter,
+    required List<Filter> filters,
     required Home home,
   }) = _Source;
 }

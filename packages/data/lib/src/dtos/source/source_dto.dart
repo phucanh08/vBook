@@ -11,7 +11,7 @@ class SourceDto with _$SourceDto {
     String? host,
     String? name,
     String? imgUrl,
-    FilterDto? filter,
+    List<FilterDto>? filters,
     HomeDto? home,
   }) = _SourceDto;
 }

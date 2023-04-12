@@ -9,4 +9,5 @@ abstract class BookRepository {
   Future<List<BookDto>> rank();
   Future<List<BookDto>> search();
   Future<List<ChapterDto>> toc();
+  Future<List<SourceDto>> sources();
 }

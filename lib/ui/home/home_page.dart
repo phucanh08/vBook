@@ -11,7 +11,7 @@ class HomePage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final theme = Theme.of(context);
+    final theme = AppTheme.of(context);
 
     return DefaultTabController(
       length: 2,
@@ -59,25 +59,25 @@ class HomePage extends StatelessWidget {
         ),
         body: TabBarView(
           children: [
-            Placeholder(),
+            const Placeholder(),
             SafeArea(
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
                   Padding(
-                    padding: EdgeInsets.all(10),
+                    padding: EdgeInsets.all(theme.insert.medium),
                     child: Text(
                       t.home.history.older,
                       style: theme.textTheme.titleLarge,
                     ),
                   ),
-                  const Divider(height: 1),
+                  Divider(height: theme.space.none),
                   Expanded(
                     child: ListView.separated(
                       itemBuilder: (context, index) => MaterialButton(
-                        padding: const EdgeInsets.symmetric(
-                          vertical: 8,
-                          horizontal: 10,
+                        padding: EdgeInsets.symmetric(
+                          vertical: theme.insert.small,
+                          horizontal: theme.insert.medium,
                         ),
                         onPressed: () {},
                         child: Row(
@@ -91,7 +91,7 @@ class HomePage extends StatelessWidget {
                                 ),
                               ),
                             ),
-                            const SizedBox(width: 10),
+                            SizedBox(width: theme.space.medium),
                             Expanded(
                               flex: 5,
                               child: Column(
@@ -135,7 +135,7 @@ class HomePage extends StatelessWidget {
                           ],
                         ),
                       ),
-                      separatorBuilder: (context, index) => Divider(height: 1),
+                      separatorBuilder: (context, index) => Divider(height: theme.space.none),
                       itemCount: 10,
                     ),
                   ),
@@ -146,8 +146,10 @@ class HomePage extends StatelessWidget {
         ),
         bottomNavigationBar: NavigationBar(
           onDestinationSelected: (index) {
-            if(index > 0) {
-              GetIt.instance.get<AppNavigator>().replaceAll([AppRouteInfo.main()]);
+            if (index > 0) {
+              GetIt.instance
+                  .get<AppNavigator>()
+                  .replaceAll([AppRouteInfo.main()]);
             }
           },
           destinations: [

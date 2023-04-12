@@ -48,6 +48,7 @@ abstract class BasePageStateDelegate<T extends StatefulWidget,
   Widget build(BuildContext context) {
     if (!isAppWidget) {
       AppDimen.of(context);
+      AppTheme.of(context);
     }
 
     return Provider(

@@ -16,7 +16,7 @@ class SourceDataMapper extends BaseDataMapper<SourceDto, Source> {
       host: data?.host ?? '',
       name: data?.name ?? '',
       imgUrl: data?.imgUrl ?? '',
-      filter: filterDataMapper.mapToEntity(data?.filter),
+      filters: data?.filters?.map((e) => filterDataMapper.mapToEntity(e)).toList() ?? [],
       home: homeDataMapper.mapToEntity(data?.home),
     );
   }

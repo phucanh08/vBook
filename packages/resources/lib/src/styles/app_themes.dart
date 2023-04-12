@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 
-import '../dimens/dimens.dart';
+import '../dimension/dimension.dart';
 
 part 'app_colors.dart';
 
@@ -41,4 +41,12 @@ class AppTheme {
 
   final ThemeData lightTheme;
   final ThemeData darkTheme;
+
+  static ThemeData? _current;
+  static ThemeData get current => _current ?? ThemeData();
+  static ThemeData of(BuildContext context) {
+    _current = Theme.of(context);
+
+    return _current!;
+  }
 }

@@ -1,4 +1,4 @@
-part of 'dimens.dart';
+part of 'dimension.dart';
 
 class AppDimen {
   AppDimen._({
