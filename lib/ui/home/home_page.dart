@@ -65,7 +65,7 @@ class HomePage extends StatelessWidget {
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
                   Padding(
-                    padding: EdgeInsets.all(theme.insert.medium),
+                    padding: EdgeInsets.all(theme.space.medium),
                     child: Text(
                       t.home.history.older,
                       style: theme.textTheme.titleLarge,
@@ -76,8 +76,8 @@ class HomePage extends StatelessWidget {
                     child: ListView.separated(
                       itemBuilder: (context, index) => MaterialButton(
                         padding: EdgeInsets.symmetric(
-                          vertical: theme.insert.small,
-                          horizontal: theme.insert.medium,
+                          vertical: theme.space.small,
+                          horizontal: theme.space.medium,
                         ),
                         onPressed: () {},
                         child: Row(

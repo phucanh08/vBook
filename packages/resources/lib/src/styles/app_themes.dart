@@ -2,6 +2,8 @@ import 'package:flutter/material.dart';
 
 import '../dimension/dimension.dart';
 
+export 'design_token/design_token.dart';
+
 part 'app_colors.dart';
 
 part 'app_text_theme.dart';
