@@ -38,8 +38,8 @@ class HomeDataMapper extends BaseDataMapper<HomeDto, Home> {
   Home mapToEntity(HomeDto? data) {
     return Home(
       title: data?.title ?? '',
-      function: data?.function ?? '',
-      url: data?.url ?? '',
+      function: data?.script ?? '',
+      url: data?.input ?? '',
     );
   }
 }

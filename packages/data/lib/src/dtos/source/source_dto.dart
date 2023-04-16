@@ -1,5 +1,7 @@
 import 'package:freezed_annotation/freezed_annotation.dart';
 
+import '../dtos.dart';
+
 part 'source_dto.freezed.dart';
 
 @freezed
@@ -25,11 +27,4 @@ class FilterDto with _$FilterDto {
   }) = _FilterDto;
 }
 
-@freezed
-class HomeDto with _$HomeDto {
-  const factory HomeDto({
-    String? title,
-    String? function,
-    String? url,
-  }) = _HomeDto;
-}
+
