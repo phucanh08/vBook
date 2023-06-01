@@ -16,8 +16,10 @@ class AppRouteInfoMapper extends BaseRouteInfoMapper {
   @override
   PageRouteInfo map(AppRouteInfo appRouteInfo) {
     return appRouteInfo.when(
-      main: () => MainRoute(),
       home: () => const HomeRoute(),
+      discover: () => const DiscoverRoute(),
+      community: () => const CommunityRoute(),
+      individual: () => const IndividualRoute(),
     );
   }
 }

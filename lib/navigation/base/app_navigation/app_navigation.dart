@@ -77,6 +77,7 @@ abstract class AppNavigator {
         bool useRootNavigator = false,
         bool isDismissible = true,
         bool enableDrag = true,
+        bool safeArea = true,
         m.Color barrierColor = m.Colors.black54,
         m.Color? backgroundColor,
       });

@@ -119,8 +119,10 @@ class AppNavigatorImpl extends AppNavigator with LogMixin {
   }
 
   @override
-  Future<bool> pop<T extends Object?>(
-      {T? result, bool useRootNavigator = false}) {
+  Future<bool> pop<T extends Object?>({
+    T? result,
+    bool useRootNavigator = false,
+  }) {
     if (LogConfig.enableNavigatorObserverLog) {
       logD('pop with result = $result, useRootNav = $useRootNavigator');
     }
@@ -138,12 +140,15 @@ class AppNavigatorImpl extends AppNavigator with LogMixin {
   }) {
     if (LogConfig.enableNavigatorObserverLog) {
       logD(
-          'popAndPush $appRouteInfo with result = $result, useRootNav = $useRootNavigator');
+        'popAndPush $appRouteInfo with result = $result, useRootNav = $useRootNavigator',
+      );
     }
 
     return useRootNavigator
-        ? _appRouter.popAndPush<T, R>(_appRouteInfoMapper.map(appRouteInfo),
-            result: result)
+        ? _appRouter.popAndPush<T, R>(
+            _appRouteInfoMapper.map(appRouteInfo),
+            result: result,
+          )
         : _currentTabRouterOrRootRouter.popAndPush<T, R>(
             _appRouteInfoMapper.map(appRouteInfo),
             result: result,
@@ -189,8 +194,10 @@ class AppNavigatorImpl extends AppNavigator with LogMixin {
   }
 
   @override
-  Future<void> popAndPushAll(List<AppRouteInfo> listAppRouteInfo,
-      {bool useRootNavigator = false}) {
+  Future<void> popAndPushAll(
+    List<AppRouteInfo> listAppRouteInfo, {
+    bool useRootNavigator = false,
+  }) {
     if (LogConfig.enableNavigatorObserverLog) {
       logD('popAndPushAll $listAppRouteInfo, useRootNav = $useRootNavigator');
     }
@@ -250,8 +257,11 @@ class AppNavigatorImpl extends AppNavigator with LogMixin {
     Duration transitionDuration =
         DurationConstants.defaultGeneralDialogTransitionDuration,
     m.Widget Function(
-            m.BuildContext, m.Animation<double>, m.Animation<double>, m.Widget)?
-        transitionBuilder,
+      m.BuildContext,
+      m.Animation<double>,
+      m.Animation<double>,
+      m.Widget,
+    )? transitionBuilder,
     m.Color barrierColor = const m.Color(0x80000000),
     bool barrierDismissible = true,
     bool useRootNavigator = true,
@@ -296,12 +306,14 @@ class AppNavigatorImpl extends AppNavigator with LogMixin {
     bool useRootNavigator = false,
     bool isDismissible = true,
     bool enableDrag = true,
+    bool safeArea = true,
     m.Color barrierColor = m.Colors.black54,
     m.Color? backgroundColor,
   }) {
     if (LogConfig.enableNavigatorObserverLog) {
       logD(
-          'showModalBottomSheet $appPopupInfo, useRootNav = $useRootNavigator');
+        'showModalBottomSheet $appPopupInfo, useRootNav = $useRootNavigator',
+      );
     }
 
     return m.showModalBottomSheet<T>(
@@ -315,6 +327,8 @@ class AppNavigatorImpl extends AppNavigator with LogMixin {
       isScrollControlled: isScrollControlled,
       backgroundColor: backgroundColor,
       barrierColor: barrierColor,
+      elevation: 0,
+      useSafeArea: safeArea,
     );
   }
 

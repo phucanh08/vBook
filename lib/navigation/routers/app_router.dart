@@ -1,5 +1,4 @@
 import 'package:auto_route/auto_route.dart';
-import 'package:flutter/material.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
 import 'package:injectable/injectable.dart';
 
@@ -11,9 +10,13 @@ part 'app_router.gr.dart';
 
 @freezed
 class AppRouteInfo with _$AppRouteInfo {
-  const factory AppRouteInfo.main() = _Main;
-
   const factory AppRouteInfo.home() = _Home;
+
+  const factory AppRouteInfo.discover() = _Discover;
+
+  const factory AppRouteInfo.community() = _Community;
+
+  const factory AppRouteInfo.individual() = _Individual;
 }
 
 @singleton
@@ -21,20 +24,30 @@ class AppRouteInfo with _$AppRouteInfo {
 class AppRouter extends _$AppRouter {
   @override
   final List<AutoRoute> routes = [
-    AutoRoute(page: HomeRoute.page, path: '/home'),
     AutoRoute(
-      path: '/main',
-      page: MainRoute.page,
+      path: '/',
+      page: _MainRoute.page,
       children: [
-        AutoRoute(page: BookShelfTabRouter.page),
-        AutoRoute(page: DiscoverTabRouter.page),
-        AutoRoute(page: CommunityTabRouter.page),
-        AutoRoute(page: IndividualTabRouter.page),
+        RedirectRoute(path: '', redirectTo: 'home'),
+        AutoRoute(
+          page: HomeRoute.page,
+          path: 'home',
+          children: [
+            RedirectRoute(path: '*', redirectTo: 'bookshelf'),
+            AutoRoute(page: BookShelfTabRouter.page, path: 'bookshelf'),
+            AutoRoute(page: HistoryBookTabRouter.page, path: 'history'),
+          ],
+        ),
+        AutoRoute(page: DiscoverRoute.page, path: 'discover'),
+        AutoRoute(page: CommunityRoute.page, path: 'community'),
+        AutoRoute(page: IndividualRoute.page, path: 'individual'),
       ],
     ),
-    RedirectRoute(path: '*', redirectTo: '/main'),
   ];
 
   @override
   RouteType get defaultRouteType => const RouteType.material();
 }
+
+@RoutePage()
+class _MainPage extends AutoRouter {}

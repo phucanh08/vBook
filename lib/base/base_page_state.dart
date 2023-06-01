@@ -28,7 +28,7 @@ abstract class BasePageStateDelegate<T extends StatefulWidget,
     ..exceptionHandler = exceptionHandler
     ..exceptionMessageMapper = exceptionMessageMapper;
 
-  late final B bloc = GetIt.instance.get<B>()
+  late final B bloc = getIt<B>()
     ..navigator = navigator
     ..disposeBag = disposeBag
     ..appBloc = appBloc

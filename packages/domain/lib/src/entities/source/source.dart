@@ -3,6 +3,16 @@ import 'package:freezed_annotation/freezed_annotation.dart';
 part 'source.freezed.dart';
 
 @freezed
+class SourceModel with _$SourceModel {
+  const factory SourceModel({
+    required String source,
+    required String name,
+    required String iconUrl,
+    required String type,
+  }) = _SourceModel;
+}
+
+@freezed
 class Source with _$Source {
   const factory Source({
     required String id,
@@ -11,18 +21,17 @@ class Source with _$Source {
     required String host,
     required String name,
     required String imgUrl,
-    required List<Filter> filters,
+    required List<Category> filters,
     required Home home,
   }) = _Source;
 }
 
 @freezed
-class Filter with _$Filter {
-  const factory Filter({
+class Category with _$Category {
+  const factory Category({
     required String host,
     required String name,
-    required List<Map<String, int>> items,
-  }) = _Filter;
+  }) = _Category;
 }
 
 @freezed

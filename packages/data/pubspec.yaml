@@ -10,7 +10,7 @@ environment:
 dependencies:
   html: 0.15.2
   webview_flutter: 4.0.7
-  async: 2.10.0
+  async: 2.11.0
   rxdart: 0.27.7
   get_it: 7.2.0
   injectable: 2.1.1

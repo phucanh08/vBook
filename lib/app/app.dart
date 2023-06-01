@@ -41,12 +41,11 @@ class _AppState extends BasePageState<App, AppBloc> {
             previous.languageCode != current.languageCode,
         builder: (context, state) {
           return MaterialApp.router(
-            useInheritedMediaQuery: true,
             builder: (context, child) {
-              final MediaQueryData data = MediaQuery.of(context);
+              final data = MediaQuery.of(context);
 
               return MediaQuery(
-                data: data.copyWith(textScaleFactor: 1.0),
+                data: data.copyWith(textScaleFactor: 0.95),
                 child: child ?? const SizedBox.shrink(),
               );
             },

@@ -41,6 +41,8 @@ class AppPopupInfoMapper extends BasePopupInfoMapper {
           message: message,
         );
       },
+      chooseSourceBottomSheet: (listSource) =>
+          ChooseSourceBottomSheet(listSource),
     );
   }
 }

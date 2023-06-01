@@ -10,13 +10,13 @@ environment:
 dependencies:
   flutter:
     sdk: flutter
-  async: 2.10.0
+  async: 2.11.0
   dartx: 1.1.0
   decimal: 2.3.2
   device_info_plus: 8.1.0
   flutter_cache_manager: 3.3.0
   injectable: 2.1.1
-  intl: 0.17.0
+  intl: 0.18.0
   mime: 1.0.4
   package_info_plus: 3.0.3
   path_provider: 2.0.13
