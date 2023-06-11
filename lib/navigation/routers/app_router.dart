@@ -17,6 +17,8 @@ class AppRouteInfo with _$AppRouteInfo {
   const factory AppRouteInfo.community() = _Community;
 
   const factory AppRouteInfo.individual() = _Individual;
+
+  const factory AppRouteInfo.extension() = _Extension;
 }
 
 @singleton
@@ -41,6 +43,15 @@ class AppRouter extends _$AppRouter {
         AutoRoute(page: DiscoverRoute.page, path: 'discover'),
         AutoRoute(page: CommunityRoute.page, path: 'community'),
         AutoRoute(page: IndividualRoute.page, path: 'individual'),
+        AutoRoute(
+          page: ExtensionRoute.page,
+          path: 'extension',
+          children: [
+            RedirectRoute(path: '*', redirectTo: 'update'),
+            AutoRoute(page: UpdateTabRouter.page, path: 'update'),
+            AutoRoute(page: LibraryTabRouter.page, path: 'library'),
+          ],
+        ),
       ],
     ),
   ];

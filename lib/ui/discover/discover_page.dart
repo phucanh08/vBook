@@ -27,23 +27,18 @@ class _DiscoverPageState extends BasePageState<DiscoverPage, DiscoverBloc> {
     return Scaffold(
       appBar: CustomAppBar(
         automaticallyImplyLeading: true,
+        titleSpacing: -10,
         title: BlocBuilder<DiscoverBloc, DiscoverState>(
           builder: (context, state) {
-            return DiscoverTitle(
-              onPressed: Func0(
-                () => navigator.showModalBottomSheet(
-                  AppPopupInfo.chooseSourceBottomSheet(
-                    listSource: state.listSource,
-                  ),
-                  isScrollControlled: true,
-                  backgroundColor: Colors.transparent,
-                  safeArea: false,
-                ),
-              ),
-              iconUrl:
-                  'https://raw.githubusercontent.com/Darkrai9x/vbook-extensions/master/bachngocsach/icon.png',
-              name: 'Bạch Ngọc Sách',
-            );
+            return state.currentPlugin == null
+                ? const SizedBox()
+                : DiscoverTitle(
+                    onPressed: Func0(
+                      () => bloc.add(const DiscoverEvent.titlePressed()),
+                    ),
+                    iconUrl: state.currentPlugin!.icon,
+                    name: state.currentPlugin!.name,
+                  );
           },
         ),
         onSearchButtonPressed: Func0(() => null),

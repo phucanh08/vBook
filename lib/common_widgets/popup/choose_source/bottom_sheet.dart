@@ -7,9 +7,9 @@ import '../../../app.dart';
 import 'bloc/choose_source_bloc.dart';
 
 class ChooseSourceBottomSheet extends StatefulWidget {
-  const ChooseSourceBottomSheet(this.listSource, {super.key});
+  const ChooseSourceBottomSheet(this.listPlugin, {super.key});
 
-  final List<SourceModel> listSource;
+  final List<PluginModel> listPlugin;
 
   @override
   State<ChooseSourceBottomSheet> createState() =>
@@ -23,7 +23,7 @@ class _ChooseSourceBottomSheetState
   @override
   void initState() {
     bloc.add(ChooseSourceEvent.started(
-      listSource: widget.listSource,
+      listPlugin: widget.listPlugin,
       controller: dragController,
     ));
     super.initState();
@@ -99,7 +99,7 @@ class _ChooseSourceBottomSheetState
                     color: Colors.white,
                     child: BlocBuilder<ChooseSourceBloc, ChooseSourceState>(
                       buildWhen: (prev, cur) =>
-                          prev.sources != cur.sources,
+                          prev.listFilter != cur.listFilter,
                       builder: (context, state) {
                         return GridView.builder(
                           controller: scrollController,
@@ -111,19 +111,35 @@ class _ChooseSourceBottomSheetState
                             mainAxisSpacing: 5,
                             crossAxisSpacing: 5,
                           ),
-                          itemCount: state.sources.length,
+                          itemCount: state.listFilter.length,
                           itemBuilder: (BuildContext context, int index) {
-                            final item = state.sources[index];
+                            final item = state.listFilter[index];
                             final theme = Theme.of(context);
+
+                            if( item.tag == 'nsfw') {
+                              print(item.tag);
+                            }
 
                             return OutlinedButton.icon(
                               style: OutlinedButton.styleFrom(
+                                side: BorderSide(
+                                  color: item.tag == 'nsfw'
+                                      ? theme.colorScheme.error
+                                      : theme.colorScheme.outline,
+                                ),
                                 shape: RoundedRectangleBorder(
                                   borderRadius: BorderRadius.circular(12),
                                 ),
                                 padding: const EdgeInsets.all(10),
                               ),
-                              icon: Card(child: Image.network(item.iconUrl)),
+                              icon: Card(
+                                child: Image.network(
+                                  item.icon,
+                                  width: 30,
+                                  height: 30,
+                                  fit: BoxFit.contain,
+                                ),
+                              ),
                               label: Column(
                                 crossAxisAlignment: CrossAxisAlignment.start,
                                 mainAxisAlignment:
@@ -131,6 +147,8 @@ class _ChooseSourceBottomSheetState
                                 children: [
                                   Text(
                                     item.name,
+                                    maxLines: 1,
+                                    overflow: TextOverflow.ellipsis,
                                     style: theme.textTheme.bodyLarge,
                                   ),
                                   Text(
@@ -141,7 +159,7 @@ class _ChooseSourceBottomSheetState
                                   ),
                                 ],
                               ),
-                              onPressed: () {},
+                              onPressed: () => navigator.pop(result: item),
                             );
                           },
                         );

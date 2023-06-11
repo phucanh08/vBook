@@ -5,7 +5,7 @@ class ChooseSourceState extends BaseState with _$ChooseSourceState {
   const ChooseSourceState._();
 
   const factory ChooseSourceState({
-    @Default(<SourceModel>[]) List<SourceModel> listSource,
+    @Default(<PluginModel>[]) List<PluginModel> listPlugin,
     @Default(0.8) double dragSize,
     @Default('') String searchText,
   }) = _ChooseSourceState;
@@ -20,9 +20,9 @@ class ChooseSourceState extends BaseState with _$ChooseSourceState {
     }
   }
 
-  List<SourceModel> get sources => searchText.isEmpty
-      ? listSource
-      : listSource
+  List<PluginModel> get listFilter => searchText.isEmpty
+      ? listPlugin
+      : listPlugin
           .where((e) => e.name
               .toLowerCaseNonAccentVietnamese()
               .contains(searchText.toLowerCaseNonAccentVietnamese()))

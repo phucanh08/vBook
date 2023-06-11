@@ -14,12 +14,11 @@ class PluginDto with _$PluginDto {
     String? path,
     num? version,
     String? source,
-    String? regexp,
     String? icon,
     String? description,
     String? type,
     String? locale,
-    @JsonKey(name: 'script') Map<String, String>? scripts,
+    String? tag,
   }) = _PluginDto;
 
   factory PluginDto.fromJson(Map<String, Object?> json) =>
@@ -32,12 +31,11 @@ class PluginDto with _$PluginDto {
       path: other.path ?? path,
       version: other.version ?? version,
       source: other.source ?? source,
-      regexp: other.regexp ?? regexp,
       icon: other.icon ?? icon,
       description: other.description ?? description,
       type: other.type ?? type,
       locale: other.locale ?? locale,
-      scripts: other.scripts ?? scripts,
+      tag: other.tag ?? tag,
     );
   }
 }

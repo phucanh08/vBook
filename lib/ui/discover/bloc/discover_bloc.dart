@@ -1,5 +1,6 @@
 import 'package:bloc/bloc.dart';
 import 'package:domain/domain.dart';
+import 'package:flutter/material.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
 import 'package:injectable/injectable.dart';
 
@@ -13,16 +14,38 @@ part 'discover_bloc.freezed.dart';
 
 @injectable
 class DiscoverBloc extends BaseBloc<DiscoverEvent, DiscoverState> {
-  DiscoverBloc() : super(const DiscoverState()) {
+  DiscoverBloc(this._getListPluginUseCase, this._updatePluginUseCase)
+      : super(const DiscoverState()) {
     on<_Started>(_onStarted);
+    on<_TitlePressed>(_onTitlePressed);
   }
 
+  final GetListLocalPluginUseCase _getListPluginUseCase;
+  final SaveLocalPluginUseCase _updatePluginUseCase;
+
   Future<void> _onStarted(_Started event, Emitter<DiscoverState> emit) async {
-    final currentSource =
-        (await GetCurrentSourceUseCase().call(const GetCurrentSourceInput()))
-            .data;
     final listSource =
-        (await GetListSourceUseCase().call(const GetListSourceInput())).data;
-    emit(state.copyWith(currentSource: currentSource, listSource: listSource));
+        (await _getListPluginUseCase.call(GetListLocalPluginInput())).data;
+    emit(state.copyWith(listPlugin: listSource));
+  }
+
+  Future<void> _onTitlePressed(
+      _TitlePressed event, Emitter<DiscoverState> emit) async {
+    final result = await navigator.showModalBottomSheet<PluginModel>(
+      AppPopupInfo.chooseSourceBottomSheet(
+        listPlugin: state.listPlugin,
+      ),
+      isScrollControlled: true,
+      backgroundColor: Colors.transparent,
+      safeArea: false,
+    );
+
+    if (result != null) {
+      await _updatePluginUseCase.call(SaveLocalPluginInput(result));
+      emit(state.copyWith(listPlugin: [
+        result,
+        ...state.listPlugin.where((e) => e.name != result.name),
+      ]));
+    }
   }
 }

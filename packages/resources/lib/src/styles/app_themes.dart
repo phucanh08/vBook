@@ -11,13 +11,22 @@ part 'app_text_theme.dart';
 class AppTheme {
   AppTheme._(this.lightTheme, this.darkTheme);
 
-  factory AppTheme.fromAppPalette(AppPalette appPalette, CustomPalette customPalette) {
+  factory AppTheme.fromAppPalette(
+    AppPalette appPalette,
+    CustomPalette customPalette,
+  ) {
     final appColor = AppColors(appPalette, customPalette);
     final textTheme = AppTextTheme.textTheme();
     final themeData = ThemeData(
       useMaterial3: true,
       colorScheme: appColor.lightColorScheme,
       textTheme: textTheme,
+      cardTheme: CardTheme(
+        clipBehavior: Clip.antiAliasWithSaveLayer,
+        shape: RoundedRectangleBorder(
+          borderRadius: BorderRadius.circular(5),
+        ),
+      ),
     );
 
     return AppTheme._(
@@ -33,6 +42,12 @@ class AppTheme {
       useMaterial3: true,
       colorScheme: appColor.lightColorScheme,
       textTheme: textTheme,
+      cardTheme: CardTheme(
+        clipBehavior: Clip.antiAliasWithSaveLayer,
+        shape: RoundedRectangleBorder(
+          borderRadius: BorderRadius.circular(5),
+        ),
+      ),
     );
 
     return AppTheme._(
@@ -45,7 +60,9 @@ class AppTheme {
   final ThemeData darkTheme;
 
   static ThemeData? _current;
+
   static ThemeData get current => _current ?? ThemeData();
+
   static ThemeData of(BuildContext context) {
     _current = Theme.of(context);
 

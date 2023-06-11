@@ -8,7 +8,7 @@ part 'app_popup_info.freezed.dart';
 @freezed
 class AppPopupInfo with _$AppPopupInfo {
   const factory AppPopupInfo.chooseSourceBottomSheet({
-    required List<SourceModel> listSource,
+    required List<PluginModel> listPlugin,
   }) = _ChooseSourceBottomSheet;
 
   const factory AppPopupInfo.confirmDialog({

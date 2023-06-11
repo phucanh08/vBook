@@ -6,6 +6,7 @@ import 'package:shared/shared.dart';
 class CustomAppBar extends AppBar {
   CustomAppBar({
     super.title,
+    super.titleSpacing,
     Widget? leading,
     List<Widget>? actions,
     Func0<void>? onSearchButtonPressed,
@@ -18,7 +19,6 @@ class CustomAppBar extends AppBar {
         super(
           centerTitle: false,
           automaticallyImplyLeading: false,
-          titleSpacing: -10,
           leading: leading ??
               Visibility(
                 visible: automaticallyImplyLeading,
@@ -68,5 +68,41 @@ class CustomAppBar extends AppBar {
                   ),
                 ),
               ],
+        );
+
+  CustomAppBar.search({
+    required ValueChanged<String> onChanged,
+    required TextEditingController controller,
+    required Func0<void> onCloseConfirmed,
+    super.key,
+  }) : super(
+          leading: const FaIcon(
+            FaCodePoint.magnifyingGlass,
+            type: IconType.regular,
+          ),
+          titleSpacing: -10,
+          title: TextField(
+            controller: controller,
+            onChanged: onChanged,
+            autofocus: true,
+          ),
+          actions: [
+            IconButton(
+              onPressed: () {
+                if (controller.text.isNotEmpty) {
+                  controller.clear();
+                  onChanged.call(controller.text);
+                } else {
+                  onCloseConfirmed.call();
+                }
+              },
+              padding: EdgeInsets.zero,
+              icon: const FaIcon(
+                FaCodePoint.xMark,
+                size: 30,
+                type: IconType.regular,
+              ),
+            ),
+          ],
         );
 }

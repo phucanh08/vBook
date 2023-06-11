@@ -20,6 +20,7 @@ class AppRouteInfoMapper extends BaseRouteInfoMapper {
       discover: () => const DiscoverRoute(),
       community: () => const CommunityRoute(),
       individual: () => const IndividualRoute(),
+      extension: () => const ExtensionRoute(),
     );
   }
 }

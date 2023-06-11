@@ -3,7 +3,7 @@ part of 'choose_source_bloc.dart';
 @freezed
 class ChooseSourceEvent extends BaseEvent with _$ChooseSourceEvent {
   const factory ChooseSourceEvent.started({
-    required List<SourceModel> listSource,
+    required List<PluginModel> listPlugin,
     required DraggableScrollableController controller,
   }) = _Started;
 

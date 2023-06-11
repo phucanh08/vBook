@@ -1,3 +1,4 @@
+import 'dart:convert';
 import 'dart:io';
 
 import 'package:dio/dio.dart';
@@ -12,6 +13,12 @@ abstract class DioClient {
   @Named('mockApi')
   @singleton
   Dio mockApi() => createDio(
+        baseOptions: BaseOptions(baseUrl: UrlConstants.mockApiBaseUrl),
+      );
+
+  @Named('git')
+  @singleton
+  Dio data() => createDio(
         baseOptions: BaseOptions(baseUrl: UrlConstants.mockApiBaseUrl),
       );
 }
@@ -59,4 +66,15 @@ Dio createDio({
   dio.interceptors.addAll(currentInterceptors);
 
   return dio;
+}
+
+extension DioExtension on Dio {
+  Future<dynamic> fetchUrl(String url) async {
+    final response = await getUri(Uri.parse(url));
+    try {
+      return jsonDecode(response.data);
+    } catch (e) {
+      return response.data.toString();
+    }
+  }
 }

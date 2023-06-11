@@ -1,5 +1,4 @@
 import 'package:auto_route/auto_route.dart';
-import 'package:flutter/material.dart';
 import 'package:resources/resources.dart';
 import 'package:shared/shared.dart';
 
@@ -29,6 +28,7 @@ class _HomePageState extends BasePageState<HomePage, HomeBloc> {
       builder: (context, child, controller) {
         return Scaffold(
           appBar: CustomAppBar(
+            titleSpacing: -10,
             leading: IconButton(
               onPressed: () {},
               icon: Container(

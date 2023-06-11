@@ -20,11 +20,13 @@ class DiscoverTitle extends StatelessWidget {
       onTap: () => onPressed.call(),
       child: Row(
         children: [
-          Image.network(
-            iconUrl,
-            width: 30,
-            height: 30,
-            fit: BoxFit.contain,
+          Card(
+            child: Image.network(
+              iconUrl,
+              width: 30,
+              height: 30,
+              fit: BoxFit.contain,
+            ),
           ),
           const SizedBox(width: 5),
           Flexible(child: Text(name)),

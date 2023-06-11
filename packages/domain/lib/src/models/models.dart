@@ -1,0 +1,1 @@
+export 'plugin/model.dart';

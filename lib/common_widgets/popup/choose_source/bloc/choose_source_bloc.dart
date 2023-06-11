@@ -26,7 +26,7 @@ class ChooseSourceBloc extends BaseBloc<ChooseSourceEvent, ChooseSourceState> {
   void _onStarted(_Started event, Emitter<ChooseSourceState> emit) {
     dragController = event.controller;
     dragController.addListener(() => add(const _Dragged()));
-    emit(state.copyWith(listSource: event.listSource));
+    emit(state.copyWith(listPlugin: event.listPlugin));
   }
 
   void onDestroyed() {

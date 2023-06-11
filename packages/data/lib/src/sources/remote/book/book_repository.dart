@@ -1,4 +1,5 @@
-import 'package:data/data.dart';
+
+import '../../../dtos/dtos.dart';
 
 abstract class BookRepository {
   Future<List<HomeDto>> home(String name);
