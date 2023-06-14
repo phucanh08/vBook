@@ -7,9 +7,7 @@ import 'package:shared/shared.dart';
 import '../../../app.dart';
 
 part 'extension_event.dart';
-
 part 'extension_state.dart';
-
 part 'extension_bloc.freezed.dart';
 
 @injectable
@@ -95,7 +93,7 @@ class ExtensionBloc extends BaseBloc<ExtensionEvent, ExtensionState> {
           (await _getListLocalPluginUseCase.call(GetListLocalPluginInput())).data;
       emit(state.copyWith(listLocalPlugin: listLocalPlugin));
     } catch (e, s) {
-      print('$e,$s');
+      logE('$e,$s');
     }
   }
 }

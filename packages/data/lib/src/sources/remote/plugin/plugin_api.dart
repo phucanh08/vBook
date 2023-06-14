@@ -40,10 +40,10 @@ class PluginApi {
     final html = await Future.delayed(
         const Duration(seconds: 3),
         () => _browser.runJavaScriptReturningResult(
-            "$js \n execute();"));
+            "document.getElementsByTagName('html')[0].innerHTML;"));
     final data = parse(html);
 
-    final result = eval(dartCode, args: [data]);
+    eval(dartCode, args: [data]);
     print(html);
   }
 }
@@ -76,10 +76,18 @@ import 'package:html/parser.dart';
 const js = """ 
 function execute() {
     let doc = document;
-    console.log('1');
-    let next = doc.querySelector(".pager-next").last.innerHTML;
-    console.log('5');
-    return next;
+    let next = doc.querySelector(".pager-next").last().querySelector("a").attr("href").match('page=(\d+)');
+            if (next) next = next[1];
+    
+            let novelList = [];
+            doc.select("ul.content-grid > li > div").forEach(e => novelList.push({
+                name: e.select("div.recent-truyen a").text(),
+                link: e.select("div.recent-truyen a").attr("href"),
+                cover: e.select("div.recent-anhbia img").attr("src"),
+                description: e.select("div.recent-chuong a").text(),
+                host: HOST
+            }));
+            
+    return {"novel": novelList, "next" : next};
 }
-console.log('0');
         """;

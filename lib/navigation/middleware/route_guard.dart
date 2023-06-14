@@ -1,9 +1,5 @@
 import 'package:auto_route/auto_route.dart';
-import 'package:domain/domain.dart';
 import 'package:injectable/injectable.dart';
-import 'package:shared/shared.dart';
-
-import '../../app.dart';
 
 @Injectable()
 class RouteGuard extends AutoRouteGuard {

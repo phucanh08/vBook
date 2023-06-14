@@ -1,8 +1,6 @@
 import 'package:auto_route/auto_route.dart';
-import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:resources/resources.dart';
-import 'package:shared/shared.dart';
 
 import '../../app.dart';
 
@@ -47,10 +45,8 @@ class _ExtensionPageState extends BasePageState<ExtensionPage, ExtensionBloc> {
                         bloc.add(ExtensionEvent.searchTextChanged(value));
                       },
                       controller: textEditingController,
-                      onCloseConfirmed: Func0(
-                        () => bloc.add(
-                          const ExtensionEvent.toggleSearchModeConfirmed(),
-                        ),
+                      onCloseConfirmed: () => bloc.add(
+                        const ExtensionEvent.toggleSearchModeConfirmed(),
                       ),
                     )
                   : CustomAppBar(
@@ -94,12 +90,10 @@ class _ExtensionPageState extends BasePageState<ExtensionPage, ExtensionBloc> {
                         ],
                       ),
                       titleSpacing: -5,
-                      onSearchButtonPressed: Func0(
-                        () => bloc.add(
-                          const ExtensionEvent.toggleSearchModeConfirmed(),
-                        ),
+                      onSearchButtonPressed: () => bloc.add(
+                        const ExtensionEvent.toggleSearchModeConfirmed(),
                       ),
-                      onMoreButtonPressed: Func0(() => null),
+                      onMoreButtonPressed: () => null,
                     ),
               body: child,
             );

@@ -40,7 +40,13 @@ class AppRouter extends _$AppRouter {
             AutoRoute(page: HistoryBookTabRouter.page, path: 'history'),
           ],
         ),
-        AutoRoute(page: DiscoverRoute.page, path: 'discover'),
+        AutoRoute(
+          page: DiscoverRoute.page,
+          path: 'discover',
+          children: [
+            AutoRoute(page: DiscoverTabRoute.page, path: ''),
+          ],
+        ),
         AutoRoute(page: CommunityRoute.page, path: 'community'),
         AutoRoute(page: IndividualRoute.page, path: 'individual'),
         AutoRoute(

@@ -7,7 +7,7 @@ abstract class BasePaginationInput extends BaseInput {
   final Page page;
 }
 
-abstract class BasePaginationOutput<T extends BaseOutput> {
+abstract class BasePaginationOutput<T>  extends BaseOutput {
   const BasePaginationOutput({
     required this.items,
     required this.page,

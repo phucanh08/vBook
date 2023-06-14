@@ -1,11 +1,11 @@
 import 'package:auto_route/auto_route.dart';
-import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:shared/shared.dart';
 
 import '../../app.dart';
 import 'bloc/discover_bloc.dart';
 import 'widgets/widgets.dart';
+
+export 'tab/discover_tab.dart';
 
 @RoutePage()
 class DiscoverPage extends StatefulWidget {
@@ -24,26 +24,51 @@ class _DiscoverPageState extends BasePageState<DiscoverPage, DiscoverBloc> {
 
   @override
   Widget buildPage(BuildContext context) {
-    return Scaffold(
-      appBar: CustomAppBar(
-        automaticallyImplyLeading: true,
-        titleSpacing: -10,
-        title: BlocBuilder<DiscoverBloc, DiscoverState>(
-          builder: (context, state) {
-            return state.currentPlugin == null
-                ? const SizedBox()
-                : DiscoverTitle(
-                    onPressed: Func0(
-                      () => bloc.add(const DiscoverEvent.titlePressed()),
-                    ),
-                    iconUrl: state.currentPlugin!.icon,
-                    name: state.currentPlugin!.name,
-                  );
+    return BlocBuilder<DiscoverBloc, DiscoverState>(
+      builder: (context, state) {
+        if (state.listHome.isEmpty) {
+          return const Placeholder();
+        }
+
+        return AutoTabsRouter.tabBar(
+          routes: List.generate(
+            state.listHome.length,
+            (index) => const DiscoverTabRoute(),
+          ),
+          builder: (context, child, controller) {
+            return Scaffold(
+              appBar: CustomAppBar(
+                automaticallyImplyLeading: true,
+                titleSpacing: -10,
+                title: BlocBuilder<DiscoverBloc, DiscoverState>(
+                  builder: (context, state) {
+                    return state.currentPlugin == null
+                        ? const SizedBox()
+                        : DiscoverTitle(
+                            onPressed: () =>
+                                bloc.add(const DiscoverEvent.titlePressed()),
+                            iconUrl: state.currentPlugin!.icon,
+                            name: state.currentPlugin!.name,
+                          );
+                  },
+                ),
+                onSearchButtonPressed: () => null,
+                onMoreButtonPressed: () => null,
+                bottom: TabBar(
+                  isScrollable: true,
+                  controller: controller,
+                  dividerColor: Colors.transparent,
+                  tabs: List.generate(
+                    state.listHome.length,
+                    (index) => Tab(text: state.listHome[index].title),
+                  ),
+                ),
+              ),
+              body: child,
+            );
           },
-        ),
-        onSearchButtonPressed: Func0(() => null),
-        onMoreButtonPressed: Func0(() => null),
-      ),
+        );
+      },
     );
   }
 }

@@ -11,7 +11,6 @@ part 'individual_bloc.freezed.dart';
 class IndividualBloc extends BaseBloc<IndividualEvent, IndividualState> {
   IndividualBloc() : super(const IndividualState()) {
     on<IndividualEvent>((event, emit) {
-      // TODO: implement event handler
     });
   }
 }

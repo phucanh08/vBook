@@ -1,7 +1,6 @@
 import 'dart:io';
 
 import 'package:flutter/cupertino.dart';
-import 'package:flutter/material.dart';
 import 'package:resources/resources.dart';
 
 import '../../app.dart';
@@ -81,7 +80,7 @@ class CommonDialog extends StatelessWidget {
       actions: actions
           .map(
             (e) => TextButton(
-              onPressed: e.onPressed?.function,
+              onPressed: e.onPressed,
               child: Text(
                 e.text ?? t.common.ok,
                 style: textTheme.bodyMedium?.withColor(
@@ -113,7 +112,7 @@ class CommonDialog extends StatelessWidget {
     return CupertinoAlertDialog(
       actions: actions
           .map((e) => CupertinoDialogAction(
-                onPressed: e.onPressed?.function,
+                onPressed: e.onPressed,
                 child: Text(
                   e.text ?? t.common.ok,
                   style: textTheme.bodyMedium?.withColor(

@@ -1,19 +1,23 @@
 import 'package:data/src/mappers/plugin/mapper.dart';
-import 'package:data/src/sources/remote/plugin/plugin_api.dart';
 import 'package:domain/domain.dart';
 import 'package:injectable/injectable.dart';
 
+import '../../sources/vbook_extensions/base_api.dart';
 import '../../sources/local/plugin/storage.dart';
+import '../../sources/vbook_extensions/plugin.dart';
 
 @Injectable(as: PluginRepository)
 class PluginRepositoryImpl extends PluginRepository {
-  PluginRepositoryImpl(this._api, this._storage, this._mapper2, this._mapper1, this._mapper);
+  PluginRepositoryImpl(
+    this._storage,
+    this._mapper2,
+    this._mapper,
+  ) : listApi = getListApi.values.toList();
 
-  final PluginApi _api;
   final PluginStorage _storage;
   final PluginDataMapper _mapper;
-  final Plugin1DataMapper _mapper1;
   final Plugin2DataMapper _mapper2;
+  final List<BaseApi> listApi;
 
   @override
   Future<List<PluginModel>> getListLocal() async {
@@ -21,7 +25,7 @@ class PluginRepositoryImpl extends PluginRepository {
       final list = await _storage.getAll();
 
       return _mapper2.mapToListData(list);
-    } catch (e, s) {
+    } catch (e) {
       throw Exception(e);
     }
   }
@@ -31,11 +35,13 @@ class PluginRepositoryImpl extends PluginRepository {
     try {
       final list = await _storage.getAll();
 
-      final data = await _api.getList(
-          'https://raw.githubusercontent.com/phucanh08/vbook-extensions/master/plugin.json');
-      final result = data.where((element) => !list.any((e) => e.name == element.name && e.path == element.path)).toList();
+      final data = await Future.wait(listApi.map((e) => Future.value(e.plugin())));
+      final result = data
+          .where((element) => !list
+              .any((e) => e.name == element.name && e.path == element.path))
+          .toList();
       return _mapper.mapToListEntity(result);
-    } catch (e, s) {
+    } catch (e) {
       throw Exception(e);
     }
   }
@@ -46,7 +52,7 @@ class PluginRepositoryImpl extends PluginRepository {
       final entity = _mapper2.mapToEntity(model);
       await _storage.save(entity);
       return model;
-    } catch (e, s) {
+    } catch (e) {
       throw Exception(e);
     }
   }

@@ -1,7 +1,5 @@
-import 'package:flutter/cupertino.dart';
 import 'package:injectable/injectable.dart';
 import 'package:resources/resources.dart';
-import 'package:shared/shared.dart';
 
 import '../../app.dart';
 
@@ -19,7 +17,7 @@ class AppPopupInfoMapper extends BasePopupInfoMapper {
           actions: [
             PopupButton(
               text: t.common.ok,
-              onPressed: onPressed ?? Func0(() => navigator.pop()),
+              onPressed: onPressed ?? () => navigator.pop(),
             ),
           ],
           message: message,
@@ -30,11 +28,11 @@ class AppPopupInfoMapper extends BasePopupInfoMapper {
           actions: [
             PopupButton(
               // text: S.current.cancel,
-              onPressed: Func0(() => navigator.pop()),
+              onPressed: () => navigator.pop(),
             ),
             PopupButton(
               // text: S.current.retry,
-              onPressed: onRetryPressed ?? Func0(() => navigator.pop()),
+              onPressed: onRetryPressed ?? () => navigator.pop(),
               isDefault: true,
             ),
           ],

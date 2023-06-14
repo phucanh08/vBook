@@ -1,7 +1,5 @@
 import 'package:auto_route/auto_route.dart';
-import 'package:flutter/material.dart';
 import 'package:resources/resources.dart';
-import 'package:shared/shared.dart';
 
 import '../../app.dart';
 
@@ -15,7 +13,7 @@ class CommunityPage extends StatelessWidget {
       appBar: CustomAppBar(
         automaticallyImplyLeading: true,
         title: Text(t.community.chat),
-        onMoreButtonPressed: Func0(() => null),
+        onMoreButtonPressed: () => null,
       ),
       bottomNavigationBar: NavigationBar(
         onDestinationSelected: (index) {

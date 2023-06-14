@@ -5,7 +5,6 @@ import '../app.dart';
 
 part 'exception_message_mapper.dart';
 
-
 class ExceptionHandler {
   const ExceptionHandler({
     required this.navigator,
@@ -19,7 +18,8 @@ class ExceptionHandler {
     AppExceptionWrapper appExceptionWrapper,
     String commonExceptionMessage,
   ) async {
-    final message = appExceptionWrapper.overrideMessage ?? commonExceptionMessage;
+    final message =
+        appExceptionWrapper.overrideMessage ?? commonExceptionMessage;
 
     switch (appExceptionWrapper.appException.appExceptionType) {
       case AppExceptionType.remote:
@@ -29,19 +29,19 @@ class ExceptionHandler {
             await _showErrorDialog(
               isRefreshTokenFailed: true,
               message: message,
-              onPressed: Func0(() {
+              onPressed: () {
                 navigator.pop();
-              }),
+              },
             );
             break;
           case RemoteExceptionKind.noInternet:
           case RemoteExceptionKind.timeout:
             await _showErrorDialogWithRetry(
               message: message,
-              onRetryPressed: Func0(() async {
+              onRetryPressed: () async {
                 await navigator.pop();
                 await appExceptionWrapper.doOnRetry?.call();
-              }),
+              },
             );
             break;
           default:

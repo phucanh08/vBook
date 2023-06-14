@@ -1,6 +1,5 @@
 import 'package:auto_route/auto_route.dart';
 import 'package:resources/resources.dart';
-import 'package:shared/shared.dart';
 
 import '../../app.dart';
 import 'bloc/home_bloc.dart';
@@ -60,8 +59,8 @@ class _HomePageState extends BasePageState<HomePage, HomeBloc> {
                 const Spacer(),
               ],
             ),
-            onSearchButtonPressed: Func0(() => null),
-            onMoreButtonPressed: Func0(() => null),
+            onSearchButtonPressed: () => null,
+            onMoreButtonPressed: () => null,
           ),
           body: child,
           bottomNavigationBar: NavigationBar(

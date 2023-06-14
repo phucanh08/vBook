@@ -14,8 +14,10 @@ part 'home_bloc.freezed.dart';
 class HomeBloc extends BaseBloc<HomeEvent, HomeState> {
   HomeBloc() : super(HomeState.initial()) {
     on<HomePageStarted>(_onHomePageInitiated, transformer: log());
-    on<NavigationBarDestinationSelected>(_onNavigationBarDestinationSelected,
-        transformer: log());
+    on<NavigationBarDestinationSelected>(
+      _onNavigationBarDestinationSelected,
+      transformer: log(),
+    );
   }
 
   void _onHomePageInitiated(HomePageStarted event, Emitter<HomeState> emit) {
@@ -27,7 +29,7 @@ class HomeBloc extends BaseBloc<HomeEvent, HomeState> {
     NavigationBarDestinationSelected event,
     Emitter<HomeState> emit,
   ) {
-    switch(event.index) {
+    switch (event.index) {
       case 1:
         navigator.push(const AppRouteInfo.discover());
         break;
