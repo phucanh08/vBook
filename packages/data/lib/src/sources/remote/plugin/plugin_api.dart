@@ -1,11 +1,8 @@
 import 'dart:convert';
 
-import 'package:dart_eval/dart_eval.dart';
 import 'package:data/src/dtos/dtos.dart';
 import 'package:dio/dio.dart';
 import 'package:injectable/injectable.dart';
-import 'package:webview_flutter/webview_flutter.dart';
-import 'package:html/parser.dart';
 
 extension DioExtension on Dio {
   Future<dynamic> fetchUrl(String url) async {
@@ -21,31 +18,17 @@ extension DioExtension on Dio {
 
 @injectable
 class PluginApi {
-  PluginApi(@Named('git') this._dio, this._browser);
+  PluginApi(@Named('git') this._dio);
 
   final Dio _dio;
-  final WebViewController _browser;
 
   Future<List<PluginDto>> getList(String link) async {
     final response = await _dio.fetchUrl(link);
     final data =
         response['data'].map<PluginDto>((e) => PluginDto.fromJson(e)).toList();
-    getData();
     return data;
   }
 
-  Future<dynamic> getData() async {
-    _browser.loadRequest(
-        Uri.parse('https://bachngocsach.com.vn/reader/recent-promote?page=0'));
-    final html = await Future.delayed(
-        const Duration(seconds: 3),
-        () => _browser.runJavaScriptReturningResult(
-            "document.getElementsByTagName('html')[0].innerHTML;"));
-    final data = parse(html);
-
-    eval(dartCode, args: [data]);
-    print(html);
-  }
 }
 
 const dartCode = """

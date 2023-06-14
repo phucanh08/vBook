@@ -14,7 +14,7 @@ class GetListNovelInHomeUseCase extends BasePaginationUseCase<
 }
 
 class GetListNovelInHomeInput extends BasePaginationInput {
-  GetListNovelInHomeInput(this.id, {required this.endpoint, required super.page});
+  GetListNovelInHomeInput({required this.id, required this.endpoint, required super.page});
   final String id;
   final String endpoint;
 }

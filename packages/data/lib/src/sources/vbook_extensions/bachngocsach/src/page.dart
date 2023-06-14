@@ -1,17 +1,13 @@
 import 'package:data/data.dart' as data;
+import 'package:data/data.dart';
 import 'package:data/src/dtos/dtos.dart';
 import 'package:domain/domain.dart';
 import 'package:html/parser.dart';
-import 'package:webview_flutter/webview_flutter.dart';
 
 Future<Pagination<PageDto>> page(String endpoint, Page page) async {
-  final browser = data.getIt<WebViewController>();
-  browser.loadRequest(
-      Uri.parse('https://bachngocsach.com.vn$endpoint?page=${page.number}'));
-  final html = await Future.delayed(
-      const Duration(seconds: 3),
-      () => browser.runJavaScriptReturningResult(
-          "document.getElementsByTagName('html')[0].innerHTML;"));
+  final browser = data.getIt<Browser>();
+  browser.launch('https://bachngocsach.com.vn$endpoint?page=${page.number}');
+  final html = await browser.html(const Duration(milliseconds: 100));
   final doc = parse(html);
 
   final next = doc

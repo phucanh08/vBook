@@ -13,9 +13,11 @@ part 'discover_bloc.freezed.dart';
 
 @injectable
 class DiscoverBloc extends BaseBloc<DiscoverEvent, DiscoverState> {
-  DiscoverBloc(this._getListPluginUseCase, this._updatePluginUseCase,
-      this._getListHomeUseCase)
-      : super(const DiscoverState()) {
+  DiscoverBloc(
+    this._getListPluginUseCase,
+    this._updatePluginUseCase,
+    this._getListHomeUseCase,
+  ) : super(const DiscoverState()) {
     on<_Started>(_onStarted);
     on<_TitlePressed>(_onTitlePressed);
   }

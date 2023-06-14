@@ -1,5 +1,4 @@
 import 'package:data/src/sources/local/local.dart';
-import 'package:injectable/injectable.dart';
 import 'package:shared/shared.dart';
 import 'package:webview_flutter/webview_flutter.dart';
 import 'package:webview_flutter_android/webview_flutter_android.dart';
@@ -16,11 +15,7 @@ class DataConfig extends Config {
 
   static final DataConfig _instance = DataConfig._();
 
-  @override
-  Future<void> config() async {
-    await ObjectBox.instance();
-    di.configureInjection();
-
+  void browserConfig() {
     late final PlatformWebViewControllerCreationParams params;
     if (WebViewPlatform.instance is WebKitWebViewPlatform) {
       params = WebKitWebViewControllerCreationParams(
@@ -30,48 +25,44 @@ class DataConfig extends Config {
     } else {
       params = const PlatformWebViewControllerCreationParams();
     }
-    di.getIt.registerSingleton<WebViewController>(
-        WebViewController.fromPlatformCreationParams(params));
-
-    di
-        .getIt<WebViewController>()
-        .setJavaScriptMode(JavaScriptMode.unrestricted);
-    if (di.getIt<WebViewController>().platform is AndroidWebViewController) {
+    final controller = WebViewController.fromPlatformCreationParams(params);
+    controller.setJavaScriptMode(JavaScriptMode.unrestricted);
+    if (controller.platform is AndroidWebViewController) {
       AndroidWebViewController.enableDebugging(true);
-      (di.getIt<WebViewController>().platform as AndroidWebViewController)
+      (controller.platform as AndroidWebViewController)
           .setMediaPlaybackRequiresUserGesture(false);
     }
+
+    di.getIt.registerSingleton<Browser>(BrowserImpl(controller));
+  }
+
+  @override
+  Future<void> config() async {
+    await ObjectBox.instance();
+    di.configureInjection();
+    browserConfig();
   }
 }
 
 abstract class Browser {
   void launch(String url); // Mở trang web với url
-  Future<Object> callJs(String script, int waitTime); // Gọi Javascript function trên trang với waitTime, trả về Document object
-  Future<String> html(waitTime); // Trả về Document object của trang web
+  Future<String> html([Duration duration = const Duration(milliseconds: 100)]); // Trả về Document object của trang web
 }
 
-@Injectable(as: Browser)
 class BrowserImpl extends Browser {
   BrowserImpl(this._controller);
 
   final WebViewController _controller;
 
   @override
-  void launch(url) {
-    _controller.loadRequest(Uri.parse(url));
-  }
+  void launch(url) => _controller.loadRequest(Uri.parse(url));
 
   @override
-  Future<Object> callJs(script, waitTime) {
-    return Future<Object>.delayed(Duration(seconds: waitTime),
-        () => _controller.runJavaScriptReturningResult(script));
-  }
-
-  @override
-  Future<String> html(waitTime) {
-    return Future.delayed(Duration(seconds: waitTime), () async {
+  Future<String> html([duration = const Duration(milliseconds: 100)]) {
+    return Future.delayed(duration, () async {
       final data = await _controller.runJavaScriptReturningResult(
-          "window.document.getElementsByTagName('html')[0].innerHTML;");
+        "window.document.getElementsByTagName('html')[0].innerHTML;",
+      );
       return data.toString();
     });
   }

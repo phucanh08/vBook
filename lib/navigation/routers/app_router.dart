@@ -44,7 +44,7 @@ class AppRouter extends _$AppRouter {
           page: DiscoverRoute.page,
           path: 'discover',
           children: [
-            AutoRoute(page: DiscoverTabRoute.page, path: ''),
+            AutoRoute(page: DiscoverTabRoute.page, path: ':id'),
           ],
         ),
         AutoRoute(page: CommunityRoute.page, path: 'community'),

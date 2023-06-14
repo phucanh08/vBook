@@ -6,22 +6,30 @@ import 'base_bloc.dart';
 abstract class PaginationBloc<T, F, S extends PaginationState<T>>
     extends BaseBloc<PaginationEvent, S> {
   PaginationBloc(S initialState) : super(initialState) {
-    on<PaginationStarted<F>>(_onPaginationStarted);
-    on<PaginationNextPage<F>>(_onPaginationNextPage);
-    on<PaginationRefreshed<F>>(_onPaginationRefreshed);
+    on<PaginationStarted<F>>(onPaginationStarted);
+    on<PaginationNextPage<F>>(onPaginationNextPage);
+    on<PaginationRefreshed<F>>(onPaginationRefreshed);
   }
 
-  Future<void> _onPaginationStarted(
+  void paginationStarted({Page page = const Page(), F? filter}) =>
+      add(PaginationStarted<F>(page, filter: filter));
+
+  void paginationNextPage() => add(PaginationNextPage<F>());
+
+  void paginationRefreshed({F? filter}) =>
+      add(PaginationRefreshed<F>(filter: filter));
+
+  Future<void> onPaginationStarted(
     PaginationStarted<F> event,
     Emitter<PaginationState<T>> emit,
   );
 
-  Future<void> _onPaginationNextPage(
+  Future<void> onPaginationNextPage(
     PaginationNextPage<F> event,
     Emitter<PaginationState<T>> emit,
   );
 
-  Future<void> _onPaginationRefreshed(
+  Future<void> onPaginationRefreshed(
     PaginationRefreshed<F> event,
     Emitter<PaginationState<T>> emit,
   );
@@ -47,11 +55,7 @@ class PaginationRefreshed<F> extends PaginationEvent {
 enum PagedStatus { initial, loading, refreshing, empty, success, failure }
 
 abstract class PaginationState<T> extends BaseState {
-  PaginationState({
-    this.data = const [],
-    this.status = PagedStatus.initial,
-  });
-
-  final List<T> data;
-  final PagedStatus status;
+  const PaginationState();
+  List<T> get data;
+  PagedStatus get status;
 }

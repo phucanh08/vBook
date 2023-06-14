@@ -33,7 +33,7 @@ class _DiscoverPageState extends BasePageState<DiscoverPage, DiscoverBloc> {
         return AutoTabsRouter.tabBar(
           routes: List.generate(
             state.listHome.length,
-            (index) => const DiscoverTabRoute(),
+            (index) => DiscoverTabRoute(id: state.currentPlugin?.path ?? '', endpoint: state.listHome[index].input),
           ),
           builder: (context, child, controller) {
             return Scaffold(

@@ -3,38 +3,38 @@ part of 'pagination.dart';
 class PaginationBuilder<B extends StateStreamable<S>,
     S extends PaginationState<T>, T> extends BlocBuilderBase<B, S> {
   const PaginationBuilder({
-    required this.itemBuilder,
-    this.onLoading,
-    this.onRefreshing,
-    this.onEmpty,
-    this.onError,
+    required this.successBuilder,
+    this.loadingBuilder,
+    this.refreshingBuilder,
+    this.emptyBuilder,
+    this.errorBuilder,
     super.bloc,
     super.buildWhen,
     super.key,
   });
 
-  final WidgetBuilder? onLoading;
-  final WidgetBuilder? onRefreshing;
-  final Func3<BuildContext, S, List<T>, Widget> itemBuilder;
-  final WidgetBuilder? onEmpty;
-  final Func1<BuildContext, Widget>? onError;
+  final WidgetBuilder? loadingBuilder;
+  final WidgetBuilder? refreshingBuilder;
+  final Func3<BuildContext, S, List<T>, Widget> successBuilder;
+  final WidgetBuilder? emptyBuilder;
+  final Func1<BuildContext, Widget>? errorBuilder;
 
   @override
   Widget build(context, state) {
     switch (state.status) {
       case PagedStatus.initial:
       case PagedStatus.loading:
-        return onLoading?.call(context) ?? const SizedBox.shrink();
+        return loadingBuilder?.call(context) ?? const SizedBox.shrink();
       case PagedStatus.refreshing:
-        return onRefreshing?.call(context) ??
-            onLoading?.call(context) ??
+        return refreshingBuilder?.call(context) ??
+            loadingBuilder?.call(context) ??
             const SizedBox.shrink();
       case PagedStatus.success:
-        return itemBuilder.call(context, state, state.data);
+        return successBuilder.call(context, state, state.data);
       case PagedStatus.empty:
-        return onEmpty?.call(context) ?? const SizedBox.shrink();
+        return emptyBuilder?.call(context) ?? const SizedBox.shrink();
       case PagedStatus.failure:
-        return onError?.call(context) ?? const SizedBox.shrink();
+        return errorBuilder?.call(context) ?? const SizedBox.shrink();
     }
   }
 }
