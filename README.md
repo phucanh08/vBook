@@ -8,12 +8,12 @@
 **Tiếng Việt**
 
 
-- [Giới thiệu](#giới-thiệu)
-- [Tính năng](#tính-năng)
+- [Giới thiệu (Introduction)](#giới-thiệu)
+- [Tính năng (Feature)](#tính-năng)
 - [Bắt đầu (Getting Started)](#bắt-đầu )
-  - [Yêu cầu](#yêu-cầu)
-  - [Cài đặt](#cài-đặt)
-  - [Cấu hình và chạy app](#cấu-hình-và-chạy-app)
+  - [Yêu cầu (Requirements)](#yêu-cầu)
+  - [Cài đặt (Install)](#cài-đặt)
+  - [Cấu hình và chạy app (Config and run app)](#cấu-hình-và-chạy-app)
 - [Tam Trụ](#tam-trụ)
   - [Quản lý State](#quản-lý-state)
     - [Quản lý Reactive State](#quản-lý-reactive-state)
