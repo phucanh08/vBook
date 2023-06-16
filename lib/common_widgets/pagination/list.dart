@@ -9,8 +9,7 @@ class InfiniteListView extends PaginationWidget {
     required this.itemBuilder,
     required this.itemCount,
     required this.nextData,
-    required this.onRefresh,
-
+    required this.hasNext,
     Key? key,
     this.scrollDirection = Axis.vertical,
     this.reverse = false,
@@ -25,15 +24,6 @@ class InfiniteListView extends PaginationWidget {
     this.shrinkWrap = false,
     this.loadingWidget,
     this.scrollThreshold = 300,
-    this.hasNext = false,
-    this.backgroundColor,
-    this.color,
-    this.displacement = 40.0,
-    this.notificationPredicate = defaultScrollNotificationPredicate,
-    this.semanticsLabel,
-    this.semanticsValue,
-    this.strokeWidth = RefreshProgressIndicator.defaultStrokeWidth,
-    this.triggerMode = RefreshIndicatorTriggerMode.onEdge,
   })  : _separated = false,
         _separatorBuilder = null,
         semanticChildCount = null,
@@ -46,8 +36,8 @@ class InfiniteListView extends PaginationWidget {
   const InfiniteListView.separated({
     required this.itemBuilder,
     required this.itemCount,
+    required this.hasNext,
     required this.nextData,
-    required this.onRefresh,
     required Function(BuildContext, int) separatorBuilder,
     Key? key,
     this.semanticChildCount,
@@ -65,15 +55,6 @@ class InfiniteListView extends PaginationWidget {
     this.shrinkWrap = false,
     this.loadingWidget,
     this.scrollThreshold = 300,
-    this.hasNext = false,
-    this.backgroundColor,
-    this.color,
-    this.displacement = 40.0,
-    this.notificationPredicate = defaultScrollNotificationPredicate,
-    this.semanticsLabel,
-    this.semanticsValue,
-    this.strokeWidth = RefreshProgressIndicator.defaultStrokeWidth,
-    this.triggerMode = RefreshIndicatorTriggerMode.onEdge,
   })  : _separated = true,
         _separatorBuilder =
             separatorBuilder as Widget Function(BuildContext, int)?,
@@ -101,16 +82,6 @@ class InfiniteListView extends PaginationWidget {
   final int? semanticChildCount;
   final double? itemExtent;
 
-  final VoidCallback onRefresh;
-  final double displacement;
-  final Color? color;
-  final Color? backgroundColor;
-  final ScrollNotificationPredicate notificationPredicate;
-  final String? semanticsLabel;
-  final String? semanticsValue;
-  final double strokeWidth;
-  final RefreshIndicatorTriggerMode triggerMode;
-
   @override
   State<StatefulWidget> createState() {
     return _InfiniteListViewState();
@@ -120,7 +91,6 @@ class InfiniteListView extends PaginationWidget {
 class _InfiniteListViewState extends State<InfiniteListView> {
   late ScrollController _scrollController;
   int? _lastLoadedEvent;
-
 
   @override
   void initState() {
@@ -183,53 +153,40 @@ class _InfiniteListViewState extends State<InfiniteListView> {
       return widget.itemBuilder(context, index);
     };
 
-    return RefreshIndicator(
-      backgroundColor: widget.backgroundColor,
-      color: widget.color,
-      displacement: widget.displacement,
-      notificationPredicate: widget.notificationPredicate,
-      semanticsLabel: widget.semanticsLabel,
-      semanticsValue: widget.semanticsValue,
-      strokeWidth: widget.strokeWidth,
-      triggerMode: widget.triggerMode,
-      onRefresh: () async => widget.onRefresh.call(),
-      child: widget._separated
-          ? ListView.separated(
-              itemBuilder: itemBuilder,
-              controller: _scrollController,
-              scrollDirection: widget.scrollDirection,
-              reverse: widget.reverse,
-              padding: widget.padding,
-              addAutomaticKeepAlives: widget.addAutomaticKeepAlives,
-              addRepaintBoundaries: widget.addRepaintBoundaries,
-              addSemanticIndexes: widget.addSemanticIndexes,
-              cacheExtent: widget.cacheExtent,
-              primary: widget.primary,
-              physics: widget.physics,
-              shrinkWrap: widget.shrinkWrap,
-              separatorBuilder: widget._separatorBuilder!,
-              itemCount:
-                  widget.hasNext ? widget.itemCount + 1 : widget.itemCount,
-            )
-          : ListView.builder(
-              itemBuilder: itemBuilder,
-              controller: _scrollController,
-              scrollDirection: widget.scrollDirection,
-              reverse: widget.reverse,
-              itemExtent: widget.itemExtent,
-              padding: widget.padding,
-              semanticChildCount: widget.semanticChildCount,
-              addAutomaticKeepAlives: widget.addAutomaticKeepAlives,
-              addRepaintBoundaries: widget.addRepaintBoundaries,
-              addSemanticIndexes: widget.addSemanticIndexes,
-              cacheExtent: widget.cacheExtent,
-              primary: widget.primary,
-              physics: widget.physics,
-              shrinkWrap: widget.shrinkWrap,
-              itemCount:
-                  widget.hasNext ? widget.itemCount + 1 : widget.itemCount,
-            ),
-    );
+    return widget._separated
+        ? ListView.separated(
+            itemBuilder: itemBuilder,
+            controller: _scrollController,
+            scrollDirection: widget.scrollDirection,
+            reverse: widget.reverse,
+            padding: widget.padding,
+            addAutomaticKeepAlives: widget.addAutomaticKeepAlives,
+            addRepaintBoundaries: widget.addRepaintBoundaries,
+            addSemanticIndexes: widget.addSemanticIndexes,
+            cacheExtent: widget.cacheExtent,
+            primary: widget.primary,
+            physics: widget.physics,
+            shrinkWrap: widget.shrinkWrap,
+            separatorBuilder: widget._separatorBuilder!,
+            itemCount: widget.hasNext ? widget.itemCount + 1 : widget.itemCount,
+          )
+        : ListView.builder(
+            itemBuilder: itemBuilder,
+            controller: _scrollController,
+            scrollDirection: widget.scrollDirection,
+            reverse: widget.reverse,
+            itemExtent: widget.itemExtent,
+            padding: widget.padding,
+            semanticChildCount: widget.semanticChildCount,
+            addAutomaticKeepAlives: widget.addAutomaticKeepAlives,
+            addRepaintBoundaries: widget.addRepaintBoundaries,
+            addSemanticIndexes: widget.addSemanticIndexes,
+            cacheExtent: widget.cacheExtent,
+            primary: widget.primary,
+            physics: widget.physics,
+            shrinkWrap: widget.shrinkWrap,
+            itemCount: widget.hasNext ? widget.itemCount + 1 : widget.itemCount,
+          );
   }
 
   void _onScroll() {

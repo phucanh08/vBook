@@ -1,3 +1,5 @@
+import 'dart:async';
+
 import 'package:data/src/sources/local/local.dart';
 import 'package:shared/shared.dart';
 import 'package:webview_flutter/webview_flutter.dart';
@@ -15,7 +17,7 @@ class DataConfig extends Config {
 
   static final DataConfig _instance = DataConfig._();
 
-  void browserConfig() {
+  WebViewController browserConfig() {
     late final PlatformWebViewControllerCreationParams params;
     if (WebViewPlatform.instance is WebKitWebViewPlatform) {
       params = WebKitWebViewControllerCreationParams(
@@ -32,21 +34,20 @@ class DataConfig extends Config {
       (controller.platform as AndroidWebViewController)
           .setMediaPlaybackRequiresUserGesture(false);
     }
-
-    di.getIt.registerSingleton<Browser>(BrowserImpl(controller));
+    return controller;
   }
 
   @override
   Future<void> config() async {
     await ObjectBox.instance();
+    di.getIt.registerSingleton<Browser>(BrowserImpl(browserConfig()));
     di.configureInjection();
-    browserConfig();
   }
 }
 
 abstract class Browser {
   void launch(String url); // Mở trang web với url
-  Future<String> html([Duration duration = const Duration(milliseconds: 100)]); // Trả về Document object của trang web
+  Future<String> html([Duration duration = const Duration(seconds: 1)]); // Trả về Document object của trang web
 }
 
 class BrowserImpl extends Browser {
@@ -58,12 +59,17 @@ class BrowserImpl extends Browser {
   void launch(url) => _controller.loadRequest(Uri.parse(url));
 
   @override
-  Future<String> html([duration = const Duration(milliseconds: 100)]) {
-    return Future.delayed(duration, () async {
-      final data = await _controller.runJavaScriptReturningResult(
-        "window.document.getElementsByTagName('html')[0].innerHTML;",
-      );
-      return data.toString();
-    });
+  Future<String> html([duration = const Duration(seconds: 1)]) async {
+    String data = "<head></head><body></body>";
+    while (data == "<head></head><body></body>") {
+      data = (await Future.delayed(
+              duration,
+              () => _controller.runJavaScriptReturningResult(
+                    "window.document.getElementsByTagName('html')[0].innerHTML;",
+                  )))
+          .toString();
+    }
+    _controller.loadHtmlString('<head></head><body></body>');
+    return data;
   }
 }

@@ -28,52 +28,48 @@ class _DiscoverTabState extends BasePageState<DiscoverTab, DiscoverTabBloc> {
 
   @override
   Widget buildPage(BuildContext context) {
-    return PaginationBuilder<DiscoverTabBloc, DiscoverTabState, PageModel>(
-      successBuilder: (context, state, data) {
-        return InfiniteGridView(
-          padding: const EdgeInsets.all(10),
-          itemCount: data.length,
-          gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
-            crossAxisCount: 3,
-            mainAxisSpacing: 10,
-            crossAxisSpacing: 10,
-            childAspectRatio: 1 / 2,
-          ),
-          nextData: () => bloc.paginationNextPage(),
-          onRefresh: () => bloc.paginationRefreshed(),
-          itemBuilder: (context, index) {
-            final item = data[index];
+    return RefreshIndicator(
+      onRefresh: () async => bloc.paginationRefreshed(),
+      child: PaginationBuilder<DiscoverTabBloc, DiscoverTabState, PageModel>(
+        successBuilder: (context, state, data) {
+          return InfiniteGridView(
+            padding: const EdgeInsets.all(10),
+            itemCount: data.items.length,
+            gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
+              crossAxisCount: 3,
+              mainAxisSpacing: 10,
+              crossAxisSpacing: 10,
+              childAspectRatio: 1 / 2,
+            ),
+            nextData: () => bloc.paginationNextPage(),
+            itemBuilder: (context, index) {
+              final item = data.items[index];
 
-            return Column(
-              children: [
-                Expanded(
-                  child: Column(
-                    children: [
-                      Flexible(child: Card(child: Image.network(item.cover))),
-                      Text(
-                        item.name,
-                        style: textTheme.titleSmall,
-                        textAlign: TextAlign.center,
-                        maxLines: 2,
-                        overflow: TextOverflow.ellipsis,
-                      ),
-                    ],
+              return Column(
+                children: [
+                  Expanded(child: Card(child: Image.network(item.cover))),
+                  Text(
+                    '${item.name}\n',
+                    style: textTheme.titleSmall,
+                    textAlign: TextAlign.center,
+                    maxLines: 2,
+                    overflow: TextOverflow.ellipsis,
                   ),
-                ),
-
-                Text(
-                  item.description,
-                  style: textTheme.labelSmall,
-                  textAlign: TextAlign.center,
-                  maxLines: 2,
-                  overflow: TextOverflow.ellipsis,
-                ),
-              ],
-            );
-          },
-        );
-      },
-      emptyBuilder: (context) => const Placeholder(),
+                  Text(
+                    '${item.description}\n',
+                    style: textTheme.labelSmall,
+                    textAlign: TextAlign.center,
+                    maxLines: 2,
+                    overflow: TextOverflow.ellipsis,
+                  ),
+                ],
+              );
+            },
+            hasNext: data.hasNext,
+          );
+        },
+        emptyBuilder: (context) => const Placeholder(),
+      ),
     );
   }
 }

@@ -18,9 +18,3 @@ class GetListNovelInHomeInput extends BasePaginationInput {
   final String id;
   final String endpoint;
 }
-
-class GetListNovelInHomeOutput extends BaseOutput {
-  const GetListNovelInHomeOutput(this.data);
-
-  final List<PageModel> data;
-}

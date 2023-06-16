@@ -8,12 +8,12 @@ class DiscoverTabState extends PaginationState<PageModel>
     @Default('') String id,
     @Default('') String endpoint,
     @Default(Page()) Page page,
-    @Default(<PageModel>[]) List<PageModel> listPage,
+    @Default(Pagination(items: <PageModel>[], hasNext: false)) Pagination<PageModel> paginationData,
     @Default(PagedStatus.initial) PagedStatus pagedStatus,
   }) = _DiscoverTabState;
 
   @override
-  List<PageModel> get data => listPage;
+  Pagination<PageModel> get data => paginationData;
 
   @override
   PagedStatus get status => pagedStatus;

@@ -1,21 +1,21 @@
-import 'package:data/data.dart' as data;
-import 'package:data/data.dart';
 import 'package:data/src/dtos/dtos.dart';
+import 'package:data/src/sources/sources.dart';
+import 'package:dio/dio.dart';
 import 'package:domain/domain.dart';
 import 'package:html/parser.dart';
 
 Future<Pagination<PageDto>> page(String endpoint, Page page) async {
-  final browser = data.getIt<Browser>();
-  browser.launch('https://bachngocsach.com.vn$endpoint?page=${page.number}');
-  final html = await browser.html(const Duration(milliseconds: 100));
+  final dio = Dio();
+  final response = await dio.getUri(Uri.parse('https://bachngocsach.com.vn$endpoint?page=${page.number}'));
+  final html = response.data.toString();
   final doc = parse(html);
 
   final next = doc
       .querySelectorAll('.pager-next')
-      .last
-      .querySelector("a")
+      .lastOrNull
+      ?.querySelector("a")
       ?.attributes['href']
-      ?.matchAsPrefix(r'page=(\d+)')
+      ?.match(r'page=(\d+)')
       ?.group(1);
   final nextPage = int.tryParse(next ?? '') ?? 0;
 
@@ -31,7 +31,6 @@ Future<Pagination<PageDto>> page(String endpoint, Page page) async {
 
   return Pagination(
     items: novelList,
-    page: page.copyWith(number: nextPage),
-    total: 0,
+    hasNext: nextPage > page.number,
   );
 }

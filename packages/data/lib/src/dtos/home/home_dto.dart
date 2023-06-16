@@ -27,3 +27,20 @@ class PageDto with _$PageDto {
   factory PageDto.fromJson(Map<String, Object?> json) =>
       _$PageDtoFromJson(json);
 }
+
+
+
+@freezed
+class DetailNovelDto with _$DetailNovelDto {
+  const factory DetailNovelDto({
+    String? name,
+    String? cover,
+    String? host,
+    String? author,
+    String? description,
+    String? detail,
+  }) = _DetailNovelDto;
+
+  factory DetailNovelDto.fromJson(Map<String, Object?> json) =>
+      _$DetailNovelDtoFromJson(json);
+}

@@ -18,14 +18,14 @@ abstract class BasePaginationUseCase<Input extends BasePaginationInput, Output e
 
       if (LogConfig.enableLogUseCaseOutput) {
         logD(
-          'BasePaginationUseCase Output: output: $output, inputPageNumber: $pageNumber, inputOffset: $offset, outputTotal: ${output.total}',
+          'BasePaginationUseCase Output: output: $output, inputPageNumber: $pageNumber, inputOffset: $offset, hasNext: ${output.hasNext}',
         );
       }
 
       return output;
-    } catch (e) {
+    } catch (e,s) {
       if (LogConfig.enableLogUseCaseError) {
-        logE('FutureUseCase Error: $e');
+        logE('FutureUseCase Error: $e, $s');
       }
 
       throw e is AppException ? e : AppUncaughtException(e);

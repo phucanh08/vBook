@@ -26,6 +26,6 @@ class PluginRepositoryImpl extends NovelRepository {
     final response = await api?.getListNovelInPage(endpoint, page);
     final result = _pageMapper.mapToListEntity(response?.items);
 
-    return Pagination(items: result, page: Page(), total: 40);
+    return Pagination(items: result, hasNext: response?.hasNext == true);
   }
 }

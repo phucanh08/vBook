@@ -23,5 +23,5 @@ class Page with _$Page {
 }
 
 class Pagination<T> extends BasePaginationOutput<T> {
-  Pagination({required super.items, required super.page, required super.total});
+  const Pagination({required super.items, required super.hasNext});
 }

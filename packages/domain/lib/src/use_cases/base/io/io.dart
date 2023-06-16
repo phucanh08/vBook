@@ -10,13 +10,11 @@ abstract class BasePaginationInput extends BaseInput {
 abstract class BasePaginationOutput<T>  extends BaseOutput {
   const BasePaginationOutput({
     required this.items,
-    required this.page,
-    required this.total,
+    required this.hasNext,
   });
 
   final List<T> items;
-  final Page page;
-  final int total;
+  final bool hasNext;
 }
 
 abstract class BaseInput {

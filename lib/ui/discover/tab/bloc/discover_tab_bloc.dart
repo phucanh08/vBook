@@ -28,73 +28,102 @@ class DiscoverTabBloc
 
   @override
   Future<void> onPaginationStarted(event, emit) async {
-    emit(state.copyWith(pagedStatus: PagedStatus.loading));
-    final response = await _getListNovelInHomeUseCase.call(
-      GetListNovelInHomeInput(
-        id: state.id,
-        endpoint: state.endpoint,
-        page: state.page,
-      ),
+    return runBlocCatching(
+      action: () async {
+        emit(state.copyWith(pagedStatus: PagedStatus.loading));
+        final response = await _getListNovelInHomeUseCase.call(
+          GetListNovelInHomeInput(
+            id: state.id,
+            endpoint: state.endpoint,
+            page: state.page,
+          ),
+        );
+        if (response.items.isEmpty) {
+          emit(state.copyWith(pagedStatus: PagedStatus.empty));
+        } else {
+          emit(
+            state.copyWith(
+              paginationData: response,
+              pagedStatus: PagedStatus.success,
+            ),
+          );
+        }
+      },
+      doOnError: (error) async {
+        print(error);
+      },
+      handleLoading: false,
     );
-    if (response.items.isEmpty) {
-      emit(state.copyWith(pagedStatus: PagedStatus.empty));
-    } else {
-      emit(
-        state.copyWith(
-          listPage: response.items,
-          pagedStatus: PagedStatus.success,
-        ),
-      );
-    }
   }
 
   @override
-  Future<void> onPaginationNextPage(event, emit) async {
-    emit(state.copyWith(pagedStatus: PagedStatus.loading));
-    final response = await _getListNovelInHomeUseCase.call(
-      GetListNovelInHomeInput(
-        id: state.id,
-        endpoint: state.endpoint,
-        page: state.page,
-      ),
+  Future<void> onPaginationNextPage(event, emit) {
+    return runBlocCatching(
+      action: () async {
+        emit(state.copyWith(pagedStatus: PagedStatus.loading));
+        final newPage = state.page.copyWith(number: state.page.number + 1);
+        final response = await _getListNovelInHomeUseCase.call(
+          GetListNovelInHomeInput(
+            id: state.id,
+            endpoint: state.endpoint,
+            page: newPage,
+          ),
+        );
+        final newData = Pagination(
+          items: state.data.items + response.items,
+          hasNext: state.data.hasNext,
+        );
+        emit(
+          state.copyWith(
+            paginationData: newData,
+            pagedStatus: PagedStatus.success,
+            page: newPage,
+          ),
+        );
+      },
+      doOnError: (error) async {
+        print(error);
+      },
+      handleLoading: false,
     );
-    if (response.items.isEmpty) {
-      emit(state.copyWith(pagedStatus: PagedStatus.empty));
-    } else {
-      emit(
-        state.copyWith(
-          listPage: [...state.listPage, ...response.items],
-          pagedStatus: PagedStatus.success,
-        ),
-      );
-    }
   }
 
   @override
-  Future<void> onPaginationRefreshed(event, emit) async {
-    emit(
-      state.copyWith(
-        listPage: [],
-        page: state.page.copyWith(number: 0),
-        pagedStatus: PagedStatus.refreshing,
-      ),
+  Future<void> onPaginationRefreshed(event, emit) {
+    return runBlocCatching(
+      action: () async {
+        final newData =
+            Pagination(items: <PageModel>[], hasNext: state.data.hasNext);
+
+        emit(
+          state.copyWith(
+            paginationData: newData,
+            page: state.page.copyWith(number: 0),
+            pagedStatus: PagedStatus.refreshing,
+          ),
+        );
+        final response = await _getListNovelInHomeUseCase.call(
+          GetListNovelInHomeInput(
+            id: state.id,
+            endpoint: state.endpoint,
+            page: state.page,
+          ),
+        );
+        if (response.items.isEmpty) {
+          emit(state.copyWith(pagedStatus: PagedStatus.empty));
+        } else {
+          emit(
+            state.copyWith(
+              paginationData: response,
+              pagedStatus: PagedStatus.success,
+            ),
+          );
+        }
+      },
+      doOnError: (error) async {
+        print(error);
+      },
+      handleLoading: false,
     );
-    final response = await _getListNovelInHomeUseCase.call(
-      GetListNovelInHomeInput(
-        id: state.id,
-        endpoint: state.endpoint,
-        page: state.page,
-      ),
-    );
-    if (response.items.isEmpty) {
-      emit(state.copyWith(pagedStatus: PagedStatus.empty));
-    } else {
-      emit(
-        state.copyWith(
-          listPage: response.items,
-          pagedStatus: PagedStatus.success,
-        ),
-      );
-    }
   }
 }

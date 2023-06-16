@@ -56,6 +56,6 @@ enum PagedStatus { initial, loading, refreshing, empty, success, failure }
 
 abstract class PaginationState<T> extends BaseState {
   const PaginationState();
-  List<T> get data;
+  Pagination<T> get data;
   PagedStatus get status;
 }
