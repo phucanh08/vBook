@@ -13,7 +13,7 @@ Future<DetailNovelDto> detailNovel(String endpoint) async {
     cover: doc.querySelector("div#anhbia img")?.attributes["src"],
     host: "https://bachngocsach.com",
     author: doc.querySelector("div#tacgia a")?.text,
-    description: doc.querySelector("div#gioithieu")?.innerHtml,
+    description: doc.querySelector("div#gioithieu .block-content")?.text,
     detail: '${doc.querySelector("div#tacgia")?.text}\n${doc.querySelector("div#theloai")?.text}'
   );
 }

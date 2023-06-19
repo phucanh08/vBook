@@ -1,25 +1,9 @@
 import 'package:auto_route/auto_route.dart';
-import 'package:freezed_annotation/freezed_annotation.dart';
 import 'package:injectable/injectable.dart';
 
 import '../../app.dart';
 
-part 'app_router.freezed.dart';
-
 part 'app_router.gr.dart';
-
-@freezed
-class AppRouteInfo with _$AppRouteInfo {
-  const factory AppRouteInfo.home() = _Home;
-
-  const factory AppRouteInfo.discover() = _Discover;
-
-  const factory AppRouteInfo.community() = _Community;
-
-  const factory AppRouteInfo.individual() = _Individual;
-
-  const factory AppRouteInfo.extension() = _Extension;
-}
 
 @singleton
 @AutoRouterConfig(replaceInRouteName: 'Page|Tab,Route')
@@ -44,7 +28,7 @@ class AppRouter extends _$AppRouter {
           page: DiscoverRoute.page,
           path: 'discover',
           children: [
-            AutoRoute(page: DiscoverTabRoute.page, path: ':id'),
+            AutoRoute(page: DiscoverTabRoute.page, path: ':id/:endpoint'),
           ],
         ),
         AutoRoute(page: CommunityRoute.page, path: 'community'),
@@ -58,6 +42,9 @@ class AppRouter extends _$AppRouter {
             AutoRoute(page: LibraryTabRouter.page, path: 'library'),
           ],
         ),
+        AutoRoute(page: CatalogRoute.page, path: ':id/:endpoint/catalog'),
+        AutoRoute(page: DetailNovelRoute.page, path: ':id/:endpoint/detail-novel'),
+        AutoRoute(page: DetailChapterRoute.page, path: ':id/:endpoint/detail-chapter'),
       ],
     ),
   ];

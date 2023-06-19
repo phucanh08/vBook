@@ -1,3 +1,4 @@
+import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:get_it/get_it.dart';
@@ -49,6 +50,7 @@ abstract class BasePageStateDelegate<T extends StatefulWidget,
     if (!isAppWidget) {
       AppDimen.of(context);
       AppTheme.of(context);
+      appStackRouter = context.router;
     }
 
     return Provider(

@@ -50,7 +50,7 @@ class DiscoverTabBloc
         }
       },
       doOnError: (error) async {
-        print(error);
+        logD(error.toString());
       },
       handleLoading: false,
     );
@@ -82,7 +82,7 @@ class DiscoverTabBloc
         );
       },
       doOnError: (error) async {
-        print(error);
+        logD(error.toString());
       },
       handleLoading: false,
     );
@@ -121,7 +121,7 @@ class DiscoverTabBloc
         }
       },
       doOnError: (error) async {
-        print(error);
+        logD(error.toString());
       },
       handleLoading: false,
     );

@@ -4,9 +4,9 @@ import 'package:dio/dio.dart';
 import 'package:domain/domain.dart';
 import 'package:html/parser.dart';
 
-Future<Pagination<PageDto>> page(String endpoint, Page page) async {
+Future<Pagination<PageDto>> page(String endpoint, int pageNumber) async {
   final dio = Dio();
-  final response = await dio.getUri(Uri.parse('https://bachngocsach.com.vn$endpoint?page=${page.number}'));
+  final response = await dio.getUri(Uri.parse('https://bachngocsach.com.vn$endpoint?page=$pageNumber'));
   final html = response.data.toString();
   final doc = parse(html);
 
@@ -31,6 +31,6 @@ Future<Pagination<PageDto>> page(String endpoint, Page page) async {
 
   return Pagination(
     items: novelList,
-    hasNext: nextPage > page.number,
+    hasNext: nextPage > pageNumber,
   );
 }

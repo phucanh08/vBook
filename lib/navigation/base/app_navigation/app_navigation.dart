@@ -1,88 +1,70 @@
 import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart' as m;
+import 'package:get_it/get_it.dart';
 import 'package:injectable/injectable.dart';
 import 'package:shared/shared.dart';
 
-import '../../mapper/app_popup_info_mapper.dart';
-import '../../mapper/app_route_info_mapper.dart';
-import '../../routers/app_router.dart';
-import '../app_popup_info/app_popup_info.dart';
+import '../../../app.dart';
 
 part 'app_navigator_impl.dart';
 
 abstract class AppNavigator {
   const AppNavigator();
 
-  bool get canPopSelfOrChildren;
+  Future<T?> push<T extends Object?>(PageRouteInfo<T> pageRouteInfo);
 
-  int get currentBottomTab;
+  Future<bool> pop<T extends Object?>({T? result});
 
-  String getCurrentRouteName({bool useRootNavigator = false});
-
-  void popUntilRootOfCurrentBottomTab();
-
-  void navigateToBottomTab(int index, {bool notify = true});
-
-  Future<T?> push<T extends Object?>(AppRouteInfo appRoute);
-
-  Future<void> pushAll(List<AppRouteInfo> listAppRoute);
-
-  Future<T?> replace<T extends Object?>(AppRouteInfo appRoute);
-
-  Future<void> replaceAll(List<AppRouteInfo> listAppRoute);
-
-  Future<bool> pop<T extends Object?>({
-    T? result,
-    bool useRootNavigator = false,
+  Future<T?> replace<T extends Object?>(
+    PageRouteInfo route, {
+    OnNavigationFailure? onFailure,
   });
 
   Future<T?> popAndPush<T extends Object?, R extends Object?>(
-      AppRouteInfo appRoute, {
+    PageRouteInfo<T> pageRouteInfo, {
     R? result,
-    bool useRootNavigator = false,
   });
 
-  Future<void> popAndPushAll(List<AppRouteInfo> listAppRoute,
-      {bool useRootNavigator = false,});
+  void popUntilRoot();
 
-  void popUntilRoot({bool useRootNavigator = false});
+  Future<T?> showModalBottomSheet<T>(
+    m.Widget bottomSheet, {
+    Color? backgroundColor,
+    double? elevation,
+    ShapeBorder? shape,
+    Clip? clipBehavior,
+    BoxConstraints? constraints,
+    Color? barrierColor,
+    bool isScrollControlled = false,
+    bool useRootNavigator = false,
+    bool isDismissible = true,
+    bool enableDrag = true,
+    bool? showDragHandle,
+    bool useSafeArea = false,
+    RouteSettings? routeSettings,
+    AnimationController? transitionAnimationController,
+    Offset? anchorPoint,
+  });
 
-  void popUntilRouteName(String routeName);
+  Future<T?> showDialog<T>(
+    m.Widget dialog, {
+    bool barrierDismissible = true,
+    m.Color? barrierColor = m.Colors.black54,
+    String? barrierLabel,
+    bool useSafeArea = true,
+    bool useRootNavigator = true,
+    m.RouteSettings? routeSettings,
+    m.Offset? anchorPoint,
+    m.TraversalEdgeBehavior? traversalEdgeBehavior,
+  });
 
-  bool removeUntilRouteName(String routeName);
-
-  bool removeAllRoutesWithName(String routeName);
-
-  bool removeLast();
-
-  Future<T?> showDialog<T extends Object?>(
-      AppPopupInfo appPopupInfo, {
-        bool barrierDismissible = true,
-        bool useSafeArea = false,
-        bool useRootNavigator = true,
-      });
-
-  Future<T?> showGeneralDialog<T extends Object?>(
-      AppPopupInfo appPopupInfo, {
-        m.Widget Function(m.BuildContext, m.Animation<double>, m.Animation<double>, m.Widget)? transitionBuilder,
-        Duration transitionDuration = DurationConstants.defaultGeneralDialogTransitionDuration,
-        bool barrierDismissible = true,
-        m.Color barrierColor = const m.Color(0x80000000),
-        bool useRootNavigator = true,
-      });
-
-  Future<T?> showModalBottomSheet<T extends Object?>(
-      AppPopupInfo appPopupInfo, {
-        bool isScrollControlled = false,
-        bool useRootNavigator = false,
-        bool isDismissible = true,
-        bool enableDrag = true,
-        bool safeArea = true,
-        m.Color barrierColor = m.Colors.black54,
-        m.Color? backgroundColor,
-      });
-
-  void showErrorSnackBar(String message, {Duration? duration});
-
-  void showSuccessSnackBar(String message, {Duration? duration});
+  void showSnackBar(
+    String message, {
+    Duration? duration,
+    Color? backgroundColor,
+  });
 }
+
+AppNavigator? _appNavigator;
+
+AppNavigator get appNavigator => _appNavigator ??= GetIt.I.get<AppNavigator>();

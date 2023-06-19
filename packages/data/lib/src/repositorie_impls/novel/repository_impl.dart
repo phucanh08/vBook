@@ -1,4 +1,4 @@
-import 'package:data/data.dart';
+import 'package:data/data.dart' hide getIt;
 import 'package:data/src/mappers/page/mapper.dart';
 import 'package:domain/domain.dart';
 import 'package:injectable/injectable.dart';
@@ -23,9 +23,36 @@ class PluginRepositoryImpl extends NovelRepository {
   @override
   Future<Pagination<PageModel>> getListNovelInPage(id, endpoint, page) async {
     final api = getListApi[id];
-    final response = await api?.getListNovelInPage(endpoint, page);
+    final response = await api?.getListNovelInPage(endpoint, page.number);
     final result = _pageMapper.mapToListEntity(response?.items);
 
     return Pagination(items: result, hasNext: response?.hasNext == true);
+  }
+
+  @override
+  Future<DetailNovelModel> getDetailNovel(String id, String endpoint) async {
+    final api = getListApi[id];
+    final response = await api?.getDetailNovel(endpoint);
+    final result = getIt<DetailNovelDataMapper>().mapToEntity(response);
+
+    return result;
+  }
+
+  @override
+  Future<Pagination<ChapterModel>> getCatalog(String id, String endpoint, Page page) async {
+    final api = getListApi[id];
+    final response = await api?.getCatalog(endpoint, page.number);
+    final result = getIt<ChapterDataMapper>().mapToListEntity(response?.items);
+
+    return Pagination(items: result, hasNext: response?.hasNext == true);
+  }
+
+  @override
+  Future<DetailChapterModel> getDetailChapter(String id, String endpoint) async {
+    final api = getListApi[id];
+    final response = await api?.getDetailChapter(endpoint);
+    final result = getIt<DetailChapterDataMapper>().mapToEntity(response);
+
+    return result;
   }
 }

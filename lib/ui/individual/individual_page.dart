@@ -94,7 +94,9 @@ class _IndividualPageState
                   Container(
                     width: double.infinity,
                     padding: const EdgeInsets.symmetric(
-                        horizontal: 10, vertical: 10),
+                      horizontal: 10,
+                      vertical: 10,
+                    ),
                     color: Colors.grey,
                     child: Text('Ứng dụng', style: theme.textTheme.titleMedium),
                   ),
@@ -115,7 +117,7 @@ class _IndividualPageState
                     title: Text('Thống kê'),
                   ),
                   ListTile(
-                    onTap: () => navigator.push(const AppRouteInfo.extension()),
+                    onTap: () => navigator.push(const ExtensionRoute()),
                     leading: const FaIcon(
                       size: 30,
                       FaCodePoint.chartPieSimple,
@@ -142,7 +144,9 @@ class _IndividualPageState
                   Container(
                     width: double.infinity,
                     padding: const EdgeInsets.symmetric(
-                        horizontal: 10, vertical: 10),
+                      horizontal: 10,
+                      vertical: 10,
+                    ),
                     color: Colors.grey,
                     child: Text('Kết nối', style: theme.textTheme.titleMedium),
                   ),

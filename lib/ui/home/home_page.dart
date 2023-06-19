@@ -27,10 +27,11 @@ class _HomePageState extends BasePageState<HomePage, HomeBloc> {
       builder: (context, child, controller) {
         return Scaffold(
           appBar: CustomAppBar(
-            titleSpacing: -10,
             leading: IconButton(
               onPressed: () {},
               icon: Container(
+                width: IconTheme.of(context).size,
+                height: IconTheme.of(context).size,
                 decoration: BoxDecoration(
                   border: Border.all(color: Colors.black),
                   shape: BoxShape.circle,
@@ -43,20 +44,13 @@ class _HomePageState extends BasePageState<HomePage, HomeBloc> {
                 ),
               ),
             ),
-            title: Row(
-              children: [
-                Expanded(
-                  flex: 2,
-                  child: TabBar(
-                    controller: controller,
-                    dividerColor: Colors.transparent,
-                    tabs: [
-                      Tab(text: t.home.shelf_book),
-                      Tab(text: t.home.history.title),
-                    ],
-                  ),
-                ),
-                const Spacer(),
+            title: TabBar(
+              isScrollable: true,
+              controller: controller,
+              dividerColor: Colors.transparent,
+              tabs: [
+                Tab(text: t.home.shelf_book),
+                Tab(text: t.home.history.title),
               ],
             ),
             onSearchButtonPressed: () => null,

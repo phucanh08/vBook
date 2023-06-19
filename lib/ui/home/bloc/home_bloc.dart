@@ -31,13 +31,13 @@ class HomeBloc extends BaseBloc<HomeEvent, HomeState> {
   ) {
     switch (event.index) {
       case 1:
-        navigator.push(const AppRouteInfo.discover());
+        navigator.push(const DiscoverRoute());
         break;
       case 2:
-        navigator.push(const AppRouteInfo.community());
+        navigator.push(const CommunityRoute());
         break;
       case 3:
-        navigator.push(const AppRouteInfo.individual());
+        navigator.push(const IndividualRoute());
         break;
     }
   }

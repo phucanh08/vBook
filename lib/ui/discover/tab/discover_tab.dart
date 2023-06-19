@@ -7,8 +7,11 @@ export 'bloc/discover_tab_bloc.dart';
 
 @RoutePage(name: 'DiscoverTabRoute')
 class DiscoverTab extends StatefulWidget {
-  const DiscoverTab(
-      {@PathParam('id') required this.id, required this.endpoint, super.key});
+  const DiscoverTab({
+    @PathParam('id') required this.id,
+    @PathParam('endpoint') required this.endpoint,
+    super.key,
+  });
 
   final String id;
   final String endpoint;
@@ -45,24 +48,32 @@ class _DiscoverTabState extends BasePageState<DiscoverTab, DiscoverTabBloc> {
             itemBuilder: (context, index) {
               final item = data.items[index];
 
-              return Column(
-                children: [
-                  Expanded(child: Card(child: Image.network(item.cover))),
-                  Text(
-                    '${item.name}\n',
-                    style: textTheme.titleSmall,
-                    textAlign: TextAlign.center,
-                    maxLines: 2,
-                    overflow: TextOverflow.ellipsis,
+              return GestureDetector(
+                onTap: () => navigator.push<void>(
+                  DetailNovelRoute(
+                    id: widget.id,
+                    endpoint: item.link,
                   ),
-                  Text(
-                    '${item.description}\n',
-                    style: textTheme.labelSmall,
-                    textAlign: TextAlign.center,
-                    maxLines: 2,
-                    overflow: TextOverflow.ellipsis,
-                  ),
-                ],
+                ),
+                child: Column(
+                  children: [
+                    Expanded(child: Card(child: Image.network(item.cover))),
+                    Text(
+                      '${item.name}\n',
+                      style: textTheme.titleSmall,
+                      textAlign: TextAlign.center,
+                      maxLines: 2,
+                      overflow: TextOverflow.ellipsis,
+                    ),
+                    Text(
+                      '${item.description}\n',
+                      style: textTheme.labelSmall,
+                      textAlign: TextAlign.center,
+                      maxLines: 2,
+                      overflow: TextOverflow.ellipsis,
+                    ),
+                  ],
+                ),
               );
             },
             hasNext: data.hasNext,

@@ -2,11 +2,47 @@ import 'dart:io';
 
 import 'package:flutter/cupertino.dart';
 import 'package:resources/resources.dart';
+import 'package:shared/shared.dart';
 
 import '../../app.dart';
 
 class CommonDialog extends StatelessWidget {
-  const CommonDialog({
+  factory CommonDialog.confirmDialog({
+    required String message,
+    Func0<void>? onPressed,
+  }) {
+    return CommonDialog._(
+      actions: [
+        PopupButton(
+          text: t.common.ok,
+          onPressed: onPressed ?? () => appNavigator.pop(),
+        ),
+      ],
+      message: message,
+    );
+  }
+
+  factory CommonDialog.errorWithRetryDialog({
+    required String message,
+    Func0<void>? onRetryPressed,
+  }) {
+    return CommonDialog._(
+      actions: [
+        PopupButton(
+          // text: S.current.cancel,
+          onPressed: () => appNavigator.pop(),
+        ),
+        PopupButton(
+          // text: S.current.retry,
+          onPressed: onRetryPressed ?? () => appNavigator.pop(),
+          isDefault: true,
+        ),
+      ],
+      message: message,
+    );
+  }
+
+  const CommonDialog._({
     this.commonPopupType = PopupType.adaptive,
     this.actions = const <PopupButton>[],
     this.title,
@@ -19,7 +55,7 @@ class CommonDialog extends StatelessWidget {
     String? title,
     String? message,
     Key? key,
-  }) : this(
+  }) : this._(
           commonPopupType: PopupType.android,
           actions: actions,
           title: title,
@@ -32,7 +68,7 @@ class CommonDialog extends StatelessWidget {
     String? title,
     String? message,
     Key? key,
-  }) : this(
+  }) : this._(
           commonPopupType: PopupType.ios,
           actions: actions,
           title: title,
@@ -45,7 +81,7 @@ class CommonDialog extends StatelessWidget {
     String? title,
     String? message,
     Key? key,
-  }) : this(
+  }) : this._(
           commonPopupType: PopupType.adaptive,
           actions: actions,
           title: title,

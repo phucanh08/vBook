@@ -39,7 +39,6 @@ class _DiscoverPageState extends BasePageState<DiscoverPage, DiscoverBloc> {
             return Scaffold(
               appBar: CustomAppBar(
                 automaticallyImplyLeading: true,
-                titleSpacing: -10,
                 title: BlocBuilder<DiscoverBloc, DiscoverState>(
                   builder: (context, state) {
                     return state.currentPlugin == null

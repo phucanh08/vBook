@@ -89,7 +89,6 @@ class _ExtensionPageState extends BasePageState<ExtensionPage, ExtensionBloc> {
                           ),
                         ],
                       ),
-                      titleSpacing: -5,
                       onSearchButtonPressed: () => bloc.add(
                         const ExtensionEvent.toggleSearchModeConfirmed(),
                       ),

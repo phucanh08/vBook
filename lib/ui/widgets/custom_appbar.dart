@@ -6,7 +6,7 @@ import 'package:shared/shared.dart';
 class CustomAppBar extends AppBar {
   CustomAppBar({
     super.title,
-    super.titleSpacing,
+    super.titleSpacing = 0,
     super.bottom,
     Widget? leading,
     List<Widget>? actions,

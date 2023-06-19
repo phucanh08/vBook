@@ -6,5 +6,11 @@ abstract class BaseApi {
 
   List<HomeDto> getHome();
 
-  Future<Pagination<PageDto>> getListNovelInPage(String endpoint, Page page);
+  Future<DetailNovelDto> getDetailNovel(String endpoint);
+
+  Future<DetailChapterDto> getDetailChapter(String endpoint);
+
+  Future<Pagination<PageDto>> getListNovelInPage(String endpoint, int pageNumber);
+
+  Future<Pagination<ChapterDto>> getCatalog(String endpoint, int pageNumber);
 }

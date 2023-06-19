@@ -16,43 +16,31 @@ class AppTheme {
     CustomPalette customPalette,
   ) {
     final appColor = AppColors(appPalette, customPalette);
-    final textTheme = AppTextTheme.textTheme();
-    final themeData = ThemeData(
-      useMaterial3: true,
-      colorScheme: appColor.lightColorScheme,
-      textTheme: textTheme,
-      cardTheme: CardTheme(
-        clipBehavior: Clip.antiAliasWithSaveLayer,
-        shape: RoundedRectangleBorder(
-          borderRadius: BorderRadius.circular(5),
-        ),
-      ),
-    );
 
     return AppTheme._(
-      themeData.copyWith(brightness: Brightness.light),
-      themeData.copyWith(brightness: Brightness.dark),
+      _themeData(
+        brightness: Brightness.light,
+        colorScheme: appColor.lightColorScheme,
+      ),
+      _themeData(
+        brightness: Brightness.dark,
+        colorScheme: appColor.darkColorScheme,
+      ),
     );
   }
 
   factory AppTheme.fromSeed(Color seedColor, CustomPalette customPalette) {
     final appColor = AppColors.fromSeed(seedColor, customPalette);
-    final textTheme = AppTextTheme.textTheme();
-    final themeData = ThemeData(
-      useMaterial3: true,
-      colorScheme: appColor.lightColorScheme,
-      textTheme: textTheme,
-      cardTheme: CardTheme(
-        clipBehavior: Clip.antiAliasWithSaveLayer,
-        shape: RoundedRectangleBorder(
-          borderRadius: BorderRadius.circular(5),
-        ),
-      ),
-    );
 
     return AppTheme._(
-      themeData.copyWith(brightness: Brightness.light),
-      themeData.copyWith(brightness: Brightness.dark),
+      _themeData(
+        brightness: Brightness.light,
+        colorScheme: appColor.lightColorScheme,
+      ),
+      _themeData(
+        brightness: Brightness.dark,
+        colorScheme: appColor.darkColorScheme,
+      ),
     );
   }
 
@@ -62,6 +50,24 @@ class AppTheme {
   static ThemeData? _current;
 
   static ThemeData get current => _current ?? ThemeData();
+
+  static ThemeData _themeData({
+    required ColorScheme colorScheme,
+    required Brightness brightness,
+  }) =>
+      ThemeData(
+        useMaterial3: true,
+        brightness: brightness,
+        colorScheme: colorScheme,
+        textTheme: AppTextTheme.textTheme(),
+        iconTheme: const IconThemeData(size: 28),
+        cardTheme: CardTheme(
+          clipBehavior: Clip.antiAliasWithSaveLayer,
+          shape: RoundedRectangleBorder(
+            borderRadius: BorderRadius.circular(5),
+          ),
+        ),
+      );
 
   static ThemeData of(BuildContext context) {
     _current = Theme.of(context);

@@ -42,12 +42,10 @@ class DiscoverBloc extends BaseBloc<DiscoverEvent, DiscoverState> {
     Emitter<DiscoverState> emit,
   ) async {
     final result = await navigator.showModalBottomSheet<PluginModel>(
-      AppPopupInfo.chooseSourceBottomSheet(
-        listPlugin: state.listPlugin,
-      ),
+      ChooseSourceBottomSheet(state.listPlugin),
       isScrollControlled: true,
       backgroundColor: Colors.transparent,
-      safeArea: false,
+      useSafeArea: false,
     );
 
     if (result != null) {

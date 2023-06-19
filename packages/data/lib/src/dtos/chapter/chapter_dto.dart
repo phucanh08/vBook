@@ -5,19 +5,13 @@ part 'chapter_dto.freezed.dart';
 @freezed
 class ChapterDto with _$ChapterDto {
   const factory ChapterDto({
-    String? id,
-    String? bookId,
-    num? lastPageRead,
-    DateTime? createAt,
-    DateTime? updateAt,
-    num? sourceOrder,
-    String? url,
     String? name,
-    num? chapterNumber,
+    String? url,
+    String? host,
   }) = _ChapterDto;
 }
 
 @freezed
-class ChapterDetailDto with _$ChapterDetailDto {
-  const factory ChapterDetailDto({required List<String> content}) = _ChapterDetailDto;
+class DetailChapterDto with _$DetailChapterDto {
+  const factory DetailChapterDto({required String content}) = _DetailChapterDto;
 }
