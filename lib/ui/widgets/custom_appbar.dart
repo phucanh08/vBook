@@ -8,6 +8,7 @@ class CustomAppBar extends AppBar {
     super.title,
     super.titleSpacing = 0,
     super.bottom,
+    super.toolbarHeight,
     Widget? leading,
     List<Widget>? actions,
     Func0<void>? onSearchButtonPressed,

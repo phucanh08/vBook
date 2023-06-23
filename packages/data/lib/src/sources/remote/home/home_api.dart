@@ -1,8 +1,9 @@
 
-import 'package:data/src/dtos/dtos.dart';
-import 'package:data/src/sources/remote/client_http.dart';
 import 'package:dio/dio.dart';
 import 'package:injectable/injectable.dart';
+
+import '../../../dtos/dtos.dart';
+import '../client_http.dart';
 
 @injectable
 class HomeApi {
@@ -12,8 +13,8 @@ class HomeApi {
 
   Future<List<HomeDto>> getList(String link) async {
     final response = await _dio.fetchUrl(link);
-    final data =
-    response['data'].map<HomeDto>((e) => HomeDto.fromJson(e)).toList();
+    final data = response['data'].map<HomeDto>((e) => HomeDto.fromJson(e)).toList();
+
     return data;
   }
 }

@@ -72,7 +72,7 @@ class ExtensionBloc extends BaseBloc<ExtensionEvent, ExtensionState> {
               .data;
       emit(state.copyWith(listLibraryPlugin: listLibraryPlugin));
     } catch (e, s) {
-      print('$e,$s');
+      logD('$e,$s');
     }
   }
 

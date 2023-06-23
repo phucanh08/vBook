@@ -1,5 +1,6 @@
 import 'package:auto_route/auto_route.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:resources/resources.dart';
 
 import '../../app.dart';
 import 'bloc/detail_chapter_bloc.dart';
@@ -33,19 +34,151 @@ class _DetailChapterPageState
 
   @override
   Widget buildPage(BuildContext context) {
-    return Scaffold(
-      appBar: CustomAppBar(
-        title: Text(widget.title),
-      ),
-      body: SingleChildScrollView(
-        padding: const EdgeInsets.all(10),
-        child: BlocBuilder<DetailChapterBloc, DetailChapterState>(
-          buildWhen: (prev, cur) => prev.model != cur.model,
-          builder: (context, state) {
-            return Text(state.model?.content ?? '');
-          },
-        ),
-      ),
+    return BlocBuilder<DetailChapterBloc, DetailChapterState>(
+      builder: (context, state) {
+        return Scaffold(
+          extendBodyBehindAppBar: true,
+          appBar: state.visibleAppBar
+              ? AppBar(
+                  leading: IconButton(
+                    padding: EdgeInsets.zero,
+                    onPressed: () => context.router.pop(),
+                    icon: const FaIcon(
+                      FaCodePoint.arrowLeft,
+                      type: IconType.regular,
+                    ),
+                  ),
+                  actions: [
+                    IconButton(
+                      onPressed: () => bloc.add(
+                        const DetailChapterEvent.bookmarkChanged(),
+                      ),
+                      isSelected: state.bookmarked,
+                      icon: const FaIcon(
+                        FaCodePoint.bookmark,
+                        type: IconType.regular,
+                      ),
+                      selectedIcon: const FaIcon(
+                        FaCodePoint.bookmark,
+                        type: IconType.solid,
+                      ),
+                    ),
+                    IconButton(
+                      onPressed: () => null,
+                      icon: const FaIcon(
+                        FaCodePoint.downToLine,
+                        type: IconType.regular,
+                      ),
+                    ),
+                    IconButton(
+                      onPressed: () => null,
+                      icon: const FaIcon(
+                        FaCodePoint.ellipsisStrokeVertical,
+                        type: IconType.regular,
+                      ),
+                    ),
+                  ],
+                  bottom: PreferredSize(
+                    preferredSize: const Size.fromHeight(30),
+                    child: Row(
+                      children: [
+                        Expanded(
+                          child: ScrollLoopAutoScroll(
+                            child: Text(
+                              'Very long text that bleeds out of the rendering space',
+                              style: textTheme.bodySmall,
+                            ),
+                            duration: Duration(minutes: 2),
+                            scrollDirection: Axis.horizontal,
+                          ),
+                        ),
+                        IconButton(
+                          onPressed: () => null,
+                          iconSize: 16,
+                          splashRadius: 20,
+                          padding: EdgeInsets.zero,
+                          icon: const FaIcon(
+                            FaCodePoint.copy,
+                            type: IconType.regular,
+                          ),
+                        ),
+                      ],
+                    ),
+                  ),
+                )
+              : null,
+          body: GestureDetector(
+            onTap: () {
+              if (state.visibleAppBar) {
+                bloc.add(
+                  const DetailChapterEvent.visibleAppBarChanged(visible: false),
+                );
+              }
+            },
+            onDoubleTap: () {
+              if (!state.visibleAppBar) {
+                bloc.add(
+                  const DetailChapterEvent.visibleAppBarChanged(visible: true),
+                );
+              }
+            },
+            child: SafeArea(
+              bottom: false,
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  Visibility(
+                    visible: !state.visibleAppBar,
+                    child: Padding(
+                      padding: const EdgeInsets.symmetric(horizontal: 10),
+                      child: Text(widget.title),
+                    ),
+                  ),
+                  Expanded(
+                    child: SingleChildScrollView(
+                      padding: const EdgeInsets.all(10),
+                      child: Column(
+                        children: [
+                          Text(
+                            widget.title,
+                            style: textTheme.titleLarge,
+                            textAlign: TextAlign.center,
+                          ),
+                          const SizedBox(height: 10),
+                          Text(
+                            state.model?.content ?? '',
+                            style: textTheme.bodyLarge,
+                            textAlign: TextAlign.justify,
+                          ),
+                        ],
+                      ),
+                    ),
+                  ),
+                  Padding(
+                    padding: const EdgeInsets.symmetric(horizontal: 30),
+                    child: Row(
+                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                      children: [
+                        Text('543/2571'),
+                        Flexible(
+                          child: Text.rich(
+                            TextSpan(
+                              children: [
+                                TextSpan(text: '3/10   '),
+                                TextSpan(text: '21.10%'),
+                              ],
+                            ),
+                          ),
+                        ),
+                      ],
+                    ),
+                  )
+                ],
+              ),
+            ),
+          ),
+        );
+      },
     );
   }
 }

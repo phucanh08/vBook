@@ -6,4 +6,10 @@ class DetailChapterEvent extends BaseEvent with _$DetailChapterEvent {
     required String id,
     required String endpoint,
   }) = _Started;
+
+  const factory DetailChapterEvent.visibleAppBarChanged({
+    required bool visible,
+  }) = _VisibleAppBarChanged;
+
+  const factory DetailChapterEvent.bookmarkChanged() = _BookmarkChanged;
 }
