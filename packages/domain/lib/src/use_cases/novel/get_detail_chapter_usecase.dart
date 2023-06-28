@@ -20,5 +20,5 @@ class GetDetailChapterInput extends BaseInput {
 
 class GetDetailChapterOutput extends BaseOutput {
   const GetDetailChapterOutput(this.data);
-  final DetailChapterModel data;
+  final ChapterDetailModel data;
 }

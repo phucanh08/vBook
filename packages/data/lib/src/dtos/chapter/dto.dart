@@ -1,6 +1,6 @@
 import 'package:freezed_annotation/freezed_annotation.dart';
 
-part 'chapter_dto.freezed.dart';
+part 'dto.freezed.dart';
 
 @freezed
 class ChapterDto with _$ChapterDto {
@@ -12,6 +12,6 @@ class ChapterDto with _$ChapterDto {
 }
 
 @freezed
-class DetailChapterDto with _$DetailChapterDto {
-  const factory DetailChapterDto({required String content}) = _DetailChapterDto;
+class ChapterDetailDto with _$ChapterDetailDto {
+  const factory ChapterDetailDto({required String content}) = _ChapterDetailDto;
 }

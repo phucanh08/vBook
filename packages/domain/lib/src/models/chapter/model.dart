@@ -10,3 +10,12 @@ class ChapterModel with _$ChapterModel {
     required String endpoint,
   }) = _ChapterModel;
 }
+
+@freezed
+class ChapterDetailModel with _$ChapterDetailModel {
+  const ChapterDetailModel._();
+  const factory ChapterDetailModel({
+    required String content,
+  }) = _ChapterDetailModel;
+}
+

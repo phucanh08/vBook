@@ -1,14 +1,14 @@
-import 'package:data/data.dart';
 import 'package:domain/domain.dart';
 import 'package:injectable/injectable.dart';
 
+import '../../../data.dart';
 import '../../dtos/dtos.dart';
 
 @injectable
-class DetailChapterDataMapper extends BaseDataMapper<DetailChapterDto, DetailChapterModel> {
+class DetailChapterDataMapper extends BaseDataMapper<ChapterDetailDto, ChapterDetailModel> {
   @override
-  DetailChapterModel mapToEntity(DetailChapterDto? data) {
-    return DetailChapterModel(
+  ChapterDetailModel mapToEntity(ChapterDetailDto? data) {
+    return ChapterDetailModel(
       content: data?.content ?? '',
     );
   }

@@ -1,5 +1,7 @@
 import 'package:auto_route/auto_route.dart';
+import 'package:cached_network_image/cached_network_image.dart';
 import 'package:domain/domain.dart';
+import 'package:shared/shared.dart';
 
 import '../../../app.dart';
 
@@ -33,7 +35,7 @@ class _DiscoverTabState extends BasePageState<DiscoverTab, DiscoverTabBloc> {
   Widget buildPage(BuildContext context) {
     return RefreshIndicator(
       onRefresh: () async => bloc.paginationRefreshed(),
-      child: PaginationBuilder<DiscoverTabBloc, DiscoverTabState, PageModel>(
+      child: PaginationBuilder<DiscoverTabBloc, DiscoverTabState, NovelItemModel>(
         successBuilder: (context, state, data) {
           return InfiniteGridView(
             padding: const EdgeInsets.all(10),
@@ -48,38 +50,64 @@ class _DiscoverTabState extends BasePageState<DiscoverTab, DiscoverTabBloc> {
             itemBuilder: (context, index) {
               final item = data.items[index];
 
-              return GestureDetector(
-                onTap: () => navigator.push<void>(
+              return _NovelItem(
+                onPressed: () => navigator.push<void>(
                   DetailNovelRoute(
                     id: widget.id,
                     endpoint: item.link,
                   ),
                 ),
-                child: Column(
-                  children: [
-                    Expanded(child: Card(child: Image.network(item.cover))),
-                    Text(
-                      '${item.name}\n',
-                      style: textTheme.titleSmall,
-                      textAlign: TextAlign.center,
-                      maxLines: 2,
-                      overflow: TextOverflow.ellipsis,
-                    ),
-                    Text(
-                      '${item.description}\n',
-                      style: textTheme.labelSmall,
-                      textAlign: TextAlign.center,
-                      maxLines: 2,
-                      overflow: TextOverflow.ellipsis,
-                    ),
-                  ],
-                ),
+                novelItem: item,
               );
             },
             hasNext: data.hasNext,
           );
         },
         emptyBuilder: (context) => const Placeholder(),
+      ),
+    );
+  }
+}
+
+class _NovelItem extends StatelessWidget {
+  const _NovelItem({required this.onPressed, required this.novelItem});
+
+  final Func0<void> onPressed;
+  final NovelItemModel novelItem;
+
+  @override
+  Widget build(BuildContext context) {
+    final textTheme = Theme.of(context).textTheme;
+
+    return GestureDetector(
+      onTap: onPressed,
+      child: Column(
+        children: [
+          Expanded(
+            child: Card(
+              child: CachedNetworkImage(
+                imageUrl: novelItem.imgUrl,
+                placeholder: (context, url) =>
+                    const DeferredLoadingPlaceholder(),
+                errorWidget: (context, url, error) => const Icon(Icons.error),
+              ),
+            ),
+          ),
+          Text(
+            '${novelItem.name}\n',
+            style: textTheme.titleSmall,
+            textAlign: TextAlign.center,
+            maxLines: 2,
+            overflow: TextOverflow.ellipsis,
+          ),
+          Text(
+            '${novelItem.description}\n',
+            style: textTheme.labelSmall,
+            textAlign: TextAlign.center,
+            maxLines: 2,
+            overflow: TextOverflow.ellipsis,
+          ),
+        ],
       ),
     );
   }

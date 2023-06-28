@@ -41,4 +41,3 @@ class CommunityPage extends StatelessWidget {
     );
   }
 }
-

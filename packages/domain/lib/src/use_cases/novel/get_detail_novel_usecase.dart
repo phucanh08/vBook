@@ -20,5 +20,5 @@ class GetDetailNovelInput extends BaseInput {
 
 class GetDetailNovelOutput extends BaseOutput {
   const GetDetailNovelOutput(this.data);
-  final DetailNovelModel data;
+  final NovelDetailModel data;
 }

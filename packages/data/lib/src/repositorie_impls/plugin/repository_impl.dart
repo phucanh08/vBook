@@ -1,8 +1,7 @@
-import 'package:data/src/mappers/plugin/mapper.dart';
 import 'package:domain/domain.dart';
 import 'package:injectable/injectable.dart';
 
-import '../../sources/vbook_extensions/base_api.dart';
+import '../../mappers/plugin/mapper.dart';
 import '../../sources/local/plugin/storage.dart';
 import '../../sources/vbook_extensions/plugin.dart';
 
@@ -10,21 +9,16 @@ import '../../sources/vbook_extensions/plugin.dart';
 class PluginRepositoryImpl extends PluginRepository {
   PluginRepositoryImpl(
     this._storage,
-    this._mapper2,
-    this._mapper,
-  ) : listApi = getListApi.values.toList();
+  );
 
   final PluginStorage _storage;
-  final PluginDataMapper _mapper;
-  final Plugin2DataMapper _mapper2;
-  final List<BaseApi> listApi;
 
   @override
   Future<List<PluginModel>> getListLocal() async {
     try {
       final list = await _storage.getAll();
 
-      return _mapper2.mapToListData(list);
+      return getIt<Plugin2DataMapper>().mapToListData(list);
     } catch (e) {
       throw Exception(e);
     }
@@ -33,14 +27,15 @@ class PluginRepositoryImpl extends PluginRepository {
   @override
   Future<List<PluginModel>> getListLibrary() async {
     try {
-      final list = await _storage.getAll();
-
+      final listData = await _storage.getAll();
+      final listApi = getListApi.values.toList();
       final data = await Future.wait(listApi.map((e) => Future.value(e.plugin())));
       final result = data
-          .where((element) => !list
+          .where((element) => !listData
               .any((e) => e.name == element.name && e.path == element.path))
           .toList();
-      return _mapper.mapToListEntity(result);
+
+      return getIt<PluginDataMapper>().mapToListEntity(result);
     } catch (e) {
       throw Exception(e);
     }
@@ -49,8 +44,9 @@ class PluginRepositoryImpl extends PluginRepository {
   @override
   Future<PluginModel> saveLocal(PluginModel model) async {
     try {
-      final entity = _mapper2.mapToEntity(model);
+      final entity = getIt<Plugin2DataMapper>().mapToEntity(model);
       await _storage.save(entity);
+
       return model;
     } catch (e) {
       throw Exception(e);

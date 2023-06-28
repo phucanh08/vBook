@@ -3,9 +3,9 @@ import 'package:injectable/injectable.dart';
 
 @injectable
 class GetListNovelInHomeUseCase extends BasePaginationUseCase<
-    GetListNovelInHomeInput, Pagination<PageModel>> {
+    GetListNovelInHomeInput, Pagination<NovelItemModel>> {
   @override
-  Future<Pagination<PageModel>> buildUseCase(input) async {
+  Future<Pagination<NovelItemModel>> buildUseCase(input) async {
     final data = await getIt<NovelRepository>()
         .getListNovelInPage(input.id, input.endpoint, input.page);
 

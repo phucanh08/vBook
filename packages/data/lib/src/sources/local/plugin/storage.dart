@@ -1,7 +1,7 @@
-import 'package:data/objectbox.g.dart';
-import 'package:data/src/entities/entities.dart';
 import 'package:injectable/injectable.dart';
 
+import '../../../../objectbox.g.dart';
+import '../../../entities/entities.dart';
 import '../local.dart';
 
 @injectable
@@ -15,7 +15,7 @@ class PluginStorage {
 
   Future<List<Plugin>> getAll() async {
     final query = _pluginBox.query().order(Plugin_.updatedAt).build();
-    List<Plugin> result = query.find();
+    final result = query.find();
     query.close();
 
     return result.reversed.toList();

@@ -21,8 +21,7 @@ class HomeBloc extends BaseBloc<HomeEvent, HomeState> {
   }
 
   void _onHomePageInitiated(HomePageStarted event, Emitter<HomeState> emit) {
-    // Xin hãy ghi nhớ đặt tên Event theo convention:
-    // <Tên Widget><Verb ở dạng Quá khứ>. VD: LoginButtonPressed, EmailTextFieldChanged, HomePageRefreshed
+
   }
 
   void _onNavigationBarDestinationSelected(

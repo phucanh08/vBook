@@ -1,16 +1,17 @@
-import 'package:data/src/dtos/dtos.dart';
 import 'package:domain/domain.dart';
+
+import '../../dtos/dtos.dart';
 
 abstract class BaseApi {
   PluginDto plugin();
 
   List<HomeDto> getHome();
 
-  Future<DetailNovelDto> getDetailNovel(String endpoint);
+  Future<NovelDetailDto> getDetailNovel(String endpoint);
 
-  Future<DetailChapterDto> getDetailChapter(String endpoint);
+  Future<ChapterDetailDto> getDetailChapter(String endpoint);
 
-  Future<Pagination<PageDto>> getListNovelInPage(String endpoint, int pageNumber);
+  Future<Pagination<NovelItemDto>> getListNovelInPage(String endpoint, int pageNumber);
 
   Future<Pagination<ChapterDto>> getCatalog(String endpoint, int pageNumber);
 }

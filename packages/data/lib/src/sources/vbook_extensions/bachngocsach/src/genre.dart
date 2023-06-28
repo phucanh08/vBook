@@ -1,6 +1,7 @@
-import 'package:data/src/dtos/dtos.dart';
 import 'package:dio/dio.dart';
 import 'package:html/parser.dart';
+
+import '../../../../dtos/dtos.dart';
 
 Future<List<HomeDto>> genre() async {
   final dio = Dio();
@@ -10,7 +11,7 @@ Future<List<HomeDto>> genre() async {
   final doc = parse(html);
 
   return doc
-          .querySelectorAll("div.view-content .theloai-row a")
+          .querySelectorAll('div.view-content .theloai-row a')
           .map((e) => HomeDto(title: e.text, input: e.attributes['href']))
           .toList();
 }

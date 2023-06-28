@@ -13,7 +13,7 @@ part 'discover_tab_bloc.freezed.dart';
 
 @injectable
 class DiscoverTabBloc
-    extends PaginationBloc<PageModel, String, DiscoverTabState> {
+    extends PaginationBloc<NovelItemModel, String, DiscoverTabState> {
   DiscoverTabBloc(this._getListNovelInHomeUseCase)
       : super(const DiscoverTabState()) {
     on<_Started>(_onStarted);
@@ -93,7 +93,7 @@ class DiscoverTabBloc
     return runBlocCatching(
       action: () async {
         final newData =
-            Pagination(items: <PageModel>[], hasNext: state.data.hasNext);
+            Pagination(items: <NovelItemModel>[], hasNext: state.data.hasNext);
 
         emit(
           state.copyWith(

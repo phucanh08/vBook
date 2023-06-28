@@ -1,5 +1,5 @@
-import 'package:data/objectbox.g.dart';
-import 'package:data/src/entities/entities.dart';
+import '../../../objectbox.g.dart';
+import '../../entities/entities.dart';
 
 class ObjectBox {
   static Store? _store;

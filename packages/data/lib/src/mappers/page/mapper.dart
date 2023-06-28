@@ -1,17 +1,17 @@
-import 'package:data/data.dart';
 import 'package:domain/domain.dart';
 import 'package:injectable/injectable.dart';
 
+import '../../../data.dart';
 import '../../dtos/dtos.dart';
 
 @injectable
-class PageDataMapper extends BaseDataMapper<PageDto, PageModel> {
+class PageDataMapper extends BaseDataMapper<NovelItemDto, NovelItemModel> {
   @override
-  PageModel mapToEntity(PageDto? data) {
-    return PageModel(
+  NovelItemModel mapToEntity(NovelItemDto? data) {
+    return NovelItemModel(
       name: data?.name ?? '',
       link: data?.link ?? '',
-      cover: data?.cover ?? '',
+      imgUrl: data?.imgUrl ?? '',
       description: data?.description ?? '',
       host: data?.host ?? '',
     );

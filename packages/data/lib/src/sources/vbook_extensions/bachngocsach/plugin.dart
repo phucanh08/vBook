@@ -18,12 +18,12 @@ class BachNgocSachApi extends BaseApi {
   List<HomeDto> getHome() => home.call();
 
   @override
-  Future<Pagination<PageDto>> getListNovelInPage(String endpoint, int pageNumber) {
+  Future<Pagination<NovelItemDto>> getListNovelInPage(String endpoint, int pageNumber) {
     return page.call(endpoint, pageNumber);
   }
 
   @override
-  Future<DetailNovelDto> getDetailNovel(String endpoint) {
+  Future<NovelDetailDto> getDetailNovel(String endpoint) {
     return detailNovel(endpoint);
   }
 
@@ -33,7 +33,7 @@ class BachNgocSachApi extends BaseApi {
   }
 
   @override
-  Future<DetailChapterDto> getDetailChapter(String endpoint) {
+  Future<ChapterDetailDto> getDetailChapter(String endpoint) {
    return chap(endpoint);
   }
 }

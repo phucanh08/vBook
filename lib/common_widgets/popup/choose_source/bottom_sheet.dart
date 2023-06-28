@@ -115,10 +115,6 @@ class _ChooseSourceBottomSheetState
                             final item = state.listFilter[index];
                             final theme = Theme.of(context);
 
-                            if( item.tag == 'nsfw') {
-                              print(item.tag);
-                            }
-
                             return OutlinedButton.icon(
                               style: OutlinedButton.styleFrom(
                                 side: BorderSide(

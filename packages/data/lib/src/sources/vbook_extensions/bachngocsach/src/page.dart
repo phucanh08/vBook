@@ -1,10 +1,11 @@
-import 'package:data/src/dtos/dtos.dart';
-import 'package:data/src/sources/sources.dart';
 import 'package:dio/dio.dart';
 import 'package:domain/domain.dart';
 import 'package:html/parser.dart';
 
-Future<Pagination<PageDto>> page(String endpoint, int pageNumber) async {
+import '../../../../dtos/dtos.dart';
+import '../../../sources.dart';
+
+Future<Pagination<NovelItemDto>> page(String endpoint, int pageNumber) async {
   final dio = Dio();
   final response = await dio.getUri(Uri.parse('https://bachngocsach.com.vn$endpoint?page=$pageNumber'));
   final html = response.data.toString();
@@ -13,7 +14,7 @@ Future<Pagination<PageDto>> page(String endpoint, int pageNumber) async {
   final next = doc
       .querySelectorAll('.pager-next')
       .lastOrNull
-      ?.querySelector("a")
+      ?.querySelector('a')
       ?.attributes['href']
       ?.match(r'page=(\d+)')
       ?.group(1);
@@ -21,10 +22,10 @@ Future<Pagination<PageDto>> page(String endpoint, int pageNumber) async {
 
   final novelList = doc
       .querySelectorAll('ul.content-grid > li > div')
-      .map((e) => PageDto(
+      .map((e) => NovelItemDto(
             name: e.querySelector('div.recent-truyen a')?.text,
             link: e.querySelector('div.recent-truyen a')?.attributes['href'],
-            cover: e.querySelector('div.recent-anhbia img')?.attributes['src'],
+            imgUrl: e.querySelector('div.recent-anhbia img')?.attributes['src'],
             description: e.querySelector('div.recent-chuong a')?.text,
           ))
       .toList();

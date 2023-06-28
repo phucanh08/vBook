@@ -1,12 +1,12 @@
 import 'dart:async';
 
-import 'package:data/src/sources/local/local.dart';
 import 'package:shared/shared.dart';
 import 'package:webview_flutter/webview_flutter.dart';
 import 'package:webview_flutter_android/webview_flutter_android.dart';
 import 'package:webview_flutter_wkwebview/webview_flutter_wkwebview.dart';
 
 import '../di/di.dart' as di;
+import '../sources/local/local.dart';
 
 class DataConfig extends Config {
   DataConfig._();
@@ -19,14 +19,12 @@ class DataConfig extends Config {
 
   WebViewController browserConfig() {
     late final PlatformWebViewControllerCreationParams params;
-    if (WebViewPlatform.instance is WebKitWebViewPlatform) {
-      params = WebKitWebViewControllerCreationParams(
-        allowsInlineMediaPlayback: true,
-        mediaTypesRequiringUserAction: const <PlaybackMediaTypes>{},
-      );
-    } else {
-      params = const PlatformWebViewControllerCreationParams();
-    }
+    params = WebViewPlatform.instance is WebKitWebViewPlatform
+        ? WebKitWebViewControllerCreationParams(
+            allowsInlineMediaPlayback: true,
+            mediaTypesRequiringUserAction: const <PlaybackMediaTypes>{},
+          )
+        : const PlatformWebViewControllerCreationParams();
     final controller = WebViewController.fromPlatformCreationParams(params);
     controller.setJavaScriptMode(JavaScriptMode.unrestricted);
     if (controller.platform is AndroidWebViewController) {
@@ -34,6 +32,7 @@ class DataConfig extends Config {
       (controller.platform as AndroidWebViewController)
           .setMediaPlaybackRequiresUserGesture(false);
     }
+
     return controller;
   }
 
@@ -60,16 +59,18 @@ class BrowserImpl extends Browser {
 
   @override
   Future<String> html([duration = const Duration(seconds: 1)]) async {
-    String data = "<head></head><body></body>";
-    while (data == "<head></head><body></body>") {
+    String data = '<head></head><body></body>';
+    while (data == '<head></head><body></body>') {
       data = (await Future.delayed(
-              duration,
-              () => _controller.runJavaScriptReturningResult(
-                    "window.document.getElementsByTagName('html')[0].innerHTML;",
-                  )))
+        duration,
+        () => _controller.runJavaScriptReturningResult(
+          "window.document.getElementsByTagName('html')[0].innerHTML;",
+        ),
+      ))
           .toString();
     }
-    _controller.loadHtmlString('<head></head><body></body>');
+    await _controller.loadHtmlString('<head></head><body></body>');
+
     return data;
   }
 }

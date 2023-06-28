@@ -84,12 +84,12 @@ class _DetailChapterPageState
                       children: [
                         Expanded(
                           child: ScrollLoopAutoScroll(
+                            duration: const Duration(minutes: 2),
+                            scrollDirection: Axis.horizontal,
                             child: Text(
                               'Very long text that bleeds out of the rendering space',
                               style: textTheme.bodySmall,
                             ),
-                            duration: Duration(minutes: 2),
-                            scrollDirection: Axis.horizontal,
                           ),
                         ),
                         IconButton(
@@ -154,8 +154,8 @@ class _DetailChapterPageState
                       ),
                     ),
                   ),
-                  Padding(
-                    padding: const EdgeInsets.symmetric(horizontal: 30),
+                  const Padding(
+                    padding: EdgeInsets.symmetric(horizontal: 30),
                     child: Row(
                       mainAxisAlignment: MainAxisAlignment.spaceBetween,
                       children: [
@@ -172,7 +172,7 @@ class _DetailChapterPageState
                         ),
                       ],
                     ),
-                  )
+                  ),
                 ],
               ),
             ),

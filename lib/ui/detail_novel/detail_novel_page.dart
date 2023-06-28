@@ -68,7 +68,7 @@ class _DetailNovelPageState
                               padding: const EdgeInsets.all(20),
                               decoration: BoxDecoration(
                                 image: DecorationImage(
-                                  image: NetworkImage(state.model!.cover),
+                                  image: NetworkImage(state.model!.imgUrl),
                                   fit: BoxFit.cover,
                                   opacity: 0.05,
                                 ),
@@ -79,7 +79,7 @@ class _DetailNovelPageState
                                   Expanded(
                                     flex: 2,
                                     child: Card(
-                                      child: Image.network(state.model!.cover),
+                                      child: Image.network(state.model!.imgUrl),
                                     ),
                                   ),
                                   const SizedBox(width: 10),

@@ -1,7 +1,7 @@
 import 'package:freezed_annotation/freezed_annotation.dart';
 
-part 'detail_dto.freezed.dart';
-part 'detail_dto.g.dart';
+part 'dto.freezed.dart';
+part 'dto.g.dart';
 
 @freezed
 class DetailDto with _$DetailDto {

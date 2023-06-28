@@ -1,12 +1,14 @@
-import 'package:data/src/dtos/dtos.dart';
 import 'package:dio/dio.dart';
 import 'package:domain/domain.dart';
 import 'package:html/parser.dart';
 
+import '../../../../dtos/dtos.dart';
+
 Future<Pagination<ChapterDto>> catalog(String endpoint, int pageNumber) async {
   final dio = Dio();
   final response = await dio.getUri(
-      Uri.parse('https://bachngocsach.com.vn$endpoint/muc-luc?page=all'));
+    Uri.parse('https://bachngocsach.com.vn$endpoint/muc-luc?page=all'),
+  );
   final html = response.data.toString();
   final doc = parse(html);
 
@@ -18,6 +20,7 @@ Future<Pagination<ChapterDto>> catalog(String endpoint, int pageNumber) async {
             host: 'https://bachngocsach.com.vn',
           ))
       .toList();
+
   return Pagination<ChapterDto>(
     items: catalog,
     hasNext: false,
