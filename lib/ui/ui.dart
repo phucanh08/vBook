@@ -1,5 +1,6 @@
 export 'package:flutter/material.dart';
 
+export 'browser/browser_page.dart';
 export 'catalog/catalog_page.dart';
 export 'community/community_page.dart';
 export 'detail_chapter/detail_chapter_page.dart';

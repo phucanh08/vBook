@@ -24,27 +24,11 @@ extension AppTextStyles on TextStyle {
   }
 }
 
-class AppTextTheme extends TextTheme {
-  const AppTextTheme._({
-    super.displayLarge,
-    super.displayMedium,
-    super.displaySmall,
-    super.headlineLarge,
-    super.headlineMedium,
-    super.headlineSmall,
-    super.titleLarge,
-    super.titleMedium,
-    super.titleSmall,
-    super.bodyLarge,
-    super.bodyMedium,
-    super.bodySmall,
-    super.labelLarge,
-    super.labelMedium,
-    super.labelSmall,
-  });
+class AppTextTheme {
+  const AppTextTheme._();
 
-  factory AppTextTheme.textTheme() {
-    return const AppTextTheme._(
+  static TextTheme textTheme() {
+    return const TextTheme(
       displayLarge: TextStyle(
         fontWeight: FontWeight.w400,
         fontSize: 57,

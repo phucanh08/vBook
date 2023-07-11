@@ -12,14 +12,15 @@ abstract class BasePageState<T extends StatefulWidget, B extends BaseBloc>
 
 abstract class BasePageStateDelegate<T extends StatefulWidget,
     B extends BaseBloc> extends State<T> implements ExceptionHandlerListener {
-  late final AppNavigator navigator = GetIt.instance.get<AppNavigator>();
-  late final AppBloc appBloc = GetIt.instance.get<AppBloc>();
+  late final AppNavigator navigator = getIt<AppNavigator>();
+  late final AppBloc appBloc = getIt<AppBloc>();
   late final ExceptionMessageMapper exceptionMessageMapper =
       const ExceptionMessageMapper();
   late final ExceptionHandler exceptionHandler = ExceptionHandler(
     navigator: navigator,
     listener: this,
   );
+  late final ThemeData theme = Theme.of(context);
 
   late final CommonBloc commonBloc = GetIt.instance.get<CommonBloc>()
     ..navigator = navigator
@@ -49,7 +50,7 @@ abstract class BasePageStateDelegate<T extends StatefulWidget,
     if (!isAppWidget) {
       AppDimen.of(context);
       AppTheme.of(context);
-      appStackRouter = context.router;
+      (navigator as AppNavigatorImpl).appRouter = context.router;
     }
 
     return Provider(

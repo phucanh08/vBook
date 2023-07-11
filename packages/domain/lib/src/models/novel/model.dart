@@ -31,13 +31,14 @@ class NovelDetailModel with _$NovelDetailModel {
 class NovelModel with _$NovelModel {
   const NovelModel._();
   const factory NovelModel({
-    required int updatedAt,
+    required DateTime updatedAt,
     required String name,
     required String path,
     required String sourceName,
     required String imgUrl,
-    required String totalChapters,
-    required String currentChapter,
+    required int totalChapters,
+    required int currentChapter,
+    required String currentChapterName,
     required int timeRead,
   }) = _NovelModel;
 }

@@ -56,4 +56,16 @@ class PluginRepositoryImpl extends NovelRepository {
 
     return result;
   }
+
+  @override
+  Future<List<NovelModel>> getHistory() {
+    // TODO: implement getHistory
+    throw UnimplementedError();
+  }
+
+  @override
+  Future<List<NovelModel>> getShelf() {
+    // TODO: implement getShelf
+    throw UnimplementedError();
+  }
 }

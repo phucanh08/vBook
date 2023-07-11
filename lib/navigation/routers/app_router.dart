@@ -42,6 +42,7 @@ class AppRouter extends _$AppRouter {
             AutoRoute(page: LibraryTabRouter.page, path: 'library'),
           ],
         ),
+        AutoRoute(page: BrowserRoute.page),
         AutoRoute(page: CatalogRoute.page, path: ':id/:endpoint/catalog'),
         AutoRoute(page: DetailNovelRoute.page, path: ':id/:endpoint/detail-novel'),
         AutoRoute(page: DetailChapterRoute.page, path: ':id/:endpoint/detail-chapter'),

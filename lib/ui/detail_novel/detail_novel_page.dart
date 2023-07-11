@@ -126,7 +126,7 @@ class _DetailNovelPageState
                           actions: [
                             IconButton(
                               padding: EdgeInsets.zero,
-                              onPressed: () => navigator.pop(),
+                              onPressed: () => navigator.push(const BrowserRoute()),
                               icon: const FaIcon(
                                 FaCodePoint.planetRinged,
                                 type: IconType.regular,

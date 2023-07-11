@@ -8,8 +8,8 @@ export 'bloc/catalog_bloc.dart';
 @RoutePage()
 class CatalogPage extends StatefulWidget {
   const CatalogPage({
-    @PathParam('id') required this.id,
-    @PathParam('endpoint') required this.endpoint,
+    @pathParam required this.id,
+    @pathParam required this.endpoint,
     required this.title,
     super.key,
   });

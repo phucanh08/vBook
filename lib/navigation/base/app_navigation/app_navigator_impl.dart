@@ -1,14 +1,12 @@
 part of 'app_navigation.dart';
 
-StackRouter appStackRouter = getIt<AppRouter>();
-
 @LazySingleton(as: AppNavigator)
 class AppNavigatorImpl extends AppNavigator with LogMixin {
-  AppNavigatorImpl();
+  AppNavigatorImpl() : appRouter = getIt<AppRouter>();
 
-  StackRouter get _navigator => appStackRouter;
+  StackRouter appRouter;
 
-  m.BuildContext get _context => appStackRouter.navigatorKey.currentContext!;
+  m.BuildContext get _context => appRouter.navigatorKey.currentContext!;
 
   @override
   Future<bool> pop<T extends Object?>({T? result}) {
@@ -18,7 +16,7 @@ class AppNavigatorImpl extends AppNavigator with LogMixin {
       }
     }
 
-    return _navigator.pop<T>(result);
+    return appRouter.pop<T>(result);
   }
 
   @override
@@ -27,7 +25,7 @@ class AppNavigatorImpl extends AppNavigator with LogMixin {
       logD('push $appRouteInfo');
     }
 
-    return _navigator.push<T>(appRouteInfo);
+    return appRouter.push<T>(appRouteInfo);
   }
 
   @override
@@ -41,7 +39,7 @@ class AppNavigatorImpl extends AppNavigator with LogMixin {
       );
     }
 
-    return _navigator.replace<T>(route, onFailure: onFailure);
+    return appRouter.replace<T>(route, onFailure: onFailure);
   }
 
   @override
@@ -55,7 +53,7 @@ class AppNavigatorImpl extends AppNavigator with LogMixin {
       );
     }
 
-    return _navigator.popAndPush<T, R>(appRouteInfo, result: result);
+    return appRouter.popAndPush<T, R>(appRouteInfo, result: result);
   }
 
   @override
@@ -64,7 +62,7 @@ class AppNavigatorImpl extends AppNavigator with LogMixin {
       logD('popUntilRoot');
     }
 
-    return _navigator.popUntilRoot();
+    return appRouter.popUntilRoot();
   }
 
   @override

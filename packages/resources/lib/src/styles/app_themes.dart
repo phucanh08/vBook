@@ -54,20 +54,33 @@ class AppTheme {
   static ThemeData _themeData({
     required ColorScheme colorScheme,
     required Brightness brightness,
-  }) =>
-      ThemeData(
-        useMaterial3: true,
-        brightness: brightness,
-        colorScheme: colorScheme,
-        textTheme: AppTextTheme.textTheme(),
-        iconTheme: const IconThemeData(size: 28),
-        cardTheme: CardTheme(
-          clipBehavior: Clip.antiAliasWithSaveLayer,
-          shape: RoundedRectangleBorder(
-            borderRadius: BorderRadius.circular(5),
-          ),
+  }) {
+    final textTheme =
+        AppTextTheme.textTheme().apply(displayColor: colorScheme.onSurface);
+
+    return ThemeData(
+      useMaterial3: true,
+      brightness: brightness,
+      colorScheme: colorScheme,
+      textTheme: textTheme,
+      iconTheme: const IconThemeData(size: 28),
+      cardTheme: CardTheme(
+        clipBehavior: Clip.antiAliasWithSaveLayer,
+        shape: RoundedRectangleBorder(
+          borderRadius: BorderRadius.circular(5),
         ),
-      );
+      ),
+      chipTheme: ChipThemeData(
+        labelStyle: textTheme.bodySmall?.copyWith(height: 1),
+        brightness: brightness,
+      ),
+      iconButtonTheme: IconButtonThemeData(
+        style: IconButton.styleFrom(
+          padding: EdgeInsets.zero,
+        ),
+      ),
+    );
+  }
 
   static ThemeData of(BuildContext context) {
     _current = Theme.of(context);
