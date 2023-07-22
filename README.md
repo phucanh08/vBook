@@ -1,93 +1,118 @@
-<div align="center"> <a href="https://github.com/anncwb/vue-vben-admin"> <img alt="VbenAdmin Logo" width="200" height="200" src="https://anncwb.github.io/anncwb/images/logo.png"> </a> <br> <br>
+# Tutorials for this project
 
-[![license](https://img.shields.io/github/license/anncwb/vue-vben-admin.svg)](LICENSE)
+* English: https://medium.com/@NALSengineering/list/building-a-perfect-boilerplate-flutter-project-from-scratch-3c2b29d9dfa8
 
-<h1>VBook</h1>
-</div>
+* Vietnamese: https://medium.com/@NALSengineering/list/flutter-xay-dung-base-project-hoan-hao-tu-a-en-a-c240f845f660
 
-**Tiếng Việt**
+# Flutter Bloc - Clean Architecture
 
+Flutter project using clean architecture and bloc pattern.
 
-- [Giới thiệu (Introduction)](#giới-thiệu)
-- [Tính năng (Feature)](#tính-năng)
-- [Bắt đầu (Getting Started)](#bắt-đầu )
-  - [Yêu cầu (Requirements)](#yêu-cầu)
-  - [Cài đặt (Install)](#cài-đặt)
-  - [Cấu hình và chạy app (Config and run app)](#cấu-hình-và-chạy-app)
-- [Tam Trụ](#tam-trụ)
-  - [Quản lý State](#quản-lý-state)
-    - [Quản lý Reactive State](#quản-lý-reactive-state)
-    - [Thêm thông tin về quản lý state](#thêm-thông-tin-về-quản-lý-state)
-  - [Quản lý route](#quản-lý-route)
-    - [Thêm thông tin về quản lý route](#thêm-thông-tin-về-quản-lý-route)
-  - [Quản lý dependency](#quản-lý-dependency)
-    - [Thêm thông tin về quản lý dependency](#thêm-thông-tin-về-quản-lý-dependency)
-- [Utils](#utils)
-  - [Internationalization](#internationalization)
-    - [Dịch thuật](#dịch-thuật)
-      - [Sử dụng bản dịch thuật](#sử-dụng-bản-dịch-thuật)
-    - [Locales](#locales)
-      - [Đổi locale](#đổi-locale)
-      - [System locale](#system-locale)
-  - [Đổi Theme](#đổi-theme)
-  - [GetConnect](#getconnect)
-    - [Cấu hình mặc định](#cấu-hình-mặc-định)
-    - [Cấu hình tùy chỉnh](#cấu-hình-tùy-chỉnh)
-  - [GetPage Middleware](#getpage-middleware)
-    - [Ưu tiên](#ưu-tiên)
-    - [Chuyển hướng](#chuyển-hướng)
-    - [onPageCalled](#onpagecalled)
-    - [OnBindingsStart](#onbindingsstart)
-    - [OnPageBuildStart](#onpagebuildstart)
-    - [OnPageBuilt](#onpagebuilt)
-    - [OnPageDispose](#onpagedispose)
-  - [APIs nâng cao khác](#apis-nâng-cao-khác)
-    - [Cấu hình thủ công và cài đặt chung tuỳ chọn](#cấu-hình-thủ-công-và-cài-đặt-chung-tuỳ-chọn)
-    - [Local State Widgets](#local-state-widgets)
-      - [ValueBuilder](#valuebuilder)
-      - [ObxValue](#obxvalue)
-  - [Mẹo hữu ích](#mẹo-hữu-ích)
-    - [GetView](#getview)
-    - [GetResponsiveView](#getresponsiveview)
-      - [Hướng dẫn sử dụng trước khi dùng](#hướng-dẫn-sử-dụng-trước-khi-dùng)
-    - [GetWidget](#getwidget)
-    - [GetxService](#getxservice)
+![Architecture](images/project_architecture.png?raw=true)
 
-# Giới thiệu
-
-A new Flutter project.
-
-# Tính năng
+## Features
 
 1. Architecture: Clean Architecture
-2. State management: [flutter_bloc](https://pub.dev/packages/flutter_bloc)
-3. Navigation: [auto_route](https://pub.dev/packages/auto_route)
-4. DI: [get_it](https://pub.dev/packages/get_it), [injectable](https://pub.dev/packages/injectable)
-5. REST API: [dio](https://pub.dev/packages/dio)
-6. GraphQL: [artemis](https://pub.dev/packages/artemis), [graphql_flutter](https://pub.dev/packages/graphql_flutter)
-7. Database: [objectbox](https://pub.dev/packages/objectbox)
-8. Shared Preferences: [encrypted_shared_preferences](https://pub.dev/packages/encrypted_shared_preferences)
-9. Data class: [freezed](https://pub.dev/packages/freezed)
-10. Lint: [dart_code_metrics](https://pub.dev/packages/dart_code_metrics), [flutter_lints](https://pub.dev/packages/flutter_lints)
-11. Unit Test: [mocktail](https://pub.dev/packages/mocktail), [bloc_test](https://pub.dev/packages/bloc_test)
-12. Paging: [infinite_scroll_pagination](https://pub.dev/packages/infinite_scroll_pagination)
-13. Utils: [rxdart](https://pub.dev/packages/rxdart), [dartx](https://pub.dev/packages/dartx), [async](https://pub.dev/packages/async)
-14. Assets generator: [flutter_gen_runner](https://pub.dev/packages/flutter_gen_runner), [flutter_launcher_icons](https://pub.dev/packages/flutter_launcher_icons), [flutter_native_splash](https://pub.dev/packages/flutter_native_splash)
+1. State management: [flutter_bloc](https://pub.dev/packages/flutter_bloc)
+1. Navigation: [auto_route](https://pub.dev/packages/auto_route)
+1. DI: [get_it](https://pub.dev/packages/get_it), [injectable](https://pub.dev/packages/injectable)
+1. REST API: [dio](https://pub.dev/packages/dio)
+1. GraphQL: [artemis](https://pub.dev/packages/artemis), [graphql_flutter](https://pub.dev/packages/graphql_flutter)
+1. Database: [objectbox](https://pub.dev/packages/objectbox)
+1. Shared Preferences: [encrypted_shared_preferences](https://pub.dev/packages/encrypted_shared_preferences)
+1. Data class: [freezed](https://pub.dev/packages/freezed)
+1. Lint: [dart_code_metrics](https://pub.dev/packages/dart_code_metrics), [flutter_lints](https://pub.dev/packages/flutter_lints)
+1. CI/CD: Github Actions, Bitbucket Pipelines
+1. Unit Test: [mocktail](https://pub.dev/packages/mocktail), [bloc_test](https://pub.dev/packages/bloc_test)
+1. Paging: [infinite_scroll_pagination](https://pub.dev/packages/infinite_scroll_pagination)
+1. Utils: [rxdart](https://pub.dev/packages/rxdart), [dartx](https://pub.dev/packages/dartx), [async](https://pub.dev/packages/async)
+1. Assets generator: [flutter_gen_runner](https://pub.dev/packages/flutter_gen_runner), [flutter_launcher_icons](https://pub.dev/packages/flutter_launcher_icons), [flutter_native_splash](https://pub.dev/packages/flutter_native_splash)
 
 
-# Bắt đầu
+16. Shimmer loading effect
 
-## Yêu cầu
+https://user-images.githubusercontent.com/22645452/204953475-65522ee8-caaf-4fa4-9305-507c390914f3.mp4
 
-- Dart: 2.18.5
-- Flutter SDK: 3.7.1
-- Melos: 2.8.0
-- CocoaPods: 1.11.
+17. Load more
 
-## Cài đặt
+https://user-images.githubusercontent.com/22645452/204954223-1e5e8731-2baa-45d3-bf04-d26e09600975.mp4
 
-- (Bổ sung sau)
+18. Retry when error
 
-## Cấu hình và chạy app
+https://user-images.githubusercontent.com/22645452/204954446-db337cad-d509-47d4-984c-d54f0386afb4.mp4
 
-- (Bổ sung sau)
+19. Nested navigation
+
+https://user-images.githubusercontent.com/22645452/204954558-ceddfea2-bce0-472d-b02a-6066212a8758.mp4
+
+20. Dark mode
+
+https://user-images.githubusercontent.com/22645452/204954605-fe57620c-69af-4628-bdc6-8483c8f3f4a9.mp4
+
+21. Change App Language
+
+https://user-images.githubusercontent.com/22645452/204954653-a704d380-0f6a-419d-a740-3bff74252ce2.mp4
+
+
+## Getting Started
+
+### Requirements
+
+- Dart: 3.0.5
+- Flutter SDK: 3.10.5
+- Melos: 3.1.0
+- CocoaPods: 1.12.0
+
+### Install
+
+- WARN: If you already installed `melos` and `lefthook`, you could omit this step.
+
+- Install melos:
+    - Run `dart pub global activate melos 3.1.0`
+
+- Install lefthook (optional):
+    - Run `gem install lefthook`
+
+- Export paths:
+    - Add to `.zshrc` or `.bashrc` file
+```    
+export PATH="$PATH:<path to flutter>/flutter/bin"
+export PATH="$PATH:<path to flutter>/flutter/bin/cache/dart-sdk/bin"
+export PATH="$PATH:~/.pub-cache/bin"
+export PATH="$PATH:~/.gem/gems/lefthook-0.7.7/bin"
+```
+    - Save file `.zshrc`
+    - Run `source ~/.zshrc`
+
+### Config and run app
+
+- cd to root folder of project
+- Run `make gen_env`
+- Run `make sync`
+- Run `lefthook install` (optional)
+- Run & Enjoy!
+
+## Upgrade Flutter
+- Update Flutter version in:
+    - [README.md](#requirements)
+    - [bitbucket-pipelines.yml](bitbucket-pipelines.yml)
+    - [ci.yaml](.github/workflows/ci.yaml)
+    - [cd_develop.yaml](.github/workflows/cd_develop.yaml)
+    - [cd_qa.yaml](.github/workflows/cd_qa.yaml)
+    - [cd_staging.yaml](.github/workflows/cd_staging.yaml)
+    - [cd_production.yaml](.github/workflows/cd_production.yaml)
+
+## Upgrade Melos
+- Update Melos version in:
+    - [README.md](#requirements)
+    - [Install](#install)
+    - [bitbucket-pipelines.yml](bitbucket-pipelines.yml)
+    - [ci.yaml](.github/workflows/ci.yaml)
+    - [cd_develop.yaml](.github/workflows/cd_develop.yaml)
+    - [cd_qa.yaml](.github/workflows/cd_qa.yaml)
+    - [cd_staging.yaml](.github/workflows/cd_staging.yaml)
+    - [cd_production.yaml](.github/workflows/cd_production.yaml)
+
+## License
+
+MIT

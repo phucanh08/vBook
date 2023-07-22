@@ -1,6 +1,6 @@
 analyzer:
   plugins:
-    - dart_code_metrics
+    - custom_lint
   exclude:
     - "**/*.g.dart"
     - "**/*.graphql.dart"
@@ -8,77 +8,16 @@ analyzer:
     - "**/*.freezed.dart"
     - "**/*.config.dart"
     - "**/*.gen.dart"
-    - "**/test/**/*.dart"
-    - "**/test/*.dart"
+    # - "**/test/**/*.dart"
+    # - "**/test/*.dart"
     - "resources/lib/src/generated/intl/*.dart"
     - "resources/lib/src/generated/*.dart"
+  language:
+    strict-casts: false
+    strict-raw-types: true
   errors:
     unused_import: warning
-    invalid_annotation_target: ignore
-  language:
-    strict-casts: true
-    strict-raw-types: true
-
-dart_code_metrics:
-  anti-patterns:
-  #    - long-method
-  #    - long-parameter-list
-  metrics:
-    # cyclomatic-complexity: 20
-    maximum-nesting-level: 8
-    #    number-of-parameters: 4
-    # source-lines-of-code: 50
-  rules:
-    - member-ordering:
-        alphabetize: false
-        order:
-          - constructors
-          - fields
-          - getters-setters
-          - methods
-        widgets-order:
-          - constructors
-          - fields
-          - getters-setters
-          - methods
-    - always-remove-listener
-    - no-boolean-literal-compare
-    - newline-before-return
-    # - no-empty-block
-    - no-magic-number:
-      allowed: [-1, 0, 1, 2, 3]
-    - no-equal-then-else
-    # - no-object-declaration
-    - prefer-conditional-expressions
-    # - prefer-extracting-callbacks
-    - prefer-trailing-comma
-    # - avoid-dynamic
-    #    - avoid-unused-parameters
-    - double-literal-format
-    - prefer-first
-    - prefer-last
-    - avoid-unnecessary-setstate
-    - prefer-single-widget-per-file:
-        ignore-private-widgets: true
-    # - prefer-const-border-radius
-    - avoid-wrapping-in-padding
-    - prefer-correct-identifier-length:
-        max-identifier-length: 70
-        min-identifier-length: 2
-    - prefer-correct-type-name:
-        min-length: 3
-        max-length: 70
-    - avoid-nested-conditional-expressions:
-        acceptable-level: 8
-        # - avoid-returning-widgets:
-        #     ignored-names:
-        #       - testFunction
-        #       - buildPage
-        #       - buildPageLoading
-        #       - buildPageListeners
-        #       - _buildBlocProvider
-        ignored-annotations:
-          - allowedAnnotation
+    # invalid_annotation_target: ignore
 
 linter:
   rules:
@@ -124,6 +63,7 @@ linter:
     - prefer_const_constructors_in_immutables
     - prefer_const_declarations
     - prefer_contains
+    - prefer_equal_for_default_values
     - prefer_final_fields
     - prefer_final_locals
     - prefer_for_elements_to_map_fromIterable
@@ -139,6 +79,7 @@ linter:
     - sized_box_for_whitespace
     - slash_for_doc_comments
     - sort_child_properties_last
+    - sort_pub_dependencies
     - throw_in_finally
     - type_init_formals
     - unawaited_futures
@@ -163,3 +104,4 @@ linter:
     - constant_identifier_names
     - non_constant_identifier_names
     - prefer_relative_imports
+    - use_super_parameters
