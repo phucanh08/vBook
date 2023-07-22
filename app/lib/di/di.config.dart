@@ -12,9 +12,9 @@
 import 'package:app/app/bloc/app_bloc.dart' as _i3;
 import 'package:app/base/bloc/common/common_bloc.dart' as _i11;
 import 'package:app/common_view/popup/choose_source/bloc/choose_source_bloc.dart'
-    as _i10;
-import 'package:app/common_widgets/popup/choose_source/bloc/choose_source_bloc.dart'
     as _i9;
+import 'package:app/common_widgets/popup/choose_source/bloc/choose_source_bloc.dart'
+    as _i10;
 import 'package:app/navigation/base/app_navigation/app_navigation.dart' as _i4;
 import 'package:app/navigation/middleware/route_guard.dart' as _i19;
 import 'package:app/navigation/routers/app_router.dart' as _i5;

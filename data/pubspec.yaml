@@ -47,5 +47,5 @@ dev_dependencies:
   mocktail: 0.3.0
   objectbox_generator: 2.1.0
 
-objectbox:
-  output_dir: src/repository/source/database/generated
+#objectbox:
+#  output_dir: src/repository/source/database/generated
