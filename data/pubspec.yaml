@@ -11,8 +11,8 @@ dependency_overrides:
   analyzer: 5.13.0
 
 dependencies:
-  html: 0.15.3
   async: 2.11.0
+  html: 0.15.3
   dartx: 1.1.0
   rxdart: 0.27.7
   get_it: 7.6.0

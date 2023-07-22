@@ -54,7 +54,7 @@ android {
     }
 
     defaultConfig {
-        applicationId "jp.flutter.app"
+        applicationId "com.phucanh.vbook"
         minSdkVersion 26
         targetSdkVersion 33
         versionCode flutterVersionCode.toInteger()
@@ -88,9 +88,9 @@ android {
     productFlavors {
         develop {
             dimension "flavor-type"
-            versionCode = 41
-            versionName = "1.0.1"
-            applicationId "jp.flutter.app.dev"
+            versionCode = 1
+            versionName = "1.0.0"
+            applicationId "com.phucanh.vbook.dev"
             manifestPlaceholders["host"] = "dev.chatwork.com"
             manifestPlaceholders["applicationName"] = "Develop"
             // manifestPlaceholders["apiKey"] = dartEnvironmentVariables.API_KEY
@@ -101,9 +101,9 @@ android {
 
         qa {
             dimension "flavor-type"
-            versionCode = 11
-            versionName = "1.0.1"
-            applicationId "jp.flutter.app.qa"
+            versionCode = 1
+            versionName = "1.0.0"
+            applicationId "com.phucanh.vbook.qa"
             manifestPlaceholders["host"] = "dev.chatwork.com"
             manifestPlaceholders["applicationName"] = "Qa"
             // manifestPlaceholders["apiKey"] = dartEnvironmentVariables.API_KEY
@@ -114,9 +114,9 @@ android {
 
         staging {
             dimension "flavor-type"
-            versionCode = 12
-            versionName = "1.0.3"
-            applicationId "jp.flutter.app.stg"
+            versionCode = 1
+            versionName = "1.0.0"
+            applicationId "com.phucanh.vbook.stg"
             manifestPlaceholders["host"] = "stg.facebook.com"
             manifestPlaceholders["applicationName"] = "Staging"
             // manifestPlaceholders["apiKey"] = dartEnvironmentVariables.API_KEY
@@ -137,7 +137,7 @@ android {
             dimension "flavor-type"
             versionCode = 1
             versionName = "1.0.0"
-            applicationId "jp.flutter.app"
+            applicationId "com.phucanh.vbook"
             manifestPlaceholders["host"] = "chatwork.com"
             manifestPlaceholders["applicationName"] = "Production"
             // manifestPlaceholders["apiKey"] = dartEnvironmentVariables.API_KEY

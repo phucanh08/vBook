@@ -3,7 +3,7 @@
 /// Locales: 1
 /// Strings: 35
 ///
-/// Built on 2023-07-22 at 06:08 UTC
+/// Built on 2023-07-22 at 06:24 UTC
 
 // coverage:ignore-file
 // ignore_for_file: type=lint
