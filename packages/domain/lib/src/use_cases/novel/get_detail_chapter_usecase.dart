@@ -6,15 +6,15 @@ class GetDetailChapterUseCase
     extends BaseFutureUseCase<GetDetailChapterInput, GetDetailChapterOutput> {
   @override
   Future<GetDetailChapterOutput> buildUseCase(GetDetailChapterInput input) async {
-    final data = await getIt<NovelRepository>().getDetailChapter(input.id, input.endpoint);
+    final data = await getIt<NovelRepository>().getDetailChapter(input.sourceId, input.endpoint);
 
     return GetDetailChapterOutput(data);
   }
 }
 
 class GetDetailChapterInput extends BaseInput {
-  const GetDetailChapterInput({required this.id, required this.endpoint});
-  final String id;
+  const GetDetailChapterInput({required this.sourceId, required this.endpoint});
+  final String sourceId;
   final String endpoint;
 }
 

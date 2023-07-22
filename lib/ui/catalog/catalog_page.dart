@@ -87,28 +87,29 @@ class _CatalogPageState extends BasePageState<CatalogPage, CatalogBloc> {
                 ),
                 const Divider(height: 1),
                 Expanded(
-                  child: InfiniteListView.separated(
+                  child: ListView.separated(
                     padding: EdgeInsets.zero,
                     itemCount: data.items.length,
-                    nextData: () => bloc.paginationNextPage(),
                     itemBuilder: (context, index) {
                       final _index = state.sort == Sort.newest
                           ? data.items.length - index - 1
                           : index;
                       final item = data.items[_index];
+                      // final currentChapter = (state.sort == Sort.newest) ? index + 1 : data.items.length - index;
 
                       return ListTile(
-                        onTap: () => navigator.replace(
-                          DetailChapterRoute(
-                            id: widget.id,
+                        onTap: () => bloc.add(
+                          CatalogEvent.itemPressed(
+                            sourceId: widget.id,
                             endpoint: item.endpoint,
-                            title: item.name,
+                            novelEndpoint: widget.endpoint,
+                            currentChapterName: item.name,
+                            currentChapter: _index + 1,
                           ),
                         ),
                         title: Text(item.name),
                       );
                     },
-                    hasNext: data.hasNext,
                     separatorBuilder: (context, index) =>
                         const Divider(height: 1),
                   ),

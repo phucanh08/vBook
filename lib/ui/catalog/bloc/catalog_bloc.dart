@@ -1,6 +1,7 @@
 import 'package:domain/domain.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
 import 'package:injectable/injectable.dart';
+import 'package:vbook/app.dart';
 
 import '../../../base/bloc/pagination_bloc.dart';
 
@@ -12,17 +13,43 @@ part 'catalog_bloc.freezed.dart';
 
 @injectable
 class CatalogBloc extends PaginationBloc<ChapterModel, String, CatalogState> {
-  CatalogBloc(this._getCatalogUseCase) : super(const CatalogState()) {
+  CatalogBloc(this._getCatalogUseCase, this._saveNovelUseCase)
+      : super(const CatalogState()) {
     on<_Started>(_onStarted);
     on<_sortSelected>(_onSortSelected);
+    on<_itemPressed>(_onItemPressed);
   }
 
   final GetCatalogUseCase _getCatalogUseCase;
+  final SaveNovelUseCase _saveNovelUseCase;
 
   void _onStarted(_Started event, emit) {
     runBlocCatching(action: () async {
       emit(state.copyWith(id: event.id, endpoint: event.endpoint));
       paginationStarted();
+    });
+  }
+
+  void _onItemPressed(_itemPressed event, emit) {
+    runBlocCatching(action: () async {
+      await _saveNovelUseCase.call(
+        SaveNovelInput(
+          sourceId: event.sourceId,
+          endpoint: event.endpoint,
+          novelEndpoint: event.novelEndpoint,
+          currentChapterName: event.currentChapterName,
+          currentChapter: event.currentChapter,
+          totalChapters: state.data.items.length,
+        ),
+      );
+      await navigator.replace(
+        DetailChapterRoute(
+          id: event.sourceId,
+          novelEndpoint: event.novelEndpoint,
+          endpoint: event.endpoint,
+          title: event.currentChapterName,
+        ),
+      );
     });
   }
 

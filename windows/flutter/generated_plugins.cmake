@@ -4,6 +4,7 @@
 
 list(APPEND FLUTTER_PLUGIN_LIST
   flutter_js
+  flutter_tts
   objectbox_flutter_libs
   url_launcher_windows
 )

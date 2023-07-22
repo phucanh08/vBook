@@ -7,4 +7,5 @@ class ObjectBox {
   static Future<void> instance() async => _store ??= await openStore();
 
   static Box<Plugin> pluginBox() => _store!.box<Plugin>();
+  static Box<Novel> novelBox() => _store!.box<Novel>();
 }

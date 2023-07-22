@@ -10,12 +10,14 @@ class DetailChapterPage extends StatefulWidget {
   const DetailChapterPage({
     @PathParam('id') required this.id,
     @PathParam('endpoint') required this.endpoint,
+    required this.novelEndpoint,
     required this.title,
     super.key,
   });
 
   final String id;
   final String endpoint;
+  final String novelEndpoint;
   final String title;
 
   @override
@@ -27,7 +29,12 @@ class _DetailChapterPageState
   @override
   void initState() {
     bloc.add(
-      DetailChapterEvent.started(id: widget.id, endpoint: widget.endpoint),
+      DetailChapterEvent.started(
+        sourceId: widget.id,
+        endpoint: widget.endpoint,
+        novelEndpoint: widget.novelEndpoint,
+        title: widget.title,
+      ),
     );
     super.initState();
   }
