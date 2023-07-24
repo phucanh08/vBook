@@ -1,3 +1,6 @@
+
+[![melos](https://img.shields.io/badge/maintained%20with-melos-f700ff.svg?style=flat-square)](https://github.com/invertase/melos)
+
 # Tutorials for this project
 
 * English: https://medium.com/@NALSengineering/list/building-a-perfect-boilerplate-flutter-project-from-scratch-3c2b29d9dfa8
