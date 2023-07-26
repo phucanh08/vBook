@@ -31,6 +31,7 @@ class NovelDetailModel with _$NovelDetailModel {
 class NovelModel with _$NovelModel {
   const NovelModel._();
   const factory NovelModel({
+    required int? id,
     required DateTime updatedAt,
     required String name,
     required String path,

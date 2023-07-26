@@ -9,6 +9,7 @@ class NovelDataMapper extends BaseDataMapper<Novel, NovelModel> {
   @override
   NovelModel mapToEntity(Novel? data) {
     return NovelModel(
+      id: data?.id,
       updatedAt: data?.updatedAt ?? DateTime.now(),
       name: data?.name ?? '',
       path: data?.sourceId ?? '',

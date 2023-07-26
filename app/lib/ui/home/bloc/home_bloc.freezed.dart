@@ -20,18 +20,21 @@ mixin _$HomeEvent {
   TResult when<TResult extends Object?>({
     required TResult Function() started,
     required TResult Function(int index) navigationBarDestinationSelected,
+    required TResult Function(List<NovelModel> data) historyUpdated,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? started,
     TResult? Function(int index)? navigationBarDestinationSelected,
+    TResult? Function(List<NovelModel> data)? historyUpdated,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? started,
     TResult Function(int index)? navigationBarDestinationSelected,
+    TResult Function(List<NovelModel> data)? historyUpdated,
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
@@ -40,6 +43,7 @@ mixin _$HomeEvent {
     required TResult Function(HomePageStarted value) started,
     required TResult Function(NavigationBarDestinationSelected value)
         navigationBarDestinationSelected,
+    required TResult Function(_HistoryUpdated value) historyUpdated,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
@@ -47,6 +51,7 @@ mixin _$HomeEvent {
     TResult? Function(HomePageStarted value)? started,
     TResult? Function(NavigationBarDestinationSelected value)?
         navigationBarDestinationSelected,
+    TResult? Function(_HistoryUpdated value)? historyUpdated,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
@@ -54,6 +59,7 @@ mixin _$HomeEvent {
     TResult Function(HomePageStarted value)? started,
     TResult Function(NavigationBarDestinationSelected value)?
         navigationBarDestinationSelected,
+    TResult Function(_HistoryUpdated value)? historyUpdated,
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
@@ -116,6 +122,7 @@ class _$HomePageStarted implements HomePageStarted {
   TResult when<TResult extends Object?>({
     required TResult Function() started,
     required TResult Function(int index) navigationBarDestinationSelected,
+    required TResult Function(List<NovelModel> data) historyUpdated,
   }) {
     return started();
   }
@@ -125,6 +132,7 @@ class _$HomePageStarted implements HomePageStarted {
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? started,
     TResult? Function(int index)? navigationBarDestinationSelected,
+    TResult? Function(List<NovelModel> data)? historyUpdated,
   }) {
     return started?.call();
   }
@@ -134,6 +142,7 @@ class _$HomePageStarted implements HomePageStarted {
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? started,
     TResult Function(int index)? navigationBarDestinationSelected,
+    TResult Function(List<NovelModel> data)? historyUpdated,
     required TResult orElse(),
   }) {
     if (started != null) {
@@ -148,6 +157,7 @@ class _$HomePageStarted implements HomePageStarted {
     required TResult Function(HomePageStarted value) started,
     required TResult Function(NavigationBarDestinationSelected value)
         navigationBarDestinationSelected,
+    required TResult Function(_HistoryUpdated value) historyUpdated,
   }) {
     return started(this);
   }
@@ -158,6 +168,7 @@ class _$HomePageStarted implements HomePageStarted {
     TResult? Function(HomePageStarted value)? started,
     TResult? Function(NavigationBarDestinationSelected value)?
         navigationBarDestinationSelected,
+    TResult? Function(_HistoryUpdated value)? historyUpdated,
   }) {
     return started?.call(this);
   }
@@ -168,6 +179,7 @@ class _$HomePageStarted implements HomePageStarted {
     TResult Function(HomePageStarted value)? started,
     TResult Function(NavigationBarDestinationSelected value)?
         navigationBarDestinationSelected,
+    TResult Function(_HistoryUpdated value)? historyUpdated,
     required TResult orElse(),
   }) {
     if (started != null) {
@@ -252,6 +264,7 @@ class _$NavigationBarDestinationSelected
   TResult when<TResult extends Object?>({
     required TResult Function() started,
     required TResult Function(int index) navigationBarDestinationSelected,
+    required TResult Function(List<NovelModel> data) historyUpdated,
   }) {
     return navigationBarDestinationSelected(index);
   }
@@ -261,6 +274,7 @@ class _$NavigationBarDestinationSelected
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? started,
     TResult? Function(int index)? navigationBarDestinationSelected,
+    TResult? Function(List<NovelModel> data)? historyUpdated,
   }) {
     return navigationBarDestinationSelected?.call(index);
   }
@@ -270,6 +284,7 @@ class _$NavigationBarDestinationSelected
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? started,
     TResult Function(int index)? navigationBarDestinationSelected,
+    TResult Function(List<NovelModel> data)? historyUpdated,
     required TResult orElse(),
   }) {
     if (navigationBarDestinationSelected != null) {
@@ -284,6 +299,7 @@ class _$NavigationBarDestinationSelected
     required TResult Function(HomePageStarted value) started,
     required TResult Function(NavigationBarDestinationSelected value)
         navigationBarDestinationSelected,
+    required TResult Function(_HistoryUpdated value) historyUpdated,
   }) {
     return navigationBarDestinationSelected(this);
   }
@@ -294,6 +310,7 @@ class _$NavigationBarDestinationSelected
     TResult? Function(HomePageStarted value)? started,
     TResult? Function(NavigationBarDestinationSelected value)?
         navigationBarDestinationSelected,
+    TResult? Function(_HistoryUpdated value)? historyUpdated,
   }) {
     return navigationBarDestinationSelected?.call(this);
   }
@@ -304,6 +321,7 @@ class _$NavigationBarDestinationSelected
     TResult Function(HomePageStarted value)? started,
     TResult Function(NavigationBarDestinationSelected value)?
         navigationBarDestinationSelected,
+    TResult Function(_HistoryUpdated value)? historyUpdated,
     required TResult orElse(),
   }) {
     if (navigationBarDestinationSelected != null) {
@@ -322,6 +340,155 @@ abstract class NavigationBarDestinationSelected implements HomeEvent {
   _$$NavigationBarDestinationSelectedCopyWith<
           _$NavigationBarDestinationSelected>
       get copyWith => throw _privateConstructorUsedError;
+}
+
+/// @nodoc
+abstract class _$$_HistoryUpdatedCopyWith<$Res> {
+  factory _$$_HistoryUpdatedCopyWith(
+          _$_HistoryUpdated value, $Res Function(_$_HistoryUpdated) then) =
+      __$$_HistoryUpdatedCopyWithImpl<$Res>;
+  @useResult
+  $Res call({List<NovelModel> data});
+}
+
+/// @nodoc
+class __$$_HistoryUpdatedCopyWithImpl<$Res>
+    extends _$HomeEventCopyWithImpl<$Res, _$_HistoryUpdated>
+    implements _$$_HistoryUpdatedCopyWith<$Res> {
+  __$$_HistoryUpdatedCopyWithImpl(
+      _$_HistoryUpdated _value, $Res Function(_$_HistoryUpdated) _then)
+      : super(_value, _then);
+
+  @pragma('vm:prefer-inline')
+  @override
+  $Res call({
+    Object? data = null,
+  }) {
+    return _then(_$_HistoryUpdated(
+      null == data
+          ? _value._data
+          : data // ignore: cast_nullable_to_non_nullable
+              as List<NovelModel>,
+    ));
+  }
+}
+
+/// @nodoc
+
+class _$_HistoryUpdated implements _HistoryUpdated {
+  const _$_HistoryUpdated(final List<NovelModel> data) : _data = data;
+
+  final List<NovelModel> _data;
+  @override
+  List<NovelModel> get data {
+    if (_data is EqualUnmodifiableListView) return _data;
+    // ignore: implicit_dynamic_type
+    return EqualUnmodifiableListView(_data);
+  }
+
+  @override
+  String toString() {
+    return 'HomeEvent.historyUpdated(data: $data)';
+  }
+
+  @override
+  bool operator ==(dynamic other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType &&
+            other is _$_HistoryUpdated &&
+            const DeepCollectionEquality().equals(other._data, _data));
+  }
+
+  @override
+  int get hashCode =>
+      Object.hash(runtimeType, const DeepCollectionEquality().hash(_data));
+
+  @JsonKey(ignore: true)
+  @override
+  @pragma('vm:prefer-inline')
+  _$$_HistoryUpdatedCopyWith<_$_HistoryUpdated> get copyWith =>
+      __$$_HistoryUpdatedCopyWithImpl<_$_HistoryUpdated>(this, _$identity);
+
+  @override
+  @optionalTypeArgs
+  TResult when<TResult extends Object?>({
+    required TResult Function() started,
+    required TResult Function(int index) navigationBarDestinationSelected,
+    required TResult Function(List<NovelModel> data) historyUpdated,
+  }) {
+    return historyUpdated(data);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>({
+    TResult? Function()? started,
+    TResult? Function(int index)? navigationBarDestinationSelected,
+    TResult? Function(List<NovelModel> data)? historyUpdated,
+  }) {
+    return historyUpdated?.call(data);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object?>({
+    TResult Function()? started,
+    TResult Function(int index)? navigationBarDestinationSelected,
+    TResult Function(List<NovelModel> data)? historyUpdated,
+    required TResult orElse(),
+  }) {
+    if (historyUpdated != null) {
+      return historyUpdated(data);
+    }
+    return orElse();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult map<TResult extends Object?>({
+    required TResult Function(HomePageStarted value) started,
+    required TResult Function(NavigationBarDestinationSelected value)
+        navigationBarDestinationSelected,
+    required TResult Function(_HistoryUpdated value) historyUpdated,
+  }) {
+    return historyUpdated(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>({
+    TResult? Function(HomePageStarted value)? started,
+    TResult? Function(NavigationBarDestinationSelected value)?
+        navigationBarDestinationSelected,
+    TResult? Function(_HistoryUpdated value)? historyUpdated,
+  }) {
+    return historyUpdated?.call(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object?>({
+    TResult Function(HomePageStarted value)? started,
+    TResult Function(NavigationBarDestinationSelected value)?
+        navigationBarDestinationSelected,
+    TResult Function(_HistoryUpdated value)? historyUpdated,
+    required TResult orElse(),
+  }) {
+    if (historyUpdated != null) {
+      return historyUpdated(this);
+    }
+    return orElse();
+  }
+}
+
+abstract class _HistoryUpdated implements HomeEvent {
+  const factory _HistoryUpdated(final List<NovelModel> data) =
+      _$_HistoryUpdated;
+
+  List<NovelModel> get data;
+  @JsonKey(ignore: true)
+  _$$_HistoryUpdatedCopyWith<_$_HistoryUpdated> get copyWith =>
+      throw _privateConstructorUsedError;
 }
 
 /// @nodoc

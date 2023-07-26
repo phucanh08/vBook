@@ -13,8 +13,10 @@ part 'home_bloc.freezed.dart';
 
 @Injectable()
 class HomeBloc extends BaseBloc<HomeEvent, HomeState> {
-  HomeBloc(this._getShelfUseCase, this._getHistoryUseCase) : super(const HomeState()) {
+  HomeBloc(this._getShelfUseCase, this._getHistoryUseCase)
+      : super(const HomeState()) {
     on<HomePageStarted>(_onHomePageInitiated, transformer: log());
+    on<_HistoryUpdated>(_onHistoryUpdated, transformer: log());
     on<NavigationBarDestinationSelected>(
       _onNavigationBarDestinationSelected,
       transformer: log(),
@@ -25,11 +27,19 @@ class HomeBloc extends BaseBloc<HomeEvent, HomeState> {
   final GetShelfUseCase _getShelfUseCase;
   final GetHistoryUseCase _getHistoryUseCase;
 
-  Future<void> _onHomePageInitiated(HomePageStarted event, Emitter<HomeState> emit) async {
+  void _onHistoryUpdated(
+    _HistoryUpdated event,
+    Emitter<HomeState> emit,
+  ) {
+    emit(state.copyWith(novelInHistory: event.data));
+  }
+
+  Future<void> _onHomePageInitiated(
+      HomePageStarted event, Emitter<HomeState> emit) async {
     final shelfOutput = await _getShelfUseCase.call(const GetShelfInput());
     emit(state.copyWith(novelInShelf: shelfOutput.data));
-    final historyOutput = await _getHistoryUseCase.call(const GetHistoryInput());
-    emit(state.copyWith(novelInHistory: historyOutput.data));
+    final historyOutput = _getHistoryUseCase.call(const GetHistoryInput());
+    historyOutput.listen((event) => add(_HistoryUpdated(event.data)));
   }
 
   void _onNavigationBarDestinationSelected(

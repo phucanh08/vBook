@@ -5,7 +5,7 @@ import '../../../entities/entities.dart';
 import '../local.dart';
 
 abstract class NovelStorage {
-  Future<List<Novel>> getAll();
+  Stream<List<Novel>> streamAll();
 
   Future<Novel?> get(String sourceId, String novelEndpoint);
 
@@ -14,24 +14,43 @@ abstract class NovelStorage {
   Future<bool> remove(String sourceId, String novelEndpoint);
 }
 
-@Injectable(as: NovelStorage)
+@Singleton(as: NovelStorage)
 class NovelStorageImpl implements NovelStorage {
   final Box<Novel> _novelBox = ObjectBox.novelBox();
 
   @override
   Future<bool> save(Novel novel) async {
-    await _novelBox.putAsync(novel);
+    final data = await get(novel.sourceId, novel.novelEndpoint);
+    if (data != null) {
+      final _novel = data.copyWith(
+        updatedAt: novel.updatedAt,
+        name: novel.name,
+        novelEndpoint: novel.novelEndpoint,
+        sourceId: novel.sourceId,
+        sourceName: novel.sourceName,
+        imgUrl: novel.imgUrl,
+        totalChapters: novel.totalChapters,
+        currentChapter: novel.currentChapter,
+        currentChapterName: novel.currentChapterName,
+        timeRead: novel.timeRead,
+      );
+      await _novelBox.putAsync(_novel, mode: PutMode.update);
+    } else {
+      await _novelBox.putAsync(novel, mode: PutMode.insert);
+    }
 
     return true;
   }
 
   @override
-  Future<List<Novel>> getAll() async {
-    final query = _novelBox.query().order(Novel_.updatedAt).build();
-    final result = query.find();
-    query.close();
+  Stream<List<Novel>> streamAll() {
+    final result = _novelBox
+        .query()
+        .order(Novel_.updatedAt)
+        .watch(triggerImmediately: true)
+        .map((event) => event.find().reversed.toList());
 
-    return result.toList();
+    return result;
   }
 
   @override

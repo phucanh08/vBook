@@ -7,7 +7,7 @@ abstract class NovelRepository {
   Future<Pagination<NovelItemModel>> getListNovelInPage(String sourceId, String endpoint, Page page);
   Future<Pagination<ChapterModel>> getCatalog(String sourceId, String endpoint, Page page);
   Future<ChapterDetailModel> getDetailChapter(String sourceId, String endpoint);
-  Future<List<NovelModel>> getShelf();
-  Future<List<NovelModel>> getHistory();
+  Stream<List<NovelModel>>  getShelf();
+  Stream<List<NovelModel>>  getHistory();
   Future<bool> save(SaveNovelInput saveNovelInput);
 }

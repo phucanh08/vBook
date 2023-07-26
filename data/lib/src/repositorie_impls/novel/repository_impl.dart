@@ -81,18 +81,19 @@ class PluginRepositoryImpl extends NovelRepository {
   }
 
   @override
-  Future<List<NovelModel>> getHistory() async {
-    final data = await _novelStorage.getAll();
+  Stream<List<NovelModel>> getHistory() {
+    final data = _novelStorage.streamAll();
 
-    return _novelDataMapper.mapToListEntity(data);
+    return data.map((e) => _novelDataMapper.mapToListEntity(e));
   }
 
   @override
-  Future<List<NovelModel>> getShelf() async {
-    final data = await _novelStorage.getAll();
+  Stream<List<NovelModel>> getShelf() {
+    final data = _novelStorage.streamAll();
 
-    return _novelDataMapper
-        .mapToListEntity(data.where((e) => e.inShelf).toList());
+    return data
+        .map((e) => e.where((element) => element.inShelf).toList())
+        .map((e) => _novelDataMapper.mapToListEntity(e));
   }
 
   @override

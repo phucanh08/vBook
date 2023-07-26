@@ -45,6 +45,7 @@ class Novel {
     bool? inShelf,
   }) {
     return Novel(
+      id: id,
       updatedAt: updatedAt ?? this.updatedAt,
       name: name ?? this.name,
       novelEndpoint: novelEndpoint ?? this.novelEndpoint,

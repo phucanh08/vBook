@@ -9,12 +9,12 @@ class GetShelfUseCase extends BaseFutureUseCase<GetShelfInput, GetShelfOutput> {
     final data = List.generate(
       10,
       (index) => NovelModel(
+        id: null,
         updatedAt: DateTime.now(),
         name: 'Linh cảnh hành giả',
         path: 'sidj',
         sourceName: 'Mê truyện chữ',
-        imgUrl:
-            'https://static.cdnno.com/poster/linh-canh-hanh-gia/300.jpg?1648001055',
+        imgUrl: 'https://static.cdnno.com/poster/linh-canh-hanh-gia/300.jpg?1648001055',
         totalChapters: 1202,
         currentChapter: 125,
         currentChapterName: 'Chương 125: Linh cảnh mở ra',

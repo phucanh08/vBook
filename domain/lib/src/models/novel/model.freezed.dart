@@ -446,6 +446,7 @@ abstract class _NovelDetailModel extends NovelDetailModel {
 
 /// @nodoc
 mixin _$NovelModel {
+  int? get id => throw _privateConstructorUsedError;
   DateTime get updatedAt => throw _privateConstructorUsedError;
   String get name => throw _privateConstructorUsedError;
   String get path => throw _privateConstructorUsedError;
@@ -468,7 +469,8 @@ abstract class $NovelModelCopyWith<$Res> {
       _$NovelModelCopyWithImpl<$Res, NovelModel>;
   @useResult
   $Res call(
-      {DateTime updatedAt,
+      {int? id,
+      DateTime updatedAt,
       String name,
       String path,
       String sourceName,
@@ -492,6 +494,7 @@ class _$NovelModelCopyWithImpl<$Res, $Val extends NovelModel>
   @pragma('vm:prefer-inline')
   @override
   $Res call({
+    Object? id = freezed,
     Object? updatedAt = null,
     Object? name = null,
     Object? path = null,
@@ -503,6 +506,10 @@ class _$NovelModelCopyWithImpl<$Res, $Val extends NovelModel>
     Object? timeRead = null,
   }) {
     return _then(_value.copyWith(
+      id: freezed == id
+          ? _value.id
+          : id // ignore: cast_nullable_to_non_nullable
+              as int?,
       updatedAt: null == updatedAt
           ? _value.updatedAt
           : updatedAt // ignore: cast_nullable_to_non_nullable
@@ -552,7 +559,8 @@ abstract class _$$_NovelModelCopyWith<$Res>
   @override
   @useResult
   $Res call(
-      {DateTime updatedAt,
+      {int? id,
+      DateTime updatedAt,
       String name,
       String path,
       String sourceName,
@@ -574,6 +582,7 @@ class __$$_NovelModelCopyWithImpl<$Res>
   @pragma('vm:prefer-inline')
   @override
   $Res call({
+    Object? id = freezed,
     Object? updatedAt = null,
     Object? name = null,
     Object? path = null,
@@ -585,6 +594,10 @@ class __$$_NovelModelCopyWithImpl<$Res>
     Object? timeRead = null,
   }) {
     return _then(_$_NovelModel(
+      id: freezed == id
+          ? _value.id
+          : id // ignore: cast_nullable_to_non_nullable
+              as int?,
       updatedAt: null == updatedAt
           ? _value.updatedAt
           : updatedAt // ignore: cast_nullable_to_non_nullable
@@ -629,7 +642,8 @@ class __$$_NovelModelCopyWithImpl<$Res>
 
 class _$_NovelModel extends _NovelModel {
   const _$_NovelModel(
-      {required this.updatedAt,
+      {required this.id,
+      required this.updatedAt,
       required this.name,
       required this.path,
       required this.sourceName,
@@ -640,6 +654,8 @@ class _$_NovelModel extends _NovelModel {
       required this.timeRead})
       : super._();
 
+  @override
+  final int? id;
   @override
   final DateTime updatedAt;
   @override
@@ -661,7 +677,7 @@ class _$_NovelModel extends _NovelModel {
 
   @override
   String toString() {
-    return 'NovelModel(updatedAt: $updatedAt, name: $name, path: $path, sourceName: $sourceName, imgUrl: $imgUrl, totalChapters: $totalChapters, currentChapter: $currentChapter, currentChapterName: $currentChapterName, timeRead: $timeRead)';
+    return 'NovelModel(id: $id, updatedAt: $updatedAt, name: $name, path: $path, sourceName: $sourceName, imgUrl: $imgUrl, totalChapters: $totalChapters, currentChapter: $currentChapter, currentChapterName: $currentChapterName, timeRead: $timeRead)';
   }
 
   @override
@@ -669,6 +685,7 @@ class _$_NovelModel extends _NovelModel {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is _$_NovelModel &&
+            (identical(other.id, id) || other.id == id) &&
             (identical(other.updatedAt, updatedAt) ||
                 other.updatedAt == updatedAt) &&
             (identical(other.name, name) || other.name == name) &&
@@ -689,6 +706,7 @@ class _$_NovelModel extends _NovelModel {
   @override
   int get hashCode => Object.hash(
       runtimeType,
+      id,
       updatedAt,
       name,
       path,
@@ -708,7 +726,8 @@ class _$_NovelModel extends _NovelModel {
 
 abstract class _NovelModel extends NovelModel {
   const factory _NovelModel(
-      {required final DateTime updatedAt,
+      {required final int? id,
+      required final DateTime updatedAt,
       required final String name,
       required final String path,
       required final String sourceName,
@@ -719,6 +738,8 @@ abstract class _NovelModel extends NovelModel {
       required final int timeRead}) = _$_NovelModel;
   const _NovelModel._() : super._();
 
+  @override
+  int? get id;
   @override
   DateTime get updatedAt;
   @override
