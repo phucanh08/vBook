@@ -106,7 +106,7 @@ class PluginRepositoryImpl extends NovelRepository {
     if (novel != null) {
       newNovel = novel.copyWith(
         updatedAt: DateTime.now(),
-        novelEndpoint: saveNovelInput.novelEndpoint,
+        novelEndpoint: saveNovelInput.chapterEndpoint,
         currentChapterName: saveNovelInput.currentChapterName,
         currentChapter: saveNovelInput.currentChapter,
         timeRead: saveNovelInput.timeRead,
@@ -124,6 +124,7 @@ class PluginRepositoryImpl extends NovelRepository {
         updatedAt: DateTime.now(),
         name: _novelModel.name,
         novelEndpoint: saveNovelInput.novelEndpoint,
+        chapterEndpoint: saveNovelInput.chapterEndpoint,
         sourceId: saveNovelInput.sourceId,
         sourceName: response?.name ?? '',
         imgUrl: _novelModel.imgUrl,

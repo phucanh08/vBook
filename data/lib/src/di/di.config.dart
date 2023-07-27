@@ -45,7 +45,7 @@ extension GetItInjectableX on _i1.GetIt {
     gh.factory<_i6.DetailNovelDataMapper>(() => _i6.DetailNovelDataMapper());
     gh.factory<_i7.HomeDataMapper>(() => _i7.HomeDataMapper());
     gh.factory<_i8.NovelDataMapper>(() => _i8.NovelDataMapper());
-    gh.factory<_i9.NovelStorage>(() => _i9.NovelStorageImpl());
+    gh.singleton<_i9.NovelStorage>(_i9.NovelStorageImpl());
     gh.factory<_i10.PageDataMapper>(() => _i10.PageDataMapper());
     gh.factory<_i11.Plugin1DataMapper>(() => _i11.Plugin1DataMapper());
     gh.factory<_i11.Plugin2DataMapper>(() => _i11.Plugin2DataMapper());

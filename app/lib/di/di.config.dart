@@ -52,7 +52,8 @@ extension GetItInjectableX on _i1.GetIt {
     gh.factory<_i10.CommonBloc>(() => _i10.CommonBloc());
     gh.factory<_i11.DetailChapterBloc>(
         () => _i11.DetailChapterBloc(gh<_i8.GetDetailChapterUseCase>()));
-    gh.factory<_i12.DetailNovelBloc>(() => _i12.DetailNovelBloc());
+    gh.factory<_i12.DetailNovelBloc>(
+        () => _i12.DetailNovelBloc(gh<_i8.SaveNovelUseCase>()));
     gh.factory<_i13.DiscoverBloc>(() => _i13.DiscoverBloc(
           gh<_i8.GetListLocalPluginUseCase>(),
           gh<_i8.SaveLocalPluginUseCase>(),

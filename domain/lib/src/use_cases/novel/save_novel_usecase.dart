@@ -1,5 +1,6 @@
-import 'package:domain/domain.dart';
 import 'package:injectable/injectable.dart';
+
+import '../../../domain.dart';
 
 @injectable
 class SaveNovelUseCase
@@ -15,21 +16,21 @@ class SaveNovelUseCase
 class SaveNovelInput extends BaseInput {
   const SaveNovelInput({
     required this.sourceId,
-    required this.endpoint,
     required this.novelEndpoint,
-    required this.currentChapterName,
-    required this.totalChapters,
-    required this.currentChapter,
+    this.chapterEndpoint,
+    this.currentChapterName,
+    this.totalChapters,
+    this.currentChapter,
     this.timeRead,
     this.inShelf,
   });
 
   final String sourceId;
-  final String endpoint;
   final String novelEndpoint;
-  final String currentChapterName;
-  final int totalChapters;
-  final int currentChapter;
+  final String? chapterEndpoint;
+  final String? currentChapterName;
+  final int? totalChapters;
+  final int? currentChapter;
   final int? timeRead;
   final bool? inShelf;
 }

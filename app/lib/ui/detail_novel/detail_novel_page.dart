@@ -126,7 +126,8 @@ class _DetailNovelPageState
                           actions: [
                             IconButton(
                               padding: EdgeInsets.zero,
-                              onPressed: () => navigator.push(const BrowserRoute()),
+                              onPressed: () =>
+                                  navigator.push(const BrowserRoute()),
                               icon: const FaIcon(
                                 FaCodePoint.planetRinged,
                                 type: IconType.regular,
@@ -169,7 +170,12 @@ class _DetailNovelPageState
                 title: state.model?.name ?? '',
               ),
             ),
-            onAddToShelfButtonPressed: () {},
+            onAddToShelfButtonPressed: () {
+              bloc.add(DetailNovelEvent.addToShelfButtonPressed(
+                id: widget.id,
+                endpoint: widget.endpoint,
+              ));
+            },
           );
         },
       ),

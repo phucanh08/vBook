@@ -17,6 +17,7 @@ class HomeBloc extends BaseBloc<HomeEvent, HomeState> {
       : super(const HomeState()) {
     on<HomePageStarted>(_onHomePageInitiated, transformer: log());
     on<_HistoryUpdated>(_onHistoryUpdated, transformer: log());
+    on<_ShelfUpdated>(_onShelfUpdated, transformer: log());
     on<NavigationBarDestinationSelected>(
       _onNavigationBarDestinationSelected,
       transformer: log(),
@@ -34,10 +35,17 @@ class HomeBloc extends BaseBloc<HomeEvent, HomeState> {
     emit(state.copyWith(novelInHistory: event.data));
   }
 
-  Future<void> _onHomePageInitiated(
-      HomePageStarted event, Emitter<HomeState> emit) async {
-    final shelfOutput = await _getShelfUseCase.call(const GetShelfInput());
-    emit(state.copyWith(novelInShelf: shelfOutput.data));
+  void _onShelfUpdated(
+    _ShelfUpdated event,
+    Emitter<HomeState> emit,
+  ) {
+    emit(state.copyWith(novelInShelf: event.data));
+  }
+
+  void _onHomePageInitiated(
+      HomePageStarted event, Emitter<HomeState> emit) {
+    final shelfOutput = _getShelfUseCase.call(const GetShelfInput());
+    shelfOutput.listen((event) => add(_ShelfUpdated(event.data)));
     final historyOutput = _getHistoryUseCase.call(const GetHistoryInput());
     historyOutput.listen((event) => add(_HistoryUpdated(event.data)));
   }

@@ -74,7 +74,7 @@
     },
     {
       "id": "2:8676234059551527790",
-      "lastPropertyId": "21:1387242580634304986",
+      "lastPropertyId": "22:8507096568313017227",
       "name": "Novel",
       "properties": [
         {
@@ -136,6 +136,11 @@
         {
           "id": "21:1387242580634304986",
           "name": "currentChapterName",
+          "type": 9
+        },
+        {
+          "id": "22:8507096568313017227",
+          "name": "chapterEndpoint",
           "type": 9
         }
       ],

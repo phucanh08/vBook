@@ -8,15 +8,15 @@ import 'bloc/detail_chapter_bloc.dart';
 @RoutePage()
 class DetailChapterPage extends StatefulWidget {
   const DetailChapterPage({
-    @PathParam('id') required this.id,
-    @PathParam('endpoint') required this.endpoint,
+    required this.id,
+    required this.chapterEndpoint,
     required this.novelEndpoint,
     required this.title,
     super.key,
   });
 
   final String id;
-  final String endpoint;
+  final String chapterEndpoint;
   final String novelEndpoint;
   final String title;
 
@@ -31,7 +31,7 @@ class _DetailChapterPageState
     bloc.add(
       DetailChapterEvent.started(
         sourceId: widget.id,
-        endpoint: widget.endpoint,
+        endpoint: widget.chapterEndpoint,
         novelEndpoint: widget.novelEndpoint,
         title: widget.title,
       ),

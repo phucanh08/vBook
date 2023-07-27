@@ -13,9 +13,12 @@ part 'detail_novel_bloc.freezed.dart';
 
 @injectable
 class DetailNovelBloc extends BaseBloc<DetailNovelEvent, DetailNovelState> {
-  DetailNovelBloc() : super(const DetailNovelState()) {
+  DetailNovelBloc(this._saveNovelUseCase) : super(const DetailNovelState()) {
     on<_Started>(_onStarted);
+    on<_AddToShelfButtonPressed>(_onAddToShelfButtonPressed);
   }
+
+  final SaveNovelUseCase _saveNovelUseCase;
 
   Future<void> _onStarted(_Started event, Emitter<DetailNovelState> emit) {
     return runBlocCatching(action: () async {
@@ -26,6 +29,19 @@ class DetailNovelBloc extends BaseBloc<DetailNovelEvent, DetailNovelState> {
         ),
       );
       emit(state.copyWith(model: response.data));
+    });
+  }
+
+  Future<void> _onAddToShelfButtonPressed(
+      _AddToShelfButtonPressed event, emit) {
+    return runBlocCatching(action: () {
+      return _saveNovelUseCase.call(
+        SaveNovelInput(
+          sourceId: event.id,
+          novelEndpoint: event.endpoint,
+          inShelf: true,
+        ),
+      );
     });
   }
 }

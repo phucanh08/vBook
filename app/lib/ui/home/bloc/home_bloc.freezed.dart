@@ -21,6 +21,7 @@ mixin _$HomeEvent {
     required TResult Function() started,
     required TResult Function(int index) navigationBarDestinationSelected,
     required TResult Function(List<NovelModel> data) historyUpdated,
+    required TResult Function(List<NovelModel> data) shelfUpdated,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
@@ -28,6 +29,7 @@ mixin _$HomeEvent {
     TResult? Function()? started,
     TResult? Function(int index)? navigationBarDestinationSelected,
     TResult? Function(List<NovelModel> data)? historyUpdated,
+    TResult? Function(List<NovelModel> data)? shelfUpdated,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
@@ -35,6 +37,7 @@ mixin _$HomeEvent {
     TResult Function()? started,
     TResult Function(int index)? navigationBarDestinationSelected,
     TResult Function(List<NovelModel> data)? historyUpdated,
+    TResult Function(List<NovelModel> data)? shelfUpdated,
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
@@ -44,6 +47,7 @@ mixin _$HomeEvent {
     required TResult Function(NavigationBarDestinationSelected value)
         navigationBarDestinationSelected,
     required TResult Function(_HistoryUpdated value) historyUpdated,
+    required TResult Function(_ShelfUpdated value) shelfUpdated,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
@@ -52,6 +56,7 @@ mixin _$HomeEvent {
     TResult? Function(NavigationBarDestinationSelected value)?
         navigationBarDestinationSelected,
     TResult? Function(_HistoryUpdated value)? historyUpdated,
+    TResult? Function(_ShelfUpdated value)? shelfUpdated,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
@@ -60,6 +65,7 @@ mixin _$HomeEvent {
     TResult Function(NavigationBarDestinationSelected value)?
         navigationBarDestinationSelected,
     TResult Function(_HistoryUpdated value)? historyUpdated,
+    TResult Function(_ShelfUpdated value)? shelfUpdated,
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
@@ -123,6 +129,7 @@ class _$HomePageStarted implements HomePageStarted {
     required TResult Function() started,
     required TResult Function(int index) navigationBarDestinationSelected,
     required TResult Function(List<NovelModel> data) historyUpdated,
+    required TResult Function(List<NovelModel> data) shelfUpdated,
   }) {
     return started();
   }
@@ -133,6 +140,7 @@ class _$HomePageStarted implements HomePageStarted {
     TResult? Function()? started,
     TResult? Function(int index)? navigationBarDestinationSelected,
     TResult? Function(List<NovelModel> data)? historyUpdated,
+    TResult? Function(List<NovelModel> data)? shelfUpdated,
   }) {
     return started?.call();
   }
@@ -143,6 +151,7 @@ class _$HomePageStarted implements HomePageStarted {
     TResult Function()? started,
     TResult Function(int index)? navigationBarDestinationSelected,
     TResult Function(List<NovelModel> data)? historyUpdated,
+    TResult Function(List<NovelModel> data)? shelfUpdated,
     required TResult orElse(),
   }) {
     if (started != null) {
@@ -158,6 +167,7 @@ class _$HomePageStarted implements HomePageStarted {
     required TResult Function(NavigationBarDestinationSelected value)
         navigationBarDestinationSelected,
     required TResult Function(_HistoryUpdated value) historyUpdated,
+    required TResult Function(_ShelfUpdated value) shelfUpdated,
   }) {
     return started(this);
   }
@@ -169,6 +179,7 @@ class _$HomePageStarted implements HomePageStarted {
     TResult? Function(NavigationBarDestinationSelected value)?
         navigationBarDestinationSelected,
     TResult? Function(_HistoryUpdated value)? historyUpdated,
+    TResult? Function(_ShelfUpdated value)? shelfUpdated,
   }) {
     return started?.call(this);
   }
@@ -180,6 +191,7 @@ class _$HomePageStarted implements HomePageStarted {
     TResult Function(NavigationBarDestinationSelected value)?
         navigationBarDestinationSelected,
     TResult Function(_HistoryUpdated value)? historyUpdated,
+    TResult Function(_ShelfUpdated value)? shelfUpdated,
     required TResult orElse(),
   }) {
     if (started != null) {
@@ -265,6 +277,7 @@ class _$NavigationBarDestinationSelected
     required TResult Function() started,
     required TResult Function(int index) navigationBarDestinationSelected,
     required TResult Function(List<NovelModel> data) historyUpdated,
+    required TResult Function(List<NovelModel> data) shelfUpdated,
   }) {
     return navigationBarDestinationSelected(index);
   }
@@ -275,6 +288,7 @@ class _$NavigationBarDestinationSelected
     TResult? Function()? started,
     TResult? Function(int index)? navigationBarDestinationSelected,
     TResult? Function(List<NovelModel> data)? historyUpdated,
+    TResult? Function(List<NovelModel> data)? shelfUpdated,
   }) {
     return navigationBarDestinationSelected?.call(index);
   }
@@ -285,6 +299,7 @@ class _$NavigationBarDestinationSelected
     TResult Function()? started,
     TResult Function(int index)? navigationBarDestinationSelected,
     TResult Function(List<NovelModel> data)? historyUpdated,
+    TResult Function(List<NovelModel> data)? shelfUpdated,
     required TResult orElse(),
   }) {
     if (navigationBarDestinationSelected != null) {
@@ -300,6 +315,7 @@ class _$NavigationBarDestinationSelected
     required TResult Function(NavigationBarDestinationSelected value)
         navigationBarDestinationSelected,
     required TResult Function(_HistoryUpdated value) historyUpdated,
+    required TResult Function(_ShelfUpdated value) shelfUpdated,
   }) {
     return navigationBarDestinationSelected(this);
   }
@@ -311,6 +327,7 @@ class _$NavigationBarDestinationSelected
     TResult? Function(NavigationBarDestinationSelected value)?
         navigationBarDestinationSelected,
     TResult? Function(_HistoryUpdated value)? historyUpdated,
+    TResult? Function(_ShelfUpdated value)? shelfUpdated,
   }) {
     return navigationBarDestinationSelected?.call(this);
   }
@@ -322,6 +339,7 @@ class _$NavigationBarDestinationSelected
     TResult Function(NavigationBarDestinationSelected value)?
         navigationBarDestinationSelected,
     TResult Function(_HistoryUpdated value)? historyUpdated,
+    TResult Function(_ShelfUpdated value)? shelfUpdated,
     required TResult orElse(),
   }) {
     if (navigationBarDestinationSelected != null) {
@@ -415,6 +433,7 @@ class _$_HistoryUpdated implements _HistoryUpdated {
     required TResult Function() started,
     required TResult Function(int index) navigationBarDestinationSelected,
     required TResult Function(List<NovelModel> data) historyUpdated,
+    required TResult Function(List<NovelModel> data) shelfUpdated,
   }) {
     return historyUpdated(data);
   }
@@ -425,6 +444,7 @@ class _$_HistoryUpdated implements _HistoryUpdated {
     TResult? Function()? started,
     TResult? Function(int index)? navigationBarDestinationSelected,
     TResult? Function(List<NovelModel> data)? historyUpdated,
+    TResult? Function(List<NovelModel> data)? shelfUpdated,
   }) {
     return historyUpdated?.call(data);
   }
@@ -435,6 +455,7 @@ class _$_HistoryUpdated implements _HistoryUpdated {
     TResult Function()? started,
     TResult Function(int index)? navigationBarDestinationSelected,
     TResult Function(List<NovelModel> data)? historyUpdated,
+    TResult Function(List<NovelModel> data)? shelfUpdated,
     required TResult orElse(),
   }) {
     if (historyUpdated != null) {
@@ -450,6 +471,7 @@ class _$_HistoryUpdated implements _HistoryUpdated {
     required TResult Function(NavigationBarDestinationSelected value)
         navigationBarDestinationSelected,
     required TResult Function(_HistoryUpdated value) historyUpdated,
+    required TResult Function(_ShelfUpdated value) shelfUpdated,
   }) {
     return historyUpdated(this);
   }
@@ -461,6 +483,7 @@ class _$_HistoryUpdated implements _HistoryUpdated {
     TResult? Function(NavigationBarDestinationSelected value)?
         navigationBarDestinationSelected,
     TResult? Function(_HistoryUpdated value)? historyUpdated,
+    TResult? Function(_ShelfUpdated value)? shelfUpdated,
   }) {
     return historyUpdated?.call(this);
   }
@@ -472,6 +495,7 @@ class _$_HistoryUpdated implements _HistoryUpdated {
     TResult Function(NavigationBarDestinationSelected value)?
         navigationBarDestinationSelected,
     TResult Function(_HistoryUpdated value)? historyUpdated,
+    TResult Function(_ShelfUpdated value)? shelfUpdated,
     required TResult orElse(),
   }) {
     if (historyUpdated != null) {
@@ -488,6 +512,160 @@ abstract class _HistoryUpdated implements HomeEvent {
   List<NovelModel> get data;
   @JsonKey(ignore: true)
   _$$_HistoryUpdatedCopyWith<_$_HistoryUpdated> get copyWith =>
+      throw _privateConstructorUsedError;
+}
+
+/// @nodoc
+abstract class _$$_ShelfUpdatedCopyWith<$Res> {
+  factory _$$_ShelfUpdatedCopyWith(
+          _$_ShelfUpdated value, $Res Function(_$_ShelfUpdated) then) =
+      __$$_ShelfUpdatedCopyWithImpl<$Res>;
+  @useResult
+  $Res call({List<NovelModel> data});
+}
+
+/// @nodoc
+class __$$_ShelfUpdatedCopyWithImpl<$Res>
+    extends _$HomeEventCopyWithImpl<$Res, _$_ShelfUpdated>
+    implements _$$_ShelfUpdatedCopyWith<$Res> {
+  __$$_ShelfUpdatedCopyWithImpl(
+      _$_ShelfUpdated _value, $Res Function(_$_ShelfUpdated) _then)
+      : super(_value, _then);
+
+  @pragma('vm:prefer-inline')
+  @override
+  $Res call({
+    Object? data = null,
+  }) {
+    return _then(_$_ShelfUpdated(
+      null == data
+          ? _value._data
+          : data // ignore: cast_nullable_to_non_nullable
+              as List<NovelModel>,
+    ));
+  }
+}
+
+/// @nodoc
+
+class _$_ShelfUpdated implements _ShelfUpdated {
+  const _$_ShelfUpdated(final List<NovelModel> data) : _data = data;
+
+  final List<NovelModel> _data;
+  @override
+  List<NovelModel> get data {
+    if (_data is EqualUnmodifiableListView) return _data;
+    // ignore: implicit_dynamic_type
+    return EqualUnmodifiableListView(_data);
+  }
+
+  @override
+  String toString() {
+    return 'HomeEvent.shelfUpdated(data: $data)';
+  }
+
+  @override
+  bool operator ==(dynamic other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType &&
+            other is _$_ShelfUpdated &&
+            const DeepCollectionEquality().equals(other._data, _data));
+  }
+
+  @override
+  int get hashCode =>
+      Object.hash(runtimeType, const DeepCollectionEquality().hash(_data));
+
+  @JsonKey(ignore: true)
+  @override
+  @pragma('vm:prefer-inline')
+  _$$_ShelfUpdatedCopyWith<_$_ShelfUpdated> get copyWith =>
+      __$$_ShelfUpdatedCopyWithImpl<_$_ShelfUpdated>(this, _$identity);
+
+  @override
+  @optionalTypeArgs
+  TResult when<TResult extends Object?>({
+    required TResult Function() started,
+    required TResult Function(int index) navigationBarDestinationSelected,
+    required TResult Function(List<NovelModel> data) historyUpdated,
+    required TResult Function(List<NovelModel> data) shelfUpdated,
+  }) {
+    return shelfUpdated(data);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>({
+    TResult? Function()? started,
+    TResult? Function(int index)? navigationBarDestinationSelected,
+    TResult? Function(List<NovelModel> data)? historyUpdated,
+    TResult? Function(List<NovelModel> data)? shelfUpdated,
+  }) {
+    return shelfUpdated?.call(data);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object?>({
+    TResult Function()? started,
+    TResult Function(int index)? navigationBarDestinationSelected,
+    TResult Function(List<NovelModel> data)? historyUpdated,
+    TResult Function(List<NovelModel> data)? shelfUpdated,
+    required TResult orElse(),
+  }) {
+    if (shelfUpdated != null) {
+      return shelfUpdated(data);
+    }
+    return orElse();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult map<TResult extends Object?>({
+    required TResult Function(HomePageStarted value) started,
+    required TResult Function(NavigationBarDestinationSelected value)
+        navigationBarDestinationSelected,
+    required TResult Function(_HistoryUpdated value) historyUpdated,
+    required TResult Function(_ShelfUpdated value) shelfUpdated,
+  }) {
+    return shelfUpdated(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>({
+    TResult? Function(HomePageStarted value)? started,
+    TResult? Function(NavigationBarDestinationSelected value)?
+        navigationBarDestinationSelected,
+    TResult? Function(_HistoryUpdated value)? historyUpdated,
+    TResult? Function(_ShelfUpdated value)? shelfUpdated,
+  }) {
+    return shelfUpdated?.call(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object?>({
+    TResult Function(HomePageStarted value)? started,
+    TResult Function(NavigationBarDestinationSelected value)?
+        navigationBarDestinationSelected,
+    TResult Function(_HistoryUpdated value)? historyUpdated,
+    TResult Function(_ShelfUpdated value)? shelfUpdated,
+    required TResult orElse(),
+  }) {
+    if (shelfUpdated != null) {
+      return shelfUpdated(this);
+    }
+    return orElse();
+  }
+}
+
+abstract class _ShelfUpdated implements HomeEvent {
+  const factory _ShelfUpdated(final List<NovelModel> data) = _$_ShelfUpdated;
+
+  List<NovelModel> get data;
+  @JsonKey(ignore: true)
+  _$$_ShelfUpdatedCopyWith<_$_ShelfUpdated> get copyWith =>
       throw _privateConstructorUsedError;
 }
 

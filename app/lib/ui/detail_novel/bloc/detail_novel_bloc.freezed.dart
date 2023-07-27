@@ -21,32 +21,40 @@ mixin _$DetailNovelEvent {
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function(String id, String endpoint) started,
+    required TResult Function(String id, String endpoint)
+        addToShelfButtonPressed,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function(String id, String endpoint)? started,
+    TResult? Function(String id, String endpoint)? addToShelfButtonPressed,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function(String id, String endpoint)? started,
+    TResult Function(String id, String endpoint)? addToShelfButtonPressed,
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
     required TResult Function(_Started value) started,
+    required TResult Function(_AddToShelfButtonPressed value)
+        addToShelfButtonPressed,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
     TResult? Function(_Started value)? started,
+    TResult? Function(_AddToShelfButtonPressed value)? addToShelfButtonPressed,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
     TResult Function(_Started value)? started,
+    TResult Function(_AddToShelfButtonPressed value)? addToShelfButtonPressed,
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
@@ -169,6 +177,8 @@ class _$_Started implements _Started {
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function(String id, String endpoint) started,
+    required TResult Function(String id, String endpoint)
+        addToShelfButtonPressed,
   }) {
     return started(id, endpoint);
   }
@@ -177,6 +187,7 @@ class _$_Started implements _Started {
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function(String id, String endpoint)? started,
+    TResult? Function(String id, String endpoint)? addToShelfButtonPressed,
   }) {
     return started?.call(id, endpoint);
   }
@@ -185,6 +196,7 @@ class _$_Started implements _Started {
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function(String id, String endpoint)? started,
+    TResult Function(String id, String endpoint)? addToShelfButtonPressed,
     required TResult orElse(),
   }) {
     if (started != null) {
@@ -197,6 +209,8 @@ class _$_Started implements _Started {
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
     required TResult Function(_Started value) started,
+    required TResult Function(_AddToShelfButtonPressed value)
+        addToShelfButtonPressed,
   }) {
     return started(this);
   }
@@ -205,6 +219,7 @@ class _$_Started implements _Started {
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
     TResult? Function(_Started value)? started,
+    TResult? Function(_AddToShelfButtonPressed value)? addToShelfButtonPressed,
   }) {
     return started?.call(this);
   }
@@ -213,6 +228,7 @@ class _$_Started implements _Started {
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
     TResult Function(_Started value)? started,
+    TResult Function(_AddToShelfButtonPressed value)? addToShelfButtonPressed,
     required TResult orElse(),
   }) {
     if (started != null) {
@@ -234,6 +250,160 @@ abstract class _Started implements DetailNovelEvent {
   @JsonKey(ignore: true)
   _$$_StartedCopyWith<_$_Started> get copyWith =>
       throw _privateConstructorUsedError;
+}
+
+/// @nodoc
+abstract class _$$_AddToShelfButtonPressedCopyWith<$Res>
+    implements $DetailNovelEventCopyWith<$Res> {
+  factory _$$_AddToShelfButtonPressedCopyWith(_$_AddToShelfButtonPressed value,
+          $Res Function(_$_AddToShelfButtonPressed) then) =
+      __$$_AddToShelfButtonPressedCopyWithImpl<$Res>;
+  @override
+  @useResult
+  $Res call({String id, String endpoint});
+}
+
+/// @nodoc
+class __$$_AddToShelfButtonPressedCopyWithImpl<$Res>
+    extends _$DetailNovelEventCopyWithImpl<$Res, _$_AddToShelfButtonPressed>
+    implements _$$_AddToShelfButtonPressedCopyWith<$Res> {
+  __$$_AddToShelfButtonPressedCopyWithImpl(_$_AddToShelfButtonPressed _value,
+      $Res Function(_$_AddToShelfButtonPressed) _then)
+      : super(_value, _then);
+
+  @pragma('vm:prefer-inline')
+  @override
+  $Res call({
+    Object? id = null,
+    Object? endpoint = null,
+  }) {
+    return _then(_$_AddToShelfButtonPressed(
+      id: null == id
+          ? _value.id
+          : id // ignore: cast_nullable_to_non_nullable
+              as String,
+      endpoint: null == endpoint
+          ? _value.endpoint
+          : endpoint // ignore: cast_nullable_to_non_nullable
+              as String,
+    ));
+  }
+}
+
+/// @nodoc
+
+class _$_AddToShelfButtonPressed implements _AddToShelfButtonPressed {
+  const _$_AddToShelfButtonPressed({required this.id, required this.endpoint});
+
+  @override
+  final String id;
+  @override
+  final String endpoint;
+
+  @override
+  String toString() {
+    return 'DetailNovelEvent.addToShelfButtonPressed(id: $id, endpoint: $endpoint)';
+  }
+
+  @override
+  bool operator ==(dynamic other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType &&
+            other is _$_AddToShelfButtonPressed &&
+            (identical(other.id, id) || other.id == id) &&
+            (identical(other.endpoint, endpoint) ||
+                other.endpoint == endpoint));
+  }
+
+  @override
+  int get hashCode => Object.hash(runtimeType, id, endpoint);
+
+  @JsonKey(ignore: true)
+  @override
+  @pragma('vm:prefer-inline')
+  _$$_AddToShelfButtonPressedCopyWith<_$_AddToShelfButtonPressed>
+      get copyWith =>
+          __$$_AddToShelfButtonPressedCopyWithImpl<_$_AddToShelfButtonPressed>(
+              this, _$identity);
+
+  @override
+  @optionalTypeArgs
+  TResult when<TResult extends Object?>({
+    required TResult Function(String id, String endpoint) started,
+    required TResult Function(String id, String endpoint)
+        addToShelfButtonPressed,
+  }) {
+    return addToShelfButtonPressed(id, endpoint);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>({
+    TResult? Function(String id, String endpoint)? started,
+    TResult? Function(String id, String endpoint)? addToShelfButtonPressed,
+  }) {
+    return addToShelfButtonPressed?.call(id, endpoint);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object?>({
+    TResult Function(String id, String endpoint)? started,
+    TResult Function(String id, String endpoint)? addToShelfButtonPressed,
+    required TResult orElse(),
+  }) {
+    if (addToShelfButtonPressed != null) {
+      return addToShelfButtonPressed(id, endpoint);
+    }
+    return orElse();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult map<TResult extends Object?>({
+    required TResult Function(_Started value) started,
+    required TResult Function(_AddToShelfButtonPressed value)
+        addToShelfButtonPressed,
+  }) {
+    return addToShelfButtonPressed(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>({
+    TResult? Function(_Started value)? started,
+    TResult? Function(_AddToShelfButtonPressed value)? addToShelfButtonPressed,
+  }) {
+    return addToShelfButtonPressed?.call(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object?>({
+    TResult Function(_Started value)? started,
+    TResult Function(_AddToShelfButtonPressed value)? addToShelfButtonPressed,
+    required TResult orElse(),
+  }) {
+    if (addToShelfButtonPressed != null) {
+      return addToShelfButtonPressed(this);
+    }
+    return orElse();
+  }
+}
+
+abstract class _AddToShelfButtonPressed implements DetailNovelEvent {
+  const factory _AddToShelfButtonPressed(
+      {required final String id,
+      required final String endpoint}) = _$_AddToShelfButtonPressed;
+
+  @override
+  String get id;
+  @override
+  String get endpoint;
+  @override
+  @JsonKey(ignore: true)
+  _$$_AddToShelfButtonPressedCopyWith<_$_AddToShelfButtonPressed>
+      get copyWith => throw _privateConstructorUsedError;
 }
 
 /// @nodoc

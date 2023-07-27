@@ -9,4 +9,7 @@ class HomeEvent extends BaseEvent with _$HomeEvent {
 
   const factory HomeEvent.historyUpdated(List<NovelModel> data) =
   _HistoryUpdated;
+
+  const factory HomeEvent.shelfUpdated(List<NovelModel> data) =
+  _ShelfUpdated;
 }

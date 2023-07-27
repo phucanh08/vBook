@@ -13,8 +13,6 @@ class BookShelfTab extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final theme = Theme.of(context);
-
     return BlocBuilder<HomeBloc, HomeState>(
       buildWhen: (prev, cur) => prev.novelInShelf != cur.novelInShelf,
       builder: (context, state) {
@@ -27,38 +25,43 @@ class BookShelfTab extends StatelessWidget {
         return ListView(
           padding: const EdgeInsets.symmetric(horizontal: 5),
           children: [
-            CarouselSlider(
-              options: CarouselOptions(
-                aspectRatio: 2,
-                autoPlay: true,
-                autoPlayAnimationDuration: const Duration(seconds: 3),
+            if (novelInShelf.isNotEmpty)
+              CarouselSlider.builder(
+                options: CarouselOptions(
+                  aspectRatio: 2,
+                  autoPlay: true,
+                  autoPlayAnimationDuration: const Duration(seconds: 3),
+                ),
+                itemCount: novelInShelf.length < 3 ? novelInShelf.length : 3,
+                itemBuilder: (context, itemIndex, pageViewIndex) {
+                  return CarouselSliderItem(
+                    novelModel: novelInShelf[itemIndex],
+                  );
+                },
               ),
-              items: state.novelInShelf.skip(3).map((novel) {
-                return CarouselSliderItem(novelModel: novel);
-              }).toList(),
-            ),
             const SizedBox(height: 10),
-            GridView.builder(
-              shrinkWrap: true,
-              physics: const NeverScrollableScrollPhysics(),
-              gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
-                crossAxisCount: 4,
-                mainAxisSpacing: 8,
-                crossAxisSpacing: 8,
-                childAspectRatio: 2 / 3,
-              ),
-              itemCount: novelInShelf.length - 3,
-              itemBuilder: (context, index) {
-                final novel = novelInShelf[index + 3];
+            if (novelInShelf.length - 3 > 0)
+              GridView.builder(
+                shrinkWrap: true,
+                physics: const NeverScrollableScrollPhysics(),
+                gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
+                  crossAxisCount: 4,
+                  mainAxisSpacing: 8,
+                  crossAxisSpacing: 8,
+                  childAspectRatio: 2 / 3,
+                ),
+                itemCount: novelInShelf.length - 3,
+                itemBuilder: (context, index) {
+                  final novel = novelInShelf[index + 3];
 
-                return BookCardItem(
-                  imageUrl: novel.imgUrl,
-                  bookName: novel.name,
-                  currentChapter: novel.totalChapters,
-                  totalChapter: novel.currentChapter,
-                );
-              },
-            ),
+                  return BookCardItem(
+                    imageUrl: novel.imgUrl,
+                    bookName: novel.name,
+                    currentChapter: novel.totalChapters,
+                    totalChapter: novel.currentChapter,
+                  );
+                },
+              ),
           ],
         );
       },

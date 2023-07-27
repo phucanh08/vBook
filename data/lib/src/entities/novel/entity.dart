@@ -7,6 +7,7 @@ class Novel {
     required this.name,
     required this.novelEndpoint,
     required this.sourceId,
+    required this.chapterEndpoint,
     required this.sourceName,
     required this.imgUrl,
     required this.totalChapters,
@@ -22,19 +23,21 @@ class Novel {
   final DateTime updatedAt;
   final String name;
   final String novelEndpoint;
+  final String? chapterEndpoint;
   final String sourceId;
   final String sourceName;
   final String imgUrl;
-  final int totalChapters;
-  final int currentChapter;
-  final String currentChapterName;
-  final int timeRead;
+  final int? totalChapters;
+  final int? currentChapter;
+  final String? currentChapterName;
+  final int? timeRead;
   final bool inShelf;
 
   Novel copyWith({
     DateTime? updatedAt,
     String? name,
     String? novelEndpoint,
+    String? chapterEndpoint,
     String? sourceId,
     String? sourceName,
     String? imgUrl,
@@ -49,6 +52,7 @@ class Novel {
       updatedAt: updatedAt ?? this.updatedAt,
       name: name ?? this.name,
       novelEndpoint: novelEndpoint ?? this.novelEndpoint,
+      chapterEndpoint: chapterEndpoint ?? this.chapterEndpoint,
       sourceId: sourceId ?? this.sourceId,
       sourceName: sourceName ?? this.sourceName,
       imgUrl: imgUrl ?? this.imgUrl,

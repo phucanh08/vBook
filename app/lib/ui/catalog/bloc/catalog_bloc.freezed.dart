@@ -20,7 +20,7 @@ mixin _$CatalogEvent {
   TResult when<TResult extends Object?>({
     required TResult Function(String id, String endpoint) started,
     required TResult Function(Sort sort) sortSelected,
-    required TResult Function(String sourceId, String endpoint,
+    required TResult Function(String sourceId, String chapterEndpoint,
             String novelEndpoint, String currentChapterName, int currentChapter)
         itemPressed,
   }) =>
@@ -29,8 +29,12 @@ mixin _$CatalogEvent {
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function(String id, String endpoint)? started,
     TResult? Function(Sort sort)? sortSelected,
-    TResult? Function(String sourceId, String endpoint, String novelEndpoint,
-            String currentChapterName, int currentChapter)?
+    TResult? Function(
+            String sourceId,
+            String chapterEndpoint,
+            String novelEndpoint,
+            String currentChapterName,
+            int currentChapter)?
         itemPressed,
   }) =>
       throw _privateConstructorUsedError;
@@ -38,8 +42,12 @@ mixin _$CatalogEvent {
   TResult maybeWhen<TResult extends Object?>({
     TResult Function(String id, String endpoint)? started,
     TResult Function(Sort sort)? sortSelected,
-    TResult Function(String sourceId, String endpoint, String novelEndpoint,
-            String currentChapterName, int currentChapter)?
+    TResult Function(
+            String sourceId,
+            String chapterEndpoint,
+            String novelEndpoint,
+            String currentChapterName,
+            int currentChapter)?
         itemPressed,
     required TResult orElse(),
   }) =>
@@ -47,22 +55,22 @@ mixin _$CatalogEvent {
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
     required TResult Function(_Started value) started,
-    required TResult Function(_sortSelected value) sortSelected,
-    required TResult Function(_itemPressed value) itemPressed,
+    required TResult Function(_SortSelected value) sortSelected,
+    required TResult Function(_ItemPressed value) itemPressed,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
     TResult? Function(_Started value)? started,
-    TResult? Function(_sortSelected value)? sortSelected,
-    TResult? Function(_itemPressed value)? itemPressed,
+    TResult? Function(_SortSelected value)? sortSelected,
+    TResult? Function(_ItemPressed value)? itemPressed,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
     TResult Function(_Started value)? started,
-    TResult Function(_sortSelected value)? sortSelected,
-    TResult Function(_itemPressed value)? itemPressed,
+    TResult Function(_SortSelected value)? sortSelected,
+    TResult Function(_ItemPressed value)? itemPressed,
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
@@ -160,7 +168,7 @@ class _$_Started implements _Started {
   TResult when<TResult extends Object?>({
     required TResult Function(String id, String endpoint) started,
     required TResult Function(Sort sort) sortSelected,
-    required TResult Function(String sourceId, String endpoint,
+    required TResult Function(String sourceId, String chapterEndpoint,
             String novelEndpoint, String currentChapterName, int currentChapter)
         itemPressed,
   }) {
@@ -172,8 +180,12 @@ class _$_Started implements _Started {
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function(String id, String endpoint)? started,
     TResult? Function(Sort sort)? sortSelected,
-    TResult? Function(String sourceId, String endpoint, String novelEndpoint,
-            String currentChapterName, int currentChapter)?
+    TResult? Function(
+            String sourceId,
+            String chapterEndpoint,
+            String novelEndpoint,
+            String currentChapterName,
+            int currentChapter)?
         itemPressed,
   }) {
     return started?.call(id, endpoint);
@@ -184,8 +196,12 @@ class _$_Started implements _Started {
   TResult maybeWhen<TResult extends Object?>({
     TResult Function(String id, String endpoint)? started,
     TResult Function(Sort sort)? sortSelected,
-    TResult Function(String sourceId, String endpoint, String novelEndpoint,
-            String currentChapterName, int currentChapter)?
+    TResult Function(
+            String sourceId,
+            String chapterEndpoint,
+            String novelEndpoint,
+            String currentChapterName,
+            int currentChapter)?
         itemPressed,
     required TResult orElse(),
   }) {
@@ -199,8 +215,8 @@ class _$_Started implements _Started {
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
     required TResult Function(_Started value) started,
-    required TResult Function(_sortSelected value) sortSelected,
-    required TResult Function(_itemPressed value) itemPressed,
+    required TResult Function(_SortSelected value) sortSelected,
+    required TResult Function(_ItemPressed value) itemPressed,
   }) {
     return started(this);
   }
@@ -209,8 +225,8 @@ class _$_Started implements _Started {
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
     TResult? Function(_Started value)? started,
-    TResult? Function(_sortSelected value)? sortSelected,
-    TResult? Function(_itemPressed value)? itemPressed,
+    TResult? Function(_SortSelected value)? sortSelected,
+    TResult? Function(_ItemPressed value)? itemPressed,
   }) {
     return started?.call(this);
   }
@@ -219,8 +235,8 @@ class _$_Started implements _Started {
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
     TResult Function(_Started value)? started,
-    TResult Function(_sortSelected value)? sortSelected,
-    TResult Function(_itemPressed value)? itemPressed,
+    TResult Function(_SortSelected value)? sortSelected,
+    TResult Function(_ItemPressed value)? itemPressed,
     required TResult orElse(),
   }) {
     if (started != null) {
@@ -242,20 +258,20 @@ abstract class _Started implements CatalogEvent {
 }
 
 /// @nodoc
-abstract class _$$_sortSelectedCopyWith<$Res> {
-  factory _$$_sortSelectedCopyWith(
-          _$_sortSelected value, $Res Function(_$_sortSelected) then) =
-      __$$_sortSelectedCopyWithImpl<$Res>;
+abstract class _$$_SortSelectedCopyWith<$Res> {
+  factory _$$_SortSelectedCopyWith(
+          _$_SortSelected value, $Res Function(_$_SortSelected) then) =
+      __$$_SortSelectedCopyWithImpl<$Res>;
   @useResult
   $Res call({Sort sort});
 }
 
 /// @nodoc
-class __$$_sortSelectedCopyWithImpl<$Res>
-    extends _$CatalogEventCopyWithImpl<$Res, _$_sortSelected>
-    implements _$$_sortSelectedCopyWith<$Res> {
-  __$$_sortSelectedCopyWithImpl(
-      _$_sortSelected _value, $Res Function(_$_sortSelected) _then)
+class __$$_SortSelectedCopyWithImpl<$Res>
+    extends _$CatalogEventCopyWithImpl<$Res, _$_SortSelected>
+    implements _$$_SortSelectedCopyWith<$Res> {
+  __$$_SortSelectedCopyWithImpl(
+      _$_SortSelected _value, $Res Function(_$_SortSelected) _then)
       : super(_value, _then);
 
   @pragma('vm:prefer-inline')
@@ -263,7 +279,7 @@ class __$$_sortSelectedCopyWithImpl<$Res>
   $Res call({
     Object? sort = null,
   }) {
-    return _then(_$_sortSelected(
+    return _then(_$_SortSelected(
       sort: null == sort
           ? _value.sort
           : sort // ignore: cast_nullable_to_non_nullable
@@ -274,8 +290,8 @@ class __$$_sortSelectedCopyWithImpl<$Res>
 
 /// @nodoc
 
-class _$_sortSelected implements _sortSelected {
-  const _$_sortSelected({required this.sort});
+class _$_SortSelected implements _SortSelected {
+  const _$_SortSelected({required this.sort});
 
   @override
   final Sort sort;
@@ -289,7 +305,7 @@ class _$_sortSelected implements _sortSelected {
   bool operator ==(dynamic other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
-            other is _$_sortSelected &&
+            other is _$_SortSelected &&
             (identical(other.sort, sort) || other.sort == sort));
   }
 
@@ -299,15 +315,15 @@ class _$_sortSelected implements _sortSelected {
   @JsonKey(ignore: true)
   @override
   @pragma('vm:prefer-inline')
-  _$$_sortSelectedCopyWith<_$_sortSelected> get copyWith =>
-      __$$_sortSelectedCopyWithImpl<_$_sortSelected>(this, _$identity);
+  _$$_SortSelectedCopyWith<_$_SortSelected> get copyWith =>
+      __$$_SortSelectedCopyWithImpl<_$_SortSelected>(this, _$identity);
 
   @override
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function(String id, String endpoint) started,
     required TResult Function(Sort sort) sortSelected,
-    required TResult Function(String sourceId, String endpoint,
+    required TResult Function(String sourceId, String chapterEndpoint,
             String novelEndpoint, String currentChapterName, int currentChapter)
         itemPressed,
   }) {
@@ -319,8 +335,12 @@ class _$_sortSelected implements _sortSelected {
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function(String id, String endpoint)? started,
     TResult? Function(Sort sort)? sortSelected,
-    TResult? Function(String sourceId, String endpoint, String novelEndpoint,
-            String currentChapterName, int currentChapter)?
+    TResult? Function(
+            String sourceId,
+            String chapterEndpoint,
+            String novelEndpoint,
+            String currentChapterName,
+            int currentChapter)?
         itemPressed,
   }) {
     return sortSelected?.call(sort);
@@ -331,8 +351,12 @@ class _$_sortSelected implements _sortSelected {
   TResult maybeWhen<TResult extends Object?>({
     TResult Function(String id, String endpoint)? started,
     TResult Function(Sort sort)? sortSelected,
-    TResult Function(String sourceId, String endpoint, String novelEndpoint,
-            String currentChapterName, int currentChapter)?
+    TResult Function(
+            String sourceId,
+            String chapterEndpoint,
+            String novelEndpoint,
+            String currentChapterName,
+            int currentChapter)?
         itemPressed,
     required TResult orElse(),
   }) {
@@ -346,8 +370,8 @@ class _$_sortSelected implements _sortSelected {
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
     required TResult Function(_Started value) started,
-    required TResult Function(_sortSelected value) sortSelected,
-    required TResult Function(_itemPressed value) itemPressed,
+    required TResult Function(_SortSelected value) sortSelected,
+    required TResult Function(_ItemPressed value) itemPressed,
   }) {
     return sortSelected(this);
   }
@@ -356,8 +380,8 @@ class _$_sortSelected implements _sortSelected {
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
     TResult? Function(_Started value)? started,
-    TResult? Function(_sortSelected value)? sortSelected,
-    TResult? Function(_itemPressed value)? itemPressed,
+    TResult? Function(_SortSelected value)? sortSelected,
+    TResult? Function(_ItemPressed value)? itemPressed,
   }) {
     return sortSelected?.call(this);
   }
@@ -366,8 +390,8 @@ class _$_sortSelected implements _sortSelected {
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
     TResult Function(_Started value)? started,
-    TResult Function(_sortSelected value)? sortSelected,
-    TResult Function(_itemPressed value)? itemPressed,
+    TResult Function(_SortSelected value)? sortSelected,
+    TResult Function(_ItemPressed value)? itemPressed,
     required TResult orElse(),
   }) {
     if (sortSelected != null) {
@@ -377,54 +401,54 @@ class _$_sortSelected implements _sortSelected {
   }
 }
 
-abstract class _sortSelected implements CatalogEvent {
-  const factory _sortSelected({required final Sort sort}) = _$_sortSelected;
+abstract class _SortSelected implements CatalogEvent {
+  const factory _SortSelected({required final Sort sort}) = _$_SortSelected;
 
   Sort get sort;
   @JsonKey(ignore: true)
-  _$$_sortSelectedCopyWith<_$_sortSelected> get copyWith =>
+  _$$_SortSelectedCopyWith<_$_SortSelected> get copyWith =>
       throw _privateConstructorUsedError;
 }
 
 /// @nodoc
-abstract class _$$_itemPressedCopyWith<$Res> {
-  factory _$$_itemPressedCopyWith(
-          _$_itemPressed value, $Res Function(_$_itemPressed) then) =
-      __$$_itemPressedCopyWithImpl<$Res>;
+abstract class _$$_ItemPressedCopyWith<$Res> {
+  factory _$$_ItemPressedCopyWith(
+          _$_ItemPressed value, $Res Function(_$_ItemPressed) then) =
+      __$$_ItemPressedCopyWithImpl<$Res>;
   @useResult
   $Res call(
       {String sourceId,
-      String endpoint,
+      String chapterEndpoint,
       String novelEndpoint,
       String currentChapterName,
       int currentChapter});
 }
 
 /// @nodoc
-class __$$_itemPressedCopyWithImpl<$Res>
-    extends _$CatalogEventCopyWithImpl<$Res, _$_itemPressed>
-    implements _$$_itemPressedCopyWith<$Res> {
-  __$$_itemPressedCopyWithImpl(
-      _$_itemPressed _value, $Res Function(_$_itemPressed) _then)
+class __$$_ItemPressedCopyWithImpl<$Res>
+    extends _$CatalogEventCopyWithImpl<$Res, _$_ItemPressed>
+    implements _$$_ItemPressedCopyWith<$Res> {
+  __$$_ItemPressedCopyWithImpl(
+      _$_ItemPressed _value, $Res Function(_$_ItemPressed) _then)
       : super(_value, _then);
 
   @pragma('vm:prefer-inline')
   @override
   $Res call({
     Object? sourceId = null,
-    Object? endpoint = null,
+    Object? chapterEndpoint = null,
     Object? novelEndpoint = null,
     Object? currentChapterName = null,
     Object? currentChapter = null,
   }) {
-    return _then(_$_itemPressed(
+    return _then(_$_ItemPressed(
       sourceId: null == sourceId
           ? _value.sourceId
           : sourceId // ignore: cast_nullable_to_non_nullable
               as String,
-      endpoint: null == endpoint
-          ? _value.endpoint
-          : endpoint // ignore: cast_nullable_to_non_nullable
+      chapterEndpoint: null == chapterEndpoint
+          ? _value.chapterEndpoint
+          : chapterEndpoint // ignore: cast_nullable_to_non_nullable
               as String,
       novelEndpoint: null == novelEndpoint
           ? _value.novelEndpoint
@@ -444,10 +468,10 @@ class __$$_itemPressedCopyWithImpl<$Res>
 
 /// @nodoc
 
-class _$_itemPressed implements _itemPressed {
-  const _$_itemPressed(
+class _$_ItemPressed implements _ItemPressed {
+  const _$_ItemPressed(
       {required this.sourceId,
-      required this.endpoint,
+      required this.chapterEndpoint,
       required this.novelEndpoint,
       required this.currentChapterName,
       required this.currentChapter});
@@ -455,7 +479,7 @@ class _$_itemPressed implements _itemPressed {
   @override
   final String sourceId;
   @override
-  final String endpoint;
+  final String chapterEndpoint;
   @override
   final String novelEndpoint;
   @override
@@ -465,18 +489,18 @@ class _$_itemPressed implements _itemPressed {
 
   @override
   String toString() {
-    return 'CatalogEvent.itemPressed(sourceId: $sourceId, endpoint: $endpoint, novelEndpoint: $novelEndpoint, currentChapterName: $currentChapterName, currentChapter: $currentChapter)';
+    return 'CatalogEvent.itemPressed(sourceId: $sourceId, chapterEndpoint: $chapterEndpoint, novelEndpoint: $novelEndpoint, currentChapterName: $currentChapterName, currentChapter: $currentChapter)';
   }
 
   @override
   bool operator ==(dynamic other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
-            other is _$_itemPressed &&
+            other is _$_ItemPressed &&
             (identical(other.sourceId, sourceId) ||
                 other.sourceId == sourceId) &&
-            (identical(other.endpoint, endpoint) ||
-                other.endpoint == endpoint) &&
+            (identical(other.chapterEndpoint, chapterEndpoint) ||
+                other.chapterEndpoint == chapterEndpoint) &&
             (identical(other.novelEndpoint, novelEndpoint) ||
                 other.novelEndpoint == novelEndpoint) &&
             (identical(other.currentChapterName, currentChapterName) ||
@@ -486,26 +510,26 @@ class _$_itemPressed implements _itemPressed {
   }
 
   @override
-  int get hashCode => Object.hash(runtimeType, sourceId, endpoint,
+  int get hashCode => Object.hash(runtimeType, sourceId, chapterEndpoint,
       novelEndpoint, currentChapterName, currentChapter);
 
   @JsonKey(ignore: true)
   @override
   @pragma('vm:prefer-inline')
-  _$$_itemPressedCopyWith<_$_itemPressed> get copyWith =>
-      __$$_itemPressedCopyWithImpl<_$_itemPressed>(this, _$identity);
+  _$$_ItemPressedCopyWith<_$_ItemPressed> get copyWith =>
+      __$$_ItemPressedCopyWithImpl<_$_ItemPressed>(this, _$identity);
 
   @override
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function(String id, String endpoint) started,
     required TResult Function(Sort sort) sortSelected,
-    required TResult Function(String sourceId, String endpoint,
+    required TResult Function(String sourceId, String chapterEndpoint,
             String novelEndpoint, String currentChapterName, int currentChapter)
         itemPressed,
   }) {
-    return itemPressed(
-        sourceId, endpoint, novelEndpoint, currentChapterName, currentChapter);
+    return itemPressed(sourceId, chapterEndpoint, novelEndpoint,
+        currentChapterName, currentChapter);
   }
 
   @override
@@ -513,12 +537,16 @@ class _$_itemPressed implements _itemPressed {
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function(String id, String endpoint)? started,
     TResult? Function(Sort sort)? sortSelected,
-    TResult? Function(String sourceId, String endpoint, String novelEndpoint,
-            String currentChapterName, int currentChapter)?
+    TResult? Function(
+            String sourceId,
+            String chapterEndpoint,
+            String novelEndpoint,
+            String currentChapterName,
+            int currentChapter)?
         itemPressed,
   }) {
-    return itemPressed?.call(
-        sourceId, endpoint, novelEndpoint, currentChapterName, currentChapter);
+    return itemPressed?.call(sourceId, chapterEndpoint, novelEndpoint,
+        currentChapterName, currentChapter);
   }
 
   @override
@@ -526,14 +554,18 @@ class _$_itemPressed implements _itemPressed {
   TResult maybeWhen<TResult extends Object?>({
     TResult Function(String id, String endpoint)? started,
     TResult Function(Sort sort)? sortSelected,
-    TResult Function(String sourceId, String endpoint, String novelEndpoint,
-            String currentChapterName, int currentChapter)?
+    TResult Function(
+            String sourceId,
+            String chapterEndpoint,
+            String novelEndpoint,
+            String currentChapterName,
+            int currentChapter)?
         itemPressed,
     required TResult orElse(),
   }) {
     if (itemPressed != null) {
-      return itemPressed(sourceId, endpoint, novelEndpoint, currentChapterName,
-          currentChapter);
+      return itemPressed(sourceId, chapterEndpoint, novelEndpoint,
+          currentChapterName, currentChapter);
     }
     return orElse();
   }
@@ -542,8 +574,8 @@ class _$_itemPressed implements _itemPressed {
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
     required TResult Function(_Started value) started,
-    required TResult Function(_sortSelected value) sortSelected,
-    required TResult Function(_itemPressed value) itemPressed,
+    required TResult Function(_SortSelected value) sortSelected,
+    required TResult Function(_ItemPressed value) itemPressed,
   }) {
     return itemPressed(this);
   }
@@ -552,8 +584,8 @@ class _$_itemPressed implements _itemPressed {
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
     TResult? Function(_Started value)? started,
-    TResult? Function(_sortSelected value)? sortSelected,
-    TResult? Function(_itemPressed value)? itemPressed,
+    TResult? Function(_SortSelected value)? sortSelected,
+    TResult? Function(_ItemPressed value)? itemPressed,
   }) {
     return itemPressed?.call(this);
   }
@@ -562,8 +594,8 @@ class _$_itemPressed implements _itemPressed {
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
     TResult Function(_Started value)? started,
-    TResult Function(_sortSelected value)? sortSelected,
-    TResult Function(_itemPressed value)? itemPressed,
+    TResult Function(_SortSelected value)? sortSelected,
+    TResult Function(_ItemPressed value)? itemPressed,
     required TResult orElse(),
   }) {
     if (itemPressed != null) {
@@ -573,21 +605,21 @@ class _$_itemPressed implements _itemPressed {
   }
 }
 
-abstract class _itemPressed implements CatalogEvent {
-  const factory _itemPressed(
+abstract class _ItemPressed implements CatalogEvent {
+  const factory _ItemPressed(
       {required final String sourceId,
-      required final String endpoint,
+      required final String chapterEndpoint,
       required final String novelEndpoint,
       required final String currentChapterName,
-      required final int currentChapter}) = _$_itemPressed;
+      required final int currentChapter}) = _$_ItemPressed;
 
   String get sourceId;
-  String get endpoint;
+  String get chapterEndpoint;
   String get novelEndpoint;
   String get currentChapterName;
   int get currentChapter;
   @JsonKey(ignore: true)
-  _$$_itemPressedCopyWith<_$_itemPressed> get copyWith =>
+  _$$_ItemPressedCopyWith<_$_ItemPressed> get copyWith =>
       throw _privateConstructorUsedError;
 }
 

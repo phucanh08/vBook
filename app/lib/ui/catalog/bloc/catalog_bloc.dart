@@ -13,8 +13,8 @@ class CatalogBloc extends PaginationBloc<ChapterModel, String, CatalogState> {
   CatalogBloc(this._getCatalogUseCase, this._saveNovelUseCase)
       : super(const CatalogState()) {
     on<_Started>(_onStarted);
-    on<_sortSelected>(_onSortSelected);
-    on<_itemPressed>(_onItemPressed);
+    on<_SortSelected>(_onSortSelected);
+    on<_ItemPressed>(_onItemPressed);
   }
 
   final GetCatalogUseCase _getCatalogUseCase;
@@ -27,13 +27,13 @@ class CatalogBloc extends PaginationBloc<ChapterModel, String, CatalogState> {
     });
   }
 
-  void _onItemPressed(_itemPressed event, emit) {
+  void _onItemPressed(_ItemPressed event, emit) {
     runBlocCatching(action: () async {
       await _saveNovelUseCase.call(
         SaveNovelInput(
           sourceId: event.sourceId,
-          endpoint: event.endpoint,
           novelEndpoint: event.novelEndpoint,
+          chapterEndpoint: event.chapterEndpoint,
           currentChapterName: event.currentChapterName,
           currentChapter: event.currentChapter,
           totalChapters: state.data.items.length,
@@ -43,14 +43,14 @@ class CatalogBloc extends PaginationBloc<ChapterModel, String, CatalogState> {
         DetailChapterRoute(
           id: event.sourceId,
           novelEndpoint: event.novelEndpoint,
-          endpoint: event.endpoint,
+          chapterEndpoint: event.chapterEndpoint,
           title: event.currentChapterName,
         ),
       );
     });
   }
 
-  void _onSortSelected(_sortSelected event, emit) {
+  void _onSortSelected(_SortSelected event, emit) {
     runBlocCatching(action: () async {
       emit(state.copyWith(sort: event.sort));
     });

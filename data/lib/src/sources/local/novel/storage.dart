@@ -48,7 +48,12 @@ class NovelStorageImpl implements NovelStorage {
         .query()
         .order(Novel_.updatedAt)
         .watch(triggerImmediately: true)
-        .map((event) => event.find().reversed.toList());
+        .map((event) {
+      event
+        ..offset = 0
+        ..limit = 1000;
+      return event.find().reversed.toList();
+    });
 
     return result;
   }

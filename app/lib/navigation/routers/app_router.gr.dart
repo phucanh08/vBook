@@ -55,7 +55,7 @@ abstract class _$AppRouter extends RootStackRouter {
         routeData: routeData,
         child: DetailChapterPage(
           id: args.id,
-          endpoint: args.endpoint,
+          chapterEndpoint: args.chapterEndpoint,
           novelEndpoint: args.novelEndpoint,
           title: args.title,
           key: args.key,
@@ -243,7 +243,7 @@ class HomeRoute extends PageRouteInfo<void> {
 class DetailChapterRoute extends PageRouteInfo<DetailChapterRouteArgs> {
   DetailChapterRoute({
     required String id,
-    required String endpoint,
+    required String chapterEndpoint,
     required String novelEndpoint,
     required String title,
     Key? key,
@@ -252,15 +252,11 @@ class DetailChapterRoute extends PageRouteInfo<DetailChapterRouteArgs> {
           DetailChapterRoute.name,
           args: DetailChapterRouteArgs(
             id: id,
-            endpoint: endpoint,
+            chapterEndpoint: chapterEndpoint,
             novelEndpoint: novelEndpoint,
             title: title,
             key: key,
           ),
-          rawPathParams: {
-            'id': id,
-            'endpoint': endpoint,
-          },
           initialChildren: children,
         );
 
@@ -273,7 +269,7 @@ class DetailChapterRoute extends PageRouteInfo<DetailChapterRouteArgs> {
 class DetailChapterRouteArgs {
   const DetailChapterRouteArgs({
     required this.id,
-    required this.endpoint,
+    required this.chapterEndpoint,
     required this.novelEndpoint,
     required this.title,
     this.key,
@@ -281,7 +277,7 @@ class DetailChapterRouteArgs {
 
   final String id;
 
-  final String endpoint;
+  final String chapterEndpoint;
 
   final String novelEndpoint;
 
@@ -291,7 +287,7 @@ class DetailChapterRouteArgs {
 
   @override
   String toString() {
-    return 'DetailChapterRouteArgs{id: $id, endpoint: $endpoint, novelEndpoint: $novelEndpoint, title: $title, key: $key}';
+    return 'DetailChapterRouteArgs{id: $id, chapterEndpoint: $chapterEndpoint, novelEndpoint: $novelEndpoint, title: $title, key: $key}';
   }
 }
 

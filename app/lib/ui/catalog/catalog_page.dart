@@ -101,7 +101,7 @@ class _CatalogPageState extends BasePageState<CatalogPage, CatalogBloc> {
                         onTap: () => bloc.add(
                           CatalogEvent.itemPressed(
                             sourceId: widget.id,
-                            endpoint: item.endpoint,
+                            chapterEndpoint: item.endpoint,
                             novelEndpoint: widget.endpoint,
                             currentChapterName: item.name,
                             currentChapter: _index + 1,
