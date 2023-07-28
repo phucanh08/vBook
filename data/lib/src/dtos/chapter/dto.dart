@@ -13,5 +13,8 @@ class ChapterDto with _$ChapterDto {
 
 @freezed
 class ChapterDetailDto with _$ChapterDetailDto {
-  const factory ChapterDetailDto({required String content}) = _ChapterDetailDto;
+  const factory ChapterDetailDto({
+    required String url,
+    required String content,
+  }) = _ChapterDetailDto;
 }

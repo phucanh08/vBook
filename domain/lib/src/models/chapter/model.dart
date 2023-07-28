@@ -15,7 +15,7 @@ class ChapterModel with _$ChapterModel {
 class ChapterDetailModel with _$ChapterDetailModel {
   const ChapterDetailModel._();
   const factory ChapterDetailModel({
+    required String url,
     required String content,
   }) = _ChapterDetailModel;
 }
-

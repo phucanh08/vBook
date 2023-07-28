@@ -1,13 +1,14 @@
-import 'package:domain/domain.dart';
 import 'package:shared/shared.dart';
+
+import '../../../../domain.dart';
 
 abstract class BasePaginationUseCase<Input extends BasePaginationInput, Output extends BasePaginationOutput >
     extends BaseUseCase<Input, Future<Output>> {
   const BasePaginationUseCase();
 
   Future<Output> call(Input input) async {
-    int pageNumber = input.page.number;
-    int offset = input.page.offset;
+    final int pageNumber = input.page.number;
+    final int offset = input.page.offset;
     try {
       if (LogConfig.enableLogUseCaseInput) {
         logD(

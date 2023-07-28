@@ -10,6 +10,7 @@ class DetailChapterDataMapper extends BaseDataMapper<ChapterDetailDto, ChapterDe
   ChapterDetailModel mapToEntity(ChapterDetailDto? data) {
     return ChapterDetailModel(
       content: data?.content ?? '',
+      url: data?.url ??'',
     );
   }
 }

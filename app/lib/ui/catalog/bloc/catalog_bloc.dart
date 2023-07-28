@@ -5,7 +5,9 @@ import 'package:injectable/injectable.dart';
 import '../../../app.dart';
 
 part 'catalog_bloc.freezed.dart';
+
 part 'catalog_event.dart';
+
 part 'catalog_state.dart';
 
 @injectable
@@ -44,7 +46,6 @@ class CatalogBloc extends PaginationBloc<ChapterModel, String, CatalogState> {
           id: event.sourceId,
           novelEndpoint: event.novelEndpoint,
           chapterEndpoint: event.chapterEndpoint,
-          title: event.currentChapterName,
         ),
       );
     });
@@ -64,7 +65,7 @@ class CatalogBloc extends PaginationBloc<ChapterModel, String, CatalogState> {
         final response = await _getCatalogUseCase.call(
           GetCatalogInput(
             id: state.id,
-            endpoint: state.endpoint,
+            novelEndpoint: state.endpoint,
             page: state.page,
           ),
         );
@@ -95,7 +96,7 @@ class CatalogBloc extends PaginationBloc<ChapterModel, String, CatalogState> {
         final response = await _getCatalogUseCase.call(
           GetCatalogInput(
             id: state.id,
-            endpoint: state.endpoint,
+            novelEndpoint: state.endpoint,
             page: newPage,
           ),
         );
@@ -135,7 +136,7 @@ class CatalogBloc extends PaginationBloc<ChapterModel, String, CatalogState> {
         final response = await _getCatalogUseCase.call(
           GetCatalogInput(
             id: state.id,
-            endpoint: state.endpoint,
+            novelEndpoint: state.endpoint,
             page: state.page,
           ),
         );

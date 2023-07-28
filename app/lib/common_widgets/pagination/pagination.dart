@@ -4,6 +4,8 @@ import 'package:shared/shared.dart';
 
 import '../../app.dart';
 
+export 'adjustable_scroll_controller.dart';
+
 part 'grid.dart';
 part 'list.dart';
 part 'pagination_builder.dart';

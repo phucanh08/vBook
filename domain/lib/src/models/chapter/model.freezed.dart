@@ -154,6 +154,7 @@ abstract class _ChapterModel extends ChapterModel {
 
 /// @nodoc
 mixin _$ChapterDetailModel {
+  String get url => throw _privateConstructorUsedError;
   String get content => throw _privateConstructorUsedError;
 
   @JsonKey(ignore: true)
@@ -167,7 +168,7 @@ abstract class $ChapterDetailModelCopyWith<$Res> {
           ChapterDetailModel value, $Res Function(ChapterDetailModel) then) =
       _$ChapterDetailModelCopyWithImpl<$Res, ChapterDetailModel>;
   @useResult
-  $Res call({String content});
+  $Res call({String url, String content});
 }
 
 /// @nodoc
@@ -183,9 +184,14 @@ class _$ChapterDetailModelCopyWithImpl<$Res, $Val extends ChapterDetailModel>
   @pragma('vm:prefer-inline')
   @override
   $Res call({
+    Object? url = null,
     Object? content = null,
   }) {
     return _then(_value.copyWith(
+      url: null == url
+          ? _value.url
+          : url // ignore: cast_nullable_to_non_nullable
+              as String,
       content: null == content
           ? _value.content
           : content // ignore: cast_nullable_to_non_nullable
@@ -202,7 +208,7 @@ abstract class _$$_ChapterDetailModelCopyWith<$Res>
       __$$_ChapterDetailModelCopyWithImpl<$Res>;
   @override
   @useResult
-  $Res call({String content});
+  $Res call({String url, String content});
 }
 
 /// @nodoc
@@ -216,9 +222,14 @@ class __$$_ChapterDetailModelCopyWithImpl<$Res>
   @pragma('vm:prefer-inline')
   @override
   $Res call({
+    Object? url = null,
     Object? content = null,
   }) {
     return _then(_$_ChapterDetailModel(
+      url: null == url
+          ? _value.url
+          : url // ignore: cast_nullable_to_non_nullable
+              as String,
       content: null == content
           ? _value.content
           : content // ignore: cast_nullable_to_non_nullable
@@ -230,14 +241,17 @@ class __$$_ChapterDetailModelCopyWithImpl<$Res>
 /// @nodoc
 
 class _$_ChapterDetailModel extends _ChapterDetailModel {
-  const _$_ChapterDetailModel({required this.content}) : super._();
+  const _$_ChapterDetailModel({required this.url, required this.content})
+      : super._();
 
+  @override
+  final String url;
   @override
   final String content;
 
   @override
   String toString() {
-    return 'ChapterDetailModel(content: $content)';
+    return 'ChapterDetailModel(url: $url, content: $content)';
   }
 
   @override
@@ -245,11 +259,12 @@ class _$_ChapterDetailModel extends _ChapterDetailModel {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is _$_ChapterDetailModel &&
+            (identical(other.url, url) || other.url == url) &&
             (identical(other.content, content) || other.content == content));
   }
 
   @override
-  int get hashCode => Object.hash(runtimeType, content);
+  int get hashCode => Object.hash(runtimeType, url, content);
 
   @JsonKey(ignore: true)
   @override
@@ -260,10 +275,13 @@ class _$_ChapterDetailModel extends _ChapterDetailModel {
 }
 
 abstract class _ChapterDetailModel extends ChapterDetailModel {
-  const factory _ChapterDetailModel({required final String content}) =
-      _$_ChapterDetailModel;
+  const factory _ChapterDetailModel(
+      {required final String url,
+      required final String content}) = _$_ChapterDetailModel;
   const _ChapterDetailModel._() : super._();
 
+  @override
+  String get url;
   @override
   String get content;
   @override

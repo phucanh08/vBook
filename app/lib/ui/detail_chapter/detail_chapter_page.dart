@@ -1,4 +1,5 @@
 import 'package:auto_route/auto_route.dart';
+import 'package:flutter/services.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:resources/resources.dart';
 
@@ -11,14 +12,12 @@ class DetailChapterPage extends StatefulWidget {
     required this.id,
     required this.chapterEndpoint,
     required this.novelEndpoint,
-    required this.title,
     super.key,
   });
 
   final String id;
   final String chapterEndpoint;
   final String novelEndpoint;
-  final String title;
 
   @override
   State<DetailChapterPage> createState() => _DetailChapterPageState();
@@ -26,6 +25,8 @@ class DetailChapterPage extends StatefulWidget {
 
 class _DetailChapterPageState
     extends BasePageState<DetailChapterPage, DetailChapterBloc> {
+  late final AdjustableScrollController _adjustableScrollController;
+
   @override
   void initState() {
     bloc.add(
@@ -33,10 +34,36 @@ class _DetailChapterPageState
         sourceId: widget.id,
         endpoint: widget.chapterEndpoint,
         novelEndpoint: widget.novelEndpoint,
-        title: widget.title,
       ),
     );
+    _adjustableScrollController = AdjustableScrollController(
+      onPageChanged: (int currentPage, int totalPage, double percent) {
+        bloc.add(
+          DetailChapterEvent.pageScrolled(
+            currentPage: currentPage,
+            totalPage: totalPage,
+            percent: percent,
+          ),
+        );
+      },
+    );
     super.initState();
+  }
+
+  @override
+  void dispose() {
+    _adjustableScrollController.dispose();
+    super.dispose();
+  }
+
+  @override
+  Widget buildPageListeners({required Widget child}) {
+    return BlocListener<DetailChapterBloc, DetailChapterState>(
+      listener: (context, child) {
+        _adjustableScrollController.updatePage();
+      },
+      child: child,
+    );
   }
 
   @override
@@ -56,22 +83,28 @@ class _DetailChapterPageState
                     ),
                   ),
                   actions: [
-                    IconButton(
-                      onPressed: () => bloc.add(
-                        const DetailChapterEvent.bookmarkChanged(),
-                      ),
-                      isSelected: state.bookmarked,
-                      icon: const FaIcon(
-                        FaCodePoint.bookmark,
-                        type: IconType.regular,
-                      ),
-                      selectedIcon: const FaIcon(
-                        FaCodePoint.bookmark,
-                        type: IconType.solid,
-                      ),
+                    BlocSelector<DetailChapterBloc, DetailChapterState, bool>(
+                      selector: (_state) => _state.bookmarked,
+                      builder: (context, bookmarked) {
+                        return IconButton(
+                          onPressed: () => bloc.add(
+                            const DetailChapterEvent.bookmarkChanged(),
+                          ),
+                          isSelected: bookmarked,
+                          icon: const FaIcon(
+                            FaCodePoint.bookmark,
+                            type: IconType.regular,
+                          ),
+                          selectedIcon: const FaIcon(
+                            FaCodePoint.bookmark,
+                            type: IconType.solid,
+                          ),
+                        );
+                      },
                     ),
                     IconButton(
-                      onPressed: () => null,
+                      onPressed: () =>
+                          _adjustableScrollController.changeAdjustableScroll(),
                       icon: const FaIcon(
                         FaCodePoint.downToLine,
                         type: IconType.regular,
@@ -94,13 +127,24 @@ class _DetailChapterPageState
                             duration: const Duration(minutes: 2),
                             scrollDirection: Axis.horizontal,
                             child: Text(
-                              'Very long text that bleeds out of the rendering space',
+                              state.model?.url ?? '',
                               style: textTheme.bodySmall,
                             ),
                           ),
                         ),
                         IconButton(
-                          onPressed: () => null,
+                          onPressed: () {
+                            Clipboard.setData(ClipboardData(
+                              text: state.model?.url ?? '',
+                            )).then((_) {
+                              ScaffoldMessenger.of(context).showSnackBar(
+                                SnackBar(
+                                  content: Text(state.model?.url ?? ''),
+                                ),
+                              );
+                            });
+                          },
+                          tooltip: 'Copy',
                           iconSize: 16,
                           splashRadius: 20,
                           padding: EdgeInsets.zero,
@@ -115,7 +159,7 @@ class _DetailChapterPageState
                 )
               : null,
           body: GestureDetector(
-            onTap: () {
+            onPanDown: (_) {
               if (state.visibleAppBar) {
                 bloc.add(
                   const DetailChapterEvent.visibleAppBarChanged(visible: false),
@@ -129,6 +173,31 @@ class _DetailChapterPageState
                 );
               }
             },
+            onHorizontalDragEnd: (dragEndDetails) {
+              if (dragEndDetails.primaryVelocity is double) {
+                _adjustableScrollController.jumpTo(0);
+                if (dragEndDetails.primaryVelocity! < 0) {
+                  logD('Move page forwards');
+                  bloc.add(
+                    DetailChapterEvent.started(
+                      sourceId: widget.id,
+                      endpoint: state.catalog[state.currentChapter].endpoint,
+                      novelEndpoint: widget.novelEndpoint,
+                    ),
+                  );
+                } else if (dragEndDetails.primaryVelocity! > 0) {
+                  logD('Move page backwards');
+                  bloc.add(
+                    DetailChapterEvent.started(
+                      sourceId: widget.id,
+                      endpoint:
+                          state.catalog[state.currentChapter - 2].endpoint,
+                      novelEndpoint: widget.novelEndpoint,
+                    ),
+                  );
+                }
+              }
+            },
             child: SafeArea(
               bottom: false,
               child: Column(
@@ -138,16 +207,17 @@ class _DetailChapterPageState
                     visible: !state.visibleAppBar,
                     child: Padding(
                       padding: const EdgeInsets.symmetric(horizontal: 10),
-                      child: Text(widget.title),
+                      child: Text(state.title),
                     ),
                   ),
                   Expanded(
                     child: SingleChildScrollView(
+                      controller: _adjustableScrollController,
                       padding: const EdgeInsets.all(10),
                       child: Column(
                         children: [
                           Text(
-                            widget.title,
+                            state.title,
                             style: textTheme.titleLarge,
                             textAlign: TextAlign.center,
                           ),
@@ -161,18 +231,20 @@ class _DetailChapterPageState
                       ),
                     ),
                   ),
-                  const Padding(
-                    padding: EdgeInsets.symmetric(horizontal: 30),
+                  Padding(
+                    padding: const EdgeInsets.symmetric(horizontal: 30),
                     child: Row(
                       mainAxisAlignment: MainAxisAlignment.spaceBetween,
                       children: [
-                        Text('543/2571'),
+                        Text('${state.currentChapter}/${state.totalChapter}'),
                         Flexible(
                           child: Text.rich(
                             TextSpan(
                               children: [
-                                TextSpan(text: '3/10   '),
-                                TextSpan(text: '21.10%'),
+                                TextSpan(
+                                    text:
+                                        '${state.currentPage}/${state.totalPage}  '),
+                                TextSpan(text: '${state.percentOfNovel}%'),
                               ],
                             ),
                           ),

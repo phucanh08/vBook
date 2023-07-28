@@ -27,6 +27,7 @@
 .flutter-plugins
 .flutter-plugins-dependencies
 .packages
+**/pubspec.lock
 pubspec.lock
 .pub-cache/
 .pub/
@@ -48,13 +49,13 @@ app.*.map.json
 /android/app/release
 
 # generated file
-lib/**/*.g.dart
-lib/**/*.graphql.dart
-lib/**/*.gr.dart
-lib/**/*.freezed.dart
-lib/**/*.config.dart
-lib/**/*.gen.dart
-lib/**/*.mocks.dart
+**/lib/**/*.g.dart
+**/lib/**/*.graphql.dart
+**/lib/**/*.gr.dart
+**/lib/**/*.freezed.dart
+**/lib/**/*.config.dart
+**/lib/**/*.gen.dart
+**/lib/**/*.mocks.dart
 
 tools/*/*.jar
 tools/gen_text_styles/output/

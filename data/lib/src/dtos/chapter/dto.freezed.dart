@@ -168,6 +168,7 @@ abstract class _ChapterDto implements ChapterDto {
 
 /// @nodoc
 mixin _$ChapterDetailDto {
+  String get url => throw _privateConstructorUsedError;
   String get content => throw _privateConstructorUsedError;
 
   @JsonKey(ignore: true)
@@ -181,7 +182,7 @@ abstract class $ChapterDetailDtoCopyWith<$Res> {
           ChapterDetailDto value, $Res Function(ChapterDetailDto) then) =
       _$ChapterDetailDtoCopyWithImpl<$Res, ChapterDetailDto>;
   @useResult
-  $Res call({String content});
+  $Res call({String url, String content});
 }
 
 /// @nodoc
@@ -197,9 +198,14 @@ class _$ChapterDetailDtoCopyWithImpl<$Res, $Val extends ChapterDetailDto>
   @pragma('vm:prefer-inline')
   @override
   $Res call({
+    Object? url = null,
     Object? content = null,
   }) {
     return _then(_value.copyWith(
+      url: null == url
+          ? _value.url
+          : url // ignore: cast_nullable_to_non_nullable
+              as String,
       content: null == content
           ? _value.content
           : content // ignore: cast_nullable_to_non_nullable
@@ -216,7 +222,7 @@ abstract class _$$_ChapterDetailDtoCopyWith<$Res>
       __$$_ChapterDetailDtoCopyWithImpl<$Res>;
   @override
   @useResult
-  $Res call({String content});
+  $Res call({String url, String content});
 }
 
 /// @nodoc
@@ -230,9 +236,14 @@ class __$$_ChapterDetailDtoCopyWithImpl<$Res>
   @pragma('vm:prefer-inline')
   @override
   $Res call({
+    Object? url = null,
     Object? content = null,
   }) {
     return _then(_$_ChapterDetailDto(
+      url: null == url
+          ? _value.url
+          : url // ignore: cast_nullable_to_non_nullable
+              as String,
       content: null == content
           ? _value.content
           : content // ignore: cast_nullable_to_non_nullable
@@ -244,14 +255,16 @@ class __$$_ChapterDetailDtoCopyWithImpl<$Res>
 /// @nodoc
 
 class _$_ChapterDetailDto implements _ChapterDetailDto {
-  const _$_ChapterDetailDto({required this.content});
+  const _$_ChapterDetailDto({required this.url, required this.content});
 
+  @override
+  final String url;
   @override
   final String content;
 
   @override
   String toString() {
-    return 'ChapterDetailDto(content: $content)';
+    return 'ChapterDetailDto(url: $url, content: $content)';
   }
 
   @override
@@ -259,11 +272,12 @@ class _$_ChapterDetailDto implements _ChapterDetailDto {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is _$_ChapterDetailDto &&
+            (identical(other.url, url) || other.url == url) &&
             (identical(other.content, content) || other.content == content));
   }
 
   @override
-  int get hashCode => Object.hash(runtimeType, content);
+  int get hashCode => Object.hash(runtimeType, url, content);
 
   @JsonKey(ignore: true)
   @override
@@ -273,9 +287,12 @@ class _$_ChapterDetailDto implements _ChapterDetailDto {
 }
 
 abstract class _ChapterDetailDto implements ChapterDetailDto {
-  const factory _ChapterDetailDto({required final String content}) =
-      _$_ChapterDetailDto;
+  const factory _ChapterDetailDto(
+      {required final String url,
+      required final String content}) = _$_ChapterDetailDto;
 
+  @override
+  String get url;
   @override
   String get content;
   @override
