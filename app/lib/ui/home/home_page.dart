@@ -15,13 +15,22 @@ class HomePage extends StatefulWidget {
 }
 
 class _HomePageState extends BasePageState<HomePage, HomeBloc> {
+  late final onItemPressed = (NovelModel novel) {
+    navigator.push<void>(
+      DetailChapterRoute(
+        id: novel.sourceId,
+        novelEndpoint: novel.novelEndpoint,
+        chapterEndpoint: novel.currentChapterEndpoint,
+      ),
+    );
+  };
 
   @override
   Widget buildPage(BuildContext context) {
     return AutoTabsRouter.tabBar(
-      routes: const [
-        BookShelfTabRouter(),
-        HistoryBookTabRouter(),
+      routes: [
+        BookShelfTabRouter(onItemPressed: onItemPressed),
+        HistoryBookTabRouter(onItemPressed: onItemPressed),
       ],
       animatePageTransition: true,
       builder: (context, child, controller) {

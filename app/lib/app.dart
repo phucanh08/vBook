@@ -1,3 +1,5 @@
+export 'package:domain/domain.dart' hide getIt;
+
 export 'app/app.dart';
 export 'base/base.dart';
 export 'common_widgets/common_widgets.dart';

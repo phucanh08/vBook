@@ -227,6 +227,8 @@ mixin _$NovelDetailModel {
   String get author => throw _privateConstructorUsedError;
   String get description => throw _privateConstructorUsedError;
   String get detail => throw _privateConstructorUsedError;
+  String get firstChapterEndpoint => throw _privateConstructorUsedError;
+  String get firstChapterName => throw _privateConstructorUsedError;
 
   @JsonKey(ignore: true)
   $NovelDetailModelCopyWith<NovelDetailModel> get copyWith =>
@@ -245,7 +247,9 @@ abstract class $NovelDetailModelCopyWith<$Res> {
       String host,
       String author,
       String description,
-      String detail});
+      String detail,
+      String firstChapterEndpoint,
+      String firstChapterName});
 }
 
 /// @nodoc
@@ -267,6 +271,8 @@ class _$NovelDetailModelCopyWithImpl<$Res, $Val extends NovelDetailModel>
     Object? author = null,
     Object? description = null,
     Object? detail = null,
+    Object? firstChapterEndpoint = null,
+    Object? firstChapterName = null,
   }) {
     return _then(_value.copyWith(
       name: null == name
@@ -293,6 +299,14 @@ class _$NovelDetailModelCopyWithImpl<$Res, $Val extends NovelDetailModel>
           ? _value.detail
           : detail // ignore: cast_nullable_to_non_nullable
               as String,
+      firstChapterEndpoint: null == firstChapterEndpoint
+          ? _value.firstChapterEndpoint
+          : firstChapterEndpoint // ignore: cast_nullable_to_non_nullable
+              as String,
+      firstChapterName: null == firstChapterName
+          ? _value.firstChapterName
+          : firstChapterName // ignore: cast_nullable_to_non_nullable
+              as String,
     ) as $Val);
   }
 }
@@ -311,7 +325,9 @@ abstract class _$$_NovelDetailModelCopyWith<$Res>
       String host,
       String author,
       String description,
-      String detail});
+      String detail,
+      String firstChapterEndpoint,
+      String firstChapterName});
 }
 
 /// @nodoc
@@ -331,6 +347,8 @@ class __$$_NovelDetailModelCopyWithImpl<$Res>
     Object? author = null,
     Object? description = null,
     Object? detail = null,
+    Object? firstChapterEndpoint = null,
+    Object? firstChapterName = null,
   }) {
     return _then(_$_NovelDetailModel(
       name: null == name
@@ -357,6 +375,14 @@ class __$$_NovelDetailModelCopyWithImpl<$Res>
           ? _value.detail
           : detail // ignore: cast_nullable_to_non_nullable
               as String,
+      firstChapterEndpoint: null == firstChapterEndpoint
+          ? _value.firstChapterEndpoint
+          : firstChapterEndpoint // ignore: cast_nullable_to_non_nullable
+              as String,
+      firstChapterName: null == firstChapterName
+          ? _value.firstChapterName
+          : firstChapterName // ignore: cast_nullable_to_non_nullable
+              as String,
     ));
   }
 }
@@ -370,7 +396,9 @@ class _$_NovelDetailModel extends _NovelDetailModel {
       required this.host,
       required this.author,
       required this.description,
-      required this.detail})
+      required this.detail,
+      required this.firstChapterEndpoint,
+      required this.firstChapterName})
       : super._();
 
   @override
@@ -385,10 +413,14 @@ class _$_NovelDetailModel extends _NovelDetailModel {
   final String description;
   @override
   final String detail;
+  @override
+  final String firstChapterEndpoint;
+  @override
+  final String firstChapterName;
 
   @override
   String toString() {
-    return 'NovelDetailModel(name: $name, imgUrl: $imgUrl, host: $host, author: $author, description: $description, detail: $detail)';
+    return 'NovelDetailModel(name: $name, imgUrl: $imgUrl, host: $host, author: $author, description: $description, detail: $detail, firstChapterEndpoint: $firstChapterEndpoint, firstChapterName: $firstChapterName)';
   }
 
   @override
@@ -402,12 +434,16 @@ class _$_NovelDetailModel extends _NovelDetailModel {
             (identical(other.author, author) || other.author == author) &&
             (identical(other.description, description) ||
                 other.description == description) &&
-            (identical(other.detail, detail) || other.detail == detail));
+            (identical(other.detail, detail) || other.detail == detail) &&
+            (identical(other.firstChapterEndpoint, firstChapterEndpoint) ||
+                other.firstChapterEndpoint == firstChapterEndpoint) &&
+            (identical(other.firstChapterName, firstChapterName) ||
+                other.firstChapterName == firstChapterName));
   }
 
   @override
-  int get hashCode =>
-      Object.hash(runtimeType, name, imgUrl, host, author, description, detail);
+  int get hashCode => Object.hash(runtimeType, name, imgUrl, host, author,
+      description, detail, firstChapterEndpoint, firstChapterName);
 
   @JsonKey(ignore: true)
   @override
@@ -423,7 +459,9 @@ abstract class _NovelDetailModel extends NovelDetailModel {
       required final String host,
       required final String author,
       required final String description,
-      required final String detail}) = _$_NovelDetailModel;
+      required final String detail,
+      required final String firstChapterEndpoint,
+      required final String firstChapterName}) = _$_NovelDetailModel;
   const _NovelDetailModel._() : super._();
 
   @override
@@ -439,6 +477,10 @@ abstract class _NovelDetailModel extends NovelDetailModel {
   @override
   String get detail;
   @override
+  String get firstChapterEndpoint;
+  @override
+  String get firstChapterName;
+  @override
   @JsonKey(ignore: true)
   _$$_NovelDetailModelCopyWith<_$_NovelDetailModel> get copyWith =>
       throw _privateConstructorUsedError;
@@ -448,12 +490,15 @@ abstract class _NovelDetailModel extends NovelDetailModel {
 mixin _$NovelModel {
   int? get id => throw _privateConstructorUsedError;
   DateTime get updatedAt => throw _privateConstructorUsedError;
-  String get name => throw _privateConstructorUsedError;
-  String get path => throw _privateConstructorUsedError;
+  String get sourceId => throw _privateConstructorUsedError;
   String get sourceName => throw _privateConstructorUsedError;
+  String get novelEndpoint => throw _privateConstructorUsedError;
+  String get currentChapterEndpoint => throw _privateConstructorUsedError;
+  String get name => throw _privateConstructorUsedError;
   String get imgUrl => throw _privateConstructorUsedError;
   int get totalChapters => throw _privateConstructorUsedError;
   int get currentChapter => throw _privateConstructorUsedError;
+  double get scrollPercent => throw _privateConstructorUsedError;
   String get currentChapterName => throw _privateConstructorUsedError;
   int get timeRead => throw _privateConstructorUsedError;
 
@@ -471,12 +516,15 @@ abstract class $NovelModelCopyWith<$Res> {
   $Res call(
       {int? id,
       DateTime updatedAt,
-      String name,
-      String path,
+      String sourceId,
       String sourceName,
+      String novelEndpoint,
+      String currentChapterEndpoint,
+      String name,
       String imgUrl,
       int totalChapters,
       int currentChapter,
+      double scrollPercent,
       String currentChapterName,
       int timeRead});
 }
@@ -496,12 +544,15 @@ class _$NovelModelCopyWithImpl<$Res, $Val extends NovelModel>
   $Res call({
     Object? id = freezed,
     Object? updatedAt = null,
-    Object? name = null,
-    Object? path = null,
+    Object? sourceId = null,
     Object? sourceName = null,
+    Object? novelEndpoint = null,
+    Object? currentChapterEndpoint = null,
+    Object? name = null,
     Object? imgUrl = null,
     Object? totalChapters = null,
     Object? currentChapter = null,
+    Object? scrollPercent = null,
     Object? currentChapterName = null,
     Object? timeRead = null,
   }) {
@@ -514,17 +565,25 @@ class _$NovelModelCopyWithImpl<$Res, $Val extends NovelModel>
           ? _value.updatedAt
           : updatedAt // ignore: cast_nullable_to_non_nullable
               as DateTime,
-      name: null == name
-          ? _value.name
-          : name // ignore: cast_nullable_to_non_nullable
-              as String,
-      path: null == path
-          ? _value.path
-          : path // ignore: cast_nullable_to_non_nullable
+      sourceId: null == sourceId
+          ? _value.sourceId
+          : sourceId // ignore: cast_nullable_to_non_nullable
               as String,
       sourceName: null == sourceName
           ? _value.sourceName
           : sourceName // ignore: cast_nullable_to_non_nullable
+              as String,
+      novelEndpoint: null == novelEndpoint
+          ? _value.novelEndpoint
+          : novelEndpoint // ignore: cast_nullable_to_non_nullable
+              as String,
+      currentChapterEndpoint: null == currentChapterEndpoint
+          ? _value.currentChapterEndpoint
+          : currentChapterEndpoint // ignore: cast_nullable_to_non_nullable
+              as String,
+      name: null == name
+          ? _value.name
+          : name // ignore: cast_nullable_to_non_nullable
               as String,
       imgUrl: null == imgUrl
           ? _value.imgUrl
@@ -538,6 +597,10 @@ class _$NovelModelCopyWithImpl<$Res, $Val extends NovelModel>
           ? _value.currentChapter
           : currentChapter // ignore: cast_nullable_to_non_nullable
               as int,
+      scrollPercent: null == scrollPercent
+          ? _value.scrollPercent
+          : scrollPercent // ignore: cast_nullable_to_non_nullable
+              as double,
       currentChapterName: null == currentChapterName
           ? _value.currentChapterName
           : currentChapterName // ignore: cast_nullable_to_non_nullable
@@ -561,12 +624,15 @@ abstract class _$$_NovelModelCopyWith<$Res>
   $Res call(
       {int? id,
       DateTime updatedAt,
-      String name,
-      String path,
+      String sourceId,
       String sourceName,
+      String novelEndpoint,
+      String currentChapterEndpoint,
+      String name,
       String imgUrl,
       int totalChapters,
       int currentChapter,
+      double scrollPercent,
       String currentChapterName,
       int timeRead});
 }
@@ -584,12 +650,15 @@ class __$$_NovelModelCopyWithImpl<$Res>
   $Res call({
     Object? id = freezed,
     Object? updatedAt = null,
-    Object? name = null,
-    Object? path = null,
+    Object? sourceId = null,
     Object? sourceName = null,
+    Object? novelEndpoint = null,
+    Object? currentChapterEndpoint = null,
+    Object? name = null,
     Object? imgUrl = null,
     Object? totalChapters = null,
     Object? currentChapter = null,
+    Object? scrollPercent = null,
     Object? currentChapterName = null,
     Object? timeRead = null,
   }) {
@@ -602,17 +671,25 @@ class __$$_NovelModelCopyWithImpl<$Res>
           ? _value.updatedAt
           : updatedAt // ignore: cast_nullable_to_non_nullable
               as DateTime,
-      name: null == name
-          ? _value.name
-          : name // ignore: cast_nullable_to_non_nullable
-              as String,
-      path: null == path
-          ? _value.path
-          : path // ignore: cast_nullable_to_non_nullable
+      sourceId: null == sourceId
+          ? _value.sourceId
+          : sourceId // ignore: cast_nullable_to_non_nullable
               as String,
       sourceName: null == sourceName
           ? _value.sourceName
           : sourceName // ignore: cast_nullable_to_non_nullable
+              as String,
+      novelEndpoint: null == novelEndpoint
+          ? _value.novelEndpoint
+          : novelEndpoint // ignore: cast_nullable_to_non_nullable
+              as String,
+      currentChapterEndpoint: null == currentChapterEndpoint
+          ? _value.currentChapterEndpoint
+          : currentChapterEndpoint // ignore: cast_nullable_to_non_nullable
+              as String,
+      name: null == name
+          ? _value.name
+          : name // ignore: cast_nullable_to_non_nullable
               as String,
       imgUrl: null == imgUrl
           ? _value.imgUrl
@@ -626,6 +703,10 @@ class __$$_NovelModelCopyWithImpl<$Res>
           ? _value.currentChapter
           : currentChapter // ignore: cast_nullable_to_non_nullable
               as int,
+      scrollPercent: null == scrollPercent
+          ? _value.scrollPercent
+          : scrollPercent // ignore: cast_nullable_to_non_nullable
+              as double,
       currentChapterName: null == currentChapterName
           ? _value.currentChapterName
           : currentChapterName // ignore: cast_nullable_to_non_nullable
@@ -644,12 +725,15 @@ class _$_NovelModel extends _NovelModel {
   const _$_NovelModel(
       {required this.id,
       required this.updatedAt,
-      required this.name,
-      required this.path,
+      required this.sourceId,
       required this.sourceName,
+      required this.novelEndpoint,
+      required this.currentChapterEndpoint,
+      required this.name,
       required this.imgUrl,
       required this.totalChapters,
       required this.currentChapter,
+      required this.scrollPercent,
       required this.currentChapterName,
       required this.timeRead})
       : super._();
@@ -659,11 +743,15 @@ class _$_NovelModel extends _NovelModel {
   @override
   final DateTime updatedAt;
   @override
-  final String name;
-  @override
-  final String path;
+  final String sourceId;
   @override
   final String sourceName;
+  @override
+  final String novelEndpoint;
+  @override
+  final String currentChapterEndpoint;
+  @override
+  final String name;
   @override
   final String imgUrl;
   @override
@@ -671,13 +759,15 @@ class _$_NovelModel extends _NovelModel {
   @override
   final int currentChapter;
   @override
+  final double scrollPercent;
+  @override
   final String currentChapterName;
   @override
   final int timeRead;
 
   @override
   String toString() {
-    return 'NovelModel(id: $id, updatedAt: $updatedAt, name: $name, path: $path, sourceName: $sourceName, imgUrl: $imgUrl, totalChapters: $totalChapters, currentChapter: $currentChapter, currentChapterName: $currentChapterName, timeRead: $timeRead)';
+    return 'NovelModel(id: $id, updatedAt: $updatedAt, sourceId: $sourceId, sourceName: $sourceName, novelEndpoint: $novelEndpoint, currentChapterEndpoint: $currentChapterEndpoint, name: $name, imgUrl: $imgUrl, totalChapters: $totalChapters, currentChapter: $currentChapter, scrollPercent: $scrollPercent, currentChapterName: $currentChapterName, timeRead: $timeRead)';
   }
 
   @override
@@ -688,15 +778,22 @@ class _$_NovelModel extends _NovelModel {
             (identical(other.id, id) || other.id == id) &&
             (identical(other.updatedAt, updatedAt) ||
                 other.updatedAt == updatedAt) &&
-            (identical(other.name, name) || other.name == name) &&
-            (identical(other.path, path) || other.path == path) &&
+            (identical(other.sourceId, sourceId) ||
+                other.sourceId == sourceId) &&
             (identical(other.sourceName, sourceName) ||
                 other.sourceName == sourceName) &&
+            (identical(other.novelEndpoint, novelEndpoint) ||
+                other.novelEndpoint == novelEndpoint) &&
+            (identical(other.currentChapterEndpoint, currentChapterEndpoint) ||
+                other.currentChapterEndpoint == currentChapterEndpoint) &&
+            (identical(other.name, name) || other.name == name) &&
             (identical(other.imgUrl, imgUrl) || other.imgUrl == imgUrl) &&
             (identical(other.totalChapters, totalChapters) ||
                 other.totalChapters == totalChapters) &&
             (identical(other.currentChapter, currentChapter) ||
                 other.currentChapter == currentChapter) &&
+            (identical(other.scrollPercent, scrollPercent) ||
+                other.scrollPercent == scrollPercent) &&
             (identical(other.currentChapterName, currentChapterName) ||
                 other.currentChapterName == currentChapterName) &&
             (identical(other.timeRead, timeRead) ||
@@ -708,12 +805,15 @@ class _$_NovelModel extends _NovelModel {
       runtimeType,
       id,
       updatedAt,
-      name,
-      path,
+      sourceId,
       sourceName,
+      novelEndpoint,
+      currentChapterEndpoint,
+      name,
       imgUrl,
       totalChapters,
       currentChapter,
+      scrollPercent,
       currentChapterName,
       timeRead);
 
@@ -728,12 +828,15 @@ abstract class _NovelModel extends NovelModel {
   const factory _NovelModel(
       {required final int? id,
       required final DateTime updatedAt,
-      required final String name,
-      required final String path,
+      required final String sourceId,
       required final String sourceName,
+      required final String novelEndpoint,
+      required final String currentChapterEndpoint,
+      required final String name,
       required final String imgUrl,
       required final int totalChapters,
       required final int currentChapter,
+      required final double scrollPercent,
       required final String currentChapterName,
       required final int timeRead}) = _$_NovelModel;
   const _NovelModel._() : super._();
@@ -743,17 +846,23 @@ abstract class _NovelModel extends NovelModel {
   @override
   DateTime get updatedAt;
   @override
-  String get name;
-  @override
-  String get path;
+  String get sourceId;
   @override
   String get sourceName;
+  @override
+  String get novelEndpoint;
+  @override
+  String get currentChapterEndpoint;
+  @override
+  String get name;
   @override
   String get imgUrl;
   @override
   int get totalChapters;
   @override
   int get currentChapter;
+  @override
+  double get scrollPercent;
   @override
   String get currentChapterName;
   @override

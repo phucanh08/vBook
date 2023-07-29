@@ -5,7 +5,8 @@ import '../../../data.dart';
 import '../../dtos/dtos.dart';
 
 @injectable
-class DetailNovelDataMapper extends BaseDataMapper<NovelDetailDto, NovelDetailModel> {
+class DetailNovelDataMapper
+    extends BaseDataMapper<NovelDetailDto, NovelDetailModel> {
   @override
   NovelDetailModel mapToEntity(NovelDetailDto? data) {
     return NovelDetailModel(
@@ -15,6 +16,8 @@ class DetailNovelDataMapper extends BaseDataMapper<NovelDetailDto, NovelDetailMo
       host: data?.host ?? '',
       author: data?.author ?? '',
       detail: data?.detail ?? '',
+      firstChapterEndpoint: data?.firstChapterEndpoint ?? '',
+      firstChapterName: data?.firstChapterName ?? '',
     );
   }
 }

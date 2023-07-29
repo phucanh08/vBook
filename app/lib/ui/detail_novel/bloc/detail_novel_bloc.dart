@@ -40,6 +40,8 @@ class DetailNovelBloc extends BaseBloc<DetailNovelEvent, DetailNovelState> {
           sourceId: event.id,
           novelEndpoint: event.endpoint,
           inShelf: true,
+          chapterEndpoint: state.model!.firstChapterEndpoint,
+          currentChapterName: state.model!.firstChapterName,
         ),
       );
     });

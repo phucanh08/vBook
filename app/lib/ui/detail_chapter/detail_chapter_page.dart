@@ -1,3 +1,5 @@
+import 'dart:math';
+
 import 'package:auto_route/auto_route.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -32,8 +34,8 @@ class _DetailChapterPageState
     bloc.add(
       DetailChapterEvent.started(
         sourceId: widget.id,
-        endpoint: widget.chapterEndpoint,
         novelEndpoint: widget.novelEndpoint,
+        chapterEndpoint: widget.chapterEndpoint,
       ),
     );
     _adjustableScrollController = AdjustableScrollController(
@@ -45,6 +47,11 @@ class _DetailChapterPageState
             percent: percent,
           ),
         );
+        bloc.add(DetailChapterEvent.readyBookSaved(
+          sourceId: widget.id,
+          novelEndpoint: widget.novelEndpoint,
+          chapterEndpoint: widget.chapterEndpoint,
+        ));
       },
     );
     super.initState();
@@ -76,7 +83,7 @@ class _DetailChapterPageState
               ? AppBar(
                   leading: IconButton(
                     padding: EdgeInsets.zero,
-                    onPressed: () => context.router.pop(),
+                    onPressed: () => navigator.pop(),
                     icon: const FaIcon(
                       FaCodePoint.arrowLeft,
                       type: IconType.regular,
@@ -105,9 +112,12 @@ class _DetailChapterPageState
                     IconButton(
                       onPressed: () =>
                           _adjustableScrollController.changeAdjustableScroll(),
-                      icon: const FaIcon(
-                        FaCodePoint.downToLine,
-                        type: IconType.regular,
+                      icon: Transform.rotate(
+                        angle: -pi * 3 / 4,
+                        child: const FaIcon(
+                          FaCodePoint.arrowUpLeftFromCircle,
+                          type: IconType.regular,
+                        ),
                       ),
                     ),
                     IconButton(
@@ -181,7 +191,8 @@ class _DetailChapterPageState
                   bloc.add(
                     DetailChapterEvent.started(
                       sourceId: widget.id,
-                      endpoint: state.catalog[state.currentChapter].endpoint,
+                      chapterEndpoint:
+                          state.catalog[state.currentChapter].endpoint,
                       novelEndpoint: widget.novelEndpoint,
                     ),
                   );
@@ -190,7 +201,7 @@ class _DetailChapterPageState
                   bloc.add(
                     DetailChapterEvent.started(
                       sourceId: widget.id,
-                      endpoint:
+                      chapterEndpoint:
                           state.catalog[state.currentChapter - 2].endpoint,
                       novelEndpoint: widget.novelEndpoint,
                     ),

@@ -26,6 +26,8 @@ mixin _$NovelDetailDto {
   String? get author => throw _privateConstructorUsedError;
   String? get description => throw _privateConstructorUsedError;
   String? get detail => throw _privateConstructorUsedError;
+  String? get firstChapterEndpoint => throw _privateConstructorUsedError;
+  String? get firstChapterName => throw _privateConstructorUsedError;
 
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
   @JsonKey(ignore: true)
@@ -45,7 +47,9 @@ abstract class $NovelDetailDtoCopyWith<$Res> {
       String? host,
       String? author,
       String? description,
-      String? detail});
+      String? detail,
+      String? firstChapterEndpoint,
+      String? firstChapterName});
 }
 
 /// @nodoc
@@ -67,6 +71,8 @@ class _$NovelDetailDtoCopyWithImpl<$Res, $Val extends NovelDetailDto>
     Object? author = freezed,
     Object? description = freezed,
     Object? detail = freezed,
+    Object? firstChapterEndpoint = freezed,
+    Object? firstChapterName = freezed,
   }) {
     return _then(_value.copyWith(
       name: freezed == name
@@ -93,6 +99,14 @@ class _$NovelDetailDtoCopyWithImpl<$Res, $Val extends NovelDetailDto>
           ? _value.detail
           : detail // ignore: cast_nullable_to_non_nullable
               as String?,
+      firstChapterEndpoint: freezed == firstChapterEndpoint
+          ? _value.firstChapterEndpoint
+          : firstChapterEndpoint // ignore: cast_nullable_to_non_nullable
+              as String?,
+      firstChapterName: freezed == firstChapterName
+          ? _value.firstChapterName
+          : firstChapterName // ignore: cast_nullable_to_non_nullable
+              as String?,
     ) as $Val);
   }
 }
@@ -111,7 +125,9 @@ abstract class _$$_NovelDetailDtoCopyWith<$Res>
       String? host,
       String? author,
       String? description,
-      String? detail});
+      String? detail,
+      String? firstChapterEndpoint,
+      String? firstChapterName});
 }
 
 /// @nodoc
@@ -131,6 +147,8 @@ class __$$_NovelDetailDtoCopyWithImpl<$Res>
     Object? author = freezed,
     Object? description = freezed,
     Object? detail = freezed,
+    Object? firstChapterEndpoint = freezed,
+    Object? firstChapterName = freezed,
   }) {
     return _then(_$_NovelDetailDto(
       name: freezed == name
@@ -157,6 +175,14 @@ class __$$_NovelDetailDtoCopyWithImpl<$Res>
           ? _value.detail
           : detail // ignore: cast_nullable_to_non_nullable
               as String?,
+      firstChapterEndpoint: freezed == firstChapterEndpoint
+          ? _value.firstChapterEndpoint
+          : firstChapterEndpoint // ignore: cast_nullable_to_non_nullable
+              as String?,
+      firstChapterName: freezed == firstChapterName
+          ? _value.firstChapterName
+          : firstChapterName // ignore: cast_nullable_to_non_nullable
+              as String?,
     ));
   }
 }
@@ -170,7 +196,9 @@ class _$_NovelDetailDto implements _NovelDetailDto {
       this.host,
       this.author,
       this.description,
-      this.detail});
+      this.detail,
+      this.firstChapterEndpoint,
+      this.firstChapterName});
 
   factory _$_NovelDetailDto.fromJson(Map<String, dynamic> json) =>
       _$$_NovelDetailDtoFromJson(json);
@@ -187,10 +215,14 @@ class _$_NovelDetailDto implements _NovelDetailDto {
   final String? description;
   @override
   final String? detail;
+  @override
+  final String? firstChapterEndpoint;
+  @override
+  final String? firstChapterName;
 
   @override
   String toString() {
-    return 'NovelDetailDto(name: $name, imgUrl: $imgUrl, host: $host, author: $author, description: $description, detail: $detail)';
+    return 'NovelDetailDto(name: $name, imgUrl: $imgUrl, host: $host, author: $author, description: $description, detail: $detail, firstChapterEndpoint: $firstChapterEndpoint, firstChapterName: $firstChapterName)';
   }
 
   @override
@@ -204,13 +236,17 @@ class _$_NovelDetailDto implements _NovelDetailDto {
             (identical(other.author, author) || other.author == author) &&
             (identical(other.description, description) ||
                 other.description == description) &&
-            (identical(other.detail, detail) || other.detail == detail));
+            (identical(other.detail, detail) || other.detail == detail) &&
+            (identical(other.firstChapterEndpoint, firstChapterEndpoint) ||
+                other.firstChapterEndpoint == firstChapterEndpoint) &&
+            (identical(other.firstChapterName, firstChapterName) ||
+                other.firstChapterName == firstChapterName));
   }
 
   @JsonKey(ignore: true)
   @override
-  int get hashCode =>
-      Object.hash(runtimeType, name, imgUrl, host, author, description, detail);
+  int get hashCode => Object.hash(runtimeType, name, imgUrl, host, author,
+      description, detail, firstChapterEndpoint, firstChapterName);
 
   @JsonKey(ignore: true)
   @override
@@ -233,7 +269,9 @@ abstract class _NovelDetailDto implements NovelDetailDto {
       final String? host,
       final String? author,
       final String? description,
-      final String? detail}) = _$_NovelDetailDto;
+      final String? detail,
+      final String? firstChapterEndpoint,
+      final String? firstChapterName}) = _$_NovelDetailDto;
 
   factory _NovelDetailDto.fromJson(Map<String, dynamic> json) =
       _$_NovelDetailDto.fromJson;
@@ -250,6 +288,10 @@ abstract class _NovelDetailDto implements NovelDetailDto {
   String? get description;
   @override
   String? get detail;
+  @override
+  String? get firstChapterEndpoint;
+  @override
+  String? get firstChapterName;
   @override
   @JsonKey(ignore: true)
   _$$_NovelDetailDtoCopyWith<_$_NovelDetailDto> get copyWith =>

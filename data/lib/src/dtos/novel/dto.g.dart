@@ -14,6 +14,8 @@ _$_NovelDetailDto _$$_NovelDetailDtoFromJson(Map<String, dynamic> json) =>
       author: json['author'] as String?,
       description: json['description'] as String?,
       detail: json['detail'] as String?,
+      firstChapterEndpoint: json['firstChapterEndpoint'] as String?,
+      firstChapterName: json['firstChapterName'] as String?,
     );
 
 Map<String, dynamic> _$$_NovelDetailDtoToJson(_$_NovelDetailDto instance) =>
@@ -24,6 +26,8 @@ Map<String, dynamic> _$$_NovelDetailDtoToJson(_$_NovelDetailDto instance) =>
       'author': instance.author,
       'description': instance.description,
       'detail': instance.detail,
+      'firstChapterEndpoint': instance.firstChapterEndpoint,
+      'firstChapterName': instance.firstChapterName,
     };
 
 _$_NovelItemDto _$$_NovelItemDtoFromJson(Map<String, dynamic> json) =>

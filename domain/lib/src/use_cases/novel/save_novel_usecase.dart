@@ -17,22 +17,24 @@ class SaveNovelInput extends BaseInput {
   const SaveNovelInput({
     required this.sourceId,
     required this.novelEndpoint,
-    this.chapterEndpoint,
-    this.currentChapterName,
+    required this.chapterEndpoint,
+    required this.currentChapterName,
     this.totalChapters,
     this.currentChapter,
     this.timeRead,
     this.inShelf,
+    this.scrollPercent,
   });
 
   final String sourceId;
   final String novelEndpoint;
-  final String? chapterEndpoint;
-  final String? currentChapterName;
+  final String chapterEndpoint;
+  final String currentChapterName;
   final int? totalChapters;
   final int? currentChapter;
   final int? timeRead;
   final bool? inShelf;
+  final double? scrollPercent;
 }
 
 class SaveNovelOutput extends BaseOutput {

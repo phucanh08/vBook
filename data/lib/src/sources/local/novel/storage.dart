@@ -33,6 +33,7 @@ class NovelStorageImpl implements NovelStorage {
         currentChapter: novel.currentChapter,
         currentChapterName: novel.currentChapterName,
         timeRead: novel.timeRead,
+        inShelf: novel.inShelf,
       );
       await _novelBox.putAsync(_novel, mode: PutMode.update);
     } else {

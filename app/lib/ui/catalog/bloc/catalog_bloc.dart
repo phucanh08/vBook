@@ -12,7 +12,7 @@ part 'catalog_state.dart';
 
 @injectable
 class CatalogBloc extends PaginationBloc<ChapterModel, String, CatalogState> {
-  CatalogBloc(this._getCatalogUseCase, this._saveNovelUseCase)
+  CatalogBloc(this._getCatalogUseCase)
       : super(const CatalogState()) {
     on<_Started>(_onStarted);
     on<_SortSelected>(_onSortSelected);
@@ -20,7 +20,6 @@ class CatalogBloc extends PaginationBloc<ChapterModel, String, CatalogState> {
   }
 
   final GetCatalogUseCase _getCatalogUseCase;
-  final SaveNovelUseCase _saveNovelUseCase;
 
   void _onStarted(_Started event, emit) {
     runBlocCatching(action: () async {
@@ -31,16 +30,6 @@ class CatalogBloc extends PaginationBloc<ChapterModel, String, CatalogState> {
 
   void _onItemPressed(_ItemPressed event, emit) {
     runBlocCatching(action: () async {
-      await _saveNovelUseCase.call(
-        SaveNovelInput(
-          sourceId: event.sourceId,
-          novelEndpoint: event.novelEndpoint,
-          chapterEndpoint: event.chapterEndpoint,
-          currentChapterName: event.currentChapterName,
-          currentChapter: event.currentChapter,
-          totalChapters: state.data.items.length,
-        ),
-      );
       await navigator.replace(
         DetailChapterRoute(
           id: event.sourceId,

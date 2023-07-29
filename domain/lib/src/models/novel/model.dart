@@ -24,6 +24,8 @@ class NovelDetailModel with _$NovelDetailModel {
     required String author,
     required String description,
     required String detail,
+    required String firstChapterEndpoint,
+    required String firstChapterName,
   }) = _NovelDetailModel;
 }
 
@@ -33,12 +35,15 @@ class NovelModel with _$NovelModel {
   const factory NovelModel({
     required int? id,
     required DateTime updatedAt,
-    required String name,
-    required String path,
+    required String sourceId,
     required String sourceName,
+    required String novelEndpoint,
+    required String currentChapterEndpoint,
+    required String name,
     required String imgUrl,
     required int totalChapters,
     required int currentChapter,
+    required double scrollPercent,
     required String currentChapterName,
     required int timeRead,
   }) = _NovelModel;

@@ -26,7 +26,6 @@ class PluginRepositoryImpl extends NovelRepository {
     final api = getListApi[sourceId];
     final response = api?.getHome();
     final result = _homeMapper.mapToListEntity(response);
-
     return result;
   }
 
@@ -109,6 +108,7 @@ class PluginRepositoryImpl extends NovelRepository {
         novelEndpoint: saveNovelInput.novelEndpoint,
         currentChapterName: saveNovelInput.currentChapterName,
         currentChapter: saveNovelInput.currentChapter,
+        totalChapters: saveNovelInput.totalChapters,
         timeRead: saveNovelInput.timeRead,
         inShelf: saveNovelInput.inShelf,
       );
@@ -128,11 +128,12 @@ class PluginRepositoryImpl extends NovelRepository {
         sourceId: saveNovelInput.sourceId,
         sourceName: response?.name ?? '',
         imgUrl: _novelModel.imgUrl,
-        totalChapters: saveNovelInput.totalChapters,
-        currentChapter: saveNovelInput.currentChapter,
+        totalChapters: saveNovelInput.totalChapters ?? 1,
+        currentChapter: saveNovelInput.currentChapter ?? 0,
         currentChapterName: saveNovelInput.currentChapterName,
         timeRead: saveNovelInput.timeRead ?? 0,
         inShelf: saveNovelInput.inShelf == true,
+        scrollPercent: saveNovelInput.scrollPercent ?? 0.0,
       );
     }
 

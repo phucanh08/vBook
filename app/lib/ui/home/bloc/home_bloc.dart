@@ -42,8 +42,7 @@ class HomeBloc extends BaseBloc<HomeEvent, HomeState> {
     emit(state.copyWith(novelInShelf: event.data));
   }
 
-  void _onHomePageInitiated(
-      HomePageStarted event, Emitter<HomeState> emit) {
+  void _onHomePageInitiated(HomePageStarted event, Emitter<HomeState> emit) {
     final shelfOutput = _getShelfUseCase.call(const GetShelfInput());
     shelfOutput.listen((event) => add(_ShelfUpdated(event.data)));
     final historyOutput = _getHistoryUseCase.call(const GetHistoryInput());

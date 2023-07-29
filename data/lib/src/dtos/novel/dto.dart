@@ -12,6 +12,8 @@ class NovelDetailDto with _$NovelDetailDto {
     String? author,
     String? description,
     String? detail,
+    String? firstChapterEndpoint,
+    String? firstChapterName,
   }) = _NovelDetailDto;
 
   factory NovelDetailDto.fromJson(Map<String, Object?> json) =>

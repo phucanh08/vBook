@@ -92,7 +92,7 @@ final _entities = <ModelEntity>[
   ModelEntity(
       id: const IdUid(2, 8676234059551527790),
       name: 'Novel',
-      lastPropertyId: const IdUid(22, 8507096568313017227),
+      lastPropertyId: const IdUid(23, 2924306417142512220),
       flags: 0,
       properties: <ModelProperty>[
         ModelProperty(
@@ -159,6 +159,11 @@ final _entities = <ModelEntity>[
             id: const IdUid(22, 8507096568313017227),
             name: 'chapterEndpoint',
             type: 9,
+            flags: 0),
+        ModelProperty(
+            id: const IdUid(23, 2924306417142512220),
+            name: 'scrollPercent',
+            type: 8,
             flags: 0)
       ],
       relations: <ModelRelation>[],
@@ -290,10 +295,8 @@ ModelDefinition getObjectBoxModel() {
           final currentChapterNameOffset = object.currentChapterName == null
               ? null
               : fbb.writeString(object.currentChapterName!);
-          final chapterEndpointOffset = object.chapterEndpoint == null
-              ? null
-              : fbb.writeString(object.chapterEndpoint!);
-          fbb.startTable(23);
+          final chapterEndpointOffset = fbb.writeString(object.chapterEndpoint);
+          fbb.startTable(24);
           fbb.addInt64(0, object.id);
           fbb.addInt64(1, object.updatedAt.millisecondsSinceEpoch);
           fbb.addOffset(2, nameOffset);
@@ -307,6 +310,7 @@ ModelDefinition getObjectBoxModel() {
           fbb.addOffset(19, sourceIdOffset);
           fbb.addOffset(20, currentChapterNameOffset);
           fbb.addOffset(21, chapterEndpointOffset);
+          fbb.addFloat64(22, object.scrollPercent);
           fbb.finish(fbb.endTable());
           return object.id;
         },
@@ -324,7 +328,7 @@ ModelDefinition getObjectBoxModel() {
               sourceId: const fb.StringReader(asciiOptimization: true)
                   .vTableGet(buffer, rootOffset, 42, ''),
               chapterEndpoint: const fb.StringReader(asciiOptimization: true)
-                  .vTableGetNullable(buffer, rootOffset, 46),
+                  .vTableGet(buffer, rootOffset, 46, ''),
               sourceName: const fb.StringReader(asciiOptimization: true)
                   .vTableGet(buffer, rootOffset, 28, ''),
               imgUrl: const fb.StringReader(asciiOptimization: true)
@@ -334,6 +338,7 @@ ModelDefinition getObjectBoxModel() {
               currentChapter: const fb.Int64Reader().vTableGetNullable(buffer, rootOffset, 34),
               currentChapterName: const fb.StringReader(asciiOptimization: true).vTableGetNullable(buffer, rootOffset, 44),
               timeRead: const fb.Int64Reader().vTableGetNullable(buffer, rootOffset, 36),
+              scrollPercent: const fb.Float64Reader().vTableGet(buffer, rootOffset, 48, 0),
               inShelf: const fb.BoolReader().vTableGet(buffer, rootOffset, 38, false),
               id: const fb.Int64Reader().vTableGet(buffer, rootOffset, 4, 0));
 
@@ -436,4 +441,8 @@ class Novel_ {
   /// see [Novel.chapterEndpoint]
   static final chapterEndpoint =
       QueryStringProperty<Novel>(_entities[1].properties[12]);
+
+  /// see [Novel.scrollPercent]
+  static final scrollPercent =
+      QueryDoubleProperty<Novel>(_entities[1].properties[13]);
 }

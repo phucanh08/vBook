@@ -14,6 +14,7 @@ class Novel {
     required this.currentChapter,
     required this.currentChapterName,
     required this.timeRead,
+    required this.scrollPercent,
     this.inShelf = false,
     this.id = 0,
   });
@@ -23,13 +24,14 @@ class Novel {
   final DateTime updatedAt;
   final String name;
   final String novelEndpoint;
-  final String? chapterEndpoint;
+  final String chapterEndpoint;
   final String sourceId;
   final String sourceName;
   final String imgUrl;
   final int? totalChapters;
   final int? currentChapter;
   final String? currentChapterName;
+  final double scrollPercent;
   final int? timeRead;
   final bool inShelf;
 
@@ -46,6 +48,7 @@ class Novel {
     String? currentChapterName,
     int? timeRead,
     bool? inShelf,
+    double? scrollPercent,
   }) {
     return Novel(
       id: id,
@@ -60,6 +63,8 @@ class Novel {
       currentChapter: currentChapter ?? this.currentChapter,
       currentChapterName: currentChapterName ?? this.currentChapterName,
       timeRead: timeRead ?? this.timeRead,
+      scrollPercent: scrollPercent ?? this.scrollPercent,
+      inShelf: inShelf ?? this.inShelf,
     );
   }
 }

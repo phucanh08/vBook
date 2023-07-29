@@ -1,5 +1,6 @@
 import 'package:auto_route/auto_route.dart';
 import 'package:carousel_slider/carousel_slider.dart';
+import 'package:domain/domain.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
@@ -9,7 +10,9 @@ import 'widgets/carousel_slider_item.dart';
 
 @RoutePage(name: 'BookShelfTabRouter')
 class BookShelfTab extends StatelessWidget {
-  const BookShelfTab({super.key});
+  const BookShelfTab({required this.onItemPressed, super.key});
+
+  final Function(NovelModel novel) onItemPressed;
 
   @override
   Widget build(BuildContext context) {
@@ -17,10 +20,6 @@ class BookShelfTab extends StatelessWidget {
       buildWhen: (prev, cur) => prev.novelInShelf != cur.novelInShelf,
       builder: (context, state) {
         final novelInShelf = state.novelInShelf;
-
-        if (novelInShelf.isEmpty) {
-          return const CircularProgressIndicator.adaptive();
-        }
 
         return ListView(
           padding: const EdgeInsets.symmetric(horizontal: 5),
@@ -36,6 +35,8 @@ class BookShelfTab extends StatelessWidget {
                 itemBuilder: (context, itemIndex, pageViewIndex) {
                   return CarouselSliderItem(
                     novelModel: novelInShelf[itemIndex],
+                    onPressed: () =>
+                        onItemPressed.call(novelInShelf[itemIndex]),
                   );
                 },
               ),
@@ -59,6 +60,8 @@ class BookShelfTab extends StatelessWidget {
                     bookName: novel.name,
                     currentChapter: novel.totalChapters,
                     totalChapter: novel.currentChapter,
+                    onPressed: () => onItemPressed.call(novel),
+                    scrollPercent: novel.scrollPercent,
                   );
                 },
               ),

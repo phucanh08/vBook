@@ -4,8 +4,8 @@ part of 'detail_chapter_bloc.dart';
 class DetailChapterEvent extends BaseEvent with _$DetailChapterEvent {
   const factory DetailChapterEvent.started({
     required String sourceId,
-    required String endpoint,
     required String novelEndpoint,
+    required String chapterEndpoint,
   }) = _Started;
 
   const factory DetailChapterEvent.visibleAppBarChanged({
@@ -19,4 +19,10 @@ class DetailChapterEvent extends BaseEvent with _$DetailChapterEvent {
     required int totalPage,
     required double percent,
   }) = _PageScrolled;
+
+  const factory DetailChapterEvent.readyBookSaved({
+    required String sourceId,
+    required String novelEndpoint,
+    required String chapterEndpoint,
+  }) = _ReadyBookSaved;
 }

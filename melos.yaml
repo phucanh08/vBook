@@ -29,6 +29,10 @@ scripts:
     run: dart pub global run melos exec --fail-fast --scope="*shared*" --depends-on="build_runner" "flutter packages pub run build_runner build"
     description: build_runner build shared module.
 
+  build_resources:
+    run: dart pub global run melos exec --fail-fast --scope="*resources*" --depends-on="build_runner" "flutter packages pub run build_runner build"
+    description: build_runner build resources module.
+
   # build runner watch
   watch_all:
     run: dart pub global run melos exec --depends-on="build_runner" "flutter packages pub run build_runner watch"
