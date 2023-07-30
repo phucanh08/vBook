@@ -58,8 +58,8 @@ class BookShelfTab extends StatelessWidget {
                   return BookCardItem(
                     imageUrl: novel.imgUrl,
                     bookName: novel.name,
-                    currentChapter: novel.totalChapters,
-                    totalChapter: novel.currentChapter,
+                    totalChapter: novel.totalChapters,
+                    currentChapter: novel.currentChapter,
                     onPressed: () => onItemPressed.call(novel),
                     scrollPercent: novel.scrollPercent,
                   );

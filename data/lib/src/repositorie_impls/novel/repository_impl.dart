@@ -111,6 +111,7 @@ class PluginRepositoryImpl extends NovelRepository {
         totalChapters: saveNovelInput.totalChapters,
         timeRead: saveNovelInput.timeRead,
         inShelf: saveNovelInput.inShelf,
+        scrollPercent: saveNovelInput.scrollPercent,
       );
     } else {
       final _novelModel = await getDetailNovel(
@@ -129,7 +130,7 @@ class PluginRepositoryImpl extends NovelRepository {
         sourceName: response?.name ?? '',
         imgUrl: _novelModel.imgUrl,
         totalChapters: saveNovelInput.totalChapters ?? 1,
-        currentChapter: saveNovelInput.currentChapter ?? 0,
+        currentChapter: saveNovelInput.currentChapter ?? 1,
         currentChapterName: saveNovelInput.currentChapterName,
         timeRead: saveNovelInput.timeRead ?? 0,
         inShelf: saveNovelInput.inShelf == true,

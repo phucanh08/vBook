@@ -26,7 +26,7 @@ class DetailChapterBloc
     );
     on<_VisibleAppBarChanged>(
       _onVisibleAppBarChanged,
-      transformer: debounceTime(),
+      transformer: debounceTime(duration: const Duration(seconds: 1)),
     );
     on<_BookmarkChanged>(_onBookmarkChanged);
     on<_PageScrolled>(_onPageScrolled);

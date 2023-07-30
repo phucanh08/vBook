@@ -34,6 +34,7 @@ class NovelStorageImpl implements NovelStorage {
         currentChapterName: novel.currentChapterName,
         timeRead: novel.timeRead,
         inShelf: novel.inShelf,
+        scrollPercent: novel.scrollPercent,
       );
       await _novelBox.putAsync(_novel, mode: PutMode.update);
     } else {

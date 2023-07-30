@@ -102,6 +102,8 @@ build_domain:
 	@flutter pub global run melos run build_domain
 build_data:
 	@flutter pub global run melos run build_data
+build_resources:
+	@flutter pub global run melos run build_resources
 build_shared:
 	@flutter pub global run melos run build_shared
 force_build_all:
@@ -112,6 +114,8 @@ force_build_domain:
 	@flutter pub global run melos run force_build_domain
 force_build_data:
 	@flutter pub global run melos run force_build_data
+force_build_resources:
+	@flutter pub global run melos run force_build_resources
 force_build_shared:
 	@flutter pub global run melos run force_build_shared
 watch_all:
