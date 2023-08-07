@@ -2,27 +2,25 @@ import 'package:flutter/material.dart';
 
 class AdjustableScrollController extends ScrollController {
   AdjustableScrollController({
-    required this.onPageChanged,
+    this.onPageChanged,
     this.enableAdjustableScroll = false,
     this.scrollSpeed = 40,
   }) {
     super.addListener(onScroll);
   }
 
-  void onScroll() {
-    // final scrollDirection = super.position.userScrollDirection;
-    final int currentPage =
-        (super.offset / super.position.viewportDimension).ceil();
-    final int totalPage =
-        (super.position.maxScrollExtent / super.position.viewportDimension)
-            .ceil();
-    final double percent =
-        (super.offset / super.position.maxScrollExtent) * 100;
+  void updateScrollPosition(double percent) {
+    jumpTo(percent * super.position.maxScrollExtent / 100);
+  }
 
-    onPageChanged.call(currentPage, totalPage, percent);
+  void onScroll() {
+    if (super.position.viewportDimension <= 0) {
+      return;
+    }
+    updatePage();
     if (enableAdjustableScroll) {
       final scrollEnd = super.offset + scrollSpeed;
-      if(scrollEnd < super.position.maxScrollExtent) {
+      if (scrollEnd < super.position.maxScrollExtent) {
         animateTo(
           scrollEnd,
           duration: const Duration(milliseconds: 300),
@@ -31,18 +29,18 @@ class AdjustableScrollController extends ScrollController {
       }
       // if (scrollDirection != ScrollDirection.idle) {
       //   final scrollEnd = super.offset + scrollSpeed;
-            // (scrollDirection == ScrollDirection.reverse
-            //     ? scrollSpeed
-            //     : -scrollSpeed);
-        // scrollEnd = min(super.position.maxScrollExtent,
-        //     max(super.position.minScrollExtent, scrollEnd));
-        // if(scrollEnd < super.position.maxScrollExtent) {
-        //   animateTo(
-        //     scrollEnd,
-        //     duration: const Duration(milliseconds: 300),
-        //     curve: Curves.bounceIn,
-        //   );
-        // }
+      // (scrollDirection == ScrollDirection.reverse
+      //     ? scrollSpeed
+      //     : -scrollSpeed);
+      // scrollEnd = min(super.position.maxScrollExtent,
+      //     max(super.position.minScrollExtent, scrollEnd));
+      // if(scrollEnd < super.position.maxScrollExtent) {
+      //   animateTo(
+      //     scrollEnd,
+      //     duration: const Duration(milliseconds: 300),
+      //     curve: Curves.bounceIn,
+      //   );
+      // }
       // }
     }
   }
@@ -50,17 +48,17 @@ class AdjustableScrollController extends ScrollController {
   bool enableAdjustableScroll;
   double scrollSpeed;
 
-  final void Function(
+  void Function(
     int currentPage,
     int totalPage,
     double percent,
-  ) onPageChanged;
+  )? onPageChanged;
 
   void changeAdjustableScroll() {
     enableAdjustableScroll = !enableAdjustableScroll;
-    if(enableAdjustableScroll) {
+    if (enableAdjustableScroll) {
       final scrollEnd = super.offset + scrollSpeed;
-      if(scrollEnd < super.position.maxScrollExtent) {
+      if (scrollEnd < super.position.maxScrollExtent) {
         animateTo(
           scrollEnd,
           duration: const Duration(milliseconds: 300),
@@ -71,15 +69,18 @@ class AdjustableScrollController extends ScrollController {
   }
 
   void updatePage() {
-    final int currentPage =
-    (super.offset / super.position.viewportDimension).ceil();
-    final int totalPage =
-    (super.position.maxScrollExtent / super.position.viewportDimension)
-        .ceil();
-    final double percent =
-        (super.offset / super.position.maxScrollExtent) * 100;
+    final int currentPage = super.position.viewportDimension > 0
+        ? (super.offset / super.position.viewportDimension).ceil()
+        : 0;
+    final int totalPage = super.position.viewportDimension > 0
+        ? (super.position.maxScrollExtent / super.position.viewportDimension)
+        .ceil()
+        : 0;
+    final double percent = super.position.maxScrollExtent > 0
+        ? (super.offset / super.position.maxScrollExtent) * 100
+        : 0;
 
-    onPageChanged.call(currentPage, totalPage, percent);
+    onPageChanged?.call(currentPage, totalPage, percent);
   }
 
   void disable() => super.removeListener(onScroll);

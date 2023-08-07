@@ -21,6 +21,7 @@ class _HomePageState extends BasePageState<HomePage, HomeBloc> {
         id: novel.sourceId,
         novelEndpoint: novel.novelEndpoint,
         chapterEndpoint: novel.currentChapterEndpoint,
+        percent: novel.scrollPercent,
       ),
     );
   };

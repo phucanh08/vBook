@@ -14,12 +14,14 @@ class DetailChapterPage extends StatefulWidget {
     required this.id,
     required this.chapterEndpoint,
     required this.novelEndpoint,
+    this.percent = 0,
     super.key,
   });
 
   final String id;
   final String chapterEndpoint;
   final String novelEndpoint;
+  final double percent;
 
   @override
   State<DetailChapterPage> createState() => _DetailChapterPageState();
@@ -27,8 +29,6 @@ class DetailChapterPage extends StatefulWidget {
 
 class _DetailChapterPageState
     extends BasePageState<DetailChapterPage, DetailChapterBloc> {
-  late final AdjustableScrollController _adjustableScrollController;
-
   @override
   void initState() {
     bloc.add(
@@ -36,38 +36,24 @@ class _DetailChapterPageState
         sourceId: widget.id,
         novelEndpoint: widget.novelEndpoint,
         chapterEndpoint: widget.chapterEndpoint,
+        percent: widget.percent,
       ),
-    );
-    _adjustableScrollController = AdjustableScrollController(
-      onPageChanged: (int currentPage, int totalPage, double percent) {
-        bloc.add(
-          DetailChapterEvent.pageScrolled(
-            currentPage: currentPage,
-            totalPage: totalPage,
-            percent: percent,
-          ),
-        );
-        bloc.add(DetailChapterEvent.readyBookSaved(
-          sourceId: widget.id,
-          novelEndpoint: widget.novelEndpoint,
-          chapterEndpoint: widget.chapterEndpoint,
-        ));
-      },
     );
     super.initState();
   }
 
   @override
   void dispose() {
-    _adjustableScrollController.dispose();
+    bloc.state.scrollController.dispose();
     super.dispose();
   }
 
   @override
   Widget buildPageListeners({required Widget child}) {
     return BlocListener<DetailChapterBloc, DetailChapterState>(
+      listenWhen: (prev, cur) => prev.model != cur.model,
       listener: (context, child) {
-        _adjustableScrollController.updatePage();
+        bloc.state.scrollController.updatePage();
       },
       child: child,
     );
@@ -111,7 +97,7 @@ class _DetailChapterPageState
                     ),
                     IconButton(
                       onPressed: () =>
-                          _adjustableScrollController.changeAdjustableScroll(),
+                          state.scrollController.changeAdjustableScroll(),
                       icon: Transform.rotate(
                         angle: -pi * 3 / 4,
                         child: const FaIcon(
@@ -184,30 +170,13 @@ class _DetailChapterPageState
               }
             },
             onHorizontalDragEnd: (dragEndDetails) {
-              if (dragEndDetails.primaryVelocity is double) {
-                _adjustableScrollController.jumpTo(0);
-                if (dragEndDetails.primaryVelocity! < 0) {
-                  logD('Move page forwards');
-                  bloc.add(
-                    DetailChapterEvent.started(
-                      sourceId: widget.id,
-                      chapterEndpoint:
-                          state.catalog[state.currentChapter].endpoint,
-                      novelEndpoint: widget.novelEndpoint,
-                    ),
-                  );
-                } else if (dragEndDetails.primaryVelocity! > 0) {
-                  logD('Move page backwards');
-                  bloc.add(
-                    DetailChapterEvent.started(
-                      sourceId: widget.id,
-                      chapterEndpoint:
-                          state.catalog[state.currentChapter - 2].endpoint,
-                      novelEndpoint: widget.novelEndpoint,
-                    ),
-                  );
-                }
-              }
+              bloc.add(
+                DetailChapterEvent.horizontalDragged(
+                  HorizontalDraggedEnum.fromPrimaryVelocity(
+                    dragEndDetails.primaryVelocity ?? 0.0,
+                  ),
+                ),
+              );
             },
             child: SafeArea(
               bottom: false,
@@ -223,7 +192,7 @@ class _DetailChapterPageState
                   ),
                   Expanded(
                     child: SingleChildScrollView(
-                      controller: _adjustableScrollController,
+                      controller: state.scrollController,
                       padding: const EdgeInsets.all(10),
                       child: Column(
                         children: [

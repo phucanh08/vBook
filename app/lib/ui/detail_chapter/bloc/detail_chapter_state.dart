@@ -3,7 +3,11 @@ part of 'detail_chapter_bloc.dart';
 @freezed
 class DetailChapterState extends BaseState with _$DetailChapterState {
   const DetailChapterState._();
+
   const factory DetailChapterState({
+    required AdjustableScrollController scrollController,
+    @Default('') String sourceId,
+    @Default('') String novelEndpoint,
     ChapterDetailModel? model,
     @Default(true) bool visibleAppBar,
     @Default(false) bool bookmarked,
@@ -14,10 +18,13 @@ class DetailChapterState extends BaseState with _$DetailChapterState {
     @Default(0.0) double percent,
   }) = _DetailChapterState;
 
-  String get percentOfNovel =>
-      (((currentChapter - 1) * 100 + percent) / totalChapter).toStringAsFixed(2);
+  String get percentOfNovel => totalChapter == 0
+      ? '0'
+      : (((currentChapter - 1) * 100 + percent) / totalChapter)
+          .toStringAsFixed(2);
 
   int get totalChapter => catalog.isNotEmpty ? catalog.length : 1;
 
-  String get title => catalog.isNotEmpty ? catalog[currentChapter - 1].name : '';
+  String get title =>
+      catalog.isNotEmpty ? catalog[currentChapter - 1].name : '';
 }
