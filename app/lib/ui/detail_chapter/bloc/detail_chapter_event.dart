@@ -42,4 +42,11 @@ class DetailChapterEvent extends BaseEvent with _$DetailChapterEvent {
 
   const factory DetailChapterEvent.horizontalDragged(
       HorizontalDraggedEnum type) = _HorizontalDragged;
+
+  const factory DetailChapterEvent.adjustableScrollChanged() =
+      _AdjustableScrollChanged;
+
+  const factory DetailChapterEvent.speakButtonPressed() = _SpeakButtonPressed;
+
+  const factory DetailChapterEvent.stopButtonPressed() = _StopButtonPressed;
 }

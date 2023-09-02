@@ -1,5 +1,3 @@
-package android
-
 include ':app'
 
 def localPropertiesFile = new File(rootProject.projectDir, "local.properties")

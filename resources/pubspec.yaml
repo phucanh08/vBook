@@ -16,7 +16,7 @@ dependencies:
   flutter_localizations:
     sdk: flutter
   flutter_screenutil: 5.8.4
-  intl: 0.18.0
+  intl: 0.18.1
   slang: 3.15.0
   slang_flutter: 3.15.0
 

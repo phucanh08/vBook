@@ -28,6 +28,8 @@ import 'package:domain/src/use_cases/plugin/remove_local_plugin_usecase.dart'
     as _i12;
 import 'package:domain/src/use_cases/plugin/save_local_plugin_usecase.dart'
     as _i13;
+import 'package:domain/src/use_cases/tts/speak_use_case.dart' as _i15;
+import 'package:domain/src/use_cases/tts/stop_use_case.dart' as _i16;
 import 'package:get_it/get_it.dart' as _i1;
 import 'package:injectable/injectable.dart' as _i2;
 
@@ -60,6 +62,8 @@ extension GetItInjectableX on _i1.GetIt {
     gh.factory<_i13.SaveLocalPluginUseCase>(
         () => _i13.SaveLocalPluginUseCase());
     gh.factory<_i14.SaveNovelUseCase>(() => _i14.SaveNovelUseCase());
+    gh.factory<_i15.SpeakUseCase>(() => _i15.SpeakUseCase());
+    gh.factory<_i16.StopUseCase>(() => _i16.StopUseCase());
     return this;
   }
 }

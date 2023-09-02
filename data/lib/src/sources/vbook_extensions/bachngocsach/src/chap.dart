@@ -12,6 +12,6 @@ Future<ChapterDetailDto> chap(String endpoint) async {
 
   return ChapterDetailDto(
     url: 'https://bachngocsach.com.vn$endpoint',
-    content: doc.querySelector('#noi-dung')!.text,
+    contents: doc.querySelector('#noi-dung')!.children.map<String>((e) => e.text).toList(),
   );
 }

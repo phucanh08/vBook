@@ -9,7 +9,7 @@
 // coverage:ignore-file
 
 // ignore_for_file: no_leading_underscores_for_library_prefixes
-import 'package:data/data.dart' as _i15;
+import 'package:data/data.dart' as _i16;
 import 'package:data/src/mappers/chapter/mapper.dart' as _i4;
 import 'package:data/src/mappers/detail_chapter/mapper.dart' as _i5;
 import 'package:data/src/mappers/home/mapper.dart' as _i7;
@@ -17,8 +17,9 @@ import 'package:data/src/mappers/novel/mapper.dart' as _i8;
 import 'package:data/src/mappers/novel_detail/mapper.dart' as _i6;
 import 'package:data/src/mappers/page/mapper.dart' as _i10;
 import 'package:data/src/mappers/plugin/mapper.dart' as _i11;
-import 'package:data/src/repositorie_impls/novel/repository_impl.dart' as _i14;
-import 'package:data/src/repositorie_impls/plugin/repository_impl.dart' as _i16;
+import 'package:data/src/repositorie_impls/novel/repository_impl.dart' as _i15;
+import 'package:data/src/repositorie_impls/plugin/repository_impl.dart' as _i17;
+import 'package:data/src/repositorie_impls/tts/repository_impl.dart' as _i14;
 import 'package:data/src/sources/local/novel/storage.dart' as _i9;
 import 'package:data/src/sources/local/plugin/storage.dart' as _i12;
 import 'package:data/src/sources/vbook_extensions/bachngocsach/plugin.dart'
@@ -51,14 +52,15 @@ extension GetItInjectableX on _i1.GetIt {
     gh.factory<_i11.Plugin2DataMapper>(() => _i11.Plugin2DataMapper());
     gh.factory<_i11.PluginDataMapper>(() => _i11.PluginDataMapper());
     gh.factory<_i12.PluginStorage>(() => _i12.PluginStorage());
-    gh.factory<_i13.NovelRepository>(() => _i14.PluginRepositoryImpl(
-          gh<_i15.HomeDataMapper>(),
+    gh.singleton<_i13.TTSRepository>(_i14.TTSRepositoryImpl());
+    gh.factory<_i13.NovelRepository>(() => _i15.PluginRepositoryImpl(
+          gh<_i16.HomeDataMapper>(),
           gh<_i10.PageDataMapper>(),
-          gh<_i15.NovelDataMapper>(),
+          gh<_i16.NovelDataMapper>(),
           gh<_i9.NovelStorage>(),
         ));
     gh.factory<_i13.PluginRepository>(
-        () => _i16.PluginRepositoryImpl(gh<_i12.PluginStorage>()));
+        () => _i17.PluginRepositoryImpl(gh<_i12.PluginStorage>()));
     return this;
   }
 }

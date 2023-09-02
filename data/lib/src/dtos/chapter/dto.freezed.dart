@@ -169,7 +169,7 @@ abstract class _ChapterDto implements ChapterDto {
 /// @nodoc
 mixin _$ChapterDetailDto {
   String get url => throw _privateConstructorUsedError;
-  String get content => throw _privateConstructorUsedError;
+  List<String> get contents => throw _privateConstructorUsedError;
 
   @JsonKey(ignore: true)
   $ChapterDetailDtoCopyWith<ChapterDetailDto> get copyWith =>
@@ -182,7 +182,7 @@ abstract class $ChapterDetailDtoCopyWith<$Res> {
           ChapterDetailDto value, $Res Function(ChapterDetailDto) then) =
       _$ChapterDetailDtoCopyWithImpl<$Res, ChapterDetailDto>;
   @useResult
-  $Res call({String url, String content});
+  $Res call({String url, List<String> contents});
 }
 
 /// @nodoc
@@ -199,17 +199,17 @@ class _$ChapterDetailDtoCopyWithImpl<$Res, $Val extends ChapterDetailDto>
   @override
   $Res call({
     Object? url = null,
-    Object? content = null,
+    Object? contents = null,
   }) {
     return _then(_value.copyWith(
       url: null == url
           ? _value.url
           : url // ignore: cast_nullable_to_non_nullable
               as String,
-      content: null == content
-          ? _value.content
-          : content // ignore: cast_nullable_to_non_nullable
-              as String,
+      contents: null == contents
+          ? _value.contents
+          : contents // ignore: cast_nullable_to_non_nullable
+              as List<String>,
     ) as $Val);
   }
 }
@@ -222,7 +222,7 @@ abstract class _$$_ChapterDetailDtoCopyWith<$Res>
       __$$_ChapterDetailDtoCopyWithImpl<$Res>;
   @override
   @useResult
-  $Res call({String url, String content});
+  $Res call({String url, List<String> contents});
 }
 
 /// @nodoc
@@ -237,17 +237,17 @@ class __$$_ChapterDetailDtoCopyWithImpl<$Res>
   @override
   $Res call({
     Object? url = null,
-    Object? content = null,
+    Object? contents = null,
   }) {
     return _then(_$_ChapterDetailDto(
       url: null == url
           ? _value.url
           : url // ignore: cast_nullable_to_non_nullable
               as String,
-      content: null == content
-          ? _value.content
-          : content // ignore: cast_nullable_to_non_nullable
-              as String,
+      contents: null == contents
+          ? _value._contents
+          : contents // ignore: cast_nullable_to_non_nullable
+              as List<String>,
     ));
   }
 }
@@ -255,16 +255,23 @@ class __$$_ChapterDetailDtoCopyWithImpl<$Res>
 /// @nodoc
 
 class _$_ChapterDetailDto implements _ChapterDetailDto {
-  const _$_ChapterDetailDto({required this.url, required this.content});
+  const _$_ChapterDetailDto(
+      {required this.url, required final List<String> contents})
+      : _contents = contents;
 
   @override
   final String url;
+  final List<String> _contents;
   @override
-  final String content;
+  List<String> get contents {
+    if (_contents is EqualUnmodifiableListView) return _contents;
+    // ignore: implicit_dynamic_type
+    return EqualUnmodifiableListView(_contents);
+  }
 
   @override
   String toString() {
-    return 'ChapterDetailDto(url: $url, content: $content)';
+    return 'ChapterDetailDto(url: $url, contents: $contents)';
   }
 
   @override
@@ -273,11 +280,12 @@ class _$_ChapterDetailDto implements _ChapterDetailDto {
         (other.runtimeType == runtimeType &&
             other is _$_ChapterDetailDto &&
             (identical(other.url, url) || other.url == url) &&
-            (identical(other.content, content) || other.content == content));
+            const DeepCollectionEquality().equals(other._contents, _contents));
   }
 
   @override
-  int get hashCode => Object.hash(runtimeType, url, content);
+  int get hashCode => Object.hash(
+      runtimeType, url, const DeepCollectionEquality().hash(_contents));
 
   @JsonKey(ignore: true)
   @override
@@ -289,12 +297,12 @@ class _$_ChapterDetailDto implements _ChapterDetailDto {
 abstract class _ChapterDetailDto implements ChapterDetailDto {
   const factory _ChapterDetailDto(
       {required final String url,
-      required final String content}) = _$_ChapterDetailDto;
+      required final List<String> contents}) = _$_ChapterDetailDto;
 
   @override
   String get url;
   @override
-  String get content;
+  List<String> get contents;
   @override
   @JsonKey(ignore: true)
   _$$_ChapterDetailDtoCopyWith<_$_ChapterDetailDto> get copyWith =>

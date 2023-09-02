@@ -155,7 +155,8 @@ abstract class _ChapterModel extends ChapterModel {
 /// @nodoc
 mixin _$ChapterDetailModel {
   String get url => throw _privateConstructorUsedError;
-  String get content => throw _privateConstructorUsedError;
+  List<String> get contents => throw _privateConstructorUsedError;
+  int get index => throw _privateConstructorUsedError;
 
   @JsonKey(ignore: true)
   $ChapterDetailModelCopyWith<ChapterDetailModel> get copyWith =>
@@ -168,7 +169,7 @@ abstract class $ChapterDetailModelCopyWith<$Res> {
           ChapterDetailModel value, $Res Function(ChapterDetailModel) then) =
       _$ChapterDetailModelCopyWithImpl<$Res, ChapterDetailModel>;
   @useResult
-  $Res call({String url, String content});
+  $Res call({String url, List<String> contents, int index});
 }
 
 /// @nodoc
@@ -185,17 +186,22 @@ class _$ChapterDetailModelCopyWithImpl<$Res, $Val extends ChapterDetailModel>
   @override
   $Res call({
     Object? url = null,
-    Object? content = null,
+    Object? contents = null,
+    Object? index = null,
   }) {
     return _then(_value.copyWith(
       url: null == url
           ? _value.url
           : url // ignore: cast_nullable_to_non_nullable
               as String,
-      content: null == content
-          ? _value.content
-          : content // ignore: cast_nullable_to_non_nullable
-              as String,
+      contents: null == contents
+          ? _value.contents
+          : contents // ignore: cast_nullable_to_non_nullable
+              as List<String>,
+      index: null == index
+          ? _value.index
+          : index // ignore: cast_nullable_to_non_nullable
+              as int,
     ) as $Val);
   }
 }
@@ -208,7 +214,7 @@ abstract class _$$_ChapterDetailModelCopyWith<$Res>
       __$$_ChapterDetailModelCopyWithImpl<$Res>;
   @override
   @useResult
-  $Res call({String url, String content});
+  $Res call({String url, List<String> contents, int index});
 }
 
 /// @nodoc
@@ -223,17 +229,22 @@ class __$$_ChapterDetailModelCopyWithImpl<$Res>
   @override
   $Res call({
     Object? url = null,
-    Object? content = null,
+    Object? contents = null,
+    Object? index = null,
   }) {
     return _then(_$_ChapterDetailModel(
       url: null == url
           ? _value.url
           : url // ignore: cast_nullable_to_non_nullable
               as String,
-      content: null == content
-          ? _value.content
-          : content // ignore: cast_nullable_to_non_nullable
-              as String,
+      contents: null == contents
+          ? _value._contents
+          : contents // ignore: cast_nullable_to_non_nullable
+              as List<String>,
+      index: null == index
+          ? _value.index
+          : index // ignore: cast_nullable_to_non_nullable
+              as int,
     ));
   }
 }
@@ -241,17 +252,28 @@ class __$$_ChapterDetailModelCopyWithImpl<$Res>
 /// @nodoc
 
 class _$_ChapterDetailModel extends _ChapterDetailModel {
-  const _$_ChapterDetailModel({required this.url, required this.content})
-      : super._();
+  const _$_ChapterDetailModel(
+      {required this.url, required final List<String> contents, this.index = 0})
+      : _contents = contents,
+        super._();
 
   @override
   final String url;
+  final List<String> _contents;
   @override
-  final String content;
+  List<String> get contents {
+    if (_contents is EqualUnmodifiableListView) return _contents;
+    // ignore: implicit_dynamic_type
+    return EqualUnmodifiableListView(_contents);
+  }
+
+  @override
+  @JsonKey()
+  final int index;
 
   @override
   String toString() {
-    return 'ChapterDetailModel(url: $url, content: $content)';
+    return 'ChapterDetailModel(url: $url, contents: $contents, index: $index)';
   }
 
   @override
@@ -260,11 +282,13 @@ class _$_ChapterDetailModel extends _ChapterDetailModel {
         (other.runtimeType == runtimeType &&
             other is _$_ChapterDetailModel &&
             (identical(other.url, url) || other.url == url) &&
-            (identical(other.content, content) || other.content == content));
+            const DeepCollectionEquality().equals(other._contents, _contents) &&
+            (identical(other.index, index) || other.index == index));
   }
 
   @override
-  int get hashCode => Object.hash(runtimeType, url, content);
+  int get hashCode => Object.hash(
+      runtimeType, url, const DeepCollectionEquality().hash(_contents), index);
 
   @JsonKey(ignore: true)
   @override
@@ -277,13 +301,16 @@ class _$_ChapterDetailModel extends _ChapterDetailModel {
 abstract class _ChapterDetailModel extends ChapterDetailModel {
   const factory _ChapterDetailModel(
       {required final String url,
-      required final String content}) = _$_ChapterDetailModel;
+      required final List<String> contents,
+      final int index}) = _$_ChapterDetailModel;
   const _ChapterDetailModel._() : super._();
 
   @override
   String get url;
   @override
-  String get content;
+  List<String> get contents;
+  @override
+  int get index;
   @override
   @JsonKey(ignore: true)
   _$$_ChapterDetailModelCopyWith<_$_ChapterDetailModel> get copyWith =>

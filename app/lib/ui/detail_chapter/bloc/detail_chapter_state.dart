@@ -27,4 +27,6 @@ class DetailChapterState extends BaseState with _$DetailChapterState {
 
   String get title =>
       catalog.isNotEmpty ? catalog[currentChapter - 1].name : '';
+
+  String get url => model?.url ?? '';
 }

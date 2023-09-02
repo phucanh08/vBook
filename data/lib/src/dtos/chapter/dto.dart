@@ -15,6 +15,6 @@ class ChapterDto with _$ChapterDto {
 class ChapterDetailDto with _$ChapterDetailDto {
   const factory ChapterDetailDto({
     required String url,
-    required String content,
+    required List<String> contents,
   }) = _ChapterDetailDto;
 }

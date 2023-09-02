@@ -18,23 +18,23 @@ class DetailChapterBloc
     this._getDetailChapterUseCase,
     this._getCatalogUseCase,
     this._saveNovelUseCase,
+    this._speakUseCase,
+    this._stopUseCase,
   ) : super(
-          DetailChapterState(
-            scrollController: AdjustableScrollController(),
-          ),
+          DetailChapterState(scrollController: AdjustableScrollController()),
         ) {
     on<_Started>(_onStarted);
-    on<_ReadyBookSaved>(
-      _onReadyBookSaved,
-      transformer: debounceTime(),
-    );
+    on<_ReadyBookSaved>(_onReadyBookSaved, transformer: debounceTime());
     on<_VisibleAppBarChanged>(
       _onVisibleAppBarChanged,
-      transformer: debounceTime(duration: const Duration(seconds: 1)),
+      transformer: throttleTime(duration: const Duration(seconds: 1)),
     );
     on<_BookmarkChanged>(_onBookmarkChanged);
     on<_PageScrolled>(_onPageScrolled);
+    on<_SpeakButtonPressed>(_onSpeakButtonPressed);
+    on<_StopButtonPressed>(_onStopButtonPressed);
     on<_HorizontalDragged>(_onHorizontalDragged);
+    on<_AdjustableScrollChanged>(_onAdjustableScrollChanged);
     state.scrollController.onPageChanged = (
       int currentPage,
       int totalPage,
@@ -53,6 +53,8 @@ class DetailChapterBloc
   final SaveNovelUseCase _saveNovelUseCase;
   final GetCatalogUseCase _getCatalogUseCase;
   final GetDetailChapterUseCase _getDetailChapterUseCase;
+  final SpeakUseCase _speakUseCase;
+  final StopUseCase _stopUseCase;
 
   Future<void> _onStarted(_Started event, emit) {
     return runBlocCatching(action: () async {
@@ -112,6 +114,12 @@ class DetailChapterBloc
   Future<void> _onBookmarkChanged(_BookmarkChanged event, emit) {
     return runBlocCatching(action: () async {
       emit(state.copyWith(bookmarked: !state.bookmarked));
+
+      if (state.bookmarked) {
+        add(const _SpeakButtonPressed());
+      } else {
+        add(const _StopButtonPressed());
+      }
     });
   }
 
@@ -159,6 +167,40 @@ class DetailChapterBloc
     );
   }
 
+  Future<void> _onAdjustableScrollChanged(
+      _AdjustableScrollChanged event, emit) {
+    return runBlocCatching(
+      action: () async {
+        if(!state.scrollController.enableAdjustableScroll) {
+          emit(state.copyWith(visibleAppBar: false));
+        }
+        state.scrollController.changeAdjustableScroll();
+      },
+    );
+  }
+
+  Future<void> _onSpeakButtonPressed(_SpeakButtonPressed event, emit) {
+    return runBlocCatching(
+      action: () async {
+
+        await _speakUseCase.call(SpeakInput(state.model?.currentContent ?? ''));
+        if(state.model?.hasNext == true) {
+          emit(state.copyWith(model: state.model?.next));
+        }
+      },
+      handleLoading: false,
+    );
+  }
+
+  Future<void> _onStopButtonPressed(_StopButtonPressed event, emit) {
+    return runBlocCatching(
+      action: () {
+        return _stopUseCase.call(StopInput());
+      },
+      handleLoading: false,
+    );
+  }
+
   Future<void> _updateChapter(String chapterEndpoint, emit,
       [double percent = 0]) {
     return runBlocCatching(
@@ -170,7 +212,7 @@ class DetailChapterBloc
           ),
         );
         emit(state.copyWith(
-          model: response.data,
+          model: response.data.copyWith(contents: [state.title, ...response.data.contents]),
           currentChapter: state.catalog.indexWhere(
                 (element) => element.endpoint == chapterEndpoint,
               ) +
@@ -183,5 +225,11 @@ class DetailChapterBloc
       },
       handleLoading: false,
     );
+  }
+
+  @override
+  Future<void> close() {
+    state.scrollController.dispose();
+    return super.close();
   }
 }

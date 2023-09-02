@@ -1,4 +1,4 @@
-name: basecleanflutter
+name: vBook
 
 packages:
   - ./**

@@ -1,5 +1,6 @@
 import 'dart:async';
 
+import 'package:domain/domain.dart';
 import 'package:shared/shared.dart';
 import 'package:webview_flutter/webview_flutter.dart';
 import 'package:webview_flutter_android/webview_flutter_android.dart';
@@ -41,6 +42,8 @@ class DataConfig extends Config {
     await ObjectBox.instance();
     di.getIt.registerSingleton<Browser>(BrowserImpl(browserConfig()));
     di.configureInjection();
+
+    await di.getIt<TTSRepository>().init();
   }
 }
 

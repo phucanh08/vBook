@@ -1,5 +1,6 @@
-import 'package:domain/domain.dart';
 import 'package:injectable/injectable.dart';
+
+import '../../../domain.dart';
 
 @injectable
 class SaveLocalPluginUseCase
