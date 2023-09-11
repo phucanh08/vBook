@@ -16,6 +16,7 @@ class Novel {
     required this.timeRead,
     required this.scrollPercent,
     this.inShelf = false,
+    this.bookmarked = false,
     this.id = 0,
   });
 
@@ -34,6 +35,7 @@ class Novel {
   final double scrollPercent;
   final int? timeRead;
   final bool inShelf;
+  final bool bookmarked;
 
   Novel copyWith({
     DateTime? updatedAt,
@@ -48,6 +50,7 @@ class Novel {
     String? currentChapterName,
     int? timeRead,
     bool? inShelf,
+    bool? bookmarked,
     double? scrollPercent,
   }) {
     return Novel(
@@ -65,6 +68,7 @@ class Novel {
       timeRead: timeRead ?? this.timeRead,
       scrollPercent: scrollPercent ?? this.scrollPercent,
       inShelf: inShelf ?? this.inShelf,
+      bookmarked: bookmarked ?? this.bookmarked,
     );
   }
 }

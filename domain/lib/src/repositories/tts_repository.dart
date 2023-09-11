@@ -1,9 +1,9 @@
 abstract class TTSRepository {
   Future<void> init();
 
-  Future<bool> speak(String text);
+  Future<void> play(String text);
 
-  Future<bool> stop();
+  Future<void> stop();
 
   Future<String> get languages;
 
@@ -13,7 +13,7 @@ abstract class TTSRepository {
 
   Future<bool> speechPitch(double pitch);
 
-  Future<List<String>> get voices;
+  Future<List<Map<String, String>>> get voices;
 
-  Future<bool> voice(String voice);
+  Future<bool> voice(Map<String, String> voice);
 }

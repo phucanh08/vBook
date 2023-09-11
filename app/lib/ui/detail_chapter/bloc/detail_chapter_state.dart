@@ -5,7 +5,6 @@ class DetailChapterState extends BaseState with _$DetailChapterState {
   const DetailChapterState._();
 
   const factory DetailChapterState({
-    required AdjustableScrollController scrollController,
     @Default('') String sourceId,
     @Default('') String novelEndpoint,
     ChapterDetailModel? model,
@@ -16,6 +15,7 @@ class DetailChapterState extends BaseState with _$DetailChapterState {
     @Default(0) int currentPage,
     @Default(0) int totalPage,
     @Default(0.0) double percent,
+    @Default(TTSState()) TTSState ttsState,
   }) = _DetailChapterState;
 
   String get percentOfNovel => totalChapter == 0

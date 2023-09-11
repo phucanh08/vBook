@@ -2,6 +2,7 @@ import 'package:domain/domain.dart';
 import 'package:injectable/injectable.dart';
 
 import '../../../dtos/dtos.dart';
+import '../../base/client/rest_client.dart';
 import '../base_api.dart';
 import 'src/catalog.dart';
 import 'src/chap.dart';
@@ -11,6 +12,10 @@ import 'src/page.dart';
 
 @injectable
 class BachNgocSachApi extends BaseApi {
+  BachNgocSachApi(@Named('currentApiClient') this.api);
+
+  final RestApiClient api;
+
   @override
   PluginDto plugin() => PluginDto.fromJson(execute());
 
@@ -18,7 +23,8 @@ class BachNgocSachApi extends BaseApi {
   List<HomeDto> getHome() => home.call();
 
   @override
-  Future<Pagination<NovelItemDto>> getListNovelInPage(String endpoint, int pageNumber) {
+  Future<Pagination<NovelItemDto>> getListNovelInPage(
+      String endpoint, int pageNumber) {
     return page.call(endpoint, pageNumber);
   }
 
@@ -34,7 +40,7 @@ class BachNgocSachApi extends BaseApi {
 
   @override
   Future<ChapterDetailDto> getDetailChapter(String endpoint) {
-   return chap(endpoint);
+    return chap(endpoint);
   }
 }
 

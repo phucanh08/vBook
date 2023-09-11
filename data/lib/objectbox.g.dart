@@ -92,7 +92,7 @@ final _entities = <ModelEntity>[
   ModelEntity(
       id: const IdUid(2, 8676234059551527790),
       name: 'Novel',
-      lastPropertyId: const IdUid(23, 2924306417142512220),
+      lastPropertyId: const IdUid(24, 3538140369720871146),
       flags: 0,
       properties: <ModelProperty>[
         ModelProperty(
@@ -164,6 +164,11 @@ final _entities = <ModelEntity>[
             id: const IdUid(23, 2924306417142512220),
             name: 'scrollPercent',
             type: 8,
+            flags: 0),
+        ModelProperty(
+            id: const IdUid(24, 3538140369720871146),
+            name: 'bookmarked',
+            type: 1,
             flags: 0)
       ],
       relations: <ModelRelation>[],
@@ -296,7 +301,7 @@ ModelDefinition getObjectBoxModel() {
               ? null
               : fbb.writeString(object.currentChapterName!);
           final chapterEndpointOffset = fbb.writeString(object.chapterEndpoint);
-          fbb.startTable(24);
+          fbb.startTable(25);
           fbb.addInt64(0, object.id);
           fbb.addInt64(1, object.updatedAt.millisecondsSinceEpoch);
           fbb.addOffset(2, nameOffset);
@@ -311,6 +316,7 @@ ModelDefinition getObjectBoxModel() {
           fbb.addOffset(20, currentChapterNameOffset);
           fbb.addOffset(21, chapterEndpointOffset);
           fbb.addFloat64(22, object.scrollPercent);
+          fbb.addBool(23, object.bookmarked);
           fbb.finish(fbb.endTable());
           return object.id;
         },
@@ -333,13 +339,13 @@ ModelDefinition getObjectBoxModel() {
                   .vTableGet(buffer, rootOffset, 28, ''),
               imgUrl: const fb.StringReader(asciiOptimization: true)
                   .vTableGet(buffer, rootOffset, 30, ''),
-              totalChapters:
-                  const fb.Int64Reader().vTableGetNullable(buffer, rootOffset, 32),
+              totalChapters: const fb.Int64Reader().vTableGetNullable(buffer, rootOffset, 32),
               currentChapter: const fb.Int64Reader().vTableGetNullable(buffer, rootOffset, 34),
               currentChapterName: const fb.StringReader(asciiOptimization: true).vTableGetNullable(buffer, rootOffset, 44),
               timeRead: const fb.Int64Reader().vTableGetNullable(buffer, rootOffset, 36),
               scrollPercent: const fb.Float64Reader().vTableGet(buffer, rootOffset, 48, 0),
               inShelf: const fb.BoolReader().vTableGet(buffer, rootOffset, 38, false),
+              bookmarked: const fb.BoolReader().vTableGet(buffer, rootOffset, 50, false),
               id: const fb.Int64Reader().vTableGet(buffer, rootOffset, 4, 0));
 
           return object;
@@ -445,4 +451,8 @@ class Novel_ {
   /// see [Novel.scrollPercent]
   static final scrollPercent =
       QueryDoubleProperty<Novel>(_entities[1].properties[13]);
+
+  /// see [Novel.bookmarked]
+  static final bookmarked =
+      QueryBooleanProperty<Novel>(_entities[1].properties[14]);
 }

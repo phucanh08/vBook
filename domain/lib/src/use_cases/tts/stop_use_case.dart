@@ -3,19 +3,17 @@ import 'package:injectable/injectable.dart';
 import '../../../domain.dart';
 
 @injectable
-class StopUseCase
-    extends BaseFutureUseCase<StopInput, StopOutput> {
+class StopUseCase extends BaseFutureUseCase<StopInput, StopOutput> {
   @override
-  Future<StopOutput> buildUseCase(StopInput input) async {
-    final data = await getIt<TTSRepository>().stop();
-
-    return StopOutput(data);
+  Future<StopOutput> buildUseCase(StopInput input) {
+    try {
+      return getIt<TTSRepository>().stop().then((_) => StopOutput());
+    } catch(e) {
+      throw Exception(e);
+    }
   }
 }
 
 class StopInput extends BaseInput {}
 
-class StopOutput extends BaseOutput {
-  const StopOutput(this.data);
-  final bool data;
-}
+class StopOutput extends BaseOutput {}

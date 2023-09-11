@@ -6,22 +6,24 @@ import '../local.dart';
 
 @injectable
 class PluginStorage {
-  final Box<Plugin> _pluginBox = ObjectBox.pluginBox();
-
+  PluginStorage(@Named('LocalStorage') ObjectBox objectBox)
+      : pluginBox = objectBox.pluginBox();
+  final Box<Plugin> pluginBox;
+  
   Future<List<Plugin>> saveAll(List<Plugin> plugins) =>
-      _pluginBox.putAndGetManyAsync(plugins);
+      pluginBox.putAndGetManyAsync(plugins);
 
-  Future<int> save(Plugin plugin) => _pluginBox.putAsync(plugin);
+  Future<int> save(Plugin plugin) => pluginBox.putAsync(plugin);
 
   Future<List<Plugin>> getAll() async {
-    final query = _pluginBox.query().order(Plugin_.updatedAt).build();
+    final query = pluginBox.query().order(Plugin_.updatedAt).build();
     final result = query.find();
     query.close();
 
     return result.reversed.toList();
   }
 
-  int removeAll() => _pluginBox.removeAll();
+  int removeAll() => pluginBox.removeAll();
 
-  Future<bool> remove(int id) => _pluginBox.removeAsync(id);
+  Future<bool> remove(int id) => pluginBox.removeAsync(id);
 }

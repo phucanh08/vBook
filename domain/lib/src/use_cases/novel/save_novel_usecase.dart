@@ -19,6 +19,7 @@ class SaveNovelInput extends BaseInput {
     required this.novelEndpoint,
     required this.chapterEndpoint,
     required this.currentChapterName,
+    this.bookmarked = false,
     this.totalChapters,
     this.currentChapter,
     this.timeRead,
@@ -30,6 +31,7 @@ class SaveNovelInput extends BaseInput {
   final String novelEndpoint;
   final String chapterEndpoint;
   final String currentChapterName;
+  final bool bookmarked;
   final int? totalChapters;
   final int? currentChapter;
   final int? timeRead;

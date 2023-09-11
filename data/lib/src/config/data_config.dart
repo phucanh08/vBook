@@ -7,7 +7,6 @@ import 'package:webview_flutter_android/webview_flutter_android.dart';
 import 'package:webview_flutter_wkwebview/webview_flutter_wkwebview.dart';
 
 import '../di/di.dart' as di;
-import '../sources/local/local.dart';
 
 class DataConfig extends Config {
   DataConfig._();
@@ -39,7 +38,6 @@ class DataConfig extends Config {
 
   @override
   Future<void> config() async {
-    await ObjectBox.instance();
     di.getIt.registerSingleton<Browser>(BrowserImpl(browserConfig()));
     di.configureInjection();
 

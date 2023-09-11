@@ -74,7 +74,7 @@
     },
     {
       "id": "2:8676234059551527790",
-      "lastPropertyId": "23:2924306417142512220",
+      "lastPropertyId": "24:3538140369720871146",
       "name": "Novel",
       "properties": [
         {
@@ -147,6 +147,11 @@
           "id": "23:2924306417142512220",
           "name": "scrollPercent",
           "type": 8
+        },
+        {
+          "id": "24:3538140369720871146",
+          "name": "bookmarked",
+          "type": 1
         }
       ],
       "relations": []

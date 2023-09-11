@@ -46,7 +46,5 @@ class DetailChapterEvent extends BaseEvent with _$DetailChapterEvent {
   const factory DetailChapterEvent.adjustableScrollChanged() =
       _AdjustableScrollChanged;
 
-  const factory DetailChapterEvent.speakButtonPressed() = _SpeakButtonPressed;
-
-  const factory DetailChapterEvent.stopButtonPressed() = _StopButtonPressed;
+  const factory DetailChapterEvent.ttsEvent(TTSEvent event) = _TTSEvent;
 }

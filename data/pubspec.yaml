@@ -26,6 +26,7 @@ dependencies:
   webview_flutter: 4.2.2
   webview_flutter_android: 3.7.1
   flutter_tts: 3.8.1
+  connectivity_plus: 4.0.2
 
   webview_flutter_wkwebview: 3.4.4
   domain:

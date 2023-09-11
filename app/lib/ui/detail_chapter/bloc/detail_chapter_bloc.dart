@@ -1,28 +1,25 @@
 import 'dart:async';
 
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
 import 'package:injectable/injectable.dart';
 
 import '../../../app.dart';
+import '../../../di/di.dart';
 
 part 'detail_chapter_event.dart';
-
 part 'detail_chapter_state.dart';
-
 part 'detail_chapter_bloc.freezed.dart';
+part 'tts_mixin.dart';
 
 @injectable
-class DetailChapterBloc
-    extends BaseBloc<DetailChapterEvent, DetailChapterState> {
+class DetailChapterBloc extends BaseBloc<DetailChapterEvent, DetailChapterState>
+    with TTSMixin {
   DetailChapterBloc(
     this._getDetailChapterUseCase,
     this._getCatalogUseCase,
     this._saveNovelUseCase,
-    this._speakUseCase,
-    this._stopUseCase,
-  ) : super(
-          DetailChapterState(scrollController: AdjustableScrollController()),
-        ) {
+  ) : super(const DetailChapterState()) {
     on<_Started>(_onStarted);
     on<_ReadyBookSaved>(_onReadyBookSaved, transformer: debounceTime());
     on<_VisibleAppBarChanged>(
@@ -31,11 +28,10 @@ class DetailChapterBloc
     );
     on<_BookmarkChanged>(_onBookmarkChanged);
     on<_PageScrolled>(_onPageScrolled);
-    on<_SpeakButtonPressed>(_onSpeakButtonPressed);
-    on<_StopButtonPressed>(_onStopButtonPressed);
+    on<_TTSEvent>(_onTTSEvent);
     on<_HorizontalDragged>(_onHorizontalDragged);
     on<_AdjustableScrollChanged>(_onAdjustableScrollChanged);
-    state.scrollController.onPageChanged = (
+    scrollController.onPageChanged = (
       int currentPage,
       int totalPage,
       double percent,
@@ -53,8 +49,7 @@ class DetailChapterBloc
   final SaveNovelUseCase _saveNovelUseCase;
   final GetCatalogUseCase _getCatalogUseCase;
   final GetDetailChapterUseCase _getDetailChapterUseCase;
-  final SpeakUseCase _speakUseCase;
-  final StopUseCase _stopUseCase;
+  late final scrollController = AdjustableScrollController();
 
   Future<void> _onStarted(_Started event, emit) {
     return runBlocCatching(action: () async {
@@ -98,6 +93,7 @@ class DetailChapterBloc
             currentChapter: state.currentChapter,
             totalChapters: state.totalChapter,
             scrollPercent: state.percent,
+            bookmarked: state.bookmarked,
           ),
         );
       },
@@ -114,12 +110,9 @@ class DetailChapterBloc
   Future<void> _onBookmarkChanged(_BookmarkChanged event, emit) {
     return runBlocCatching(action: () async {
       emit(state.copyWith(bookmarked: !state.bookmarked));
-
-      if (state.bookmarked) {
-        add(const _SpeakButtonPressed());
-      } else {
-        add(const _StopButtonPressed());
-      }
+      add(_ReadyBookSaved(
+        state.catalog[state.currentChapter].endpoint,
+      ));
     });
   }
 
@@ -171,33 +164,11 @@ class DetailChapterBloc
       _AdjustableScrollChanged event, emit) {
     return runBlocCatching(
       action: () async {
-        if(!state.scrollController.enableAdjustableScroll) {
+        if (!scrollController.enableAdjustableScroll) {
           emit(state.copyWith(visibleAppBar: false));
         }
-        state.scrollController.changeAdjustableScroll();
+        scrollController.changeAdjustableScroll();
       },
-    );
-  }
-
-  Future<void> _onSpeakButtonPressed(_SpeakButtonPressed event, emit) {
-    return runBlocCatching(
-      action: () async {
-
-        await _speakUseCase.call(SpeakInput(state.model?.currentContent ?? ''));
-        if(state.model?.hasNext == true) {
-          emit(state.copyWith(model: state.model?.next));
-        }
-      },
-      handleLoading: false,
-    );
-  }
-
-  Future<void> _onStopButtonPressed(_StopButtonPressed event, emit) {
-    return runBlocCatching(
-      action: () {
-        return _stopUseCase.call(StopInput());
-      },
-      handleLoading: false,
     );
   }
 
@@ -211,15 +182,15 @@ class DetailChapterBloc
             chapterEndpoint: chapterEndpoint,
           ),
         );
+        final catalogIndex = state.catalog.indexWhere(
+          (element) => element.endpoint == chapterEndpoint,
+        );
         emit(state.copyWith(
-          model: response.data.copyWith(contents: [state.title, ...response.data.contents]),
-          currentChapter: state.catalog.indexWhere(
-                (element) => element.endpoint == chapterEndpoint,
-              ) +
-              1,
+          model: response.data,
+          currentChapter: catalogIndex + 1,
         ));
         Future.delayed(const Duration(milliseconds: 100), () {
-          state.scrollController.updateScrollPosition(percent);
+          scrollController.updateScrollPosition(percent);
         });
         add(_ReadyBookSaved(chapterEndpoint));
       },
@@ -229,7 +200,7 @@ class DetailChapterBloc
 
   @override
   Future<void> close() {
-    state.scrollController.dispose();
+    scrollController.dispose();
     return super.close();
   }
 }

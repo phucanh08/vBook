@@ -15,6 +15,7 @@ class IconSizeToken {
   final double small = 8;
   final double medium = 12;
   final double large = 16;
-  final double extraLarge = 28;
+  final double extraLarge = 24;
+  final double extraExtraLarge = 28;
   final double full = double.infinity;
 }

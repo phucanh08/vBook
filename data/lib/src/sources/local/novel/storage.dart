@@ -14,9 +14,12 @@ abstract class NovelStorage {
   Future<bool> remove(String sourceId, String novelEndpoint);
 }
 
-@Singleton(as: NovelStorage)
+@Injectable(as: NovelStorage)
 class NovelStorageImpl implements NovelStorage {
-  final Box<Novel> _novelBox = ObjectBox.novelBox();
+  NovelStorageImpl(@Named('LocalStorage') ObjectBox objectBox)
+      : novelBox = objectBox.novelBox();
+
+  final Box<Novel> novelBox;
 
   @override
   Future<bool> save(Novel novel) async {
@@ -36,9 +39,9 @@ class NovelStorageImpl implements NovelStorage {
         inShelf: novel.inShelf,
         scrollPercent: novel.scrollPercent,
       );
-      await _novelBox.putAsync(_novel, mode: PutMode.update);
+      await novelBox.putAsync(_novel, mode: PutMode.update);
     } else {
-      await _novelBox.putAsync(novel, mode: PutMode.insert);
+      await novelBox.putAsync(novel, mode: PutMode.insert);
     }
 
     return true;
@@ -46,7 +49,7 @@ class NovelStorageImpl implements NovelStorage {
 
   @override
   Stream<List<Novel>> streamAll() {
-    final result = _novelBox
+    final result = novelBox
         .query()
         .order(Novel_.updatedAt)
         .watch(triggerImmediately: true)
@@ -64,12 +67,12 @@ class NovelStorageImpl implements NovelStorage {
   Future<bool> remove(String sourceId, String novelEndpoint) async {
     final novel = await get(sourceId, novelEndpoint);
 
-    return novel != null ? _novelBox.remove(novel.id) : false;
+    return novel != null ? novelBox.remove(novel.id) : false;
   }
 
   @override
   Future<Novel?> get(String sourceId, String novelEndpoint) async {
-    final query = _novelBox
+    final query = novelBox
         .query(Novel_.sourceId.equals(sourceId).and(
               Novel_.novelEndpoint.equals(novelEndpoint),
             ))

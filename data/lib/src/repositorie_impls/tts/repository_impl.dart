@@ -11,15 +11,8 @@ enum TtsState { playing, stopped, paused, continued }
 @Singleton(as: TTSRepository)
 class TTSRepositoryImpl extends TTSRepository {
   final flutterTts = FlutterTts();
-  String? language;
-  String? engine;
-  double volume = 0.5;
-  double pitch = 1.0;
-  double rate = 0.5;
   bool isCurrentLanguageInstalled = false;
 
-  String? _newVoiceText;
-  int? _inputLength;
 
   TtsState ttsState = TtsState.stopped;
 
@@ -40,16 +33,20 @@ class TTSRepositoryImpl extends TTSRepository {
   bool get isWeb => kIsWeb;
 
   Future _getDefaultEngine() async {
-    engine = await flutterTts.getDefaultEngine;
+    final engine = await flutterTts.getDefaultEngine;
     if (engine != null) {
-      print(engine);
+      if (kDebugMode) {
+        print(engine);
+      }
     }
   }
 
   Future _getDefaultVoice() async {
-    var voice = await flutterTts.getDefaultVoice;
+    final voice = await flutterTts.getDefaultVoice;
     if (voice != null) {
-      print(voice);
+      if (kDebugMode) {
+        print(voice);
+      }
     }
   }
 
@@ -110,58 +107,32 @@ class TTSRepositoryImpl extends TTSRepository {
   }
 
   @override
-  Future<bool> speak(String text) async {
-    try {
-      await flutterTts.setVolume(1.0);
-      await flutterTts.setSpeechRate(1.0);
-      await flutterTts.setPitch(1.0);
-
-      await flutterTts.speak(text);
-      return true;
-    } catch (e) {
-      return false;
-    }
-  }
+  Future<void> play(String text) => flutterTts.speak(text);
 
   @override
-  Future<bool> stop() async {
-    try {
-      await flutterTts.stop();
-      return true;
-    } catch (e) {
-      return false;
-    }
-  }
+  Future<void> stop() => flutterTts.stop();
 
   @override
-  // TODO: implement languages
-  Future<String> get languages => throw UnimplementedError();
+  Future<String> get languages =>
+      flutterTts.getLanguages.then((value) => value.toString());
 
   @override
-  Future<bool> speechPitch(double pitch) {
-    // TODO: implement speechPitch
-    throw UnimplementedError();
-  }
+  Future<bool> speechPitch(double pitch) =>
+      flutterTts.setPitch(pitch).then((_) => true);
 
   @override
-  Future<bool> speechRate(double speed) {
-    // TODO: implement speechRate
-    throw UnimplementedError();
-  }
+  Future<bool> speechRate(double speed) =>
+      flutterTts.setSpeechRate(speed).then((_) => true);
 
   @override
-  Future<bool> speechVolume(double volume) {
-    // TODO: implement speechVolume
-    throw UnimplementedError();
-  }
+  Future<bool> speechVolume(double volume) =>
+      flutterTts.setVolume(volume).then((_) => true);
 
   @override
-  Future<bool> voice(String voice) {
-    // TODO: implement voice
-    throw UnimplementedError();
-  }
+  Future<bool> voice(Map<String, String> voice) =>
+      flutterTts.setVoice(voice).then((_) => true);
 
   @override
-  // TODO: implement voices
-  Future<List<String>> get voices => throw UnimplementedError();
+  Future<List<Map<String, String>>> get voices => flutterTts.getVoices
+      .then((value) => value as List<Map<String, String>>);
 }

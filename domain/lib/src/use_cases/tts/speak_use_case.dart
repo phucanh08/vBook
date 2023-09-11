@@ -3,22 +3,19 @@ import 'package:injectable/injectable.dart';
 import '../../../domain.dart';
 
 @injectable
-class SpeakUseCase
-    extends BaseFutureUseCase<SpeakInput, SpeakOutput> {
+class PlayUseCase extends BaseFutureUseCase<PlayInput, PlayOutput> {
   @override
-  Future<SpeakOutput> buildUseCase(SpeakInput input) async {
-    final data = await getIt<TTSRepository>().speak(input.text);
-
-    return SpeakOutput(data);
+  Future<PlayOutput> buildUseCase(PlayInput input) {
+    return getIt<TTSRepository>().play(input.text).then(
+          (event) => PlayOutput(),
+        );
   }
 }
 
-class SpeakInput extends BaseInput {
-  const SpeakInput(this.text);
+class PlayInput extends BaseInput {
+  const PlayInput(this.text);
+
   final String text;
 }
 
-class SpeakOutput extends BaseOutput {
-  const SpeakOutput(this.data);
-  final bool data;
-}
+class PlayOutput extends BaseOutput {}

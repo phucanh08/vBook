@@ -112,6 +112,7 @@ class PluginRepositoryImpl extends NovelRepository {
         timeRead: saveNovelInput.timeRead,
         inShelf: saveNovelInput.inShelf,
         scrollPercent: saveNovelInput.scrollPercent,
+        bookmarked: saveNovelInput.bookmarked,
       );
     } else {
       final _novelModel = await getDetailNovel(

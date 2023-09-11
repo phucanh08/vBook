@@ -3,8 +3,8 @@ import 'package:resources/resources.dart';
 
 import '../../../app.dart';
 
-class UnListeningBottomSheet extends StatelessWidget {
-  const UnListeningBottomSheet({
+class UnListeningBottomBar extends StatelessWidget {
+  const UnListeningBottomBar({
     required this.onSpeakButtonPressed,
     required this.visible,
     required this.url,

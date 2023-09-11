@@ -52,13 +52,12 @@ class DetailChapterAppBar extends StatelessWidget {
                     ),
                     Row(
                       children: [
-                        BlocSelector<DetailChapterBloc, DetailChapterState,
-                            bool>(
-                          selector: (_state) => _state.bookmarked,
-                          builder: (context, bookmarked) {
+                        BlocBuilder<DetailChapterBloc, DetailChapterState>(
+                          buildWhen: (prev, cur) => prev.bookmarked != cur.bookmarked,
+                          builder: (context, state) {
                             return IconButton(
                               onPressed: onBookmarkButtonPressed,
-                              isSelected: bookmarked,
+                              isSelected: state.bookmarked,
                               icon: const FaIcon(
                                 FaCodePoint.bookmark,
                                 type: IconType.regular,

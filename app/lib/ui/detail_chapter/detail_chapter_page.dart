@@ -5,7 +5,7 @@ import '../../app.dart';
 import 'bloc/detail_chapter_bloc.dart';
 import 'widgets/detail_chapter_appbar.dart';
 import 'widgets/detail_chapter_body.dart';
-import 'widgets/un_listening_bottom_sheet.dart';
+import 'widgets/detail_chapter_bottom_bar.dart';
 
 @RoutePage()
 class DetailChapterPage extends StatefulWidget {
@@ -50,7 +50,6 @@ class _DetailChapterPageState
             buildWhen: (prev, cur) =>
                 prev.visibleAppBar != cur.visibleAppBar ||
                 prev.title != cur.title ||
-                prev.scrollController != cur.scrollController ||
                 prev.model?.contents != cur.model?.contents,
             builder: (context, state) {
               return DetailChapterBody(
@@ -69,28 +68,52 @@ class _DetailChapterPageState
                       child: Text(state.title),
                     ),
                     Expanded(
-                      child: ListView.separated(
-                        controller: state.scrollController,
+                      child: SingleChildScrollView(
+                        controller: bloc.scrollController,
                         padding: const EdgeInsets.all(10),
-                        itemBuilder: (context, index) {
-                          if (index == 0) {
-                            return Text(
-                              state.title,
-                              style: textTheme.titleLarge,
-                              textAlign: TextAlign.center,
-                            );
-                          }
-
-                          return Text(
-                            state.model!.contents[index],
-                            style: textTheme.bodyLarge,
-                            textAlign: TextAlign.justify,
-                          );
-                        },
-                        separatorBuilder: (_, __) => const SizedBox(height: 10),
-                        itemCount: state.model?.contents.length ?? 0,
+                        child: Text.rich(
+                          TextSpan(
+                            children: [
+                              WidgetSpan(
+                                child: Text(
+                                  state.title,
+                                  style: textTheme.titleLarge,
+                                  textAlign: TextAlign.center,
+                                ),
+                              ),
+                              ...?state.model?.contents.map(
+                                (e) => WidgetSpan(child: Text(e)),
+                              ),
+                            ],
+                          ),
+                          style: textTheme.bodyLarge,
+                          textAlign: TextAlign.justify,
+                        ),
                       ),
                     ),
+                    // Expanded(
+                    //   child: ListView.separated(
+                    //     controller: state.scrollController,
+                    //     padding: const EdgeInsets.all(10),
+                    //     itemBuilder: (context, index) {
+                    //       if (index == 0) {
+                    //         return Text(
+                    //           state.title,
+                    //           style: textTheme.titleLarge,
+                    //           textAlign: TextAlign.center,
+                    //         );
+                    //       }
+                    //
+                    //       return Text(
+                    //         state.model!.contents[index],
+                    //         style: textTheme.bodyLarge,
+                    //         textAlign: TextAlign.justify,
+                    //       );
+                    //     },
+                    //     separatorBuilder: (_, __) => const SizedBox(height: 10),
+                    //     itemCount: state.model?.contents.length ?? 0,
+                    //   ),
+                    // ),
                     BlocBuilder<DetailChapterBloc, DetailChapterState>(
                       buildWhen: (prev, cur) =>
                           prev.currentChapter != cur.currentChapter ||
@@ -134,7 +157,9 @@ class _DetailChapterPageState
                 prev.visibleAppBar != cur.visibleAppBar || prev.url != cur.url,
             builder: (context, state) {
               return DetailChapterAppBar(
-                onBookmarkButtonPressed: () {},
+                onBookmarkButtonPressed: () => bloc.add(
+                  const DetailChapterEvent.bookmarkChanged(),
+                ),
                 onChangeStatusButtonPressed: () => bloc.add(
                   const DetailChapterEvent.adjustableScrollChanged(),
                 ),
@@ -151,14 +176,17 @@ class _DetailChapterPageState
                 prev.currentChapter != cur.currentChapter ||
                 prev.totalChapter != cur.totalChapter,
             builder: (context, state) {
-              return UnListeningBottomSheet(
+              return DetailChapterBottomBar(
                 visible: state.visibleAppBar,
                 url: state.url,
                 title: state.title,
                 currentChapter: state.currentChapter,
                 totalChapter: state.totalChapter,
                 onSpeakButtonPressed: () => bloc.add(
-                  const DetailChapterEvent.speakButtonPressed(),
+                  const DetailChapterEvent.ttsEvent(TTSEvent.play),
+                ),
+                onTTSEvent: (ttsEvent) => bloc.add(
+                  DetailChapterEvent.ttsEvent(ttsEvent),
                 ),
               );
             },

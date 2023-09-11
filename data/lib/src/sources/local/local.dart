@@ -2,10 +2,13 @@ import '../../../objectbox.g.dart';
 import '../../entities/entities.dart';
 
 class ObjectBox {
-  static Store? _store;
+  ObjectBox() {
+    openStore().then((value) => _store = value);
+  }
 
-  static Future<void> instance() async => _store ??= await openStore();
+  late final Store _store;
 
-  static Box<Plugin> pluginBox() => _store!.box<Plugin>();
-  static Box<Novel> novelBox() => _store!.box<Novel>();
+  Box<Plugin> pluginBox() => _store.box<Plugin>();
+
+  Box<Novel> novelBox() => _store.box<Novel>();
 }
