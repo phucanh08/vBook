@@ -77,13 +77,13 @@ class UnListeningBottomBar extends StatelessWidget {
                   padding: const EdgeInsets.symmetric(horizontal: 10),
                   child: Row(
                     children: [
-                      Text('Trước'),
+                      const Text('Trước'),
                       Expanded(
                           child: Slider(
                         value: percentNovel,
                         onChanged: (double value) {},
                       )),
-                      Text('Tiếp'),
+                      const Text('Tiếp'),
                     ],
                   ),
                 ),

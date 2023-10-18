@@ -1,13 +1,14 @@
-import 'package:domain/domain.dart';
 import 'package:injectable/injectable.dart';
 
+import '../../../domain.dart';
+
 @injectable
-class GetListNovelInHomeUseCase extends BasePaginationUseCase<
-    GetListNovelInHomeInput, Pagination<NovelItemModel>> {
+class GetListNovelInHomeUseCase
+    extends BasePaginationUseCase<GetListNovelInHomeInput, Pagination<NovelItemModel>> {
   @override
   Future<Pagination<NovelItemModel>> buildUseCase(input) async {
-    final data = await getIt<NovelRepository>()
-        .getListNovelInPage(input.id, input.endpoint, input.page);
+    final data =
+        await getIt<NovelRepository>().getListNovelInPage(input.id, input.endpoint, input.page);
 
     return data;
   }

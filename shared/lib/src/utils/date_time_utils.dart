@@ -27,15 +27,7 @@ class DateTimeUtils {
     return DateTime.fromMillisecondsSinceEpoch(localTimestampMillis, isUtc: false).toUtc();
   }
 
-  static DateTime startTimeOfDate() {
-    final now = DateTime.now();
-
-    return DateTime(
-      now.year,
-      now.month,
-      now.day,
-    );
-  }
+  static DateTime startTimeOfDate() => DateTime.now().date;
 
   static DateTime? toDateTime(String dateTimeString, {bool isUtc = false}) {
     final dateTime = DateTime.tryParse(dateTimeString);

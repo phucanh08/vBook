@@ -7,9 +7,7 @@ class HomeEvent extends BaseEvent with _$HomeEvent {
   const factory HomeEvent.navigationBarDestinationSelected(int index) =
       NavigationBarDestinationSelected;
 
-  const factory HomeEvent.historyUpdated(List<NovelModel> data) =
-  _HistoryUpdated;
+  const factory HomeEvent.historyUpdated(List<NovelModel> data) = _HistoryUpdated;
 
-  const factory HomeEvent.shelfUpdated(List<NovelModel> data) =
-  _ShelfUpdated;
+  const factory HomeEvent.shelfUpdated(List<NovelModel> data) = _ShelfUpdated;
 }

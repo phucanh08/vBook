@@ -1,7 +1,7 @@
 part of 'pagination.dart';
 
-class PaginationBuilder<B extends StateStreamable<S>,
-    S extends PaginationState<T>, T> extends BlocBuilderBase<B, S> {
+class PaginationBuilder<B extends StateStreamable<S>, S extends PaginationState<T>, T>
+    extends BlocBuilderBase<B, S> {
   const PaginationBuilder({
     required this.successBuilder,
     this.loadingBuilder,

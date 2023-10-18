@@ -11,6 +11,5 @@ class GenreDto with _$GenreDto {
     String? script,
   }) = _GenreDto;
 
-  factory GenreDto.fromJson(Map<String, Object?> json) =>
-      _$GenreDtoFromJson(json);
+  factory GenreDto.fromJson(Map<String, Object?> json) => _$GenreDtoFromJson(json);
 }

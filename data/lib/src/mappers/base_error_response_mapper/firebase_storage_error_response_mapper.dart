@@ -3,7 +3,6 @@ import 'package:shared/shared.dart';
 
 import '../base/base_error_response_mapper.dart';
 
-
 @Injectable()
 class FirebaseStorageErrorResponseMapper extends BaseErrorResponseMapper<Map<String, dynamic>> {
   @override

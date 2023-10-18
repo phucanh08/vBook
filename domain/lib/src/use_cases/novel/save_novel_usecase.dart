@@ -3,8 +3,7 @@ import 'package:injectable/injectable.dart';
 import '../../../domain.dart';
 
 @injectable
-class SaveNovelUseCase
-    extends BaseFutureUseCase<SaveNovelInput, SaveNovelOutput> {
+class SaveNovelUseCase extends BaseFutureUseCase<SaveNovelInput, SaveNovelOutput> {
   @override
   Future<SaveNovelOutput> buildUseCase(SaveNovelInput input) async {
     final data = await getIt<NovelRepository>().save(input);

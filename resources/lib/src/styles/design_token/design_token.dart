@@ -7,7 +7,7 @@ part 'space_token.dart';
 
 extension DesignTokens on ThemeData {
   SpaceToken get space => SpaceToken.instance();
-  IconSizeToken get iconSize=> IconSizeToken.instance();
+  IconSizeToken get iconSize => IconSizeToken.instance();
   RadiusToken get radius => RadiusToken.instance();
   ElevationToken get elevation => ElevationToken.instance();
 }

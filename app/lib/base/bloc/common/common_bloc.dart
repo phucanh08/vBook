@@ -14,7 +14,7 @@ part 'common_state.dart';
 @Injectable()
 class CommonBloc extends BaseBloc<CommonEvent, CommonState> {
   CommonBloc() : super(const CommonState()) {
-  // CommonBloc(this._clearCurrentUserDataUseCase) : super(const CommonState()) {
+    // CommonBloc(this._clearCurrentUserDataUseCase) : super(const CommonState()) {
     on<LoadingVisibilityEmitted>(
       _onLoadingVisibilityEmitted,
       transformer: log(),
@@ -34,15 +34,15 @@ class CommonBloc extends BaseBloc<CommonEvent, CommonState> {
   // final ClearCurrentUserDataUseCase _clearCurrentUserDataUseCase;
 
   FutureOr<void> _onLoadingVisibilityEmitted(
-      LoadingVisibilityEmitted event,
-      Emitter<CommonState> emit,
-      ) {
+    LoadingVisibilityEmitted event,
+    Emitter<CommonState> emit,
+  ) {
     emit(state.copyWith(
       isLoading: state.loadingCount == 0 && event.isLoading
           ? true
           : state.loadingCount == 1 && !event.isLoading || state.loadingCount <= 0
-          ? false
-          : state.isLoading,
+              ? false
+              : state.isLoading,
       loadingCount: event.isLoading ? state.loadingCount.plus(1) : state.loadingCount.minus(1),
     ));
   }
@@ -52,9 +52,9 @@ class CommonBloc extends BaseBloc<CommonEvent, CommonState> {
   }
 
   FutureOr<void> _onForceLogoutButtonPressed(
-      ForceLogoutButtonPressed event,
-      Emitter<CommonState> emit,
-      ) {
+    ForceLogoutButtonPressed event,
+    Emitter<CommonState> emit,
+  ) {
     return runBlocCatching(
       action: () async {
         // await _clearCurrentUserDataUseCase.execute(const ClearCurrentUserDataInput());

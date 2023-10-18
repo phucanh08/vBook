@@ -26,8 +26,7 @@ class DetailChapterPage extends StatefulWidget {
   State<DetailChapterPage> createState() => _DetailChapterPageState();
 }
 
-class _DetailChapterPageState
-    extends BasePageState<DetailChapterPage, DetailChapterBloc> {
+class _DetailChapterPageState extends BasePageState<DetailChapterPage, DetailChapterBloc> {
   @override
   void initState() {
     bloc.add(
@@ -127,17 +126,13 @@ class _DetailChapterPageState
                           child: Row(
                             mainAxisAlignment: MainAxisAlignment.spaceBetween,
                             children: [
-                              Text(
-                                  '${state.currentChapter}/${state.totalChapter}'),
+                              Text('${state.currentChapter}/${state.totalChapter}'),
                               Flexible(
                                 child: Text.rich(
                                   TextSpan(
                                     children: [
-                                      TextSpan(
-                                          text:
-                                              '${state.currentPage}/${state.totalPage}  '),
-                                      TextSpan(
-                                          text: '${state.percentOfNovel}%'),
+                                      TextSpan(text: '${state.currentPage}/${state.totalPage}  '),
+                                      TextSpan(text: '${state.percentOfNovel}%'),
                                     ],
                                   ),
                                 ),

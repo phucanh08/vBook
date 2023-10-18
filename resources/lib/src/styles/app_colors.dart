@@ -179,8 +179,7 @@ class CustomColor {
   final Color light;
   final Color dark;
 
-  Color getColor(Brightness brightness) =>
-      brightness == Brightness.light ? light : dark;
+  Color getColor(Brightness brightness) => brightness == Brightness.light ? light : dark;
 }
 
 extension ThemeDataExtensions on ColorScheme {
@@ -190,40 +189,26 @@ extension ThemeDataExtensions on ColorScheme {
     /// info
     _color[_Color.info] = CustomColor(palette.info[40]!, palette.info[80]!);
     _color[_Color.onInfo] = CustomColor(palette.info[100]!, palette.info[20]!);
-    _color[_Color.infoContainer] =
-        CustomColor(palette.info[90]!, palette.info[30]!);
-    _color[_Color.onInfoContainer] =
-        CustomColor(palette.info[10]!, palette.info[90]!);
+    _color[_Color.infoContainer] = CustomColor(palette.info[90]!, palette.info[30]!);
+    _color[_Color.onInfoContainer] = CustomColor(palette.info[10]!, palette.info[90]!);
 
     /// success
-    _color[_Color.success] =
-        CustomColor(palette.success[40]!, palette.success[80]!);
-    _color[_Color.onSuccess] =
-        CustomColor(palette.success[100]!, palette.success[20]!);
-    _color[_Color.successContainer] =
-        CustomColor(palette.success[90]!, palette.success[30]!);
-    _color[_Color.onSuccessContainer] =
-        CustomColor(palette.success[10]!, palette.success[90]!);
+    _color[_Color.success] = CustomColor(palette.success[40]!, palette.success[80]!);
+    _color[_Color.onSuccess] = CustomColor(palette.success[100]!, palette.success[20]!);
+    _color[_Color.successContainer] = CustomColor(palette.success[90]!, palette.success[30]!);
+    _color[_Color.onSuccessContainer] = CustomColor(palette.success[10]!, palette.success[90]!);
 
     /// warning
-    _color[_Color.warning] =
-        CustomColor(palette.warning[40]!, palette.warning[80]!);
-    _color[_Color.onWarning] =
-        CustomColor(palette.warning[100]!, palette.warning[20]!);
-    _color[_Color.warningContainer] =
-        CustomColor(palette.warning[90]!, palette.warning[30]!);
-    _color[_Color.onWarningContainer] =
-        CustomColor(palette.warning[10]!, palette.warning[90]!);
+    _color[_Color.warning] = CustomColor(palette.warning[40]!, palette.warning[80]!);
+    _color[_Color.onWarning] = CustomColor(palette.warning[100]!, palette.warning[20]!);
+    _color[_Color.warningContainer] = CustomColor(palette.warning[90]!, palette.warning[30]!);
+    _color[_Color.onWarningContainer] = CustomColor(palette.warning[10]!, palette.warning[90]!);
 
     /// disabled
-    _color[_Color.disabled] =
-        CustomColor(palette.disabled[40]!, palette.disabled[80]!);
-    _color[_Color.onDisabled] =
-        CustomColor(palette.disabled[100]!, palette.disabled[20]!);
-    _color[_Color.disabledContainer] =
-        CustomColor(palette.disabled[90]!, palette.disabled[30]!);
-    _color[_Color.onDisabledContainer] =
-        CustomColor(palette.disabled[10]!, palette.disabled[90]!);
+    _color[_Color.disabled] = CustomColor(palette.disabled[40]!, palette.disabled[80]!);
+    _color[_Color.onDisabled] = CustomColor(palette.disabled[100]!, palette.disabled[20]!);
+    _color[_Color.disabledContainer] = CustomColor(palette.disabled[90]!, palette.disabled[30]!);
+    _color[_Color.onDisabledContainer] = CustomColor(palette.disabled[10]!, palette.disabled[90]!);
   }
 
   /// info
@@ -231,42 +216,34 @@ extension ThemeDataExtensions on ColorScheme {
 
   Color? get onInfo => _color[_Color.onInfo]?.getColor(brightness);
 
-  Color? get infoContainer =>
-      _color[_Color.infoContainer]?.getColor(brightness);
+  Color? get infoContainer => _color[_Color.infoContainer]?.getColor(brightness);
 
-  Color? get onInfoContainer =>
-      _color[_Color.onInfoContainer]?.getColor(brightness);
+  Color? get onInfoContainer => _color[_Color.onInfoContainer]?.getColor(brightness);
 
   /// success
   Color? get success => _color[_Color.success]?.getColor(brightness);
 
   Color? get onSuccess => _color[_Color.onSuccess]?.getColor(brightness);
 
-  Color? get successContainer =>
-      _color[_Color.successContainer]?.getColor(brightness);
+  Color? get successContainer => _color[_Color.successContainer]?.getColor(brightness);
 
-  Color? get onSuccessContainer =>
-      _color[_Color.onSuccessContainer]?.getColor(brightness);
+  Color? get onSuccessContainer => _color[_Color.onSuccessContainer]?.getColor(brightness);
 
   /// warning
   Color? get warning => _color[_Color.warning]?.getColor(brightness);
 
   Color? get onWarning => _color[_Color.onWarning]?.getColor(brightness);
 
-  Color? get warningContainer =>
-      _color[_Color.warningContainer]?.getColor(brightness);
+  Color? get warningContainer => _color[_Color.warningContainer]?.getColor(brightness);
 
-  Color? get onWarningContainer =>
-      _color[_Color.onWarningContainer]?.getColor(brightness);
+  Color? get onWarningContainer => _color[_Color.onWarningContainer]?.getColor(brightness);
 
   /// disabled
   Color? get disabled => _color[_Color.disabled]?.getColor(brightness);
 
   Color? get onDisabled => _color[_Color.onDisabled]?.getColor(brightness);
 
-  Color? get disabledContainer =>
-      _color[_Color.disabledContainer]?.getColor(brightness);
+  Color? get disabledContainer => _color[_Color.disabledContainer]?.getColor(brightness);
 
-  Color? get onDisabledContainer =>
-      _color[_Color.onDisabledContainer]?.getColor(brightness);
+  Color? get onDisabledContainer => _color[_Color.onDisabledContainer]?.getColor(brightness);
 }

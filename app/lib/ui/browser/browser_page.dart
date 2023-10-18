@@ -6,7 +6,7 @@ import 'bloc/browser_bloc.dart';
 
 @RoutePage()
 class BrowserPage extends StatefulWidget {
-  const BrowserPage({Key? key}) : super(key: key);
+  const BrowserPage({super.key});
 
   @override
   State<BrowserPage> createState() => _BrowserPageState();
@@ -71,7 +71,8 @@ class _BrowserPageState extends BasePageState<BrowserPage, BrowserBloc> {
                                   ),
                                   Text(
                                     '10',
-                                    style: textTheme.labelSmall?.copyWith(fontWeight: FontWeight.bold),
+                                    style:
+                                        textTheme.labelSmall?.copyWith(fontWeight: FontWeight.bold),
                                   ),
                                 ],
                               ),
@@ -97,7 +98,6 @@ class _BrowserPageState extends BasePageState<BrowserPage, BrowserBloc> {
                             scrollDirection: Axis.horizontal,
                             itemBuilder: (context, index) {
                               return Chip(
-
                                 avatar: Container(
                                   decoration: BoxDecoration(
                                     borderRadius: BorderRadius.circular(5),
@@ -115,8 +115,7 @@ class _BrowserPageState extends BasePageState<BrowserPage, BrowserBloc> {
                                 onDeleted: () {},
                               );
                             },
-                            separatorBuilder: (context, index) =>
-                                const SizedBox(width: 5),
+                            separatorBuilder: (context, index) => const SizedBox(width: 5),
                             itemCount: 1,
                           ),
                         ),

@@ -29,8 +29,7 @@ class DataConfig extends Config {
     controller.setJavaScriptMode(JavaScriptMode.unrestricted);
     if (controller.platform is AndroidWebViewController) {
       AndroidWebViewController.enableDebugging(true);
-      (controller.platform as AndroidWebViewController)
-          .setMediaPlaybackRequiresUserGesture(false);
+      (controller.platform as AndroidWebViewController).setMediaPlaybackRequiresUserGesture(false);
     }
 
     return controller;
@@ -47,7 +46,8 @@ class DataConfig extends Config {
 
 abstract class Browser {
   void launch(String url); // Mở trang web với url
-  Future<String> html([Duration duration = const Duration(seconds: 1)]); // Trả về Document object của trang web
+  Future<String> html(
+      [Duration duration = const Duration(seconds: 1)]); // Trả về Document object của trang web
 }
 
 class BrowserImpl extends Browser {

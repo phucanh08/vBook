@@ -3,8 +3,7 @@ import 'package:injectable/injectable.dart';
 import '../../../domain.dart';
 
 @injectable
-class GetHistoryUseCase
-    extends BaseStreamUseCase<GetHistoryInput, GetHistoryOutput> {
+class GetHistoryUseCase extends BaseStreamUseCase<GetHistoryInput, GetHistoryOutput> {
   @override
   Stream<GetHistoryOutput> buildUseCase(GetHistoryInput input) {
     final data = getIt<NovelRepository>().getHistory();

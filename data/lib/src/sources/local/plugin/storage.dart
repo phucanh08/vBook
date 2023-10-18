@@ -6,12 +6,10 @@ import '../local.dart';
 
 @injectable
 class PluginStorage {
-  PluginStorage(@Named('LocalStorage') ObjectBox objectBox)
-      : pluginBox = objectBox.pluginBox();
+  PluginStorage(@Named('LocalStorage') ObjectBox objectBox) : pluginBox = objectBox.pluginBox();
   final Box<Plugin> pluginBox;
-  
-  Future<List<Plugin>> saveAll(List<Plugin> plugins) =>
-      pluginBox.putAndGetManyAsync(plugins);
+
+  Future<List<Plugin>> saveAll(List<Plugin> plugins) => pluginBox.putAndGetManyAsync(plugins);
 
   Future<int> save(Plugin plugin) => pluginBox.putAsync(plugin);
 

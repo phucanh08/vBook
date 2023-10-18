@@ -47,8 +47,7 @@ class HistoryBookTab extends StatelessWidget {
                     scrollPercent: novel.scrollPercent,
                   );
                 },
-                separatorBuilder: (context, index) =>
-                    Divider(height: theme.space.none),
+                separatorBuilder: (context, index) => Divider(height: theme.space.none),
                 itemCount: state.novelInHistory.length,
               ),
             ),
@@ -81,8 +80,7 @@ class _Item extends StatelessWidget {
   final Function() onPressed;
 
   String get percentOfNovel =>
-      (((currentChapter - 1) * 100 + scrollPercent) / totalChapter)
-          .toStringAsFixed(1);
+      (((currentChapter - 1) * 100 + scrollPercent) / totalChapter).toStringAsFixed(1);
 
   @override
   Widget build(BuildContext context) {

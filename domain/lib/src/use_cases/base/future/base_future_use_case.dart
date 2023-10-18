@@ -2,7 +2,6 @@ import 'package:shared/shared.dart';
 
 import '../base.dart';
 
-
 abstract class BaseFutureUseCase<Input extends BaseInput, Output extends BaseOutput>
     extends BaseUseCase<Input, Future<Output>> {
   const BaseFutureUseCase();

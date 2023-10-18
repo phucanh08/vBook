@@ -1,5 +1,4 @@
 import 'package:bloc/bloc.dart';
-import 'package:domain/domain.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
 import 'package:injectable/injectable.dart';
 
@@ -18,8 +17,8 @@ class DiscoverBloc extends BaseBloc<DiscoverEvent, DiscoverState> {
     this._updatePluginUseCase,
     this._getListHomeUseCase,
   ) : super(const DiscoverState()) {
-    on<_Started>(_onStarted);
-    on<_TitlePressed>(_onTitlePressed);
+    on<_Started>(_onStarted, transformer: log());
+    on<_TitlePressed>(_onTitlePressed, transformer: log());
   }
 
   final GetListLocalPluginUseCase _getListPluginUseCase;
@@ -27,12 +26,10 @@ class DiscoverBloc extends BaseBloc<DiscoverEvent, DiscoverState> {
   final SaveLocalPluginUseCase _updatePluginUseCase;
 
   Future<void> _onStarted(_Started event, Emitter<DiscoverState> emit) async {
-    final listSource =
-        (await _getListPluginUseCase.call(GetListLocalPluginInput())).data;
+    final listSource = (await _getListPluginUseCase.call(GetListLocalPluginInput())).data;
     emit(state.copyWith(listPlugin: listSource));
     if (state.currentPlugin?.path is String) {
-      final response = await _getListHomeUseCase
-          .call(GetListHomeInput(state.currentPlugin!.path));
+      final response = await _getListHomeUseCase.call(GetListHomeInput(state.currentPlugin!.path));
       emit(state.copyWith(listHome: response.data));
     }
   }
@@ -45,6 +42,7 @@ class DiscoverBloc extends BaseBloc<DiscoverEvent, DiscoverState> {
       ChooseSourceBottomSheet(state.listPlugin),
       isScrollControlled: true,
       backgroundColor: Colors.transparent,
+      elevation: 0,
       useSafeArea: false,
     );
 

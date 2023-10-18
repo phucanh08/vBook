@@ -1,6 +1,5 @@
 import 'package:auto_route/auto_route.dart';
 import 'package:cached_network_image/cached_network_image.dart';
-import 'package:domain/domain.dart';
 import 'package:shared/shared.dart';
 
 import '../../../app.dart';
@@ -87,8 +86,7 @@ class _NovelItem extends StatelessWidget {
             child: Card(
               child: CachedNetworkImage(
                 imageUrl: novelItem.imgUrl,
-                placeholder: (context, url) =>
-                    const DeferredLoadingPlaceholder(),
+                placeholder: (context, url) => const DeferredLoadingPlaceholder(),
                 errorWidget: (context, url, error) => const Icon(Icons.error),
               ),
             ),

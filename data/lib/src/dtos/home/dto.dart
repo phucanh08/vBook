@@ -10,6 +10,5 @@ class HomeDto with _$HomeDto {
     String? input,
   }) = _HomeDto;
 
-  factory HomeDto.fromJson(Map<String, Object?> json) =>
-      _$HomeDtoFromJson(json);
+  factory HomeDto.fromJson(Map<String, Object?> json) => _$HomeDtoFromJson(json);
 }

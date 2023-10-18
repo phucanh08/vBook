@@ -1,9 +1,9 @@
-import 'package:domain/domain.dart';
 import 'package:injectable/injectable.dart';
 
+import '../../../domain.dart';
+
 @injectable
-class GetListHomeUseCase
-    extends BaseFutureUseCase<GetListHomeInput, GetListHomeOutput> {
+class GetListHomeUseCase extends BaseFutureUseCase<GetListHomeInput, GetListHomeOutput> {
   @override
   Future<GetListHomeOutput> buildUseCase(GetListHomeInput input) async {
     final data = await getIt<NovelRepository>().getHome(input.id);

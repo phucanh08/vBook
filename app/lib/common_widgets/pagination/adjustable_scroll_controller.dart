@@ -73,8 +73,7 @@ class AdjustableScrollController extends ScrollController {
         ? (super.offset / super.position.viewportDimension).ceil()
         : 0;
     final int totalPage = super.position.viewportDimension > 0
-        ? (super.position.maxScrollExtent / super.position.viewportDimension)
-        .ceil()
+        ? (super.position.maxScrollExtent / super.position.viewportDimension).ceil()
         : 0;
     final double percent = super.position.maxScrollExtent > 0
         ? (super.offset / super.position.maxScrollExtent) * 100

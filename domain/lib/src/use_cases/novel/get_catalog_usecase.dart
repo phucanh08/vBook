@@ -1,12 +1,13 @@
-import 'package:domain/domain.dart';
 import 'package:injectable/injectable.dart';
 
+import '../../../domain.dart';
+
 @injectable
-class GetCatalogUseCase
-    extends BasePaginationUseCase<GetCatalogInput, Pagination<ChapterModel>> {
+class GetCatalogUseCase extends BasePaginationUseCase<GetCatalogInput, Pagination<ChapterModel>> {
   @override
   Future<Pagination<ChapterModel>> buildUseCase(GetCatalogInput input) async {
-    final response = await getIt<NovelRepository>().getCatalog(input.id, input.novelEndpoint, input.page);
+    final response =
+        await getIt<NovelRepository>().getCatalog(input.id, input.novelEndpoint, input.page);
 
     return response;
   }

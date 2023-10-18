@@ -28,7 +28,7 @@ dev_dependencies:
     sdk: flutter
   intl_utils: 2.8.3
   flutter_lints: 2.0.1
-  dart_code_metrics: 5.7.4
+  dart_code_metrics_presets: 2.5.0
   build_runner: 2.3.3
   flutter_gen_runner: 5.2.0
   slang_build_runner: 3.15.0

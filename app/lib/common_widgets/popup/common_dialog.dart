@@ -47,8 +47,8 @@ class CommonDialog extends StatelessWidget {
     this.actions = const <PopupButton>[],
     this.title,
     this.message,
-    Key? key,
-  }) : super(key: key);
+    super.key,
+  });
 
   const CommonDialog.android({
     List<PopupButton> actions = const <PopupButton>[],
@@ -120,8 +120,7 @@ class CommonDialog extends StatelessWidget {
               child: Text(
                 e.text ?? t.common.ok,
                 style: textTheme.bodyMedium?.withColor(
-                  color:
-                      e.isDefault ? colorScheme.primary : colorScheme.secondary,
+                  color: e.isDefault ? colorScheme.primary : colorScheme.secondary,
                 ),
               ),
             ),
@@ -130,15 +129,13 @@ class CommonDialog extends StatelessWidget {
       title: title != null
           ? Text(
               title!,
-              style:
-                  textTheme.bodyMedium?.withColor(color: colorScheme.primary),
+              style: textTheme.bodyMedium?.withColor(color: colorScheme.primary),
             )
           : null,
       content: message != null
           ? Text(
               message!,
-              style:
-                  textTheme.bodyMedium?.withColor(color: colorScheme.primary),
+              style: textTheme.bodyMedium?.withColor(color: colorScheme.primary),
             )
           : null,
     );
@@ -152,9 +149,7 @@ class CommonDialog extends StatelessWidget {
                 child: Text(
                   e.text ?? t.common.ok,
                   style: textTheme.bodyMedium?.withColor(
-                    color: e.isDefault
-                        ? colorScheme.primary
-                        : colorScheme.secondary,
+                    color: e.isDefault ? colorScheme.primary : colorScheme.secondary,
                   ),
                 ),
               ))
@@ -162,15 +157,13 @@ class CommonDialog extends StatelessWidget {
       title: title != null
           ? Text(
               title!,
-              style:
-                  textTheme.bodyMedium?.withColor(color: colorScheme.primary),
+              style: textTheme.bodyMedium?.withColor(color: colorScheme.primary),
             )
           : null,
       content: message != null
           ? Text(
               message!,
-              style:
-                  textTheme.bodyMedium?.withColor(color: colorScheme.primary),
+              style: textTheme.bodyMedium?.withColor(color: colorScheme.primary),
             )
           : null,
     );

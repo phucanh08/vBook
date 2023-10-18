@@ -1,4 +1,3 @@
-import 'package:domain/domain.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
 import 'package:injectable/injectable.dart';
 
@@ -12,8 +11,7 @@ part 'catalog_state.dart';
 
 @injectable
 class CatalogBloc extends PaginationBloc<ChapterModel, String, CatalogState> {
-  CatalogBloc(this._getCatalogUseCase)
-      : super(const CatalogState()) {
+  CatalogBloc(this._getCatalogUseCase) : super(const CatalogState()) {
     on<_Started>(_onStarted);
     on<_SortSelected>(_onSortSelected);
     on<_ItemPressed>(_onItemPressed);
@@ -112,8 +110,7 @@ class CatalogBloc extends PaginationBloc<ChapterModel, String, CatalogState> {
   Future<void> onPaginationRefreshed(event, emit) {
     return runBlocCatching(
       action: () async {
-        final newData =
-            Pagination(items: <ChapterModel>[], hasNext: state.data.hasNext);
+        final newData = Pagination(items: <ChapterModel>[], hasNext: state.data.hasNext);
 
         emit(
           state.copyWith(

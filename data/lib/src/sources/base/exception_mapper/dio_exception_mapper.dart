@@ -5,7 +5,6 @@ import 'package:shared/shared.dart';
 
 import '../../../mappers/base/base_error_response_mapper.dart';
 
-
 class DioExceptionMapper extends ExceptionMapper<RemoteException> {
   DioExceptionMapper(this._errorResponseMapper);
 

@@ -4,8 +4,7 @@ import 'package:shared/shared.dart';
 
 import 'base_bloc.dart';
 
-mixin EventTransformerMixin<E extends BaseEvent, S extends BaseState>
-    on BaseBlocDelegate<E, S> {
+mixin EventTransformerMixin<E extends BaseEvent, S extends BaseState> on BaseBlocDelegate<E, S> {
   String get name => runtimeType.toString();
 
   /// log event action with payload
@@ -15,7 +14,7 @@ mixin EventTransformerMixin<E extends BaseEvent, S extends BaseState>
 
   /// ignores subsequent events for a duration, then repeats this process
   EventTransformer<Event> throttleTime<Event>({
-    Duration duration = DurationConstants.defaultEventTransfomDuration,
+    Duration duration = DurationConstants.defaultEventTransformDuration,
   }) {
     return (events, mapper) =>
         events.throttleTime(duration).log(name, logOnData: true).flatMap(mapper);
@@ -29,7 +28,7 @@ mixin EventTransformerMixin<E extends BaseEvent, S extends BaseState>
   /// Only emit events from the source sequence whenever the time span defined by [duration] passes, without the source sequence emitting another item.
   /// This time span start after the last debounced event was emitted.
   EventTransformer<Event> debounceTime<Event>({
-    Duration duration = DurationConstants.defaultEventTransfomDuration,
+    Duration duration = DurationConstants.defaultEventTransformDuration,
   }) {
     return (events, mapper) =>
         events.debounceTime(duration).log(name, logOnData: true).flatMap(mapper);

@@ -1,12 +1,14 @@
-import 'package:domain/domain.dart';
 import 'package:injectable/injectable.dart';
+
+import '../../../domain.dart';
 
 @injectable
 class GetDetailChapterUseCase
     extends BaseFutureUseCase<GetDetailChapterInput, GetDetailChapterOutput> {
   @override
   Future<GetDetailChapterOutput> buildUseCase(GetDetailChapterInput input) async {
-    final data = await getIt<NovelRepository>().getDetailChapter(input.sourceId, input.chapterEndpoint);
+    final data =
+        await getIt<NovelRepository>().getDetailChapter(input.sourceId, input.chapterEndpoint);
 
     return GetDetailChapterOutput(data);
   }

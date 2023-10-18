@@ -15,10 +15,8 @@ class RestApiClient {
   RestApiClient({
     this.baseUrl = '',
     this.interceptors = const [],
-    this.errorResponseMapperType =
-        ResponseMapperConstants.defaultErrorResponseMapperType,
-    this.successResponseMapperType =
-        ResponseMapperConstants.defaultSuccessResponseMapperType,
+    this.errorResponseMapperType = ResponseMapperConstants.defaultErrorResponseMapperType,
+    this.successResponseMapperType = ResponseMapperConstants.defaultSuccessResponseMapperType,
     this.connectTimeout = ServerTimeoutConstants.connectTimeout,
     this.sendTimeout = ServerTimeoutConstants.sendTimeout,
     this.receiveTimeout = ServerTimeoutConstants.receiveTimeout,

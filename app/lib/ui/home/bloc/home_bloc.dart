@@ -1,4 +1,3 @@
-import 'package:domain/domain.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
 import 'package:injectable/injectable.dart';
@@ -13,8 +12,7 @@ part 'home_bloc.freezed.dart';
 
 @Injectable()
 class HomeBloc extends BaseBloc<HomeEvent, HomeState> {
-  HomeBloc(this._getShelfUseCase, this._getHistoryUseCase)
-      : super(const HomeState()) {
+  HomeBloc(this._getShelfUseCase, this._getHistoryUseCase) : super(const HomeState()) {
     on<HomePageStarted>(_onHomePageInitiated, transformer: log());
     on<_HistoryUpdated>(_onHistoryUpdated, transformer: log());
     on<_ShelfUpdated>(_onShelfUpdated, transformer: log());

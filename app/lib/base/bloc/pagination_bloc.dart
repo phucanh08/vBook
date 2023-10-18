@@ -5,7 +5,7 @@ import 'base_bloc.dart';
 
 abstract class PaginationBloc<T, F, S extends PaginationState<T>>
     extends BaseBloc<PaginationEvent, S> {
-  PaginationBloc(S initialState) : super(initialState) {
+  PaginationBloc(super.initialState) {
     on<PaginationStarted<F>>(onPaginationStarted);
     on<PaginationNextPage<F>>(onPaginationNextPage);
     on<PaginationRefreshed<F>>(onPaginationRefreshed);
@@ -16,8 +16,7 @@ abstract class PaginationBloc<T, F, S extends PaginationState<T>>
 
   void paginationNextPage() => add(PaginationNextPage<F>());
 
-  void paginationRefreshed({F? filter}) =>
-      add(PaginationRefreshed<F>(filter: filter));
+  void paginationRefreshed({F? filter}) => add(PaginationRefreshed<F>(filter: filter));
 
   Future<void> onPaginationStarted(
     PaginationStarted<F> event,

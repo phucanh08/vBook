@@ -2,8 +2,8 @@ import 'package:shared/shared.dart';
 
 import '../../../../domain.dart';
 
-abstract class BasePaginationUseCase<Input extends BasePaginationInput, Output extends BasePaginationOutput >
-    extends BaseUseCase<Input, Future<Output>> {
+abstract class BasePaginationUseCase<Input extends BasePaginationInput,
+    Output extends BasePaginationOutput<dynamic>> extends BaseUseCase<Input, Future<Output>> {
   const BasePaginationUseCase();
 
   Future<Output> call(Input input) async {
@@ -24,7 +24,7 @@ abstract class BasePaginationUseCase<Input extends BasePaginationInput, Output e
       }
 
       return output;
-    } catch (e,s) {
+    } catch (e, s) {
       if (LogConfig.enableLogUseCaseError) {
         logE('FutureUseCase Error: $e, $s');
       }

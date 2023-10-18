@@ -20,13 +20,11 @@ class DetailChapterState extends BaseState with _$DetailChapterState {
 
   String get percentOfNovel => totalChapter == 0
       ? '0'
-      : (((currentChapter - 1) * 100 + percent) / totalChapter)
-          .toStringAsFixed(2);
+      : (((currentChapter - 1) * 100 + percent) / totalChapter).toStringAsFixed(2);
 
   int get totalChapter => catalog.isNotEmpty ? catalog.length : 1;
 
-  String get title =>
-      catalog.isNotEmpty ? catalog[currentChapter - 1].name : '';
+  String get title => catalog.isNotEmpty ? catalog[currentChapter - 1].name : '';
 
   String get url => model?.url ?? '';
 }

@@ -4,13 +4,12 @@ import 'package:shared/shared.dart';
 
 import '../../app.dart';
 
-abstract class BaseBloc<E extends BaseEvent, S extends BaseState>
-    extends BaseBlocDelegate<E, S> with EventTransformerMixin, LogMixin {
+abstract class BaseBloc<E extends BaseEvent, S extends BaseState> extends BaseBlocDelegate<E, S>
+    with EventTransformerMixin, LogMixin {
   BaseBloc(super.initialState);
 }
 
-abstract class BaseBlocDelegate<E extends BaseEvent, S extends BaseState>
-    extends Bloc<E, S> {
+abstract class BaseBlocDelegate<E extends BaseEvent, S extends BaseState> extends Bloc<E, S> {
   BaseBlocDelegate(super.initialState);
 
   late final AppNavigator navigator;
@@ -90,22 +89,22 @@ abstract class BaseBlocDelegate<E extends BaseEvent, S extends BaseState>
           doOnRetry: doOnRetry ??
               (handleRetry
                   ? () async {
-                recursion = Completer();
-                await runBlocCatching(
-                  action: action,
-                  doOnEventCompleted: doOnEventCompleted,
-                  doOnSubscribe: doOnSubscribe,
-                  doOnSuccessOrError: doOnSuccessOrError,
-                  doOnError: doOnError,
-                  doOnRetry: doOnRetry,
-                  forceHandleError: forceHandleError,
-                  handleError: handleError,
-                  handleLoading: handleLoading,
-                  handleRetry: handleRetry,
-                  overrideErrorMessage: overrideErrorMessage,
-                );
-                recursion?.complete();
-              }
+                      recursion = Completer();
+                      await runBlocCatching(
+                        action: action,
+                        doOnEventCompleted: doOnEventCompleted,
+                        doOnSubscribe: doOnSubscribe,
+                        doOnSuccessOrError: doOnSuccessOrError,
+                        doOnError: doOnError,
+                        doOnRetry: doOnRetry,
+                        forceHandleError: forceHandleError,
+                        handleError: handleError,
+                        handleLoading: handleLoading,
+                        handleRetry: handleRetry,
+                        overrideErrorMessage: overrideErrorMessage,
+                      );
+                      recursion?.complete();
+                    }
                   : null),
           exceptionCompleter: Completer<void>(),
           overrideMessage: overrideErrorMessage,
@@ -122,7 +121,6 @@ abstract class BaseBlocDelegate<E extends BaseEvent, S extends BaseState>
         appException.kind == RemoteExceptionKind.refreshTokenFailed;
   }
 }
-
 
 abstract class BaseEvent {
   const BaseEvent();

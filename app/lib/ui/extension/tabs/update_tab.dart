@@ -14,7 +14,6 @@ class UpdateTab extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-
     return BlocBuilder<ExtensionBloc, ExtensionState>(
       buildWhen: (prev, cur) => prev.localPlugins != cur.localPlugins,
       builder: (context, state) {
@@ -42,8 +41,7 @@ class UpdateTab extends StatelessWidget {
               tag: item.tag,
             );
           },
-          separatorBuilder: (BuildContext context, int index) =>
-              const SizedBox(height: 10),
+          separatorBuilder: (BuildContext context, int index) => const SizedBox(height: 10),
           itemCount: listPlugins.length,
         );
       },

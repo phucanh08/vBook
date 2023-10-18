@@ -42,8 +42,7 @@ class FaIcon extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     assert(this.textDirection != null || debugCheckHasDirectionality(context));
-    final TextDirection textDirection =
-        this.textDirection ?? Directionality.of(context);
+    final TextDirection textDirection = this.textDirection ?? Directionality.of(context);
 
     final IconThemeData iconTheme = IconTheme.of(context);
 
@@ -100,7 +99,6 @@ class FaIcon extends StatelessWidget {
         showName: false));
     properties.add(DoubleProperty('size', size, defaultValue: null));
     properties.add(ColorProperty('color', color, defaultValue: null));
-    properties
-        .add(IterableProperty<Shadow>('shadows', shadows, defaultValue: null));
+    properties.add(IterableProperty<Shadow>('shadows', shadows, defaultValue: null));
   }
 }

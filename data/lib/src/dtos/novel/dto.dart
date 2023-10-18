@@ -16,8 +16,7 @@ class NovelDetailDto with _$NovelDetailDto {
     String? firstChapterName,
   }) = _NovelDetailDto;
 
-  factory NovelDetailDto.fromJson(Map<String, Object?> json) =>
-      _$NovelDetailDtoFromJson(json);
+  factory NovelDetailDto.fromJson(Map<String, Object?> json) => _$NovelDetailDtoFromJson(json);
 }
 
 @freezed
@@ -30,6 +29,5 @@ class NovelItemDto with _$NovelItemDto {
     String? host,
   }) = _NovelItemDto;
 
-  factory NovelItemDto.fromJson(Map<String, Object?> json) =>
-      _$NovelItemDtoFromJson(json);
+  factory NovelItemDto.fromJson(Map<String, Object?> json) => _$NovelItemDtoFromJson(json);
 }

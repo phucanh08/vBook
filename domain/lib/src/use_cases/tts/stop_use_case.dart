@@ -8,7 +8,7 @@ class StopUseCase extends BaseFutureUseCase<StopInput, StopOutput> {
   Future<StopOutput> buildUseCase(StopInput input) {
     try {
       return getIt<TTSRepository>().stop().then((_) => StopOutput());
-    } catch(e) {
+    } catch (e) {
       throw Exception(e);
     }
   }

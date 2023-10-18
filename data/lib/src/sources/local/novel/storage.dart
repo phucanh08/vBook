@@ -16,8 +16,7 @@ abstract class NovelStorage {
 
 @Injectable(as: NovelStorage)
 class NovelStorageImpl implements NovelStorage {
-  NovelStorageImpl(@Named('LocalStorage') ObjectBox objectBox)
-      : novelBox = objectBox.novelBox();
+  NovelStorageImpl(@Named('LocalStorage') ObjectBox objectBox) : novelBox = objectBox.novelBox();
 
   final Box<Novel> novelBox;
 
@@ -49,11 +48,8 @@ class NovelStorageImpl implements NovelStorage {
 
   @override
   Stream<List<Novel>> streamAll() {
-    final result = novelBox
-        .query()
-        .order(Novel_.updatedAt)
-        .watch(triggerImmediately: true)
-        .map((event) {
+    final result =
+        novelBox.query().order(Novel_.updatedAt).watch(triggerImmediately: true).map((event) {
       event
         ..offset = 0
         ..limit = 1000;

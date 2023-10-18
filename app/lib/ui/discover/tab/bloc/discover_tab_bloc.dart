@@ -1,4 +1,3 @@
-import 'package:domain/domain.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
 import 'package:injectable/injectable.dart';
@@ -12,10 +11,8 @@ part 'discover_tab_state.dart';
 part 'discover_tab_bloc.freezed.dart';
 
 @injectable
-class DiscoverTabBloc
-    extends PaginationBloc<NovelItemModel, String, DiscoverTabState> {
-  DiscoverTabBloc(this._getListNovelInHomeUseCase)
-      : super(const DiscoverTabState()) {
+class DiscoverTabBloc extends PaginationBloc<NovelItemModel, String, DiscoverTabState> {
+  DiscoverTabBloc(this._getListNovelInHomeUseCase) : super(const DiscoverTabState()) {
     on<_Started>(_onStarted);
   }
 
@@ -92,8 +89,7 @@ class DiscoverTabBloc
   Future<void> onPaginationRefreshed(event, emit) {
     return runBlocCatching(
       action: () async {
-        final newData =
-            Pagination(items: <NovelItemModel>[], hasNext: state.data.hasNext);
+        final newData = Pagination(items: <NovelItemModel>[], hasNext: state.data.hasNext);
 
         emit(
           state.copyWith(

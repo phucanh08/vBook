@@ -1,4 +1,3 @@
-import 'package:domain/domain.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
 import 'package:injectable/injectable.dart';
@@ -18,11 +17,11 @@ class ExtensionBloc extends BaseBloc<ExtensionEvent, ExtensionState> {
     this._removeLocalPluginUseCase,
     this._saveLocalPluginUseCase,
   ) : super(const ExtensionState()) {
-    on<_Started>(_onStarted);
-    on<_ToggleSearchModeConfirmed>(_onToggleSearchModeConfirmed);
-    on<_SearchTextChanged>(_onSearchTextChanged);
-    on<_RemoveButtonPressed>(_onRemoveButtonPressed);
-    on<_DownLoadButtonPressed>(_onDownLoadButtonPressed);
+    on<_Started>(_onStarted, transformer: log());
+    on<_ToggleSearchModeConfirmed>(_onToggleSearchModeConfirmed, transformer: log());
+    on<_SearchTextChanged>(_onSearchTextChanged, transformer: log());
+    on<_RemoveButtonPressed>(_onRemoveButtonPressed, transformer: log());
+    on<_DownLoadButtonPressed>(_onDownLoadButtonPressed, transformer: log());
   }
 
   final GetListLibraryPluginUseCase _getListLibraryPluginUseCase;
@@ -31,12 +30,10 @@ class ExtensionBloc extends BaseBloc<ExtensionEvent, ExtensionState> {
   final SaveLocalPluginUseCase _saveLocalPluginUseCase;
 
   Future<void> _onStarted(_Started event, Emitter<ExtensionState> emit) async {
-    final listLocalPlugin =
-        (await _getListLocalPluginUseCase.call(GetListLocalPluginInput())).data;
+    final listLocalPlugin = (await _getListLocalPluginUseCase.call(GetListLocalPluginInput())).data;
     emit(state.copyWith(listLocalPlugin: listLocalPlugin));
     final listLibraryPlugin =
-        (await _getListLibraryPluginUseCase.call(GetListLibraryPluginInput()))
-            .data;
+        (await _getListLibraryPluginUseCase.call(GetListLibraryPluginInput())).data;
     emit(state.copyWith(listLibraryPlugin: listLibraryPlugin));
   }
 
@@ -63,13 +60,11 @@ class ExtensionBloc extends BaseBloc<ExtensionEvent, ExtensionState> {
       await _removeLocalPluginUseCase.call(RemoveLocalPluginInput(item.id));
       emit(
         state.copyWith(
-          listLocalPlugin:
-              state.listLocalPlugin.where((element) => element != item).toList(),
+          listLocalPlugin: state.listLocalPlugin.where((element) => element != item).toList(),
         ),
       );
       final listLibraryPlugin =
-          (await _getListLibraryPluginUseCase.call(GetListLibraryPluginInput()))
-              .data;
+          (await _getListLibraryPluginUseCase.call(GetListLibraryPluginInput())).data;
       emit(state.copyWith(listLibraryPlugin: listLibraryPlugin));
     } catch (e, s) {
       logD('$e,$s');
@@ -85,8 +80,7 @@ class ExtensionBloc extends BaseBloc<ExtensionEvent, ExtensionState> {
       await _saveLocalPluginUseCase.call(SaveLocalPluginInput(item));
       emit(
         state.copyWith(
-          listLibraryPlugin:
-          state.libraryPlugins.where((element) => element != item).toList(),
+          listLibraryPlugin: state.libraryPlugins.where((element) => element != item).toList(),
         ),
       );
       final listLocalPlugin =

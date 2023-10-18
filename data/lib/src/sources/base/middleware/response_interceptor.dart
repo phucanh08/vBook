@@ -23,8 +23,7 @@ class ResponseInterceptor<D, T> extends BaseInterceptor {
   int get priority => BaseInterceptor.connectivityPriority;
 
   @override
-  Future<void> onRequest(
-      RequestOptions options, RequestInterceptorHandler handler) async {
+  Future<void> onRequest(RequestOptions options, RequestInterceptorHandler handler) async {
     final response = BaseSuccessResponseMapper<D, T>.fromType(
       successResponseMapperType,
     ).map(options.data, decoder);
@@ -34,9 +33,8 @@ class ResponseInterceptor<D, T> extends BaseInterceptor {
 
   @override
   void onResponse(Response response, ResponseInterceptorHandler handler) {
-    response.data =
-        BaseSuccessResponseMapper<D, T>.fromType(successResponseMapperType)
-            .map(response.data, decoder);
+    response.data = BaseSuccessResponseMapper<D, T>.fromType(successResponseMapperType)
+        .map(response.data, decoder);
     handler.next(response);
     super.onResponse(response, handler);
   }

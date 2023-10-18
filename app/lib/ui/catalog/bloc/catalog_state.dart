@@ -1,7 +1,8 @@
 part of 'catalog_bloc.dart';
 
 enum Sort {
-  oldest, newest;
+  oldest,
+  newest;
 }
 
 @freezed

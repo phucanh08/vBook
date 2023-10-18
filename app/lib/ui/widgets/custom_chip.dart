@@ -26,8 +26,7 @@ class CustomChip extends StatelessWidget {
     }
   }
 
-  Color outlineColor(ColorScheme colorScheme) =>
-      textColor(colorScheme).withOpacity(0.5);
+  Color outlineColor(ColorScheme colorScheme) => textColor(colorScheme).withOpacity(0.5);
 
   Color backgroundColor(ColorScheme colorScheme) {
     switch (type) {

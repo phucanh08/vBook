@@ -8,7 +8,7 @@ class ScrollLoopAutoScroll extends StatefulWidget {
   const ScrollLoopAutoScroll({
     required this.child,
     required this.scrollDirection,
-    Key? key,
+    super.key,
     this.delay = const Duration(seconds: 1),
     this.duration = const Duration(seconds: 30),
     this.gap = 25,
@@ -16,7 +16,7 @@ class ScrollLoopAutoScroll extends StatefulWidget {
     this.duplicateChild = 25,
     this.enableScrollInput = true,
     this.delayAfterScrollInput = const Duration(seconds: 1),
-  }) : super(key: key);
+  });
 
   /// Widget to display in loop
   ///
@@ -161,12 +161,8 @@ class _ScrollLoopAutoScrollState extends State<ScrollLoopAutoScroll>
                       widget.duplicateChild,
                       (index) => Padding(
                         padding: EdgeInsets.only(
-                          right: shouldScroll && !widget.reverseScroll
-                              ? widget.gap
-                              : 0,
-                          left: shouldScroll && widget.reverseScroll
-                              ? widget.gap
-                              : 0,
+                          right: shouldScroll && !widget.reverseScroll ? widget.gap : 0,
+                          left: shouldScroll && widget.reverseScroll ? widget.gap : 0,
                         ),
                         child: widget.child,
                       ),
@@ -177,12 +173,8 @@ class _ScrollLoopAutoScrollState extends State<ScrollLoopAutoScroll>
                       widget.duplicateChild,
                       (index) => Padding(
                         padding: EdgeInsets.only(
-                          bottom: shouldScroll && !widget.reverseScroll
-                              ? widget.gap
-                              : 0,
-                          top: shouldScroll && widget.reverseScroll
-                              ? widget.gap
-                              : 0,
+                          bottom: shouldScroll && !widget.reverseScroll ? widget.gap : 0,
+                          top: shouldScroll && widget.reverseScroll ? widget.gap : 0,
                         ),
                         child: widget.child,
                       ),

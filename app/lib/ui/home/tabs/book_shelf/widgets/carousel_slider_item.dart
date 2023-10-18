@@ -19,10 +19,9 @@ class CarouselSliderItem extends StatelessWidget {
     return numOfHourRead > 0 ? '$numOfHourRead Giờ' : 'Gần đây';
   }
 
-  String get percentOfNovel =>
-      (((novelModel.currentChapter - 1) * 100 + novelModel.scrollPercent) /
-              novelModel.totalChapters)
-          .toStringAsFixed(1);
+  String get percentOfNovel => (((novelModel.currentChapter - 1) * 100 + novelModel.scrollPercent) /
+          novelModel.totalChapters)
+      .toStringAsFixed(1);
 
   @override
   Widget build(BuildContext context) {
@@ -71,8 +70,7 @@ class CarouselSliderItem extends StatelessWidget {
                     crossAxisAlignment: CrossAxisAlignment.end,
                     children: [
                       Expanded(
-                        child: Text('$percentOfNovel%',
-                            style: theme.textTheme.titleMedium),
+                        child: Text('$percentOfNovel%', style: theme.textTheme.titleMedium),
                       ),
                       Text(timeRead),
                     ],

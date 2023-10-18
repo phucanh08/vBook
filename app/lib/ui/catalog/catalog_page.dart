@@ -1,5 +1,4 @@
 import 'package:auto_route/auto_route.dart';
-import 'package:domain/domain.dart';
 import 'package:resources/resources.dart';
 
 import '../../app.dart';
@@ -70,9 +69,7 @@ class _CatalogPageState extends BasePageState<CatalogPage, CatalogBloc> {
                         ],
                         child: Row(
                           children: [
-                            Text(state.sort == Sort.oldest
-                                ? 'Cũ nhất'
-                                : 'Mới nhất'),
+                            Text(state.sort == Sort.oldest ? 'Cũ nhất' : 'Mới nhất'),
                             const SizedBox(width: 5),
                             const FaIcon(
                               FaCodePoint.chevronDown,
@@ -91,9 +88,8 @@ class _CatalogPageState extends BasePageState<CatalogPage, CatalogBloc> {
                     padding: EdgeInsets.zero,
                     itemCount: data.items.length,
                     itemBuilder: (context, index) {
-                      final _index = state.sort == Sort.newest
-                          ? data.items.length - index - 1
-                          : index;
+                      final _index =
+                          state.sort == Sort.newest ? data.items.length - index - 1 : index;
                       final item = data.items[_index];
                       // final currentChapter = (state.sort == Sort.newest) ? index + 1 : data.items.length - index;
 
@@ -110,8 +106,7 @@ class _CatalogPageState extends BasePageState<CatalogPage, CatalogBloc> {
                         title: Text(item.name),
                       );
                     },
-                    separatorBuilder: (context, index) =>
-                        const Divider(height: 1),
+                    separatorBuilder: (context, index) => const Divider(height: 1),
                   ),
                 ),
               ],

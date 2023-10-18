@@ -31,8 +31,8 @@ class PluginRepositoryImpl extends PluginRepository {
       final listApi = getListApi.values.toList();
       final data = await Future.wait(listApi.map((e) => Future.value(e.plugin())));
       final result = data
-          .where((element) => !listData
-              .any((e) => e.name == element.name && e.path == element.path))
+          .where(
+              (element) => !listData.any((e) => e.name == element.name && e.path == element.path))
           .toList();
 
       return getIt<PluginDataMapper>().mapToListEntity(result);

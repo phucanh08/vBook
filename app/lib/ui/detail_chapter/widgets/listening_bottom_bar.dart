@@ -34,8 +34,7 @@ class ListeningBottomBar extends StatelessWidget {
         color: theme.colorScheme.surface.withOpacity(0.8),
         borderRadius: BorderRadius.circular(theme.radius.extraSmall),
         child: Padding(
-          padding: EdgeInsets.symmetric(
-              horizontal: theme.space.large, vertical: theme.space.tiny),
+          padding: EdgeInsets.symmetric(horizontal: theme.space.large, vertical: theme.space.tiny),
           child: Column(
             mainAxisSize: MainAxisSize.min,
             children: [

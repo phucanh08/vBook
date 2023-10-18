@@ -60,8 +60,7 @@ class _ExtensionPageState extends BasePageState<ExtensionPage, ExtensionBloc> {
                             children: [
                               BlocBuilder<ExtensionBloc, ExtensionState>(
                                 buildWhen: (prev, cur) =>
-                                    prev.listLibraryPlugin.length !=
-                                    cur.listLibraryPlugin.length,
+                                    prev.listLibraryPlugin.length != cur.listLibraryPlugin.length,
                                 builder: (context, state) {
                                   return Positioned(
                                     child: Container(
@@ -73,10 +72,8 @@ class _ExtensionPageState extends BasePageState<ExtensionPage, ExtensionBloc> {
                                         color: theme.colorScheme.onSurface,
                                       ),
                                       child: Text(
-                                        state.listLibraryPlugin.length
-                                            .toString(),
-                                        style:
-                                            theme.textTheme.bodySmall?.copyWith(
+                                        state.listLibraryPlugin.length.toString(),
+                                        style: theme.textTheme.bodySmall?.copyWith(
                                           color: theme.colorScheme.surface,
                                         ),
                                       ),

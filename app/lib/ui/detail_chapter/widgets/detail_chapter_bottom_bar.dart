@@ -36,17 +36,12 @@ class _DetailChapterBottomBarState extends State<DetailChapterBottomBar> {
       visible: widget.visible,
       child: isListening
           ? ListeningBottomBar(
-              onResumeButtonPressed: () =>
-                  widget.onTTSEvent.call(TTSEvent.resume),
-              onPauseButtonPressed: () =>
-                  widget.onTTSEvent.call(TTSEvent.pause),
+              onResumeButtonPressed: () => widget.onTTSEvent.call(TTSEvent.resume),
+              onPauseButtonPressed: () => widget.onTTSEvent.call(TTSEvent.pause),
               onNextButtonPressed: () => widget.onTTSEvent.call(TTSEvent.next),
-              onPreviousButtonPressed: () =>
-                  widget.onTTSEvent.call(TTSEvent.previous),
-              onNextStepButtonPressed: () =>
-                  widget.onTTSEvent.call(TTSEvent.nextStep),
-              onPreviousStepButtonPressed: () =>
-                  widget.onTTSEvent.call(TTSEvent.previousStep),
+              onPreviousButtonPressed: () => widget.onTTSEvent.call(TTSEvent.previous),
+              onNextStepButtonPressed: () => widget.onTTSEvent.call(TTSEvent.nextStep),
+              onPreviousStepButtonPressed: () => widget.onTTSEvent.call(TTSEvent.previousStep),
               onStopButtonPressed: () {
                 widget.onTTSEvent.call(TTSEvent.stop);
                 setState(() => isListening = false);

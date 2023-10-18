@@ -10,7 +10,6 @@ part 'individual_bloc.freezed.dart';
 @injectable
 class IndividualBloc extends BaseBloc<IndividualEvent, IndividualState> {
   IndividualBloc() : super(const IndividualState()) {
-    on<IndividualEvent>((event, emit) {
-    });
+    on<IndividualEvent>((event, emit) {});
   }
 }

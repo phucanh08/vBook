@@ -35,8 +35,7 @@ class BookShelfTab extends StatelessWidget {
                 itemBuilder: (context, itemIndex, pageViewIndex) {
                   return CarouselSliderItem(
                     novelModel: novelInShelf[itemIndex],
-                    onPressed: () =>
-                        onItemPressed.call(novelInShelf[itemIndex]),
+                    onPressed: () => onItemPressed.call(novelInShelf[itemIndex]),
                   );
                 },
               ),

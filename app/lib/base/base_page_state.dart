@@ -10,12 +10,11 @@ import '../app.dart';
 abstract class BasePageState<T extends StatefulWidget, B extends BaseBloc>
     extends BasePageStateDelegate<T, B> with LogMixin {}
 
-abstract class BasePageStateDelegate<T extends StatefulWidget,
-    B extends BaseBloc> extends State<T> implements ExceptionHandlerListener {
+abstract class BasePageStateDelegate<T extends StatefulWidget, B extends BaseBloc> extends State<T>
+    implements ExceptionHandlerListener {
   late final AppNavigator navigator = getIt<AppNavigator>();
   late final AppBloc appBloc = getIt<AppBloc>();
-  late final ExceptionMessageMapper exceptionMessageMapper =
-      const ExceptionMessageMapper();
+  late final ExceptionMessageMapper exceptionMessageMapper = const ExceptionMessageMapper();
   late final ExceptionHandler exceptionHandler = ExceptionHandler(
     navigator: navigator,
     listener: this,
@@ -74,8 +73,7 @@ abstract class BasePageStateDelegate<T extends StatefulWidget,
                     children: [
                       buildPage(context),
                       BlocBuilder<CommonBloc, CommonState>(
-                        buildWhen: (previous, current) =>
-                            previous.isLoading != current.isLoading,
+                        buildWhen: (previous, current) => previous.isLoading != current.isLoading,
                         builder: (context, state) => Visibility(
                           visible: state.isLoading,
                           child: buildPageLoading(),
@@ -91,7 +89,7 @@ abstract class BasePageStateDelegate<T extends StatefulWidget,
 
   Widget buildPageListeners({required Widget child}) => child;
 
-  Widget  buildPageLoading() => const Center(
+  Widget buildPageLoading() => const Center(
         child: CircularProgressIndicator(),
       );
 

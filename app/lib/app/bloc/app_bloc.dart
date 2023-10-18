@@ -11,7 +11,6 @@ part 'app_bloc.freezed.dart';
 @lazySingleton
 class AppBloc extends BaseBloc<AppEvent, AppState> {
   AppBloc() : super(AppState.initial()) {
-    on<AppEvent>((event, emit) {
-    });
+    on<AppEvent>((event, emit) {});
   }
 }

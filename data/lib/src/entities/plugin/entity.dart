@@ -17,7 +17,8 @@ class Plugin {
     this.id = 0,
   });
 
-  @Id() int id;
+  @Id()
+  int id;
   final int updatedAt;
   final String name;
   final String author;

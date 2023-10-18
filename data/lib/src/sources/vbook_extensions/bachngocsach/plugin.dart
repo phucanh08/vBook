@@ -23,8 +23,7 @@ class BachNgocSachApi extends BaseApi {
   List<HomeDto> getHome() => home.call();
 
   @override
-  Future<Pagination<NovelItemDto>> getListNovelInPage(
-      String endpoint, int pageNumber) {
+  Future<Pagination<NovelItemDto>> getListNovelInPage(String endpoint, int pageNumber) {
     return page.call(endpoint, pageNumber);
   }
 

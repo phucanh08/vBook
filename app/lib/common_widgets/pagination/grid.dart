@@ -11,8 +11,7 @@ class InfiniteGridView extends PaginationWidget {
     required this.gridDelegate,
     required this.hasNext,
     required this.nextData,
-
-    Key? key,
+    super.key,
     this.scrollDirection = Axis.vertical,
     this.reverse = false,
     this.controller,
@@ -27,7 +26,7 @@ class InfiniteGridView extends PaginationWidget {
     this.semanticChildCount,
     this.scrollThreshold = 300,
     this.loadingWidget,
-  }) : super(key: key);
+  });
 
   final Function nextData;
   final double scrollThreshold;
@@ -119,8 +118,7 @@ class _InfiniteGridViewState extends State<InfiniteGridView> {
             _lastLoadedEvent == null &&
             widget.hasNext) {
           _lastLoadedEvent = widget.itemCount;
-          WidgetsBinding.instance
-              .addPostFrameCallback((_) => widget.nextData());
+          WidgetsBinding.instance.addPostFrameCallback((_) => widget.nextData());
         }
         if (index == widget.itemCount) {
           return widget.loadingWidget ??

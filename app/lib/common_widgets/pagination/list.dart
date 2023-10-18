@@ -10,7 +10,7 @@ class InfiniteListView extends PaginationWidget {
     required this.itemCount,
     required this.nextData,
     required this.hasNext,
-    Key? key,
+    super.key,
     this.scrollDirection = Axis.vertical,
     this.reverse = false,
     this.padding,
@@ -27,8 +27,7 @@ class InfiniteListView extends PaginationWidget {
   })  : _separated = false,
         _separatorBuilder = null,
         semanticChildCount = null,
-        itemExtent = null,
-        super(key: key);
+        itemExtent = null;
 
   /// ListView that once the bottom is reach call [nextData] to load more element until [hasNext] is false
   /// Use [loadingWidget] to have a custom loading widget
@@ -39,7 +38,7 @@ class InfiniteListView extends PaginationWidget {
     required this.hasNext,
     required this.nextData,
     required Function(BuildContext, int) separatorBuilder,
-    Key? key,
+    super.key,
     this.semanticChildCount,
     this.itemExtent,
     this.scrollDirection = Axis.vertical,
@@ -56,9 +55,7 @@ class InfiniteListView extends PaginationWidget {
     this.loadingWidget,
     this.scrollThreshold = 300,
   })  : _separated = true,
-        _separatorBuilder =
-            separatorBuilder as Widget Function(BuildContext, int)?,
-        super(key: key);
+        _separatorBuilder = separatorBuilder as Widget Function(BuildContext, int)?;
 
   final double scrollThreshold;
   final void Function() nextData;

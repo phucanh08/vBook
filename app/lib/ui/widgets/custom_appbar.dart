@@ -16,8 +16,8 @@ class CustomAppBar extends AppBar {
     Func0<void>? onPlusButtonPressed,
     bool automaticallyImplyLeading = true,
     super.key,
-  })  : assert(!(actions != null &&
-            (onSearchButtonPressed != null || onMoreButtonPressed != null))),
+  })  : assert(
+            !(actions != null && (onSearchButtonPressed != null || onMoreButtonPressed != null))),
         super(
           centerTitle: false,
           automaticallyImplyLeading: false,

@@ -55,8 +55,7 @@ class AppTheme {
     required ColorScheme colorScheme,
     required Brightness brightness,
   }) {
-    final textTheme =
-        AppTextTheme.textTheme().apply(displayColor: colorScheme.onSurface);
+    final textTheme = AppTextTheme.textTheme().apply(displayColor: colorScheme.onSurface);
 
     return ThemeData(
       useMaterial3: true,

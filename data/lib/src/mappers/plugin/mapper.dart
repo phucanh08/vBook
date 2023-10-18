@@ -46,7 +46,8 @@ class Plugin1DataMapper extends BaseDataMapper<PluginDto, Plugin> {
 }
 
 @injectable
-class Plugin2DataMapper extends BaseDataMapper<PluginModel, Plugin> with DataMapperMixin<PluginModel, Plugin> {
+class Plugin2DataMapper extends BaseDataMapper<PluginModel, Plugin>
+    with DataMapperMixin<PluginModel, Plugin> {
   @override
   Plugin mapToEntity(PluginModel? data) {
     return Plugin(

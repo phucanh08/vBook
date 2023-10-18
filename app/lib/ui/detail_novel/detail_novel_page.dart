@@ -1,4 +1,3 @@
-
 import 'package:auto_route/auto_route.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:resources/resources.dart';
@@ -23,8 +22,7 @@ class DetailNovelPage extends StatefulWidget {
   State<DetailNovelPage> createState() => _DetailNovelPageState();
 }
 
-class _DetailNovelPageState
-    extends BasePageState<DetailNovelPage, DetailNovelBloc> {
+class _DetailNovelPageState extends BasePageState<DetailNovelPage, DetailNovelBloc> {
   final scrollController = ScrollController();
 
   @override
@@ -59,8 +57,7 @@ class _DetailNovelPageState
 
                         return SliverAppBar(
                           pinned: true,
-                          expandedHeight:
-                              MediaQuery.of(context).size.height / 3,
+                          expandedHeight: MediaQuery.of(context).size.height / 3,
                           flexibleSpace: FlexibleSpaceBar(
                             expandedTitleScale: 1,
                             collapseMode: CollapseMode.pin,
@@ -87,8 +84,7 @@ class _DetailNovelPageState
                                   Expanded(
                                     flex: 3,
                                     child: Column(
-                                      crossAxisAlignment:
-                                          CrossAxisAlignment.start,
+                                      crossAxisAlignment: CrossAxisAlignment.start,
                                       mainAxisSize: MainAxisSize.min,
                                       children: [
                                         Text(
@@ -98,8 +94,7 @@ class _DetailNovelPageState
                                         const SizedBox(height: 10),
                                         Text(
                                           state.model!.detail,
-                                          style: textTheme.bodyMedium
-                                              ?.copyWith(height: 1.7),
+                                          style: textTheme.bodyMedium?.copyWith(height: 1.7),
                                         ),
                                       ],
                                     ),
@@ -112,10 +107,8 @@ class _DetailNovelPageState
                             opacity: opacity,
                             child: Text(state.model!.name),
                           ),
-                          backgroundColor: Theme.of(context)
-                              .appBarTheme
-                              .backgroundColor
-                              ?.withOpacity(opacity),
+                          backgroundColor:
+                              Theme.of(context).appBarTheme.backgroundColor?.withOpacity(opacity),
                           leading: IconButton(
                             padding: EdgeInsets.zero,
                             onPressed: () => navigator.pop(),
@@ -127,8 +120,7 @@ class _DetailNovelPageState
                           actions: [
                             IconButton(
                               padding: EdgeInsets.zero,
-                              onPressed: () =>
-                                  navigator.push(const BrowserRoute()),
+                              onPressed: () => navigator.push(const BrowserRoute()),
                               icon: const FaIcon(
                                 FaCodePoint.planetRinged,
                                 type: IconType.regular,

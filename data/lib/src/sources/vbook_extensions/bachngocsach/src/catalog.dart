@@ -6,8 +6,7 @@ import '../../../base/client/rest_client.dart';
 import '../plugin.dart';
 
 extension CatalogExtension on BachNgocSachApi {
-  Future<Pagination<ChapterDto>> catalog(
-      String endpoint, int pageNumber) async {
+  Future<Pagination<ChapterDto>> catalog(String endpoint, int pageNumber) async {
     final response = await api.requestUri(
       method: RestMethod.get,
       uri: Uri.parse('https://bachngocsach.com.vn$endpoint/muc-luc?page=all'),

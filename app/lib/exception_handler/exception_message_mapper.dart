@@ -15,11 +15,9 @@ class ExceptionMessageMapper {
           case RemoteExceptionKind.network:
             return t.sys.remote.no_internet_exception;
           case RemoteExceptionKind.serverDefined:
-            return exception.generalServerMessage ??
-                t.sys.remote.unknown_exception;
+            return exception.generalServerMessage ?? t.sys.remote.unknown_exception;
           case RemoteExceptionKind.serverUndefined:
-            return exception.generalServerMessage ??
-                t.sys.remote.unknown_exception;
+            return exception.generalServerMessage ?? t.sys.remote.unknown_exception;
           case RemoteExceptionKind.timeout:
             return t.sys.remote.no_internet_exception;
           case RemoteExceptionKind.cancellation:

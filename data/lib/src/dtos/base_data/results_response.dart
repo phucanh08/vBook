@@ -9,10 +9,10 @@ class ResultsListResponse<T> {
   });
 
   factory ResultsListResponse.fromJson(
-      Map<String, dynamic> json,
-      // ignore: avoid-dynamic
-      T Function(dynamic) fromJsonT,
-      ) =>
+    Map<String, dynamic> json,
+    // ignore: avoid-dynamic
+    T Function(dynamic) fromJsonT,
+  ) =>
       _$ResultsListResponseFromJson(json, fromJsonT);
 
   final List<T>? results;

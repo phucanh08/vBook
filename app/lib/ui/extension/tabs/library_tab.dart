@@ -27,8 +27,7 @@ class LibraryTab extends StatelessWidget {
             return BookItem(
               iconUrl: item.icon,
               trailing: IconButton(
-                onPressed: () =>
-                    bloc.add(ExtensionEvent.downLoadButtonPressed(index)),
+                onPressed: () => bloc.add(ExtensionEvent.downLoadButtonPressed(index)),
                 icon: const FaIcon(
                   FaCodePoint.cloudArrowDown,
                   // size: 70,
@@ -42,8 +41,7 @@ class LibraryTab extends StatelessWidget {
               tag: item.tag,
             );
           },
-          separatorBuilder: (BuildContext context, int index) =>
-              const SizedBox(height: 10),
+          separatorBuilder: (BuildContext context, int index) => const SizedBox(height: 10),
           itemCount: listPlugins.length,
         );
       },

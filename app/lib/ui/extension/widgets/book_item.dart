@@ -33,7 +33,7 @@ class BookItem extends StatelessWidget {
         border: Border.all(color: theme.colorScheme.disabledContainer!),
       ),
       child: Padding(
-        padding: const EdgeInsets.fromLTRB(10,10,0,10),
+        padding: const EdgeInsets.fromLTRB(10, 10, 0, 10),
         child: Row(
           children: [
             Card(

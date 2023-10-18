@@ -7,7 +7,8 @@ import '../../../sources.dart';
 
 Future<Pagination<NovelItemDto>> page(String endpoint, int pageNumber) async {
   final dio = Dio();
-  final response = await dio.getUri(Uri.parse('https://bachngocsach.com.vn$endpoint?page=$pageNumber'));
+  final response =
+      await dio.getUri(Uri.parse('https://bachngocsach.com.vn$endpoint?page=$pageNumber'));
   final html = response.data.toString();
   final doc = parse(html);
 

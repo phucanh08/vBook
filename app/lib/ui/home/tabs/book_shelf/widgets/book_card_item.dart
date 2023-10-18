@@ -19,8 +19,7 @@ class BookCardItem extends StatelessWidget {
   final Function() onPressed;
 
   String get percentOfNovel =>
-      (((currentChapter - 1) * 100 + scrollPercent) / totalChapter)
-          .toStringAsFixed(1);
+      (((currentChapter - 1) * 100 + scrollPercent) / totalChapter).toStringAsFixed(1);
 
   @override
   Widget build(BuildContext context) {
@@ -52,8 +51,7 @@ class BookCardItem extends StatelessWidget {
             Container(
               decoration: BoxDecoration(
                 color: Colors.black.withOpacity(0.5),
-                borderRadius:
-                    const BorderRadius.vertical(bottom: Radius.circular(5)),
+                borderRadius: const BorderRadius.vertical(bottom: Radius.circular(5)),
               ),
               padding: const EdgeInsets.all(5),
               child: Text(

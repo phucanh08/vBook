@@ -208,7 +208,7 @@ pub_get_app:
 pub_get_shared:
 	@flutter pub global run melos run pub_get_shared
 
-dart_code_metrics:
+dart_code_metrics_presets:
 	$(METRICS_CMD)
 
 check_commit_message:

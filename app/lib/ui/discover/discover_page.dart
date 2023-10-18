@@ -33,7 +33,8 @@ class _DiscoverPageState extends BasePageState<DiscoverPage, DiscoverBloc> {
         return AutoTabsRouter.tabBar(
           routes: List.generate(
             state.listHome.length,
-            (index) => DiscoverTabRoute(id: state.currentPlugin?.path ?? '', endpoint: state.listHome[index].input),
+            (index) => DiscoverTabRoute(
+                id: state.currentPlugin?.path ?? '', endpoint: state.listHome[index].input),
           ),
           builder: (context, child, controller) {
             return Scaffold(
@@ -44,8 +45,7 @@ class _DiscoverPageState extends BasePageState<DiscoverPage, DiscoverBloc> {
                     return state.currentPlugin == null
                         ? const SizedBox()
                         : DiscoverTitle(
-                            onPressed: () =>
-                                bloc.add(const DiscoverEvent.titlePressed()),
+                            onPressed: () => bloc.add(const DiscoverEvent.titlePressed()),
                             iconUrl: state.currentPlugin!.icon,
                             name: state.currentPlugin!.name,
                           );

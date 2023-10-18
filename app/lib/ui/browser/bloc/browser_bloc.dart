@@ -10,8 +10,8 @@ part 'browser_bloc.freezed.dart';
 @injectable
 class BrowserBloc extends BaseBloc<BrowserEvent, BrowserState> {
   BrowserBloc() : super(const BrowserState()) {
-    on<BrowserEvent>((event, emit) {
-      // TODO: implement event handler
-    });
+    on<_Started>(_onStarted, transformer: log());
   }
+
+  void _onStarted(_Started event, emit) {}
 }

@@ -18,8 +18,7 @@ class ExceptionHandler {
     AppExceptionWrapper appExceptionWrapper,
     String commonExceptionMessage,
   ) async {
-    final message =
-        appExceptionWrapper.overrideMessage ?? commonExceptionMessage;
+    final message = appExceptionWrapper.overrideMessage ?? commonExceptionMessage;
 
     switch (appExceptionWrapper.appException.appExceptionType) {
       case AppExceptionType.remote:

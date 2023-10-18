@@ -37,14 +37,12 @@ class DetailChapterEvent extends BaseEvent with _$DetailChapterEvent {
     required double percent,
   }) = _PageScrolled;
 
-  const factory DetailChapterEvent.readyBookSaved(String chapterEndpoint) =
-      _ReadyBookSaved;
+  const factory DetailChapterEvent.readyBookSaved(String chapterEndpoint) = _ReadyBookSaved;
 
-  const factory DetailChapterEvent.horizontalDragged(
-      HorizontalDraggedEnum type) = _HorizontalDragged;
+  const factory DetailChapterEvent.horizontalDragged(HorizontalDraggedEnum type) =
+      _HorizontalDragged;
 
-  const factory DetailChapterEvent.adjustableScrollChanged() =
-      _AdjustableScrollChanged;
+  const factory DetailChapterEvent.adjustableScrollChanged() = _AdjustableScrollChanged;
 
   const factory DetailChapterEvent.ttsEvent(TTSEvent event) = _TTSEvent;
 }

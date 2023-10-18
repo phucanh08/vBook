@@ -6,14 +6,13 @@ import 'bloc/individual_bloc.dart';
 
 @RoutePage()
 class IndividualPage extends StatefulWidget {
-  const IndividualPage({Key? key}) : super(key: key);
+  const IndividualPage({super.key});
 
   @override
   State<IndividualPage> createState() => _IndividualPageState();
 }
 
-class _IndividualPageState
-    extends BasePageState<IndividualPage, IndividualBloc> {
+class _IndividualPageState extends BasePageState<IndividualPage, IndividualBloc> {
   @override
   Widget buildPage(BuildContext context) {
     final theme = Theme.of(context);
@@ -40,8 +39,7 @@ class _IndividualPageState
                               Container(
                                 padding: const EdgeInsets.all(5),
                                 decoration: BoxDecoration(
-                                  border:
-                                      Border.all(color: Colors.grey, width: 2),
+                                  border: Border.all(color: Colors.grey, width: 2),
                                   shape: BoxShape.circle,
                                 ),
                                 child: const FaIcon(

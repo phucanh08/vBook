@@ -3,7 +3,6 @@ import 'package:shared/shared.dart';
 
 import 'base.dart';
 
-
 abstract class BaseUseCase<Input extends BaseInput, Output> with LogMixin {
   const BaseUseCase();
 

@@ -14,6 +14,5 @@ class DetailDto with _$DetailDto {
     String? detail,
   }) = _DetailDto;
 
-  factory DetailDto.fromJson(Map<String, Object?> json) =>
-      _$DetailDtoFromJson(json);
+  factory DetailDto.fromJson(Map<String, Object?> json) => _$DetailDtoFromJson(json);
 }

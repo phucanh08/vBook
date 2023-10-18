@@ -19,6 +19,13 @@ analyzer:
     unused_import: warning
     # invalid_annotation_target: ignore
 
+
+custom_lint:
+  rules:
+    - lines_longer_than_100_chars: false
+    - incorrect_todo_comment: false
+    - prefer_named_parameters: false
+
 linter:
   rules:
     - always_declare_return_types
@@ -79,7 +86,7 @@ linter:
     - sized_box_for_whitespace
     - slash_for_doc_comments
     - sort_child_properties_last
-    - sort_pub_dependencies
+#    - sort_pub_dependencies
     - throw_in_finally
     - type_init_formals
     - unawaited_futures

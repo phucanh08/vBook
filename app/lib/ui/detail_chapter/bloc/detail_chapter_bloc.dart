@@ -13,24 +13,23 @@ part 'detail_chapter_bloc.freezed.dart';
 part 'tts_mixin.dart';
 
 @injectable
-class DetailChapterBloc extends BaseBloc<DetailChapterEvent, DetailChapterState>
-    with TTSMixin {
+class DetailChapterBloc extends BaseBloc<DetailChapterEvent, DetailChapterState> with TTSMixin {
   DetailChapterBloc(
     this._getDetailChapterUseCase,
     this._getCatalogUseCase,
     this._saveNovelUseCase,
   ) : super(const DetailChapterState()) {
-    on<_Started>(_onStarted);
+    on<_Started>(_onStarted, transformer: log());
     on<_ReadyBookSaved>(_onReadyBookSaved, transformer: debounceTime());
     on<_VisibleAppBarChanged>(
       _onVisibleAppBarChanged,
       transformer: throttleTime(duration: const Duration(seconds: 1)),
     );
-    on<_BookmarkChanged>(_onBookmarkChanged);
-    on<_PageScrolled>(_onPageScrolled);
-    on<_TTSEvent>(_onTTSEvent);
-    on<_HorizontalDragged>(_onHorizontalDragged);
-    on<_AdjustableScrollChanged>(_onAdjustableScrollChanged);
+    on<_BookmarkChanged>(_onBookmarkChanged, transformer: log());
+    on<_PageScrolled>(_onPageScrolled, transformer: log());
+    on<_TTSEvent>(_onTTSEvent, transformer: log());
+    on<_HorizontalDragged>(_onHorizontalDragged, transformer: log());
+    on<_AdjustableScrollChanged>(_onAdjustableScrollChanged, transformer: log());
     scrollController.onPageChanged = (
       int currentPage,
       int totalPage,
@@ -160,8 +159,7 @@ class DetailChapterBloc extends BaseBloc<DetailChapterEvent, DetailChapterState>
     );
   }
 
-  Future<void> _onAdjustableScrollChanged(
-      _AdjustableScrollChanged event, emit) {
+  Future<void> _onAdjustableScrollChanged(_AdjustableScrollChanged event, emit) {
     return runBlocCatching(
       action: () async {
         if (!scrollController.enableAdjustableScroll) {
@@ -172,8 +170,7 @@ class DetailChapterBloc extends BaseBloc<DetailChapterEvent, DetailChapterState>
     );
   }
 
-  Future<void> _updateChapter(String chapterEndpoint, emit,
-      [double percent = 0]) {
+  Future<void> _updateChapter(String chapterEndpoint, emit, [double percent = 0]) {
     return runBlocCatching(
       action: () async {
         final response = await _getDetailChapterUseCase.call(

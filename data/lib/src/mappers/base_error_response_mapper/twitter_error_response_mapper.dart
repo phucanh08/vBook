@@ -10,9 +10,9 @@ class TwitterErrorResponseMapper extends BaseErrorResponseMapper<Map<String, dyn
   ServerError mapToEntity(Map<String, dynamic>? json) {
     return ServerError(
       generalMessage:
-      // ignore: avoid-dynamic
-      ((json?['errors'] as List<dynamic>?)?.firstOrNull as Map<String, dynamic>)['message'] ??
-          '',
+          // ignore: avoid-dynamic
+          ((json?['errors'] as List<dynamic>?)?.firstOrNull as Map<String, dynamic>)['message'] ??
+              '',
     );
   }
 }

@@ -16,7 +16,8 @@ Future<NovelDetailDto> detailNovel(String endpoint) async {
     author: doc.querySelector('div#tacgia a')?.text,
     description: doc.querySelector('div#gioithieu .block-content')?.text,
     detail: '${doc.querySelector("div#tacgia")?.text}\n${doc.querySelector("div#theloai")?.text}',
-    firstChapterEndpoint: doc.querySelector('nav#truyen-nav')?.children.firstOrNull?.attributes['href'],
+    firstChapterEndpoint:
+        doc.querySelector('nav#truyen-nav')?.children.firstOrNull?.attributes['href'],
     firstChapterName: doc.querySelector('nav#truyen-nav')?.children.firstOrNull?.text,
   );
 }

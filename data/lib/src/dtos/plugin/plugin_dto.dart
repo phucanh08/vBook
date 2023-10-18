@@ -21,8 +21,7 @@ class PluginDto with _$PluginDto {
     String? tag,
   }) = _PluginDto;
 
-  factory PluginDto.fromJson(Map<String, Object?> json) =>
-      _$PluginDtoFromJson(json);
+  factory PluginDto.fromJson(Map<String, Object?> json) => _$PluginDtoFromJson(json);
 
   PluginDto merge(PluginDto other) {
     return copyWith(

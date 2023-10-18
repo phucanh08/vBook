@@ -5,6 +5,7 @@ import 'package:domain/domain.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter_tts/flutter_tts.dart';
 import 'package:injectable/injectable.dart';
+import 'package:shared/shared.dart';
 
 enum TtsState { playing, stopped, paused, continued }
 
@@ -12,7 +13,6 @@ enum TtsState { playing, stopped, paused, continued }
 class TTSRepositoryImpl extends TTSRepository {
   final flutterTts = FlutterTts();
   bool isCurrentLanguageInstalled = false;
-
 
   TtsState ttsState = TtsState.stopped;
 
@@ -36,7 +36,7 @@ class TTSRepositoryImpl extends TTSRepository {
     final engine = await flutterTts.getDefaultEngine;
     if (engine != null) {
       if (kDebugMode) {
-        print(engine);
+        Log.d(engine);
       }
     }
   }
@@ -45,7 +45,7 @@ class TTSRepositoryImpl extends TTSRepository {
     final voice = await flutterTts.getDefaultVoice;
     if (voice != null) {
       if (kDebugMode) {
-        print(voice);
+        Log.d(voice);
       }
     }
   }
@@ -63,30 +63,30 @@ class TTSRepositoryImpl extends TTSRepository {
     });
     if (isAndroid) {
       flutterTts.setInitHandler(() {
-        print("TTS Initialized");
+        Log.d('TTS Initialized');
       });
       flutterTts.setCompletionHandler(() {
-        print("Complete");
+        Log.d('Complete');
         ttsState = TtsState.stopped;
       });
 
       flutterTts.setCancelHandler(() {
-        print("Cancel");
+        Log.d('Cancel');
         ttsState = TtsState.stopped;
       });
 
       flutterTts.setPauseHandler(() {
-        print("Paused");
+        Log.d('Paused');
         ttsState = TtsState.paused;
       });
 
       flutterTts.setContinueHandler(() {
-        print("Continued");
+        Log.d('Continued');
         ttsState = TtsState.continued;
       });
 
       flutterTts.setErrorHandler((msg) {
-        print("error: $msg");
+        Log.d('error: $msg');
         ttsState = TtsState.stopped;
       });
     }
@@ -113,26 +113,21 @@ class TTSRepositoryImpl extends TTSRepository {
   Future<void> stop() => flutterTts.stop();
 
   @override
-  Future<String> get languages =>
-      flutterTts.getLanguages.then((value) => value.toString());
+  Future<String> get languages => flutterTts.getLanguages.then((value) => value.toString());
 
   @override
-  Future<bool> speechPitch(double pitch) =>
-      flutterTts.setPitch(pitch).then((_) => true);
+  Future<bool> speechPitch(double pitch) => flutterTts.setPitch(pitch).then((_) => true);
 
   @override
-  Future<bool> speechRate(double speed) =>
-      flutterTts.setSpeechRate(speed).then((_) => true);
+  Future<bool> speechRate(double speed) => flutterTts.setSpeechRate(speed).then((_) => true);
 
   @override
-  Future<bool> speechVolume(double volume) =>
-      flutterTts.setVolume(volume).then((_) => true);
+  Future<bool> speechVolume(double volume) => flutterTts.setVolume(volume).then((_) => true);
 
   @override
-  Future<bool> voice(Map<String, String> voice) =>
-      flutterTts.setVoice(voice).then((_) => true);
+  Future<bool> voice(Map<String, String> voice) => flutterTts.setVoice(voice).then((_) => true);
 
   @override
-  Future<List<Map<String, String>>> get voices => flutterTts.getVoices
-      .then((value) => value as List<Map<String, String>>);
+  Future<List<Map<String, String>>> get voices =>
+      flutterTts.getVoices.then((value) => value as List<Map<String, String>>);
 }

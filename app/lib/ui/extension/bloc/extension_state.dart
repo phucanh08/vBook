@@ -24,9 +24,9 @@ class ExtensionState extends BaseState with _$ExtensionState {
     return searchText.isEmpty
         ? listLibraryPlugin
         : listLibraryPlugin
-        .where((element) => element.name
-        .toLowerCaseNonAccentVietnamese()
-        .contains(searchText.toLowerCaseNonAccentVietnamese()))
-        .toList();
+            .where((element) => element.name
+                .toLowerCaseNonAccentVietnamese()
+                .contains(searchText.toLowerCaseNonAccentVietnamese()))
+            .toList();
   }
 }
