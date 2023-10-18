@@ -23,6 +23,8 @@ class BookCardItem extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final theme = Theme.of(context);
+
     return GestureDetector(
       onTap: onPressed,
       child: Container(
@@ -40,23 +42,23 @@ class BookCardItem extends StatelessWidget {
             Container(
               padding: const EdgeInsets.all(2),
               decoration: BoxDecoration(
-                color: Colors.black87,
+                color: theme.colorScheme.onSurface.withOpacity(0.8),
                 borderRadius: BorderRadius.circular(5),
               ),
               child: Text(
                 '$totalChapter${'C'} - $percentOfNovel%',
-                style: const TextStyle(fontSize: 10, color: Colors.white),
+                style: TextStyle(fontSize: 10, color:  theme.colorScheme.surface),
               ),
             ),
             Container(
               decoration: BoxDecoration(
-                color: Colors.black.withOpacity(0.5),
+                color:  theme.colorScheme.onSurface.withOpacity(0.5),
                 borderRadius: const BorderRadius.vertical(bottom: Radius.circular(5)),
               ),
               padding: const EdgeInsets.all(5),
               child: Text(
                 bookName,
-                style: const TextStyle(fontSize: 12, color: Colors.white),
+                style: TextStyle(fontSize: 12, color: theme.colorScheme.surface),
                 textAlign: TextAlign.center,
                 maxLines: 2,
               ),

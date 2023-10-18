@@ -39,7 +39,7 @@ class _IndividualPageState extends BasePageState<IndividualPage, IndividualBloc>
                               Container(
                                 padding: const EdgeInsets.all(5),
                                 decoration: BoxDecoration(
-                                  border: Border.all(color: Colors.grey, width: 2),
+                                  border: Border.all(color: colorScheme.disabledContainer!, width: 2),
                                   shape: BoxShape.circle,
                                 ),
                                 child: const FaIcon(
@@ -95,7 +95,7 @@ class _IndividualPageState extends BasePageState<IndividualPage, IndividualBloc>
                       horizontal: 10,
                       vertical: 10,
                     ),
-                    color: Colors.grey,
+                    color: colorScheme.disabledContainer,
                     child: Text('Ứng dụng', style: theme.textTheme.titleMedium),
                   ),
                   const ListTile(
@@ -145,7 +145,7 @@ class _IndividualPageState extends BasePageState<IndividualPage, IndividualBloc>
                       horizontal: 10,
                       vertical: 10,
                     ),
-                    color: Colors.grey,
+                    color: colorScheme.disabledContainer,
                     child: Text('Kết nối', style: theme.textTheme.titleMedium),
                   ),
                   const ListTile(

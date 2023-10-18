@@ -136,23 +136,23 @@ scripts:
     description: Run format.
 
   metrics:
-    run: dart pub global run melos exec --flutter -- "dart run dart_code_metrics_presets:metrics analyze lib"
+    run: dart pub global run melos exec --flutter -- "dart run custom_lint analyze lib"
     description: Run metrics.
 
   metrics_app:
-    run: dart pub global run melos exec --scope="*app*" --flutter -- "dart run dart_code_metrics_presets:metrics analyze lib"
+    run: dart pub global run melos exec --scope="*app*" --flutter -- "dart run custom_lint analyze lib"
     description: Run metrics app.
 
   metrics_data:
-    run: dart pub global run melos exec --scope="*data*" --flutter -- "dart run dart_code_metrics_presets:metrics analyze lib"
+    run: dart pub global run melos exec --scope="*data*" --flutter -- "dart run custom_lint analyze lib"
     description: Run metrics data.
 
   metrics_domain:
-    run: dart pub global run melos exec --scope="*domain*" --flutter -- "dart run dart_code_metrics_presets:metrics analyze lib"
+    run: dart pub global run melos exec --scope="*domain*" --flutter -- "dart run custom_lint analyze lib"
     description: Run metrics domain.
 
   metrics_shared:
-    run: dart pub global run melos exec --scope="*shared*" --flutter -- "dart run dart_code_metrics_presets:metrics analyze lib"
+    run: dart pub global run melos exec --scope="*shared*" --flutter -- "dart run custom_lint analyze lib"
     description: Run metrics shared.
     
   analyze:
@@ -188,7 +188,7 @@ scripts:
     description: Run test coverage.
 
   check_unused_files:
-    run: dart pub global run melos exec "dart run dart_code_metrics_presets:metrics check-unused-files lib"
+    run: dart pub global run melos exec "dart run custom_lint check-unused-files lib"
     description: Run check unused files.
 
   pub_get_data:
@@ -208,9 +208,9 @@ scripts:
     description: pub get shared module.
 
   check_unused_l10n_app:
-    run: dart pub global run melos exec --fail-fast --scope="*app*" "dart run dart_code_metrics_presets:metrics check-unused-l10n lib -p ^S$"
+    run: dart pub global run melos exec --fail-fast --scope="*app*" "dart run custom_lint check-unused-l10n lib -p ^S$"
     description: check unused l10n app.
 
   check_unused_l10n_domain:
-    run: dart pub global run melos exec --fail-fast --scope="*domain*" "dart run dart_code_metrics_presets:metrics check-unused-l10n lib -p ^S$"
+    run: dart pub global run melos exec --fail-fast --scope="*domain*" "dart run custom_lint check-unused-l10n lib -p ^S$"
     description: check unused l10n domain.

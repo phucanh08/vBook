@@ -15,7 +15,7 @@ class PluginStorage {
 
   Future<List<Plugin>> getAll() async {
     final query = pluginBox.query().order(Plugin_.updatedAt).build();
-    final result = query.find();
+    final result = await query.findAsync();
     query.close();
 
     return result.reversed.toList();

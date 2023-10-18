@@ -1,3 +1,4 @@
+import 'dart:async';
 import 'dart:io';
 import 'dart:typed_data';
 
@@ -9,7 +10,7 @@ class FileUtils {
   /// If set, we want to save all files into a specific folder
   static String? defaultDir;
 
-  static Future<File?> getImageFileFromUrl(String imageUrl) async {
+  static FutureOr<File?> getImageFileFromUrl(String imageUrl) {
     try {
       return DefaultCacheManager().getSingleFile(imageUrl);
     } catch (_) {

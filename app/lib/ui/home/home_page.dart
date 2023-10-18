@@ -43,7 +43,7 @@ class _HomePageState extends BasePageState<HomePage, HomeBloc> {
                 width: IconTheme.of(context).size,
                 height: IconTheme.of(context).size,
                 decoration: BoxDecoration(
-                  border: Border.all(color: Colors.black),
+                  border: Border.all(color: colorScheme.onSurface),
                   shape: BoxShape.circle,
                   image: const DecorationImage(
                     image: NetworkImage(

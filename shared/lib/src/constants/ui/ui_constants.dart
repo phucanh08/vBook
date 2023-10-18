@@ -1,3 +1,4 @@
+import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 
 class UiConstants {
@@ -8,7 +9,6 @@ class UiConstants {
 
   /// material app
   static const materialAppTitle = 'My App';
-  static const taskMenuMaterialAppColor = Color.fromARGB(255, 153, 154, 251);
 
   /// orientation
   static const mobileOrientation = [
@@ -26,7 +26,7 @@ class UiConstants {
   /// status bar color
   static const systemUiOverlay = SystemUiOverlayStyle(
     statusBarBrightness: Brightness.light,
-    statusBarColor: Color.fromARGB(255, 153, 154, 251),
+    statusBarColor: Colors.transparent,
   );
 
   static const textFieldTextStyleHeight = 1.3;
