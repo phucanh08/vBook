@@ -1,10 +1,10 @@
 ifeq ($(OS),Windows_NT)
     BUILD_CMD=.\build_and_run_app.bat
-    METRICS_CMD=.\tools\dart_code_metrics.bat
+    METRICS_CMD=.\tools\custom_lint.bat
     COMMIT_CHECK_CMD=.\tools\check_commit_message.bat
 else
     BUILD_CMD=./build_and_run_app.sh
-    METRICS_CMD=./tools/dart_code_metrics.sh
+    METRICS_CMD=./tools/custom_lint.sh
     COMMIT_CHECK_CMD=./tools/check_commit_message.sh
 endif
 
@@ -208,7 +208,7 @@ pub_get_app:
 pub_get_shared:
 	@flutter pub global run melos run pub_get_shared
 
-dart_code_metrics_presets:
+custom_lint:
 	$(METRICS_CMD)
 
 check_commit_message:

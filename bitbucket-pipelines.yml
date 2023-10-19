@@ -24,8 +24,8 @@ definitions:
           - make analyze_domain
           - echo "Run analyze shared"
           - make analyze_shared
-          - echo "Run dart_code_metrics"
-          - make dart_code_metrics
+          - echo "Run custom lint"
+          - make custom_lint
           # - echo "Run metrics_app"
           # - make metrics_app
           # - echo "Run metrics_data"

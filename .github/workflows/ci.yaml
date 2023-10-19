@@ -45,9 +45,6 @@ jobs:
 
       - name: Run analyze
         run: make analyze
-      
-      - name: Run dart_code_metrics
-        run: make dart_code_metrics
 
       # - name: Check lint app
       #   uses: dart-code-checker/dart-code-metrics-action@v2
