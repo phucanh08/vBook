@@ -31,7 +31,11 @@ class DiscoverTitle extends StatelessWidget {
           const SizedBox(width: 5),
           Flexible(child: Text(name)),
           const SizedBox(width: 5),
-          const FaIcon(FaCodePoint.angleDown, type: IconType.regular),
+          const FaIcon(
+            FaCodePoint.angleDown,
+            type: IconType.regular,
+            size: 20,
+          ),
         ],
       ),
     );

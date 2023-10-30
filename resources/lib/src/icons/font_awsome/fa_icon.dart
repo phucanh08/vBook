@@ -42,11 +42,12 @@ class FaIcon extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     assert(this.textDirection != null || debugCheckHasDirectionality(context));
-    final TextDirection textDirection = this.textDirection ?? Directionality.of(context);
+    final TextDirection textDirection =
+        this.textDirection ?? Directionality.of(context);
 
     final IconThemeData iconTheme = IconTheme.of(context);
 
-    final double iconSize = size ?? iconTheme.size ?? 24;
+    final double? iconSize = size ?? iconTheme.size;
 
     final List<Shadow>? iconShadows = shadows ?? iconTheme.shadows;
 
@@ -66,7 +67,7 @@ class FaIcon extends StatelessWidget {
         style: TextStyle(
           inherit: false,
           color: iconColor,
-          fontSize: iconSize * 0.75,
+          fontSize: iconSize,
           fontFamily: type.fontFamily,
           package: fontPackage,
           shadows: iconShadows,
@@ -93,12 +94,16 @@ class FaIcon extends StatelessWidget {
     super.debugFillProperties(properties);
     properties.add(IconDataProperty(
         'icon',
-        IconData(faCodePoint.codePoint,
-            fontFamily: type.fontFamily, fontPackage: 'base_bloc_project'),
+        IconData(
+          faCodePoint.codePoint,
+          fontFamily: type.fontFamily,
+          fontPackage: 'resoures',
+        ),
         ifNull: '<empty>',
         showName: false));
     properties.add(DoubleProperty('size', size, defaultValue: null));
     properties.add(ColorProperty('color', color, defaultValue: null));
-    properties.add(IterableProperty<Shadow>('shadows', shadows, defaultValue: null));
+    properties
+        .add(IterableProperty<Shadow>('shadows', shadows, defaultValue: null));
   }
 }

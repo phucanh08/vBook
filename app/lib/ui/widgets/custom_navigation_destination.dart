@@ -10,10 +10,12 @@ class CustomNavigationDestination extends NavigationDestination {
           icon: FaIcon(
             faCodePoint,
             type: IconType.light,
+            size: 20,
           ),
           selectedIcon: FaIcon(
             faCodePoint,
             type: IconType.regular,
+            size: 20,
           ),
         );
 }

@@ -2,6 +2,7 @@ import 'package:auto_route/auto_route.dart';
 import 'package:injectable/injectable.dart';
 
 import '../../app.dart';
+import '../../ui/community/tabs/share_novel/share_novel_tab.dart';
 
 part 'app_router.gr.dart';
 
@@ -31,7 +32,16 @@ class AppRouter extends _$AppRouter {
             AutoRoute(page: DiscoverTabRoute.page, path: ':id/:endpoint'),
           ],
         ),
-        AutoRoute(page: CommunityRoute.page, path: 'community'),
+        AutoRoute(
+          page: CommunityRoute.page,
+          path: 'community',
+          children: [
+            AutoRoute(page: ChatTabRoute.page, path: 'chat', initial: true),
+            AutoRoute(page: ShareNovelTabRoute.page, path: 'share-novel'),
+            AutoRoute(page: DiscussTabRoute.page, path: 'discuss'),
+            AutoRoute(page: SuggestAndReportTabRoute.page, path: 'suggest-and-report'),
+          ]
+        ),
         AutoRoute(page: IndividualRoute.page, path: 'individual'),
         AutoRoute(
           page: ExtensionRoute.page,
@@ -44,8 +54,11 @@ class AppRouter extends _$AppRouter {
         ),
         AutoRoute(page: BrowserRoute.page),
         AutoRoute(page: CatalogRoute.page, path: ':id/:endpoint/catalog'),
-        AutoRoute(page: DetailNovelRoute.page, path: ':id/:endpoint/detail-novel'),
-        AutoRoute(page: DetailChapterRoute.page, path: ':id/:endpoint/detail-chapter'),
+        AutoRoute(
+            page: DetailNovelRoute.page, path: ':id/:endpoint/detail-novel'),
+        AutoRoute(
+            page: DetailChapterRoute.page,
+            path: ':id/:endpoint/detail-chapter'),
       ],
     ),
   ];

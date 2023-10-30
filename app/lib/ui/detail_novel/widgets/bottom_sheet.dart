@@ -31,7 +31,9 @@ class DetailNovelBottomSheet extends StatelessWidget {
                   const FaIcon(
                     FaCodePoint.download,
                     type: IconType.regular,
+                    size: 20,
                   ),
+                  const SizedBox(height: 5),
                   Text(t.common.download),
                 ],
               ),
@@ -49,7 +51,9 @@ class DetailNovelBottomSheet extends StatelessWidget {
                     FaCodePoint.bookOpenCover,
                     type: IconType.regular,
                     color: theme.colorScheme.onPrimary,
+                    size: 20,
                   ),
+                  const SizedBox(height: 5),
                   Text(
                     t.catalog.title,
                     style: theme.textTheme.bodyMedium?.copyWith(
@@ -70,7 +74,9 @@ class DetailNovelBottomSheet extends StatelessWidget {
                   const FaIcon(
                     FaCodePoint.booksMedical,
                     type: IconType.regular,
+                    size: 20,
                   ),
+                  const SizedBox(height: 5),
                   Text(t.catalog.add_to_shelf),
                 ],
               ),

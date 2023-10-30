@@ -22,7 +22,8 @@ class DetailNovelPage extends StatefulWidget {
   State<DetailNovelPage> createState() => _DetailNovelPageState();
 }
 
-class _DetailNovelPageState extends BasePageState<DetailNovelPage, DetailNovelBloc> {
+class _DetailNovelPageState
+    extends BasePageState<DetailNovelPage, DetailNovelBloc> {
   final scrollController = ScrollController();
 
   @override
@@ -57,7 +58,8 @@ class _DetailNovelPageState extends BasePageState<DetailNovelPage, DetailNovelBl
 
                         return SliverAppBar(
                           pinned: true,
-                          expandedHeight: MediaQuery.of(context).size.height / 3,
+                          expandedHeight:
+                              MediaQuery.of(context).size.height / 3,
                           flexibleSpace: FlexibleSpaceBar(
                             expandedTitleScale: 1,
                             collapseMode: CollapseMode.pin,
@@ -84,7 +86,8 @@ class _DetailNovelPageState extends BasePageState<DetailNovelPage, DetailNovelBl
                                   Expanded(
                                     flex: 3,
                                     child: Column(
-                                      crossAxisAlignment: CrossAxisAlignment.start,
+                                      crossAxisAlignment:
+                                          CrossAxisAlignment.start,
                                       mainAxisSize: MainAxisSize.min,
                                       children: [
                                         Text(
@@ -94,7 +97,8 @@ class _DetailNovelPageState extends BasePageState<DetailNovelPage, DetailNovelBl
                                         const SizedBox(height: 10),
                                         Text(
                                           state.model!.detail,
-                                          style: textTheme.bodyMedium?.copyWith(height: 1.7),
+                                          style: textTheme.bodyMedium
+                                              ?.copyWith(height: 1.7),
                                         ),
                                       ],
                                     ),
@@ -107,23 +111,28 @@ class _DetailNovelPageState extends BasePageState<DetailNovelPage, DetailNovelBl
                             opacity: opacity,
                             child: Text(state.model!.name),
                           ),
-                          backgroundColor:
-                              Theme.of(context).appBarTheme.backgroundColor?.withOpacity(opacity),
+                          backgroundColor: Theme.of(context)
+                              .appBarTheme
+                              .backgroundColor
+                              ?.withOpacity(opacity),
                           leading: IconButton(
                             padding: EdgeInsets.zero,
                             onPressed: () => navigator.pop(),
                             icon: const FaIcon(
                               FaCodePoint.arrowLeft,
                               type: IconType.regular,
+                              size: 20,
                             ),
                           ),
                           actions: [
                             IconButton(
                               padding: EdgeInsets.zero,
-                              onPressed: () => navigator.push(const BrowserRoute()),
+                              onPressed: () =>
+                                  navigator.push(const BrowserRoute()),
                               icon: const FaIcon(
                                 FaCodePoint.planetRinged,
                                 type: IconType.regular,
+                                size: 20,
                               ),
                             ),
                             IconButton(
@@ -132,6 +141,7 @@ class _DetailNovelPageState extends BasePageState<DetailNovelPage, DetailNovelBl
                               icon: const FaIcon(
                                 FaCodePoint.arrowUpFromBracket,
                                 type: IconType.regular,
+                                size: 20,
                               ),
                             ),
                           ],

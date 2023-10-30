@@ -12,11 +12,10 @@ class IndividualPage extends StatefulWidget {
   State<IndividualPage> createState() => _IndividualPageState();
 }
 
-class _IndividualPageState extends BasePageState<IndividualPage, IndividualBloc> {
+class _IndividualPageState
+    extends BasePageState<IndividualPage, IndividualBloc> {
   @override
   Widget buildPage(BuildContext context) {
-    final theme = Theme.of(context);
-
     return Scaffold(
       appBar: CustomAppBar(
         automaticallyImplyLeading: true,
@@ -37,15 +36,19 @@ class _IndividualPageState extends BasePageState<IndividualPage, IndividualBloc>
                           child: Row(
                             children: [
                               Container(
-                                padding: const EdgeInsets.all(5),
+                                padding: const EdgeInsets.all(20),
                                 decoration: BoxDecoration(
-                                  border: Border.all(color: colorScheme.disabledContainer!, width: 2),
+                                  border: Border.all(
+                                    color: colorScheme.disabledContainer!,
+                                    width: 2,
+                                  ),
                                   shape: BoxShape.circle,
                                 ),
-                                child: const FaIcon(
+                                child: FaIcon(
                                   FaCodePoint.user2,
-                                  size: 70,
+                                  size: 50,
                                   type: IconType.thin,
+                                  color: colorScheme.onSurface,
                                 ),
                               ),
                               const SizedBox(width: 20),
@@ -100,7 +103,7 @@ class _IndividualPageState extends BasePageState<IndividualPage, IndividualBloc>
                   ),
                   const ListTile(
                     leading: FaIcon(
-                      size: 30,
+                      size: 20,
                       FaCodePoint.book,
                       type: IconType.light,
                     ),
@@ -108,7 +111,7 @@ class _IndividualPageState extends BasePageState<IndividualPage, IndividualBloc>
                   ),
                   const ListTile(
                     leading: FaIcon(
-                      size: 30,
+                      size: 20,
                       FaCodePoint.chartSimple,
                       type: IconType.light,
                     ),
@@ -117,7 +120,7 @@ class _IndividualPageState extends BasePageState<IndividualPage, IndividualBloc>
                   ListTile(
                     onTap: () => navigator.push(const ExtensionRoute()),
                     leading: const FaIcon(
-                      size: 30,
+                      size: 20,
                       FaCodePoint.chartPieSimple,
                       type: IconType.light,
                     ),
@@ -125,7 +128,7 @@ class _IndividualPageState extends BasePageState<IndividualPage, IndividualBloc>
                   ),
                   const ListTile(
                     leading: FaIcon(
-                      size: 30,
+                      size: 20,
                       FaCodePoint.rotate,
                       type: IconType.light,
                     ),
@@ -133,7 +136,7 @@ class _IndividualPageState extends BasePageState<IndividualPage, IndividualBloc>
                   ),
                   const ListTile(
                     leading: FaIcon(
-                      size: 30,
+                      size: 20,
                       FaCodePoint.gear,
                       type: IconType.light,
                     ),
@@ -150,27 +153,35 @@ class _IndividualPageState extends BasePageState<IndividualPage, IndividualBloc>
                   ),
                   const ListTile(
                     leading: FaIcon(
-                      size: 30,
+                      size: 20,
                       FaCodePoint.shareNodes,
                       type: IconType.light,
                     ),
                     title: Text('Mời bạn bè sử dụng'),
                   ),
-                  const ListTile(
-                    leading: FaIcon(
-                      size: 30,
-                      FaCodePoint.shareNodes,
-                      type: IconType.light,
+                  ListTile(
+                    leading: Assets.icons.facebook.svg(
+                      width: 20,
+                      height: 20,
+                      fit: BoxFit.contain,
+                      colorFilter: ColorFilter.mode(
+                        colorScheme.onSurface,
+                        BlendMode.srcIn,
+                      ),
                     ),
-                    title: Text('Theo dõi Fanpage'),
+                    title: const Text('Theo dõi Fanpage'),
                   ),
-                  const ListTile(
-                    leading: FaIcon(
-                      size: 30,
-                      FaCodePoint.shareNodes,
-                      type: IconType.light,
+                  ListTile(
+                    leading: Assets.icons.discord.svg(
+                      width: 20,
+                      height: 20,
+                      fit: BoxFit.contain,
+                      colorFilter: ColorFilter.mode(
+                        colorScheme.onSurface,
+                        BlendMode.srcIn,
+                      ),
                     ),
-                    title: Text('Tham gia Discord'),
+                    title: const Text('Tham gia Discord'),
                   ),
                 ],
               ),
@@ -180,12 +191,13 @@ class _IndividualPageState extends BasePageState<IndividualPage, IndividualBloc>
             onPressed: () {},
             child: const Row(
               mainAxisSize: MainAxisSize.min,
+              crossAxisAlignment: CrossAxisAlignment.center,
               children: [
                 Text('Phiên bản: 0.0.1'),
                 SizedBox(width: 10),
                 FaIcon(
                   FaCodePoint.rotateRight,
-                  size: 20,
+                  size: 14,
                   type: IconType.light,
                 ),
               ],

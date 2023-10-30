@@ -16,8 +16,8 @@ class CustomAppBar extends AppBar {
     Func0<void>? onPlusButtonPressed,
     bool automaticallyImplyLeading = true,
     super.key,
-  })  : assert(
-            !(actions != null && (onSearchButtonPressed != null || onMoreButtonPressed != null))),
+  })  : assert(!(actions != null &&
+            (onSearchButtonPressed != null || onMoreButtonPressed != null))),
         super(
           centerTitle: false,
           automaticallyImplyLeading: false,
@@ -32,6 +32,7 @@ class CustomAppBar extends AppBar {
                       icon: const FaIcon(
                         FaCodePoint.arrowLeft,
                         type: IconType.regular,
+                        size: 20,
                       ),
                     );
                   },
@@ -46,6 +47,7 @@ class CustomAppBar extends AppBar {
                     icon: const FaIcon(
                       FaCodePoint.magnifyingGlass,
                       type: IconType.regular,
+                      size: 20,
                     ),
                   ),
                 ),
@@ -56,6 +58,7 @@ class CustomAppBar extends AppBar {
                     icon: const FaIcon(
                       FaCodePoint.ellipsisStrokeVertical,
                       type: IconType.regular,
+                      size: 20,
                     ),
                   ),
                 ),
@@ -66,6 +69,7 @@ class CustomAppBar extends AppBar {
                     icon: const FaIcon(
                       FaCodePoint.plus,
                       type: IconType.regular,
+                      size: 20,
                     ),
                   ),
                 ),
@@ -81,6 +85,7 @@ class CustomAppBar extends AppBar {
           leading: const FaIcon(
             FaCodePoint.magnifyingGlass,
             type: IconType.regular,
+            size: 20,
           ),
           titleSpacing: -10,
           title: TextField(
@@ -101,7 +106,6 @@ class CustomAppBar extends AppBar {
               padding: EdgeInsets.zero,
               icon: const FaIcon(
                 FaCodePoint.xMark,
-                size: 30,
                 type: IconType.regular,
               ),
             ),

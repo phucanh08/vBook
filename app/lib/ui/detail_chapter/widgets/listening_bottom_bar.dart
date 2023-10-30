@@ -54,6 +54,7 @@ class ListeningBottomBar extends StatelessWidget {
                       size: theme.iconSize.extraLarge,
                     ),
                   ),
+                  Icon(Icons.abc),
                   IconButton(
                     onPressed: onPreviousButtonPressed,
                     style: IconButton.styleFrom(
