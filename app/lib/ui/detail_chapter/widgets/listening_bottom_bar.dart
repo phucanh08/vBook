@@ -34,7 +34,8 @@ class ListeningBottomBar extends StatelessWidget {
         color: theme.colorScheme.surface.withOpacity(0.8),
         borderRadius: BorderRadius.circular(theme.radius.extraSmall),
         child: Padding(
-          padding: EdgeInsets.symmetric(horizontal: theme.space.large, vertical: theme.space.tiny),
+          padding: EdgeInsets.symmetric(
+              horizontal: theme.space.large, vertical: theme.space.tiny),
           child: Column(
             mainAxisSize: MainAxisSize.min,
             children: [
@@ -54,7 +55,6 @@ class ListeningBottomBar extends StatelessWidget {
                       size: theme.iconSize.extraLarge,
                     ),
                   ),
-                  Icon(Icons.abc),
                   IconButton(
                     onPressed: onPreviousButtonPressed,
                     style: IconButton.styleFrom(
@@ -75,9 +75,7 @@ class ListeningBottomBar extends StatelessWidget {
                         } else {
                           onResumeButtonPressed.call();
                         }
-                        setState(() {
-                          isPlaying = !isPlaying;
-                        });
+                        setState(() => isPlaying = !isPlaying);
                       },
                       padding: EdgeInsets.all(theme.space.medium),
                       style: IconButton.styleFrom(

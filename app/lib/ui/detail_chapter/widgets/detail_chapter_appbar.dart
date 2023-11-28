@@ -44,29 +44,33 @@ class DetailChapterAppBar extends StatelessWidget {
                     IconButton(
                       padding: EdgeInsets.zero,
                       onPressed: () => navigator.pop(),
-                      icon: const FaIcon(
+                      icon: FaIcon(
                         FaCodePoint.arrowLeft,
                         type: IconType.regular,
                         size: 20,
+                        color: theme.colorScheme.onSurface,
                       ),
                     ),
                     Row(
                       children: [
                         BlocBuilder<DetailChapterBloc, DetailChapterState>(
-                          buildWhen: (prev, cur) => prev.bookmarked != cur.bookmarked,
+                          buildWhen: (prev, cur) =>
+                              prev.bookmarked != cur.bookmarked,
                           builder: (context, state) {
                             return IconButton(
                               onPressed: onBookmarkButtonPressed,
                               isSelected: state.bookmarked,
-                              icon: const FaIcon(
+                              icon: FaIcon(
                                 FaCodePoint.bookmark,
                                 type: IconType.regular,
                                 size: 20,
+                                color: theme.colorScheme.onSurface,
                               ),
-                              selectedIcon: const FaIcon(
+                              selectedIcon: FaIcon(
                                 FaCodePoint.bookmark,
                                 type: IconType.solid,
                                 size: 20,
+                                color: theme.colorScheme.onSurface,
                               ),
                             );
                           },
@@ -75,19 +79,21 @@ class DetailChapterAppBar extends StatelessWidget {
                           onPressed: onChangeStatusButtonPressed,
                           icon: Transform.rotate(
                             angle: -pi * 3 / 4,
-                            child: const FaIcon(
+                            child: FaIcon(
                               FaCodePoint.arrowUpLeftFromCircle,
                               type: IconType.regular,
                               size: 20,
+                              color: theme.colorScheme.onSurface,
                             ),
                           ),
                         ),
                         IconButton(
                           onPressed: () => null,
-                          icon: const FaIcon(
+                          icon: FaIcon(
                             FaCodePoint.ellipsisStrokeVertical,
                             type: IconType.regular,
                             size: 20,
+                            color: theme.colorScheme.onSurface,
                           ),
                         ),
                       ],
@@ -118,9 +124,10 @@ class DetailChapterAppBar extends StatelessWidget {
                       iconSize: 16,
                       splashRadius: 20,
                       padding: EdgeInsets.zero,
-                      icon: const FaIcon(
+                      icon: FaIcon(
                         FaCodePoint.copy,
                         type: IconType.regular,
+                        color: theme.colorScheme.onSurface,
                       ),
                     ),
                   ],

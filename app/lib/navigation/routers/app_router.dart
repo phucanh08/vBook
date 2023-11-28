@@ -2,7 +2,6 @@ import 'package:auto_route/auto_route.dart';
 import 'package:injectable/injectable.dart';
 
 import '../../app.dart';
-import '../../ui/community/tabs/share_novel/share_novel_tab.dart';
 
 part 'app_router.gr.dart';
 

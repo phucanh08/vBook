@@ -66,9 +66,10 @@ class UnListeningBottomBar extends StatelessWidget {
                       iconSize: 16,
                       splashRadius: 20,
                       padding: EdgeInsets.zero,
-                      icon: const FaIcon(
+                      icon: FaIcon(
                         FaCodePoint.copy,
                         type: IconType.regular,
+                        color: theme.colorScheme.onSurface,
                       ),
                     ),
                   ],
@@ -92,36 +93,44 @@ class UnListeningBottomBar extends StatelessWidget {
                     Expanded(
                       child: IconButton(
                         onPressed: () {},
-                        icon: const FaIcon(
+                        icon: FaIcon(
                           FaCodePoint.list,
                           type: IconType.regular,
+                          size: 20,
+                          color: theme.colorScheme.onSurface,
                         ),
                       ),
                     ),
                     Expanded(
                       child: IconButton(
                         onPressed: () {},
-                        icon: const FaIcon(
+                        icon: FaIcon(
                           FaCodePoint.rotate,
                           type: IconType.regular,
+                          size: 20,
+                          color: theme.colorScheme.onSurface,
                         ),
                       ),
                     ),
                     Expanded(
                       child: IconButton(
                         onPressed: onSpeakButtonPressed,
-                        icon: const FaIcon(
+                        icon: FaIcon(
                           FaCodePoint.headphones,
                           type: IconType.regular,
+                          size: 20,
+                          color: theme.colorScheme.onSurface,
                         ),
                       ),
                     ),
                     Expanded(
                       child: IconButton(
                         onPressed: () {},
-                        icon: const FaIcon(
+                        icon: FaIcon(
                           FaCodePoint.gear,
                           type: IconType.regular,
+                          size: 20,
+                          color: theme.colorScheme.onSurface,
                         ),
                       ),
                     ),
