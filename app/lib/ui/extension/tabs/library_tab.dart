@@ -14,6 +14,8 @@ class LibraryTab extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final theme = Theme.of(context);
+
     return BlocBuilder<ExtensionBloc, ExtensionState>(
       buildWhen: (prev, cur) => prev.libraryPlugins != cur.libraryPlugins,
       builder: (context, state) {
@@ -28,10 +30,11 @@ class LibraryTab extends StatelessWidget {
               iconUrl: item.icon,
               trailing: IconButton(
                 onPressed: () => bloc.add(ExtensionEvent.downLoadButtonPressed(index)),
-                icon: const FaIcon(
+                icon: FaIcon(
                   FaCodePoint.cloudArrowDown,
-                  // size: 70,
+                  size: 24,
                   type: IconType.thin,
+                  color: theme.colorScheme.onBackground,
                 ),
               ),
               name: item.name,
