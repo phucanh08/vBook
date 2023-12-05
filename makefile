@@ -9,135 +9,135 @@ else
 endif
 
 update_app_icon:
-	cd app && flutter pub run flutter_launcher_icons:main -f app_icon/app-icon.yaml
+	cd app && dart run flutter_launcher_icons:main -f app_icon/app-icon.yaml
 
 update_splash:
-	cd app && flutter pub run flutter_native_splash:create --path=splash/splash.yaml
+	cd app && dart run flutter_native_splash:create --path=splash/splash.yaml
 
 remove_splash:
-	cd app && flutter pub run flutter_native_splash:remove --path=splash/splash.yaml
+	cd app && dart run flutter_native_splash:remove --path=splash/splash.yaml
 
 l10n:
-	@flutter pub global run melos run l10n
+	@dart pub global run melos run l10n
 
 slang:
-	@flutter pub global run melos run slang
+	@dart pub global run melos run slang
 
 test:
-	@flutter pub global run melos run test
+	@dart pub global run melos run test
 
 test_app:
-	@flutter pub global run melos run test_app
+	@dart pub global run melos run test_app
 
 test_domain:
-	@flutter pub global run melos run test_domain
+	@dart pub global run melos run test_domain
 
 test_data:
-	@flutter pub global run melos run test_data
+	@dart pub global run melos run test_data
 
 test_shared:
-	@flutter pub global run melos run test_shared
+	@dart pub global run melos run test_shared
 
 clean:
-	@flutter pub global run melos clean
+	@dart pub global run melos clean
 
 pub_get:
-	@flutter pub global run melos bootstrap
+	@dart pub global run melos bootstrap
 
 format:
-	@flutter pub global run melos run format
+	@dart pub global run melos run format
 
 analyze:
-	@flutter pub global run melos run analyze
+	@dart pub global run melos run analyze
 
 analyze_app:
-	@flutter pub global run melos run analyze_app
+	@dart pub global run melos run analyze_app
 
 analyze_data:
-	@flutter pub global run melos run analyze_data
+	@dart pub global run melos run analyze_data
 
 analyze_domain:
-	@flutter pub global run melos run analyze_domain
+	@dart pub global run melos run analyze_domain
 
 analyze_shared:
-	@flutter pub global run melos run analyze_shared
+	@dart pub global run melos run analyze_shared
 
 lint:
-	@flutter pub global run melos run lint
+	@dart pub global run melos run lint
 
 metrics:
-	@flutter pub global run melos run metrics
+	@dart pub global run melos run metrics
 
 metrics_app:
-	@flutter pub global run melos run metrics_app
+	@dart pub global run melos run metrics_app
 
 metrics_data:
-	@flutter pub global run melos run metrics_data
+	@dart pub global run melos run metrics_data
 
 metrics_domain:
-	@flutter pub global run melos run metrics_domain
+	@dart pub global run melos run metrics_domain
 
 metrics_shared:
-	@flutter pub global run melos run metrics_shared
+	@dart pub global run melos run metrics_shared
 
 format_lint:
-	@flutter pub global run melos run format_lint
+	@dart pub global run melos run format_lint
 
 test_coverage:
-	@flutter pub global run melos run test_coverage
+	@dart pub global run melos run test_coverage
 
 check_unused_files:
-	@flutter pub global run melos run check_unused_files
+	@dart pub global run melos run check_unused_files
 
 sync:
-	@flutter pub global run melos bootstrap
-	@flutter pub global run melos run slang
-	@flutter pub global run melos run force_build_all
+	@dart pub global run melos bootstrap
+	@dart pub global run melos run slang
+	@dart pub global run melos run force_build_all
 
 build_all:
-	@flutter pub global run melos run build_all
+	@dart pub global run melos run build_all
 build_app:
-	@flutter pub global run melos run build_app
+	@dart pub global run melos run build_app
 build_domain:
-	@flutter pub global run melos run build_domain
+	@dart pub global run melos run build_domain
 build_data:
-	@flutter pub global run melos run build_data
+	@dart pub global run melos run build_data
 build_resources:
-	@flutter pub global run melos run build_resources
+	@dart pub global run melos run build_resources
 build_shared:
-	@flutter pub global run melos run build_shared
+	@dart pub global run melos run build_shared
 force_build_all:
-	@flutter pub global run melos run force_build_all
+	@dart pub global run melos run force_build_all
 force_build_app:
-	@flutter pub global run melos run force_build_app
+	@dart pub global run melos run force_build_app
 force_build_domain:
-	@flutter pub global run melos run force_build_domain
+	@dart pub global run melos run force_build_domain
 force_build_data:
-	@flutter pub global run melos run force_build_data
+	@dart pub global run melos run force_build_data
 force_build_resources:
-	@flutter pub global run melos run force_build_resources
+	@dart pub global run melos run force_build_resources
 force_build_shared:
-	@flutter pub global run melos run force_build_shared
+	@dart pub global run melos run force_build_shared
 watch_all:
-	@flutter pub global run melos run watch_all
+	@dart pub global run melos run watch_all
 watch_app:
-	@flutter pub global run melos run watch_app
+	@dart pub global run melos run watch_app
 watch_domain:
-	@flutter pub global run melos run watch_domain
+	@dart pub global run melos run watch_domain
 watch_data:
-	@flutter pub global run melos run watch_data
+	@dart pub global run melos run watch_data
 watch_shared:
-	@flutter pub global run melos run watch_shared
+	@dart pub global run melos run watch_shared
 force_watch_all:
-	@flutter pub global run melos run force_watch_all
+	@dart pub global run melos run force_watch_all
 force_watch_app:
-	@flutter pub global run melos run force_watch_app
+	@dart pub global run melos run force_watch_app
 force_watch_domain:
-	@flutter pub global run melos run force_watch_domain
+	@dart pub global run melos run force_watch_domain
 force_watch_data:
-	@flutter pub global run melos run force_watch_data
+	@dart pub global run melos run force_watch_data
 force_watch_shared:
-	@flutter pub global run melos run force_watch_shared
+	@dart pub global run melos run force_watch_shared
 
 run_dev:
 	cd tools && $(BUILD_CMD) develop run
@@ -200,13 +200,13 @@ build_prod_ipa:
 	cd tools && $(BUILD_CMD) production build ipa --export-options-plist=ios/exportOptions.plist
 
 pub_get_data:
-	@flutter pub global run melos run pub_get_data
+	@dart pub global run melos run pub_get_data
 pub_get_domain:
-	@flutter pub global run melos run pub_get_domain
+	@dart pub global run melos run pub_get_domain
 pub_get_app:
-	@flutter pub global run melos run pub_get_app
+	@dart pub global run melos run pub_get_app
 pub_get_shared:
-	@flutter pub global run melos run pub_get_shared
+	@dart pub global run melos run pub_get_shared
 
 custom_lint:
 	$(METRICS_CMD)
@@ -219,11 +219,11 @@ gen_env:
 	dart run tools/gen_env/lib/main.dart
 
 pub_upgrade:
-	flutter pub global run melos pub_upgrade
+	dart pub global run melos pub_upgrade
 	
 pub_sync:
 	cd tools && ./sync_all_pub_versions.sh
-	flutter pub global run melos bootstrap
+	dart pub global run melos bootstrap
 
 dart_fix:
 	dart fix --apply
