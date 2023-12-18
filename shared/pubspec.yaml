@@ -22,9 +22,9 @@ dependencies:
   flutter_udid: 2.0.1
   injectable: 2.1.2
   intl: 0.18.1
-  mime: 1.0.1
+  mime: 1.0.4
   package_info_plus: 4.0.2
-  path_provider: 2.0.15
+  path_provider: 2.1.1
   rxdart: 0.27.7
   timezone: 0.9.1
   url_launcher: 6.1.10
