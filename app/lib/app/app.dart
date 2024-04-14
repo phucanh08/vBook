@@ -1,4 +1,3 @@
-import 'package:auto_route/auto_route.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:get_it/get_it.dart';
 import 'package:resources/resources.dart';
@@ -44,16 +43,13 @@ class _AppState extends BasePageState<App, AppBloc> {
               final data = MediaQuery.of(context);
 
               return MediaQuery(
-                data: data.copyWith(textScaleFactor: 0.95),
+                data: data.copyWith(textScaler: const TextScaler.linear(0.95)),
                 child: child ?? const SizedBox.shrink(),
               );
             },
-            routerDelegate: AutoRouterDelegate.declarative(
-              _appRouter,
-              routes: (_) => _mapRouteToPageRouteInfo(true),
+            routerConfig: _appRouter.config(
               navigatorObservers: () => [AppNavigatorObserver()],
             ),
-            routeInformationParser: _appRouter.defaultRouteParser(),
             title: UiConstants.materialAppTitle,
             // color: UiConstants.taskMenuMaterialAppColor,
             themeMode: state.themeMode,
@@ -70,10 +66,5 @@ class _AppState extends BasePageState<App, AppBloc> {
         },
       ),
     );
-  }
-
-  List<PageRouteInfo> _mapRouteToPageRouteInfo(bool isAuthed) {
-    return [const HomeRoute()];
-    // return isAuthed ? [MainRoute()] : [MainRoute()];
   }
 }

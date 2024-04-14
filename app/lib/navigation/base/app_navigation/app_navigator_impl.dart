@@ -16,7 +16,7 @@ class AppNavigatorImpl extends AppNavigator with LogMixin {
       }
     }
 
-    return appRouter.pop<T>(result);
+    return appRouter.maybePop<T>(result);
   }
 
   @override
