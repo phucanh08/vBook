@@ -10,11 +10,12 @@ import '../app.dart';
 abstract class BasePageState<T extends StatefulWidget, B extends BaseBloc>
     extends BasePageStateDelegate<T, B> with LogMixin {}
 
-abstract class BasePageStateDelegate<T extends StatefulWidget, B extends BaseBloc> extends State<T>
-    implements ExceptionHandlerListener {
+abstract class BasePageStateDelegate<T extends StatefulWidget,
+    B extends BaseBloc> extends State<T> implements ExceptionHandlerListener {
   late final AppNavigator navigator = getIt<AppNavigator>();
   late final AppBloc appBloc = getIt<AppBloc>();
-  late final ExceptionMessageMapper exceptionMessageMapper = const ExceptionMessageMapper();
+  late final ExceptionMessageMapper exceptionMessageMapper =
+      const ExceptionMessageMapper();
   late final ExceptionHandler exceptionHandler = ExceptionHandler(
     navigator: navigator,
     listener: this,
@@ -73,10 +74,14 @@ abstract class BasePageStateDelegate<T extends StatefulWidget, B extends BaseBlo
                     children: [
                       buildPage(context),
                       BlocBuilder<CommonBloc, CommonState>(
-                        buildWhen: (previous, current) => previous.isLoading != current.isLoading,
+                        buildWhen: (previous, current) =>
+                            previous.isLoading != current.isLoading,
                         builder: (context, state) => Visibility(
                           visible: state.isLoading,
-                          child: buildPageLoading(),
+                          child: Container(
+                            color: theme.colorScheme.onBackground.withOpacity(0.5),
+                            child: buildPageLoading(),
+                          ),
                         ),
                       ),
                     ],
@@ -89,8 +94,19 @@ abstract class BasePageStateDelegate<T extends StatefulWidget, B extends BaseBlo
 
   Widget buildPageListeners({required Widget child}) => child;
 
-  Widget buildPageLoading() => const Center(
-        child: CircularProgressIndicator(),
+  Widget buildPageLoading() => Center(
+        child: Stack(
+          alignment: AlignmentDirectional.center,
+          children: [
+            const AppLoading(),
+            Assets.icons.logo.svg(
+              width: 30,
+              height: 30,
+              fit: BoxFit.contain,
+            ),
+            // CircularProgressIndicator(),
+          ],
+        ),
       );
 
   Widget buildPage(BuildContext context);
