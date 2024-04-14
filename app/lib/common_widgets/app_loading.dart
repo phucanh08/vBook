@@ -26,6 +26,12 @@ class _AppLoadingState extends State<AppLoading> with TickerProviderStateMixin {
   }
 
   @override
+  void dispose() {
+    _arrowAnimationController.dispose();
+    super.dispose();
+  }
+
+  @override
   Widget build(BuildContext context) {
     return AnimatedBuilder(
       animation: _arrowAnimationController,
