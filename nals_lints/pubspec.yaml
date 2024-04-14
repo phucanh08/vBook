@@ -6,14 +6,13 @@ publish_to: none
 environment:
   sdk: ">=3.0.5 <4.0.0"
 
-dependency_overrides:
-  analyzer: 5.13.0
+
 
 dependencies:
-  custom_lint_builder: 0.5.3
+  custom_lint_builder:
   flutter:
     sdk: flutter
-  source_gen: 1.4.0
+  source_gen:
 
 dev_dependencies:
   flutter_test:

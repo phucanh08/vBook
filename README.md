@@ -63,7 +63,7 @@ https://user-images.githubusercontent.com/22645452/204954653-a704d380-0f6a-419d-
 - WARN: If you already installed `melos` and `lefthook`, you could omit this step.
 
 - Install melos:
-    - Run `dart pub global activate melos 3.1.0`
+    - Run `dart pub global activate melos`
 
 - Install lefthook (optional):
     - Run `gem install lefthook`

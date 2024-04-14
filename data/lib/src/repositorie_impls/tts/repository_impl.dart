@@ -62,9 +62,6 @@ class TTSRepositoryImpl extends TTSRepository {
       ttsState = TtsState.playing;
     });
     if (isAndroid) {
-      flutterTts.setInitHandler(() {
-        Log.d('TTS Initialized');
-      });
       flutterTts.setCompletionHandler(() {
         Log.d('Complete');
         ttsState = TtsState.stopped;

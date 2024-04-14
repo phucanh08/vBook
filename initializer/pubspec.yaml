@@ -7,9 +7,6 @@ environment:
   sdk: ">=3.0.5 <4.0.0"
   flutter: ">=1.17.0"
 
-dependency_overrides:
-  analyzer: 5.13.0
-
 dependencies:
   flutter:
     sdk: flutter
@@ -23,5 +20,5 @@ dependencies:
     path: ../shared
 
 dev_dependencies:
-  custom_lint: 0.5.3
-  flutter_lints: 2.0.1
+  custom_lint:
+  flutter_lints:
