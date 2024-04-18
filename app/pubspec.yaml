@@ -18,6 +18,7 @@ dependencies:
   flutter_screenutil:
   infinite_scroll_pagination:
   carousel_slider:
+  camera: ^0.10.5+9
 
   flutter:
     sdk: flutter

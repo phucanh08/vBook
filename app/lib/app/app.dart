@@ -43,7 +43,7 @@ class _AppState extends BasePageState<App, AppBloc> {
               final data = MediaQuery.of(context);
 
               return MediaQuery(
-                data: data.copyWith(textScaler: const TextScaler.linear(0.95)),
+                data: data.copyWith(textScaler: TextScaler.linear(0.95.sp)),
                 child: child ?? const SizedBox.shrink(),
               );
             },

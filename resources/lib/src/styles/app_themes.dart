@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 
+import '../../resources.dart';
 import '../dimension/dimension.dart';
 
 export 'design_token/design_token.dart';

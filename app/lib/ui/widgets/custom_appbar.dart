@@ -13,7 +13,7 @@ class CustomAppBar extends AppBar {
     List<Widget>? actions,
     Func0<void>? onSearchButtonPressed,
     Func0<void>? onMoreButtonPressed,
-    Func0<void>? onPlusButtonPressed,
+    Func1<Offset, void>? onPlusButtonPressed,
     bool automaticallyImplyLeading = true,
     super.key,
   })  : assert(!(actions != null &&
@@ -64,14 +64,27 @@ class CustomAppBar extends AppBar {
                 ),
                 Visibility(
                   visible: onPlusButtonPressed != null,
-                  child: IconButton(
-                    onPressed: () => onPlusButtonPressed?.call(),
-                    icon: const FaIcon(
-                      FaCodePoint.plus,
-                      type: IconType.regular,
-                      size: 20,
-                    ),
-                  ),
+                  child: Builder(builder: (context) {
+                    return IconButton(
+                      onPressed: () {
+                        final RenderBox renderbox =
+                        context.findRenderObject() as RenderBox;
+                        final Offset position = renderbox.localToGlobal(Offset.zero);
+                        final double x = position.dx;
+                        final double y = position.dy;
+                        final double width = renderbox.size.width;
+                        final double height = renderbox.size.height;
+
+                        onPlusButtonPressed
+                            ?.call(Offset(x + width, y + height));
+                      },
+                      icon: const FaIcon(
+                        FaCodePoint.plus,
+                        type: IconType.regular,
+                        size: 20,
+                      ),
+                    );
+                  }),
                 ),
               ],
         );
