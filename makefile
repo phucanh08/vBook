@@ -7,7 +7,7 @@ else
     BUILD_CMD=./build_and_run_app.sh
     METRICS_CMD=./tools/custom_lint.sh
     COMMIT_CHECK_CMD=./tools/check_commit_message.sh
-    SYNC_ALL_PUB_VERSIONS=.\tools\sync_all_pub_versions.sh
+    SYNC_ALL_PUB_VERSIONS=./tools/sync_all_pub_versions.sh
 endif
 
 update_app_icon:

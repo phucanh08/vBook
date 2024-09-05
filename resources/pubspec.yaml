@@ -10,11 +10,11 @@ dependencies:
     sdk: flutter
   flutter_localizations:
     sdk: flutter
-  flutter_screenutil: 5.9.0
+  flutter_screenutil: 5.9.3
   flutter_svg: 2.0.10+1
   intl: 0.19.0
-  slang: 3.30.2
-  slang_flutter: 3.30.0
+  slang: 3.31.2
+  slang_flutter: 3.31.0
   shared:
     path: ../shared
 dev_dependencies:
@@ -22,10 +22,10 @@ dev_dependencies:
     sdk: flutter
   intl_utils: 2.8.7
   custom_lint: 0.6.5
-  flutter_lints: 3.0.2
-  build_runner: 2.4.9
-  flutter_gen_runner: 5.4.0
-  slang_build_runner: 3.30.0
+  flutter_lints: 4.0.0
+  build_runner: 2.4.12
+  flutter_gen_runner: 5.7.0
+  slang_build_runner: 3.31.0
 flutter_gen:
   output: lib/src/generated
   line_length: 160
