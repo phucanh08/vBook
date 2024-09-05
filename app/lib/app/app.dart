@@ -48,7 +48,7 @@ class _AppState extends BasePageState<App, AppBloc> {
               );
             },
             routerConfig: _appRouter.config(
-              // navigatorObservers: () => [AppNavigatorObserver()],
+              navigatorObservers: () => [AppNavigatorObserver()],
             ),
             title: UiConstants.materialAppTitle,
             // color: UiConstants.taskMenuMaterialAppColor,
