@@ -7,7 +7,7 @@ part 'app_router.gr.dart';
 
 @singleton
 @AutoRouterConfig(replaceInRouteName: 'Page|Tab,Route')
-class AppRouter extends _$AppRouter {
+class AppRouter extends RootStackRouter {
   @override
   final List<AutoRoute> routes = [
     AutoRoute(

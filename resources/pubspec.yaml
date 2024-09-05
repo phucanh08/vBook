@@ -2,67 +2,54 @@ name: resources
 description: A new Flutter package project.
 version: 0.0.1
 publish_to: none
-
 environment:
   sdk: ">=3.0.5 <4.0.0"
   flutter: ">=1.17.0"
-
-
-
 dependencies:
   flutter:
     sdk: flutter
   flutter_localizations:
     sdk: flutter
-  flutter_screenutil:
-  flutter_svg:
-  intl:
-  slang:
-  slang_flutter:
-
+  flutter_screenutil: 5.9.3
+  flutter_svg: 2.0.10+1
+  intl: 0.19.0
+  slang: 3.31.2
+  slang_flutter: 3.31.0
   shared:
     path: ../shared
-
 dev_dependencies:
   flutter_test:
     sdk: flutter
-  intl_utils:
-  custom_lint:
-  flutter_lints:
-  build_runner:
-  flutter_gen_runner:
-  slang_build_runner:
-
+  intl_utils: 2.8.7
+  custom_lint: 0.6.5
+  flutter_lints: 4.0.0
+  build_runner: 2.4.12
+  flutter_gen_runner: 5.7.0
+  slang_build_runner: 3.31.0
 flutter_gen:
   output: lib/src/generated
   line_length: 160
   null_safety: true
-
   integrations:
     flutter_svg: true
     # flare_flutter: true
-
   assets:
     outputs:
       package_parameter_enabled: true
-
   fonts:
     enabled: true
     outputs:
       package_parameter_enabled: true
-
   # colors:
   #   enabled: true
   #   inputs:
   #     - assets/color/colors.xml
-
 flutter:
   uses-material-design: true
   generate: false
   assets:
     - assets/images/
     - assets/icons/
-
   fonts:
     - family: FontAwesomeSolid
       fonts:

@@ -2,11 +2,9 @@ name: initializer
 description: A new Flutter package project.
 version: 0.0.1
 publish_to: none
-
 environment:
   sdk: ">=3.0.5 <4.0.0"
   flutter: ">=1.17.0"
-
 dependencies:
   flutter:
     sdk: flutter
@@ -18,7 +16,6 @@ dependencies:
     path: ../resources
   shared:
     path: ../shared
-
 dev_dependencies:
-  custom_lint:
-  flutter_lints:
+  custom_lint: 0.6.5
+  flutter_lints: 4.0.0

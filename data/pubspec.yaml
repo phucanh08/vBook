@@ -2,32 +2,27 @@ name: data
 description: Library data of clean architecture.
 version: 0.0.1
 publish_to: none
-
 environment:
   sdk: ">=3.0.5 <4.0.0"
   flutter: ">=3.16.1"
-
-
-
 dependencies:
-  async:
-  html:
-  dartx:
-  rxdart:
-  get_it:
-  injectable:
-  dio:
-  dio_cookie_manager:
-  pretty_dio_logger:
-  objectbox: 2.5.1
-  objectbox_flutter_libs: 2.5.1
-  json_annotation:
-  webview_flutter:
-  webview_flutter_android:
+  async: 2.11.0
+  html: 0.15.4
+  dartx: 1.2.0
+  rxdart: 0.28.0
+  get_it: 7.7.0
+  injectable: 2.4.4
+  dio: 5.7.0
+  dio_cookie_manager: 3.1.1
+  pretty_dio_logger: 1.4.0
+  objectbox: 4.0.2
+  objectbox_flutter_libs: 4.0.2
+  json_annotation: 4.9.0
+  webview_flutter: 4.9.0
+  webview_flutter_android: 3.16.7
   flutter_tts: 4.0.2
-  connectivity_plus:
-
-  webview_flutter_wkwebview:
+  connectivity_plus: 6.0.5
+  webview_flutter_wkwebview: 3.15.0
   domain:
     path: ../domain
   flutter:
@@ -35,20 +30,19 @@ dependencies:
   shared:
     path: ../shared
 dev_dependencies:
-  build_runner:
-  custom_lint:
-  flutter_lints:
+  build_runner: 2.4.12
+  custom_lint: 0.6.5
+  flutter_lints: 4.0.0
   flutter_test:
     sdk: flutter
-  freezed:
-  freezed_annotation:
-  injectable_generator:
-  json_serializable:
-  logging:
-  mocktail:
-  objectbox_generator:
+  freezed: 2.5.7
+  freezed_annotation: 2.4.4
+  injectable_generator: 2.6.2
+  json_serializable: 6.8.0
+  logging: 1.2.0
+  mocktail: 1.0.4
+  objectbox_generator: 4.0.2
   nals_lints:
     path: ../nals_lints
-
 #objectbox:
 #  output_dir: src/repository/source/database/generated

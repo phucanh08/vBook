@@ -2,10 +2,12 @@ ifeq ($(OS),Windows_NT)
     BUILD_CMD=.\build_and_run_app.bat
     METRICS_CMD=.\tools\custom_lint.bat
     COMMIT_CHECK_CMD=.\tools\check_commit_message.bat
+    SYNC_ALL_PUB_VERSIONS=.\tools\sync_all_pub_versions.bat
 else
     BUILD_CMD=./build_and_run_app.sh
     METRICS_CMD=./tools/custom_lint.sh
     COMMIT_CHECK_CMD=./tools/check_commit_message.sh
+    SYNC_ALL_PUB_VERSIONS=./tools/sync_all_pub_versions.sh
 endif
 
 update_app_icon:
@@ -196,9 +198,12 @@ gen_env:
 
 pub_upgrade:
 	dart pub global run melos pub_upgrade
+
+pub_outdated:
+	dart pub global run melos exec --fail-fast "dart pub outdated"
 	
 pub_sync:
-	cd tools && ./sync_all_pub_versions.sh
+	$(SYNC_ALL_PUB_VERSIONS)
 	dart pub global run melos bootstrap
 
 dart_fix:
