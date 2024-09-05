@@ -198,6 +198,9 @@ gen_env:
 
 pub_upgrade:
 	dart pub global run melos pub_upgrade
+
+pub_outdated:
+	dart pub global run melos exec --fail-fast "dart pub outdated"
 	
 pub_sync:
 	$(SYNC_ALL_PUB_VERSIONS)
