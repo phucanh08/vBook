@@ -2,8 +2,8 @@ import '../../di/di.dart';
 import 'bachngocsach/plugin.dart';
 import 'base_api.dart';
 
-Map<String, BaseApi> get getListApi {
+Map<String, VBookApi> get getListApi {
   return {
-    'bachngocsach': getIt<BachNgocSachApi>(),
+    // 'bachngocsach': getIt<BachNgocSachApi>(),
   };
 }

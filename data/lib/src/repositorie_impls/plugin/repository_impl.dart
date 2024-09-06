@@ -1,17 +1,21 @@
+import 'dart:async';
+
 import 'package:domain/domain.dart';
 import 'package:injectable/injectable.dart';
 
 import '../../mappers/plugin/mapper.dart';
 import '../../sources/local/plugin/storage.dart';
-import '../../sources/vbook_extensions/plugin.dart';
+import '../../sources/vbook_extensions/base_api.dart';
 
 @Injectable(as: PluginRepository)
 class PluginRepositoryImpl extends PluginRepository {
   PluginRepositoryImpl(
     this._storage,
+    this.vBookApi,
   );
 
   final PluginStorage _storage;
+  final VBookApi vBookApi;
 
   @override
   Future<List<PluginModel>> getListLocal() async {
@@ -28,11 +32,10 @@ class PluginRepositoryImpl extends PluginRepository {
   Future<List<PluginModel>> getListLibrary() async {
     try {
       final listData = await _storage.getAll();
-      final listApi = getListApi.values.toList();
-      final data = await Future.wait(listApi.map((e) => Future.value(e.plugin())));
+      final data = await vBookApi.getAllPlugin();
       final result = data
-          .where(
-              (element) => !listData.any((e) => e.name == element.name && e.path == element.path))
+          .where((element) => !listData
+              .any((e) => e.name == element.name && e.path == element.path))
           .toList();
 
       return getIt<PluginDataMapper>().mapToListEntity(result);

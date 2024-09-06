@@ -63,3 +63,4 @@ slang_flutter: 3.31.0
 slang_build_runner: 3.31.0
 html: 0.15.4
 flutter_udid: 3.0.0
+flutter_js: 0.8.1

@@ -23,6 +23,7 @@ dependencies:
   flutter_tts: 4.0.2
   connectivity_plus: 6.0.5
   webview_flutter_wkwebview: 3.15.0
+  flutter_js: 0.8.1
   domain:
     path: ../domain
   flutter:

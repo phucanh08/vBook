@@ -23,10 +23,11 @@ class PluginRepositoryImpl extends NovelRepository {
 
   @override
   Future<List<HomeModel>> getHome(sourceId) async {
-    final api = getListApi[sourceId];
-    final response = api?.getHome();
-    final result = _homeMapper.mapToListEntity(response);
-    return result;
+    // final api = getListApi[sourceId];
+    // final response = api?.home('');
+    // final result = _homeMapper.mapToListEntity(response);
+    // return result;
+    return [];
   }
 
   @override
@@ -35,11 +36,12 @@ class PluginRepositoryImpl extends NovelRepository {
     String endpoint,
     Page page,
   ) async {
-    final api = getListApi[sourceId];
-    final response = await api?.getListNovelInPage(endpoint, page.number);
-    final result = _pageMapper.mapToListEntity(response?.items);
-
-    return Pagination(items: result, hasNext: response?.hasNext == true);
+    // final api = getListApi[sourceId];
+    // final response = await api?.page(endpoint, page.number);
+    // final result = _pageMapper.mapToListEntity(response?.items);
+    //
+    // return Pagination(items: result, hasNext: response?.hasNext == true);
+    return const Pagination(items: [], hasNext: false);
   }
 
   @override
@@ -47,11 +49,21 @@ class PluginRepositoryImpl extends NovelRepository {
     String sourceId,
     String endpoint,
   ) async {
-    final api = getListApi[sourceId];
-    final response = await api?.getDetailNovel(endpoint);
-    final result = getIt<DetailNovelDataMapper>().mapToEntity(response);
-
-    return result;
+    // final api = getListApi[sourceId];
+    // final response = await api?.detail(endpoint, '');
+    // final result = getIt<DetailNovelDataMapper>().mapToEntity(response);
+    //
+    // return result;
+    return const NovelDetailModel(
+      name: '',
+      imgUrl: '',
+      host: '',
+      author: '',
+      description: '',
+      detail: '',
+      firstChapterEndpoint: '',
+      firstChapterName: '',
+    );
   }
 
   @override
@@ -60,11 +72,12 @@ class PluginRepositoryImpl extends NovelRepository {
     String endpoint,
     Page page,
   ) async {
-    final api = getListApi[sourceId];
-    final response = await api?.getCatalog(endpoint, page.number);
-    final result = getIt<ChapterDataMapper>().mapToListEntity(response?.items);
-
-    return Pagination(items: result, hasNext: response?.hasNext == true);
+    // final api = getListApi[sourceId];
+    // final response = await api?.toc(endpoint, page.number);
+    // final result = getIt<ChapterDataMapper>().mapToListEntity(response?.items);
+    //
+    // return Pagination(items: result, hasNext: response?.hasNext == true);
+    return const Pagination(items: [], hasNext: false);
   }
 
   @override
@@ -72,11 +85,12 @@ class PluginRepositoryImpl extends NovelRepository {
     String sourceId,
     String endpoint,
   ) async {
-    final api = getListApi[sourceId];
-    final response = await api?.getDetailChapter(endpoint);
-    final result = getIt<DetailChapterDataMapper>().mapToEntity(response);
-
-    return result;
+    // final api = getListApi[sourceId];
+    // final response = await api?.chap(endpoint);
+    // final result = getIt<DetailChapterDataMapper>().mapToEntity(response);
+    //
+    // return result;
+    return const ChapterDetailModel(url: '', contents: []);
   }
 
   @override
@@ -120,7 +134,7 @@ class PluginRepositoryImpl extends NovelRepository {
         saveNovelInput.novelEndpoint,
       );
       final api = getListApi[saveNovelInput.sourceId];
-      final response = api?.plugin();
+      final response = await api?.plugin('');
 
       newNovel = Novel(
         updatedAt: DateTime.now(),
