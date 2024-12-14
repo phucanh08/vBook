@@ -11,7 +11,7 @@
 
 Flutter project using clean architecture and bloc pattern.
 
-![Architecture](images/project_architecture.png?raw=true)
+![Architecture](images/project_architecture.png)
 
 ## Features
 

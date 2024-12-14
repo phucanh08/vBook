@@ -62,6 +62,7 @@ tools/gen_text_styles/output/
 .vscode/settings.json
 .fvm/
 *.mdb
+env
 pubspec_overrides.yaml
 
 # Android related
