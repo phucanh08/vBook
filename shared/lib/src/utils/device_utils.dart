@@ -1,6 +1,5 @@
 import 'dart:io';
 
-import 'package:android_id/android_id.dart';
 import 'package:device_info_plus/device_info_plus.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_udid/flutter_udid.dart';
@@ -11,16 +10,8 @@ class DeviceUtils {
   const DeviceUtils._();
   static late DeviceType deviceType = _getDeviceType();
 
-  static Future<String> getDeviceId() async {
-    if (Platform.isIOS) {
-      return await FlutterUdid.udid; // unique ID on iOS
-    } else {
-      const _androidIdPlugin = AndroidId();
-
-      final androidID = await _androidIdPlugin.getId();
-
-      return androidID ?? ''; // unique ID on Android
-    }
+  static Future<String> getDeviceId() {
+    return FlutterUdid.udid;
   }
 
   static Future<String> getDeviceModelName() async {
