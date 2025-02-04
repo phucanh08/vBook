@@ -24,7 +24,10 @@ extension DartFileEditBuilderExt on DartFileEditBuilder {
       }
     }
 
-    final formattedResult = DartFormatter(pageWidth: pageWidth).formatSource(
+    final formattedResult = DartFormatter(
+      pageWidth: pageWidth,
+      languageVersion: DartFormatter.latestLanguageVersion,
+    ).formatSource(
       SourceCode(
         newContent,
         isCompilationUnit: true,

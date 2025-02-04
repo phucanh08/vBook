@@ -20,117 +20,117 @@ remove_splash:
 	cd app && dart run flutter_native_splash:remove --path=splash/splash.yaml
 
 l10n:
-	@dart pub global run melos run l10n
+	@melos run l10n
 
 slang:
-	@dart pub global run melos run slang
+	@melos run slang
 
 test:
-	@dart pub global run melos run test
+	@melos run test
 test_app:
-	@dart pub global run melos run test_app
+	@melos run test_app
 test_domain:
-	@dart pub global run melos run test_domain
+	@melos run test_domain
 test_data:
-	@dart pub global run melos run test_data
+	@melos run test_data
 test_shared:
-	@dart pub global run melos run test_shared
+	@melos run test_shared
 
 clean:
-	@dart pub global run melos clean
+	@melos clean
 
 pub_get:
-	@dart pub global run melos bootstrap
+	@melos bootstrap
 
 format:
-	@dart pub global run melos run format
+	@melos run format
 
 analyze:
-	@dart pub global run melos run analyze
+	@melos run analyze
 analyze_app:
-	@dart pub global run melos run analyze_app
+	@melos run analyze_app
 analyze_data:
-	@dart pub global run melos run analyze_data
+	@melos run analyze_data
 analyze_domain:
-	@dart pub global run melos run analyze_domain
+	@melos run analyze_domain
 analyze_shared:
-	@dart pub global run melos run analyze_shared
+	@melos run analyze_shared
 
 lint:
-	@dart pub global run melos run lint
+	@melos run lint
 
 metrics:
-	@dart pub global run melos run metrics
+	@melos run metrics
 metrics_app:
-	@dart pub global run melos run metrics_app
+	@melos run metrics_app
 metrics_data:
-	@dart pub global run melos run metrics_data
+	@melos run metrics_data
 metrics_domain:
-	@dart pub global run melos run metrics_domain
+	@melos run metrics_domain
 metrics_shared:
-	@dart pub global run melos run metrics_shared
+	@melos run metrics_shared
 
 format_lint:
-	@dart pub global run melos run format_lint
+	@melos run format_lint
 
 test_coverage:
-	@dart pub global run melos run test_coverage
+	@melos run test_coverage
 
 check_unused_files:
-	@dart pub global run melos run check_unused_files
+	@melos run check_unused_files
 
 sync:
-	@dart pub global run melos bootstrap
-	@dart pub global run melos run slang
-	@dart pub global run melos run force_build_all
+	@melos bootstrap
+	@melos run slang
+	@melos run force_build_all
 
 build_all:
-	@dart pub global run melos run build_all
+	@melos run build_all
 build_app:
-	@dart pub global run melos run build_app
+	@melos run build_app
 build_domain:
-	@dart pub global run melos run build_domain
+	@melos run build_domain
 build_data:
-	@dart pub global run melos run build_data
+	@melos run build_data
 build_resources:
-	@dart pub global run melos run build_resources
+	@melos run build_resources
 build_shared:
-	@dart pub global run melos run build_shared
+	@melos run build_shared
 
 force_build_all:
-	@dart pub global run melos run force_build_all
+	@melos run force_build_all
 force_build_app:
-	@dart pub global run melos run force_build_app
+	@melos run force_build_app
 force_build_domain:
-	@dart pub global run melos run force_build_domain
+	@melos run force_build_domain
 force_build_data:
-	@dart pub global run melos run force_build_data
+	@melos run force_build_data
 force_build_resources:
-	@dart pub global run melos run force_build_resources
+	@melos run force_build_resources
 force_build_shared:
-	@dart pub global run melos run force_build_shared
+	@melos run force_build_shared
 
 watch_all:
-	@dart pub global run melos run watch_all
+	@melos run watch_all
 watch_app:
-	@dart pub global run melos run watch_app
+	@melos run watch_app
 watch_domain:
-	@dart pub global run melos run watch_domain
+	@melos run watch_domain
 watch_data:
-	@dart pub global run melos run watch_data
+	@melos run watch_data
 watch_shared:
-	@dart pub global run melos run watch_shared
+	@melos run watch_shared
 
 force_watch_all:
-	@dart pub global run melos run force_watch_all
+	@melos run force_watch_all
 force_watch_app:
-	@dart pub global run melos run force_watch_app
+	@melos run force_watch_app
 force_watch_domain:
-	@dart pub global run melos run force_watch_domain
+	@melos run force_watch_domain
 force_watch_data:
-	@dart pub global run melos run force_watch_data
+	@melos run force_watch_data
 force_watch_shared:
-	@dart pub global run melos run force_watch_shared
+	@melos run force_watch_shared
 
 run_dev:
 	cd tools && $(BUILD_CMD) develop run
@@ -178,13 +178,13 @@ build_prod_ipa:
 	cd tools && $(BUILD_CMD) production build ipa --export-options-plist=ios/exportOptions.plist
 
 pub_get_data:
-	@dart pub global run melos run pub_get_data
+	@melos run pub_get_data
 pub_get_domain:
-	@dart pub global run melos run pub_get_domain
+	@melos run pub_get_domain
 pub_get_app:
-	@dart pub global run melos run pub_get_app
+	@melos run pub_get_app
 pub_get_shared:
-	@dart pub global run melos run pub_get_shared
+	@melos run pub_get_shared
 
 custom_lint:
 	$(METRICS_CMD)
@@ -197,14 +197,14 @@ gen_env:
 	dart run tools/gen_env/lib/main.dart
 
 pub_upgrade:
-	dart pub global run melos pub_upgrade
+	melos pub_upgrade
 
 pub_outdated:
-	dart pub global run melos exec --fail-fast "dart pub outdated"
+	melos exec --fail-fast "dart pub outdated"
 	
 pub_sync:
 	$(SYNC_ALL_PUB_VERSIONS)
-	dart pub global run melos bootstrap
+	melos bootstrap
 
 dart_fix:
 	dart fix --apply
