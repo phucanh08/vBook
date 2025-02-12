@@ -2,10 +2,10 @@ import 'package:auto_route/auto_route.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
 import '../../app.dart';
-import 'bloc/detail_chapter_bloc.dart';
 import 'widgets/detail_chapter_appbar.dart';
 import 'widgets/detail_chapter_body.dart';
 import 'widgets/detail_chapter_bottom_bar.dart';
+export 'bloc/detail_chapter_bloc.dart';
 
 @RoutePage()
 class DetailChapterPage extends StatefulWidget {

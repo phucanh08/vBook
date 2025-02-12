@@ -2,7 +2,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:resources/resources.dart';
 
 import '../../../app.dart';
-import 'bloc/choose_source_bloc.dart';
+export 'bloc/choose_source_bloc.dart';
 
 class ChooseSourceBottomSheet extends StatefulWidget {
   const ChooseSourceBottomSheet(this.listPlugin, {super.key});
@@ -60,12 +60,12 @@ class _ChooseSourceBottomSheetState
                           AnimatedOpacity(
                             opacity: state.animationPercent == 1 ? 1 : 0,
                             duration: const Duration(milliseconds: 50),
-                            child: Container(height: 40, color: colorScheme.background),
+                            child: Container(height: 40, color: colorScheme.surface),
                           ),
                           Opacity(
                             opacity: state.animationPercent,
                             child: Container(
-                              color: colorScheme.background,
+                              color: colorScheme.surface,
                               child: TextField(
                                 onChanged: (value) {
                                   bloc.add(
@@ -91,7 +91,7 @@ class _ChooseSourceBottomSheetState
                 ),
                 Container(
                   margin: const EdgeInsets.only(top: 88),
-                  color: colorScheme.background,
+                  color: colorScheme.surface,
                   child: BlocBuilder<ChooseSourceBloc, ChooseSourceState>(
                     buildWhen: (prev, cur) => prev.listFilter != cur.listFilter,
                     builder: (context, state) {

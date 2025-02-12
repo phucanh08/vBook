@@ -56,7 +56,7 @@ class MissingRunBlocCatching extends DartLintRule {
                 return false;
               }) ==
               null) {
-        reporter.reportErrorForNode(code, node);
+        reporter.atNode(node, code);
       }
     });
   }

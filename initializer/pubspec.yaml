@@ -17,5 +17,5 @@ dependencies:
   shared:
     path: ../shared
 dev_dependencies:
-  custom_lint: 0.6.5
+  custom_lint: 0.7.2
   flutter_lints: 4.0.0

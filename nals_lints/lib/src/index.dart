@@ -2,7 +2,7 @@ export 'package:analyzer/dart/ast/ast.dart';
 export 'package:analyzer/dart/ast/visitor.dart';
 export 'package:analyzer/dart/element/element.dart';
 export 'package:analyzer/dart/element/type.dart';
-export 'package:analyzer/error/error.dart';
+export 'package:analyzer/error/error.dart' hide LintCode;
 export 'package:analyzer/error/listener.dart';
 export 'package:analyzer/source/line_info.dart';
 export 'package:analyzer/source/source_range.dart';
