@@ -53,8 +53,8 @@ https://user-images.githubusercontent.com/22645452/204954653-a704d380-0f6a-419d-
 
 ### Requirements
 
-- Dart: 3.6.1
-- Flutter SDK: 3.27.3
+- Dart: 3.6.2
+- Flutter SDK: 3.27.4
 - Melos: 6.3.2
 - CocoaPods: 1.12.0
 
