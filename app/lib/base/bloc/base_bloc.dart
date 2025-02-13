@@ -4,12 +4,13 @@ import 'package:shared/shared.dart';
 
 import '../../app.dart';
 
-abstract class BaseBloc<E extends BaseEvent, S extends BaseState> extends BaseBlocDelegate<E, S>
-    with EventTransformerMixin, LogMixin {
+abstract class BaseBloc<E extends BaseEvent, S extends BaseState>
+    extends BaseBlocDelegate<E, S> with EventTransformerMixin, LogMixin {
   BaseBloc(super.initialState);
 }
 
-abstract class BaseBlocDelegate<E extends BaseEvent, S extends BaseState> extends Bloc<E, S> {
+abstract class BaseBlocDelegate<E extends BaseEvent, S extends BaseState>
+    extends Bloc<E, S> {
   BaseBlocDelegate(super.initialState);
 
   late final AppNavigator navigator;
@@ -23,7 +24,8 @@ abstract class BaseBlocDelegate<E extends BaseEvent, S extends BaseState> extend
     _commonBloc = commonBloc;
   }
 
-  CommonBloc get commonBloc => this is CommonBloc ? this as CommonBloc : _commonBloc;
+  CommonBloc get commonBloc =>
+      this is CommonBloc ? this as CommonBloc : _commonBloc;
 
   @override
   void add(E event) {
@@ -129,3 +131,10 @@ abstract class BaseEvent {
 abstract class BaseState {
   const BaseState();
 }
+
+mixin RxStatusMixin on BaseState {
+  late final RxStatus rxStatus;
+}
+
+enum RxStatus { loading, success, empty, error }
+

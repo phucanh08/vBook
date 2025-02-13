@@ -7,6 +7,25 @@ import 'package:shared/shared.dart';
 
 import '../app.dart';
 
+abstract class BaseStatelessWidget<B extends BaseBloc> extends StatelessWidget implements AutoRouteWrapper {
+  const BaseStatelessWidget({super.key});
+
+
+  @override
+  Widget wrappedRoute(BuildContext context) {
+    return Provider(create: (ctx) => getIt<B>(), child: this);
+  }
+}
+
+abstract class BaseStatefulWidget<B extends BaseBloc> extends StatefulWidget implements AutoRouteWrapper {
+  const BaseStatefulWidget({super.key});
+
+  @override
+  Widget wrappedRoute(BuildContext context) {
+    return Provider(create: (ctx) => getIt<B>(), child: this);
+  }
+}
+
 abstract class BasePageState<T extends StatefulWidget, B extends BaseBloc>
     extends BasePageStateDelegate<T, B> with LogMixin {}
 
