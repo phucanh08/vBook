@@ -2,7 +2,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:shared/shared.dart';
 
 class AppBlocObserver extends BlocObserver {
-  AppBlocObserver({
+  const AppBlocObserver({
     this.logOnChange = LogConfig.logOnBlocChange,
     this.logOnCreate = LogConfig.logOnBlocCreate,
     this.logOnClose = LogConfig.logOnBlocClose,

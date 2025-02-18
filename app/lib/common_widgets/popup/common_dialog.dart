@@ -1,5 +1,3 @@
-import 'dart:io';
-
 import 'package:flutter/cupertino.dart';
 import 'package:resources/resources.dart';
 import 'package:shared/shared.dart';
@@ -105,9 +103,7 @@ class CommonDialog extends StatelessWidget {
       case PopupType.ios:
         return _buildIosDialog(textTheme, colorScheme);
       case PopupType.adaptive:
-        return Platform.isIOS
-            ? _buildIosDialog(textTheme, colorScheme)
-            : _buildAndroidDialog(textTheme, colorScheme);
+        return _buildAndroidDialog(textTheme, colorScheme);
     }
   }
 

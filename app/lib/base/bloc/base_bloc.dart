@@ -1,71 +1,43 @@
 import 'dart:async';
+
+import 'package:flutter/foundation.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:shared/shared.dart';
 
-import '../../app.dart';
 
-abstract class BaseBloc<E extends BaseEvent, S extends BaseState>
-    extends BaseBlocDelegate<E, S> with EventTransformerMixin, LogMixin {
-  BaseBloc(super.initialState);
-}
+mixin BlocBaseMixin<State> on BlocBase<State> {
+  final isLoading = ValueNotifier<bool>(false);
 
-abstract class BaseBlocDelegate<E extends BaseEvent, S extends BaseState>
-    extends Bloc<E, S> {
-  BaseBlocDelegate(super.initialState);
-
-  late final AppNavigator navigator;
-  late final AppBloc appBloc;
-  late final ExceptionHandler exceptionHandler;
-  late final ExceptionMessageMapper exceptionMessageMapper;
-  late final DisposeBag disposeBag;
-  late final CommonBloc _commonBloc;
-
-  set commonBloc(CommonBloc commonBloc) {
-    _commonBloc = commonBloc;
-  }
-
-  CommonBloc get commonBloc =>
-      this is CommonBloc ? this as CommonBloc : _commonBloc;
+  void Function(Exception exception)? onException;
 
   @override
-  void add(E event) {
-    if (!isClosed) {
-      super.add(event);
-    } else {
-      Log.e('Cannot add new event $event because $runtimeType was closed');
-    }
+  Future<void> close() async {
+    isLoading.dispose();
+    return super.close();
   }
 
-  Future<void> addException(AppExceptionWrapper appExceptionWrapper) async {
-    commonBloc.add(ExceptionEmitted(
-      appExceptionWrapper: appExceptionWrapper,
-    ));
-
-    return appExceptionWrapper.exceptionCompleter?.future;
+  @protected
+  void addException(Exception exception) {
+    onException?.call(exception);
   }
 
-  void showLoading() {
-    commonBloc.add(const LoadingVisibilityEmitted(isLoading: true));
-  }
+  @protected
+  void showLoading() => isLoading.value = true;
 
-  void hideLoading() {
-    commonBloc.add(const LoadingVisibilityEmitted(isLoading: false));
-  }
+  @protected
+  void hideLoading() => isLoading.value = false;
 
+  @protected
   Future<void> runBlocCatching({
     required Future<void> Function() action,
     Future<void> Function()? doOnRetry,
-    Future<void> Function(AppException)? doOnError,
+    Future<void> Function(Exception)? doOnError,
     Future<void> Function()? doOnSubscribe,
     Future<void> Function()? doOnSuccessOrError,
     Future<void> Function()? doOnEventCompleted,
     bool handleLoading = true,
     bool handleError = true,
-    bool handleRetry = true,
-    bool Function(AppException)? forceHandleError,
     String? overrideErrorMessage,
   }) async {
-    Completer<void>? recursion;
     try {
       await doOnSubscribe?.call();
       if (handleLoading) {
@@ -78,63 +50,18 @@ abstract class BaseBlocDelegate<E extends BaseEvent, S extends BaseState>
         hideLoading();
       }
       await doOnSuccessOrError?.call();
-    } on AppException catch (e) {
+    } on Exception catch (e) {
       if (handleLoading) {
         hideLoading();
       }
       await doOnSuccessOrError?.call();
       await doOnError?.call(e);
 
-      if (handleError || (forceHandleError?.call(e) ?? _forceHandleError(e))) {
-        await addException(AppExceptionWrapper(
-          appException: e,
-          doOnRetry: doOnRetry ??
-              (handleRetry
-                  ? () async {
-                      recursion = Completer();
-                      await runBlocCatching(
-                        action: action,
-                        doOnEventCompleted: doOnEventCompleted,
-                        doOnSubscribe: doOnSubscribe,
-                        doOnSuccessOrError: doOnSuccessOrError,
-                        doOnError: doOnError,
-                        doOnRetry: doOnRetry,
-                        forceHandleError: forceHandleError,
-                        handleError: handleError,
-                        handleLoading: handleLoading,
-                        handleRetry: handleRetry,
-                        overrideErrorMessage: overrideErrorMessage,
-                      );
-                      recursion?.complete();
-                    }
-                  : null),
-          exceptionCompleter: Completer<void>(),
-          overrideMessage: overrideErrorMessage,
-        ));
+      if (handleError ) {
+        addException(e);
       }
     } finally {
-      await recursion?.future;
       await doOnEventCompleted?.call();
     }
   }
-
-  bool _forceHandleError(AppException appException) {
-    return appException is RemoteException &&
-        appException.kind == RemoteExceptionKind.refreshTokenFailed;
-  }
 }
-
-abstract class BaseEvent {
-  const BaseEvent();
-}
-
-abstract class BaseState {
-  const BaseState();
-}
-
-mixin RxStatusMixin on BaseState {
-  late final RxStatus rxStatus;
-}
-
-enum RxStatus { loading, success, empty, error }
-

@@ -1,7 +1,7 @@
 part of 'app_bloc.dart';
 
 @freezed
-class AppState extends BaseState with _$AppState {
+class AppState with _$AppState {
   const factory AppState({
     required AppTheme appTheme,
     @Default('vi') String languageCode,

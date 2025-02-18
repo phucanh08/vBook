@@ -2,9 +2,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:rxdart/rxdart.dart';
 import 'package:shared/shared.dart';
 
-import 'base_bloc.dart';
-
-mixin EventTransformerMixin<E extends BaseEvent, S extends BaseState> on BaseBlocDelegate<E, S> {
+mixin EventTransformerMixin<E> on BlocBase<E> {
   String get name => runtimeType.toString();
 
   /// log event action with payload

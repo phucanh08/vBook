@@ -1,39 +1,71 @@
 import 'package:auto_route/auto_route.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:shared/shared.dart';
 
 import '../../app.dart';
-import 'cubit/home_cubit.dart';
 
 @RoutePage()
-class HomePage extends StatefulWidget implements AutoRouteWrapper {
+class HomePage extends BlocView<CounterCubit> {
   const HomePage({super.key});
 
   @override
-  State<HomePage> createState() => _HomePageState();
+  CounterCubit createBloc(BuildContext context) => CounterCubit();
 
   @override
-  Widget wrappedRoute(BuildContext context) {
-    return BlocProvider(
-      create: (_) => HomeCubit(),
-      child: this,
+  void handleException(Exception exception) {
+    WidgetsBinding.instance.addPostFrameCallback((da) {
+
+    });
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    final counter = context.select((CounterCubit cubit) => cubit.state);
+
+    return Scaffold(
+      body: Column(
+        children: [
+          const Text('Loading '),
+          Column(
+            children: [
+              Text(counter.toString()),
+              IconButton(
+                onPressed: () {
+                  context.read<CounterCubit>().increment();
+                },
+                icon: const Icon(CupertinoIcons.add_circled_solid),
+              ),
+              IconButton(
+                onPressed: () {
+                  context.read<CounterCubit>().decrement();
+                },
+                icon: const Icon(CupertinoIcons.minus_circle_fill),
+              ),
+            ],
+          ),
+          ObxValue(
+            (data) => Switch(
+              value: data.value,
+              onChanged: (flag) => data.value = flag,
+            ),
+            false,
+          ),
+        ],
+      ),
     );
   }
 }
 
-class _HomePageState extends State<HomePage> {
-  HomeCubit get cubit => context.read<HomeCubit>();
+class CounterCubit extends Cubit<int> with BlocBaseMixin {
+  CounterCubit() : super(0);
 
-  @override
-  Widget build(BuildContext context) {
-    return Scaffold(
-      body: Center(
-        child:
-            cubit.builder((state) => Text('${state}'), onLoading: Text('Loading ')),
-      ),
-      floatingActionButton: IconButton(
-          onPressed: () => cubit.random(),
-          icon: Icon(CupertinoIcons.rectangle_arrow_up_right_arrow_down_left)),
-    );
-  }
+  /// Add 1 to the current state.
+  // void increment() => emit(state + 1);
+  void increment() => runBlocCatching(action: () async {
+    throw const RemoteException(kind: RemoteExceptionKind.badCertificate);
+  });
+
+  /// Subtract 1 from the current state.
+  void decrement() => emit(state - 1);
 }

@@ -17,8 +17,9 @@ class AppConfig extends ApplicationConfig {
   @override
   Future<void> config() async {
     di.configureInjection();
+    getIt.registerFactory<CounterCubit>(() => CounterCubit());
 
-    Bloc.observer = AppBlocObserver();
+    Bloc.observer = const AppBlocObserver();
     await ViewUtils.setPreferredOrientations(DeviceUtils.deviceType == DeviceType.mobile
         ? UiConstants.mobileOrientation
         : UiConstants.tabletOrientation);

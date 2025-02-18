@@ -7,27 +7,28 @@ import '../app.dart';
 
 export 'bloc/app_bloc.dart';
 
-class App extends StatefulWidget {
+class App extends StatelessWidget {
   const App({super.key});
 
   @override
-  State<App> createState() => _AppState();
+  Widget build(BuildContext context) {
+    AppDimen.of(context);
+    AppTheme.of(context);
+
+    return BlocProvider(
+      create: (context) => GetIt.instance.get<AppBloc>(),
+      child: const AppView(),
+    );
+  }
 }
 
-class _AppState extends BasePageState<App, AppBloc> {
-  final _appRouter = GetIt.instance.get<AppRouter>();
+class AppView extends StatelessWidget {
+  const AppView({super.key});
 
   @override
-  bool get isAppWidget => true;
+  Widget build(BuildContext context) {
+    final _appRouter = GetIt.instance.get<AppRouter>();
 
-  @override
-  void initState() {
-    super.initState();
-    bloc.add(const AppInitiated());
-  }
-
-  @override
-  Widget buildPage(BuildContext context) {
     return ScreenUtilInit(
       designSize: const Size(
         DeviceConstants.designDeviceWidth,

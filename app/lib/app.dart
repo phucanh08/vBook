@@ -1,5 +1,3 @@
-library app;
-
 export 'package:domain/domain.dart' hide getIt;
 
 export 'app/app.dart';

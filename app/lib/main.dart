@@ -8,5 +8,5 @@ import 'config/app_config.dart';
 Future<void> main() async {
   WidgetsFlutterBinding.ensureInitialized();
   await AppInitializer(AppConfig.getInstance()).init();
-  runApp(TranslationProvider(child: const App()));
+  runApp(TranslationProvider(child: App()));
 }

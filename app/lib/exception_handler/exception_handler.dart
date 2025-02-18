@@ -1,3 +1,4 @@
+import 'package:get_it/get_it.dart';
 import 'package:resources/resources.dart';
 import 'package:shared/shared.dart';
 
@@ -6,19 +7,16 @@ import '../app.dart';
 part 'exception_message_mapper.dart';
 
 class ExceptionHandler {
-  const ExceptionHandler({
-    required this.navigator,
-    required this.listener,
-  });
-
-  final AppNavigator navigator;
-  final ExceptionHandlerListener listener;
+  const ExceptionHandler();
 
   Future<void> handleException(
     AppExceptionWrapper appExceptionWrapper,
     String commonExceptionMessage,
   ) async {
-    final message = appExceptionWrapper.overrideMessage ?? commonExceptionMessage;
+    final navigator = GetIt.instance.get<AppNavigator>();
+
+    final message =
+        appExceptionWrapper.overrideMessage ?? commonExceptionMessage;
 
     switch (appExceptionWrapper.appException.appExceptionType) {
       case AppExceptionType.remote:
@@ -64,6 +62,8 @@ class ExceptionHandler {
     required String message,
     Duration duration = DurationConstants.defaultErrorVisibleDuration,
   }) {
+    final navigator = GetIt.instance.get<AppNavigator>();
+
     navigator.showSnackBar(message, duration: duration);
   }
 
@@ -72,6 +72,8 @@ class ExceptionHandler {
     Func0<void>? onPressed,
     bool isRefreshTokenFailed = false,
   }) async {
+    final navigator = GetIt.instance.get<AppNavigator>();
+
     await navigator
         .showDialog(CommonDialog.confirmDialog(
       message: message,
@@ -79,7 +81,7 @@ class ExceptionHandler {
     ))
         .then((value) {
       if (isRefreshTokenFailed) {
-        listener.onRefreshTokenFailed();
+        // TODO(anhlp): Cập nhật logic khi refresh token lỗi
       }
     });
   }
@@ -88,13 +90,11 @@ class ExceptionHandler {
     required String message,
     required Func0<void>? onRetryPressed,
   }) async {
+    final navigator = GetIt.instance.get<AppNavigator>();
+
     await navigator.showDialog(CommonDialog.errorWithRetryDialog(
       message: message,
       onRetryPressed: onRetryPressed,
     ));
   }
-}
-
-abstract class ExceptionHandlerListener {
-  void onRefreshTokenFailed();
 }

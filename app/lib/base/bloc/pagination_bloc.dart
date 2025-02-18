@@ -1,10 +1,8 @@
 import 'package:domain/domain.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
-import 'base_bloc.dart';
-
 abstract class PaginationBloc<T, F, S extends PaginationState<T>>
-    extends BaseBloc<PaginationEvent, S> {
+    extends Bloc<PaginationEvent, S> {
   PaginationBloc(super.initialState) {
     on<PaginationStarted<F>>(onPaginationStarted);
     on<PaginationNextPage<F>>(onPaginationNextPage);
@@ -34,7 +32,7 @@ abstract class PaginationBloc<T, F, S extends PaginationState<T>>
   );
 }
 
-abstract class PaginationEvent extends BaseEvent {}
+abstract class PaginationEvent {}
 
 class PaginationStarted<F> extends PaginationEvent {
   PaginationStarted(this.page, {this.filter});
@@ -53,7 +51,7 @@ class PaginationRefreshed<F> extends PaginationEvent {
 
 enum PagedStatus { initial, loading, refreshing, empty, success, failure }
 
-abstract class PaginationState<T> extends BaseState {
+abstract class PaginationState<T> {
   const PaginationState();
   Pagination<T> get data;
   PagedStatus get status;
